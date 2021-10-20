@@ -1,0 +1,19 @@
+<div class="list-container">
+    <div class="todo-container column-container">
+        <div class="list"
+                cdkDropList
+                #contentList="cdkDropList"
+                [cdkDropListData]="content"
+                (cdkDropListDropped)="onDrop($event)">
+            <h2>{{dragListName}}</h2>
+            <mat-card *ngFor="let item of content" cdkDrag>
+            <mat-card-header>
+                <mat-card-title *ngIf="item.name">{{item.name}}</mat-card-title>
+                <mat-card-subtitle *ngIf="item.type">{{item.type}}</mat-card-subtitle>
+            </mat-card-header>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
