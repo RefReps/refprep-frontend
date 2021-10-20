@@ -1,43 +1,45 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 import { Video } from 'src/models/Video/video.model';
-
-const baseUrl = 'http://localhost:8080/api'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  
+  baseUrl: string = 'http://localhost:3000';
+  videoUrl: string = `${this.baseUrl}/api/video`;
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Video[]> {
-    return this.http.get<Video[]>(baseUrl);
+    return this.http.get<Video[]>(`${this.videoUrl}`);
   }
 
   get(id: any): Observable<Video> {
-    return this.http.get(`${baseUrl}/${id}`);
+    return this.http.get(`${this.videoUrl}/${id}`);
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(`${this.videoUrl}/upload`, data);
   }
 
   update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    return this.http.put(`${this.videoUrl}/${id}`, data);
   }
 
   delete(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
   deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
+    return this.http.delete(this.baseUrl);
   }
 
   findByTitle(title: any): Observable<Video[]> {
-    return this.http.get<Video[]>(`${baseUrl}?title=${title}`);
+    return this.http.get<Video[]>(`${this.baseUrl}?title=${title}`);
   }
 
 }
