@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
+import { Content } from 'src/models/Content/content'
+
 @Component({
   selector: 'app-drag-area',
   templateUrl: './drag-area.component.html',
@@ -9,12 +11,12 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 export class DragAreaComponent implements OnInit {
   dragListName = "Content for Module"
 
-  @Input() content = []
-  // [
-  //   {name: "Basketball - Court 1", type: "video"},
-  //   {name: "Review Quiz", type: "quiz"},
-  //   {name: "Basketball - Court 1", type: "video"},
-  // ]
+  content: Content[] = 
+  [
+    {name: "Basketball - Court 1", type: "video"},
+    {name: "Review Quiz", type: "quiz"},
+    {name: "Basketball - Court 1", type: "video"},
+  ]
   
   constructor() { }
 

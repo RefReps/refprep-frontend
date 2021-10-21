@@ -1,6 +1,6 @@
 <div class="list-container">
     <div class="todo-container column-container">
-        <div class="list"
+        <div *ngIf="content.length != 0" class="list"
                 cdkDropList
                 #contentList="cdkDropList"
                 [cdkDropListData]="content"
