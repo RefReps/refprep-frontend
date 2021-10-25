@@ -4,22 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import {MatCardModule} from '@angular/material/card';
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { VideoBoxComponent } from './components/video-box/video-box.component';
-import { VideoManagerComponent } from './components/video-manager/video-manager.component';
-import { DragAreaComponent } from './components/drag-area/drag-area.component';
+import { DefaultModule } from './layouts/default/default.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VideoBoxComponent,
-    VideoManagerComponent,
-    DragAreaComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +21,8 @@ import { DragAreaComponent } from './components/drag-area/drag-area.component';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    DragDropModule,
-    MatCardModule,
+
+    DefaultModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
