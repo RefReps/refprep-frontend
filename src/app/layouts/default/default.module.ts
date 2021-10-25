@@ -7,14 +7,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HomeComponent } from 'src/app/modules/home/home.component';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { CourseHomeComponent } from 'src/app/modules/course-home/course-home.component';
+import { TestComponentComponent } from 'src/app/modules/test-component/test-component.component';
 
 
 
 @NgModule({
-  declarations: [ // Declarations are any Layouts, and Modules folder
+  declarations: [ // Declarations are the current layout, and Modules folder
     DefaultComponent,
     CoursesComponent,
     HomeComponent,
+    CourseHomeComponent,
+    TestComponentComponent,
   ],
   imports: [
     CommonModule,
