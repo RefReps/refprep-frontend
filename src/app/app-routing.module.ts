@@ -10,10 +10,11 @@ const routes: Routes = [ // Always put more specific routes on the top
     path: '', 
     component: DefaultComponent, 
     children: [
-      {path: '', component: HomeComponent}, 
+      {path: '', redirectTo: 'home', pathMatch: 'full'}, 
       {path: 'courses/:courseId/module/:moduleId', component: CourseInfoHomeComponent},
       {path: 'courses/:courseId', component: CourseInfoHomeComponent},
-      {path: 'courses', component: CoursesComponent}
+      {path: 'courses', component: CoursesComponent},
+      {path: 'home', component: HomeComponent},
     ]
   },
   {
