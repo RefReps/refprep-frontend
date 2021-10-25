@@ -25,18 +25,18 @@ export class SidebarComponent implements OnInit {
       route: '/courses', 
       tooltip: 'Courses'
     },
-    {
-      name: 'inbox', 
-      icon: 'inbox', 
-      route: '', 
-      tooltip: 'Inbox (Not Implemented)'
-    },
-    {
-      name: 'settings', 
-      icon: 'settings', 
-      route: '', 
-      tooltip: 'Settings (Not Implemented)'
-    },
+    // {
+    //   name: 'inbox', 
+    //   icon: 'inbox', 
+    //   route: '', 
+    //   tooltip: 'Inbox (Not Implemented)'
+    // },
+    // {
+    //   name: 'settings', 
+    //   icon: 'settings', 
+    //   route: '', 
+    //   tooltip: 'Settings (Not Implemented)'
+    // },
   ]
 
   constructor() { }
