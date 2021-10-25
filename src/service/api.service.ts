@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Video } from 'src/models/Video/video.model';
+import { CourseBreifInfo } from 'src/app/models/course-breif-info';
+import { CourseInfo } from 'src/app/models/course-info';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ export class ApiService {
   
   baseUrl: string = 'http://localhost:3000';
   videoUrl: string = `${this.baseUrl}/api/video`;
+  courseUrl: string = `${this.baseUrl}/api/course`
 
   constructor(private http: HttpClient) { }
 
@@ -40,6 +43,14 @@ export class ApiService {
 
   findByTitle(title: any): Observable<Video[]> {
     return this.http.get<Video[]>(`${this.baseUrl}?title=${title}`);
+  }
+
+  getAllCoursesInfo(): Observable<CourseBreifInfo[]> {
+    return this.http.get<CourseBreifInfo[]>(`${this.courseUrl}`)
+  }
+
+  getCourseInfo(courseId: string): Observable<CourseInfo> {
+    return this.http.get<CourseInfo>(`${this.courseUrl}/${courseId}`)
   }
 
 }

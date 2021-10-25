@@ -1,0 +1,10 @@
+<div class="flex flex-col
+            bg-primary text-white shadow-lg
+            max-w-min p-2 min-h-screen">
+    <div class="h-16">
+        <img src="../../../../assets/RR_Logo_12.png" alt="logo">
+    </div>
+    <div *ngFor="let icon of icons">
+        <app-sidebar-icon [icon]=icon></app-sidebar-icon>
+    </div>
+</div>
