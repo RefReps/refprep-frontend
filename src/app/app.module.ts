@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultModule } from './layouts/default/default.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,9 @@ import { DefaultModule } from './layouts/default/default.module';
     CommonModule,
     FormsModule,
     HttpClientModule,
+    DragDropModule,
 
-    DefaultModule,
+    DefaultModule, // import all layout modules
   ],
   providers: [],
   bootstrap: [AppComponent]
