@@ -13,25 +13,9 @@ export class CourseInfoHomeComponent implements OnInit {
   courseId: string = '';
   courseInfo: CourseInfo = {};
 
-  constructor(
-    private Api: ApiService, 
-    private route: ActivatedRoute
-    ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.route.paramMap
-      .subscribe(params => {
-        let id = params.get('courseId');
-        if (id) {
-          this.courseId = id;
-        }
-      })
-    this.getCourseInfo();
-  }
 
-  getCourseInfo(): void {
-    this.Api.getCourseInfo(this.courseId)
-      .subscribe(info => this.courseInfo = info)
   }
-
 }
