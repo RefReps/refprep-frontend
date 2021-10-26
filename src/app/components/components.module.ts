@@ -17,6 +17,7 @@ import { CourseInfoHomeComponent } from './course-info-home/course-info-home.com
 import { ContentHeaderComponent } from './content-header/content-header.component';
 import { ModuleDisplayComponent } from './module-display/module-display.component';
 import { DragDropAreaComponent } from './drag-drop-area/drag-drop-area.component';
+import { CourseSidebarComponent } from './course-sidebar/course-sidebar.component';
 
 
 
@@ -31,6 +32,7 @@ import { DragDropAreaComponent } from './drag-drop-area/drag-drop-area.component
     ContentHeaderComponent,
     ModuleDisplayComponent,
     DragDropAreaComponent,
+    CourseSidebarComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { DragDropAreaComponent } from './drag-drop-area/drag-drop-area.component
     ContentHeaderComponent,
     ModuleDisplayComponent,
     DragDropAreaComponent,
+    CourseSidebarComponent
   ],
 })
 export class ComponentsModule { }
