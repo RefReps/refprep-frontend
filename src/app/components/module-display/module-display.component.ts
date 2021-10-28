@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SectionsInfo } from 'src/app/models/sections-info';
+import { ActivatedRoute } from '@angular/router';
+import { CourseInfo } from 'src/app/models/course-info';
+import { ApiService } from 'src/service/api.service';
 
 @Component({
   selector: 'app-module-display',
@@ -7,12 +9,28 @@ import { SectionsInfo } from 'src/app/models/sections-info';
   styleUrls: ['./module-display.component.css']
 })
 export class ModuleDisplayComponent implements OnInit {
+  
+  courseId: string = '';
+  courseInfo: CourseInfo = {};
 
-  @Input() sectionsList: SectionsInfo[] = [];
-
-  constructor() { }
+  constructor(
+    private Api: ApiService, 
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
+    this.route.paramMap
+      .subscribe(params => {
+        let id = params.get('courseId');
+        if (id) {
+          this.courseId = id;
+        }
+      })
+    this.getCourseInfo();
   }
 
+  getCourseInfo(): void {
+    this.Api.getCourseInfo(this.courseId)
+      .subscribe(info => this.courseInfo = info)
+  }
 }

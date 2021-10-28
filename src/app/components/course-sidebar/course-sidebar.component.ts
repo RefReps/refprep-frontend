@@ -11,27 +11,9 @@ import { CourseInfoHomeComponent } from '../course-info-home/course-info-home.co
 })
 export class CourseSidebarComponent implements OnInit {
 
-  courseId: string = '';
-  courseInfo: CourseInfo = {};
-
-  constructor(
-    private Api: ApiService, 
-    private route: ActivatedRoute
-    ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.route.paramMap
-      .subscribe(params => {
-        let id = params.get('courseId');
-        if (id) {
-          this.courseId = id;
-        }
-      })
-    this.getCourseInfo();
   }
 
-  getCourseInfo(): void {
-    this.Api.getCourseInfo(this.courseId)
-      .subscribe(info => this.courseInfo = info)
-  }
 }
