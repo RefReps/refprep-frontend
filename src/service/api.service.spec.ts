@@ -1,34 +1,42 @@
-import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
-import { CourseInfo } from 'src/app/models/course-info';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ApiService } from './api.service';
+import { TestBed } from '@angular/core/testing';
+import { CourseBreifInfo } from 'src/app/models/course-breif-info';
 
 describe('ApiService', () => {
-  let httpClientSpy: { get: jasmine.Spy };
+  let httpTestingController: HttpTestingController;
   let apiService: ApiService;
 
   beforeEach(() => {
-    //TODO: spy on other methods too
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get'])
-    apiService = new ApiService(httpClientSpy as any);
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
+
+    httpTestingController = TestBed.get(HttpTestingController);
+    apiService = TestBed.get(ApiService);
   });
 
-  it('should return expected courses (HttpClient called once)', (done: DoneFn) => {
-    const expectedCourses: CourseInfo[] =
-    [{"_id":"61715885a88ae2f163083ebf","courseName":"Baseball 101"},{"_id":"6172bc7fcd8d63270bfdf43b","courseName":"Course Not Named"},{"_id":"6175aa47af8840e6d8543d4d","courseName":"Basketball 101"},{"_id":"61770c9a6f259d21318d0867","courseName":"Basketball 101"}];
-    
-    httpClientSpy.get.and.returnValue(of(expectedCourses));
-
-    apiService.getAllCoursesInfo().subscribe(
-      courses => {
-        expect(courses).toEqual(expectedCourses, 'expected courses');
-        done();
-      },
-      done.fail
-    );
-    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  afterEach(() => {
+    httpTestingController.verify();
   });
+  //need to make a dummy set of info to test against
+  it('getAllCoursesInfo() should return expected info', (done) => {
+    const expectedData: CourseBreifInfo[] = [
+      {'_id':'61793332928a024f0a2ba021','courseName':'Course Not Named'},
+      {'_id':'61793356928a024f0a2ba025','courseName':'Course 1'},
+      {'_id':'61793375928a024f0a2ba02a','courseName':'Course 2'}   
+    ];
+
+    apiService.getAllCoursesInfo().subscribe( data => {
+      expect(data).toEqual(expectedData);
+      done();
+    });
+
+    const testRequest = httpTestingController.expectOne('http://localhost:3000/api/course');
+    testRequest.flush(expectedData);
+  });
+
 
   it('should be created', () => {
     expect(apiService).toBeTruthy();

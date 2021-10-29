@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatCardModule } from '@angular/material/card';
 import { DragAreaComponent } from './drag-area.component';
 
 describe('DragAreaComponent', () => {
@@ -8,7 +8,12 @@ describe('DragAreaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DragAreaComponent ]
+      imports: [
+        MatCardModule
+      ],
+      declarations: [ 
+        DragAreaComponent
+      ]
     })
     .compileComponents();
   });

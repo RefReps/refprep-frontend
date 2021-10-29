@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDivider} from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
 import { CourseDashboardComponent } from './course-dashboard.component';
 
 describe('CourseDashboardComponent', () => {
@@ -8,7 +9,13 @@ describe('CourseDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseDashboardComponent ]
+      imports: [
+        MatDivider,
+        MatCardModule 
+      ],
+      declarations: [ 
+        CourseDashboardComponent
+        ]
     })
     .compileComponents();
   });
