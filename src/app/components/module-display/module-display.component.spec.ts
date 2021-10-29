@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatAccordion } from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
 import { ModuleDisplayComponent } from './module-display.component';
 
 describe('ModuleDisplayComponent', () => {
@@ -8,7 +10,13 @@ describe('ModuleDisplayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModuleDisplayComponent ]
+      imports: [
+        MatAccordion,
+        MatExpansionModule,
+        MatCardModule 
+      ],
+      declarations: [ 
+        ModuleDisplayComponent]
     })
     .compileComponents();
   });

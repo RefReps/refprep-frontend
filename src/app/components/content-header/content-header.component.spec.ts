@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDividerModule } from '@angular/material/divider';
 import { ContentHeaderComponent } from './content-header.component';
 
 describe('ContentHeaderComponent', () => {
@@ -8,7 +8,12 @@ describe('ContentHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContentHeaderComponent ]
+      imports: [
+        MatDividerModule
+      ],
+      declarations: [ 
+        ContentHeaderComponent
+         ]
     })
     .compileComponents();
   });

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDividerModule } from '@angular/material/divider';
 import { CourseInfoHomeComponent } from './course-info-home.component';
 
 describe('CourseInfoHomeComponent', () => {
@@ -8,7 +8,12 @@ describe('CourseInfoHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseInfoHomeComponent ]
+      imports: [
+        MatDividerModule
+      ],
+      declarations: [ 
+        CourseInfoHomeComponent
+        ]
     })
     .compileComponents();
   });
