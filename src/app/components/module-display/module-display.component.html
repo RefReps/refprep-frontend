@@ -1,17 +1,18 @@
-<mat-accordion multi="false">
-    <div class="p-1">
-        <div *ngFor="let section of courseInfo.sections" class="p-1">
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <div class="p-2 font-bold text-xl">
-                            Section {{section.sectionName}}
-                            <a *ngIf="true">
-                                <mat-icon>edit</mat-icon>
-                            </a>
-                        </div>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
+
+    <mat-accordion multi="false">
+        <div class="p-1">
+            <div *ngFor="let section of courseInfo.sections" class="p-1">
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div class="p-2 font-bold text-xl">
+                                Section {{section.sectionName}}
+                                <a *ngIf="true">
+                                    <mat-icon>edit</mat-icon>
+                                </a>
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
             <div *ngFor="let module of section.modules" class="p-2">
                 <mat-expansion-panel hideToggle>
                     <mat-expansion-panel-header>

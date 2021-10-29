@@ -10,7 +10,6 @@ import { CourseInfoHomeComponent } from '../course-info-home/course-info-home.co
   styleUrls: ['./course-sidebar.component.css']
 })
 export class CourseSidebarComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
