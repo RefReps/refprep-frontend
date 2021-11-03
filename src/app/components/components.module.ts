@@ -18,6 +18,8 @@ import { ContentHeaderComponent } from './content-header/content-header.componen
 import { ModuleDisplayComponent } from './module-display/module-display.component';
 import { DragDropAreaComponent } from './drag-drop-area/drag-drop-area.component';
 import { CourseSidebarComponent } from './course-sidebar/course-sidebar.component';
+import { VideoUploadComponent } from './video-upload/video-upload.component';
+import { VideoViewerComponent } from './video-viewer/video-viewer.component';
 
 
 
@@ -33,6 +35,8 @@ import { CourseSidebarComponent } from './course-sidebar/course-sidebar.componen
     ModuleDisplayComponent,
     DragDropAreaComponent,
     CourseSidebarComponent,
+    VideoUploadComponent,
+    VideoViewerComponent,
   ],
   imports: [
     CommonModule,
@@ -54,7 +58,9 @@ import { CourseSidebarComponent } from './course-sidebar/course-sidebar.componen
     ContentHeaderComponent,
     ModuleDisplayComponent,
     DragDropAreaComponent,
-    CourseSidebarComponent
+    CourseSidebarComponent,
+    VideoUploadComponent,
+    VideoViewerComponent
   ],
 })
 export class ComponentsModule { }
