@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { Video } from 'src/models/Video/video.model';
 import { CourseBreifInfo } from 'src/app/models/course-breif-info';
 import { CourseInfo } from 'src/app/models/course-info';
+import { SectionsInfo } from 'src/app/models/sections-info';
 
 @Injectable({
   providedIn: 'root'
@@ -54,3 +55,4 @@ export class ApiService {
   }
 
 }
+
