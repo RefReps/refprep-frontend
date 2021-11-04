@@ -2,9 +2,12 @@
 bg-black text-white shadow-lg
 max-w-min p-20 min-h-screen">
     <ul>
-        <li>Curriculum</li>
+        <li><a routerLink="edit">Edit Curriculum</a></li>
         <br> 
         <br>
-        <li> Your Instructor </li>
+        <li><a routerLink="../:courseId">Modules</a></li>
+        <br>
+        <br>
+        <li><a [routerLink]="['./videoUpload']">Upload video</a></li>
     </ul>
 </div>

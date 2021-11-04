@@ -27,3 +27,36 @@
     @apply first-line:text-3xl p-3;
   }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer components {
+  .sidebar-icon {
+    @apply relative flex items-center justify-center 
+            h-12 w-12 mt-2 mb-2 mx-auto
+            text-white
+            hover:bg-white hover:text-black
+            rounded-3xl hover:rounded-xl
+            transition-all duration-300 ease-linear
+            cursor-pointer;
+  }
+
+  .sidebar-tooltip {
+    @apply absolute w-auto p-2 m-2 min-w-max left-14
+            rounded-md shadow-md
+            text-white bg-fifthary
+            text-xs font-bold
+            transition-all duration-100 scale-0 origin-left;
+  }
+
+  .header-bar {
+    @apply first-line:text-3xl p-3;
+  }
+}*/

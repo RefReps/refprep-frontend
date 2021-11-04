@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CourseInfoHomeComponent } from './components/course-info-home/course-info-home.component';
+import { VideoUploadComponent } from './components/video-upload/video-upload.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import { CourseHomeComponent } from './modules/course-home/course-home.component';
 import { CoursesComponent } from './modules/courses/courses.component';
@@ -17,7 +18,8 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'courses/:courseId', component: CourseHomeComponent},
       {path: 'courses', component: CoursesComponent},
       {path: 'home', component: HomeComponent},
-      {path: 'test', component: TestComponentComponent}
+      {path: 'test', component: TestComponentComponent},
+      {path: 'courses/:courseId/videoUpload', component: VideoUploadComponent}
     ]
   },
   {
