@@ -1,4 +1,8 @@
 <div>
+  <div fxLayout ="row">
+    <app-select-section></app-select-section>
+    <app-select-module></app-select-module>
+  </div>
     <mat-toolbar *ngIf="currentFile" class="progress-bar">
       <mat-progress-bar color="accent" [value]="progress"></mat-progress-bar>
       <span class="progress">{{ progress }}%</span>

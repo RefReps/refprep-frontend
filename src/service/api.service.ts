@@ -6,6 +6,7 @@ import { Video } from 'src/models/Video/video.model';
 import { CourseBreifInfo } from 'src/app/models/course-breif-info';
 import { CourseInfo } from 'src/app/models/course-info';
 import { SectionsInfo } from 'src/app/models/sections-info';
+import { ModuleInfo } from 'src/app/models/module-info';
 
 @Injectable({
   providedIn: 'root'
@@ -54,4 +55,11 @@ export class ApiService {
     return this.http.get<CourseInfo>(`${this.courseUrl}/${courseId}`)
   }
 
+  getCourseSections(courseId: string): Observable<SectionsInfo[]>{
+    return this.http.get<SectionsInfo[]>(`${this.courseUrl}/${courseId}/section`)
+  }
+
+  getSectionModules(courseId: string, sectionId: string): Observable<ModuleInfo[]>{
+    return this.http.get<ModuleInfo[]>(`${this.courseUrl}/${courseId}/${sectionId}/module`)
+  }
 }

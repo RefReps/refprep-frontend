@@ -20,12 +20,16 @@ import { DragDropAreaComponent } from './drag-drop-area/drag-drop-area.component
 import { CourseSidebarComponent } from './course-sidebar/course-sidebar.component';
 import { VideoUploadComponent } from './video-upload/video-upload.component';
 import { VideoViewerComponent } from './video-viewer/video-viewer.component';
+import { SelectModuleComponent } from './select-module/select-module.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import { SelectSectionComponent } from './select-section/select-section.component'
 
 
 @NgModule({
@@ -42,6 +46,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     CourseSidebarComponent,
     VideoUploadComponent,
     VideoViewerComponent,
+    SelectModuleComponent,
+    SelectSectionComponent,
   ],
   imports: [
     CommonModule,
@@ -58,7 +64,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatInputModule,
     MatFormFieldModule,
     MatProgressBarModule,
-    MatListModule
+    MatListModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatSelectModule
   ],  
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
@@ -76,6 +85,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     CourseSidebarComponent,
     VideoUploadComponent,
     VideoViewerComponent,
+    SelectModuleComponent,
+    SelectSectionComponent
   ],
 })
 export class ComponentsModule { }
