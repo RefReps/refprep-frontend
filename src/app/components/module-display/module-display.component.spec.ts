@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatAccordion } from '@angular/material/expansion';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { ModuleDisplayComponent } from './module-display.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ApiService } from 'src/service/api.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ModuleDisplayComponent', () => {
   let component: ModuleDisplayComponent;
@@ -11,12 +13,14 @@ describe('ModuleDisplayComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        MatAccordion,
+        HttpClientTestingModule,
         MatExpansionModule,
-        MatCardModule 
+        MatCardModule,
+        RouterTestingModule 
       ],
       declarations: [ 
-        ModuleDisplayComponent]
+        ModuleDisplayComponent],
+      providers: [ ApiService ]
     })
     .compileComponents();
   });

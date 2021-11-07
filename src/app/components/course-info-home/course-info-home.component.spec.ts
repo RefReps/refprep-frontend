@@ -1,5 +1,8 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDividerModule } from '@angular/material/divider';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ApiService } from 'src/service/api.service';
 import { CourseInfoHomeComponent } from './course-info-home.component';
 
 describe('CourseInfoHomeComponent', () => {
@@ -9,11 +12,14 @@ describe('CourseInfoHomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        MatDividerModule
+        MatDividerModule,
+        HttpClientTestingModule,
+        RouterTestingModule
       ],
       declarations: [ 
         CourseInfoHomeComponent
-        ]
+        ],
+        providers: [ ApiService ]
     })
     .compileComponents();
   });

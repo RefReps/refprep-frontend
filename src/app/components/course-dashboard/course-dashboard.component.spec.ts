@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDivider} from '@angular/material/divider';
+import { MatDividerModule} from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { CourseDashboardComponent } from './course-dashboard.component';
+import { ApiService } from 'src/service/api.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CourseDashboardComponent', () => {
   let component: CourseDashboardComponent;
@@ -10,12 +12,14 @@ describe('CourseDashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        MatDivider,
-        MatCardModule 
+        MatDividerModule,
+        MatCardModule,
+        HttpClientTestingModule, 
       ],
       declarations: [ 
         CourseDashboardComponent
-        ]
+        ],
+      providers: [ ApiService ]
     })
     .compileComponents();
   });

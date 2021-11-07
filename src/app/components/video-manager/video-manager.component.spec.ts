@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ApiService } from 'src/service/api.service';
 
 import { VideoManagerComponent } from './video-manager.component';
 
@@ -8,7 +10,9 @@ describe('VideoManagerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VideoManagerComponent ]
+      imports: [ HttpClientTestingModule ],
+      declarations: [ VideoManagerComponent ],
+      providers: [ ApiService ]
     })
     .compileComponents();
   });

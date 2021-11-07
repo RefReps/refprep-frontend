@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material/card';
 import { DragAreaComponent } from './drag-area.component';
@@ -9,6 +10,7 @@ describe('DragAreaComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        DragDropModule,
         MatCardModule
       ],
       declarations: [ 
