@@ -1,5 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropAreaComponent } from './drag-drop-area.component';
 
@@ -11,6 +12,7 @@ describe('DragDropAreaComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ DragDropAreaComponent ],
       imports: [
+        MatIconModule,
         NoopAnimationsModule,
         DragDropModule,
       ]

@@ -5,6 +5,7 @@ import { ModuleDisplayComponent } from './module-display.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ApiService } from 'src/service/api.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('ModuleDisplayComponent', () => {
   let component: ModuleDisplayComponent;
@@ -16,6 +17,7 @@ describe('ModuleDisplayComponent', () => {
         HttpClientTestingModule,
         MatExpansionModule,
         MatCardModule,
+        MatIconModule,
         RouterTestingModule 
       ],
       declarations: [ 
