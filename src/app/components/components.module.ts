@@ -29,7 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-import { SelectSectionComponent } from './select-section/select-section.component'
+import { SelectSectionComponent } from './select-section/select-section.component';
 
 
 @NgModule({

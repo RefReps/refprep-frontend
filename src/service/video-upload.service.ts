@@ -11,10 +11,13 @@ export class VideoUploadService {
 
   constructor(private http: HttpClient) { }
 
-  upload(file: File): Observable<HttpEvent<any>> {
+  upload(file: File, courseID: string, sectionID: string, moduleID: string): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
 
     formData.append('video', file); //field name to file data 
+    formData.append('courseId', courseID);
+    formData.append('sectionId', sectionID);
+    formData.append('moduleId', moduleID);
 
     const req = new HttpRequest('POST', `${this.baseUrl}/api/video/`, formData, {
       reportProgress: true,

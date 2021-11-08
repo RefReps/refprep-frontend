@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CourseBreifInfo } from 'src/app/models/course-breif-info';
 
 @Component({
   selector: 'app-course-home',

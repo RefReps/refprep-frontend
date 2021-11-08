@@ -12,6 +12,7 @@ export class ModuleDisplayComponent implements OnInit {
   
   courseId: string = '';
   courseInfo: CourseInfo = {};
+  
 
   constructor(
     private Api: ApiService, 

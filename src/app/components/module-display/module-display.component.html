@@ -25,6 +25,8 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <!-- populate the module content-->
+                <p *ngFor="let content of module.content"> {{content.onModel}}-{{content.contentName}}</p>
+                <app-video-upload [courseID]=courseInfo._id [sectionID]=section._id [moduleID]=module._id></app-video-upload>
             </mat-expansion-panel> 
         </div>
     </mat-expansion-panel>

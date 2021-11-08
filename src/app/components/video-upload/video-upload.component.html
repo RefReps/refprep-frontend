@@ -1,7 +1,5 @@
 <div>
   <div fxLayout ="row">
-    <app-select-section></app-select-section>
-    <app-select-module></app-select-module>
   </div>
     <mat-toolbar *ngIf="currentFile" class="progress-bar">
       <mat-progress-bar color="accent" [value]="progress"></mat-progress-bar>
@@ -12,7 +10,7 @@
       <div>
         <mat-toolbar>
           <input matInput [value]="fileName" readonly/>
-  
+          
           <button
             mat-flat-button
             color="primary"
@@ -24,6 +22,7 @@
           type="file"
           id="fileInput"
           (change)="selectFile($event)"
+          multiple
           name="fileInput"
         />
       </div>

@@ -20,6 +20,7 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'home', component: HomeComponent},
       {path: 'test', component: TestComponentComponent},
       {path: 'courses/:courseId/videoUpload', component: VideoUploadComponent}
+
     ]
   },
   {

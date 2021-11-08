@@ -7,6 +7,7 @@ import { CourseBreifInfo } from 'src/app/models/course-breif-info';
 import { CourseInfo } from 'src/app/models/course-info';
 import { SectionsInfo } from 'src/app/models/sections-info';
 import { ModuleInfo } from 'src/app/models/module-info';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,10 @@ export class ApiService {
   }
 
   getSectionModules(courseId: string, sectionId: string): Observable<ModuleInfo[]>{
-    return this.http.get<ModuleInfo[]>(`${this.courseUrl}/${courseId}/${sectionId}/module`)
+    return this.http.get<ModuleInfo[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module`)
+  }
+
+  getModuleContent(courseId: string, sectionId: string, moduleID: string): Observable<Content[]>{
+    return this.http.get<Content[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module/${moduleID}/content`)
   }
 }
