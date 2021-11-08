@@ -67,4 +67,5 @@ export class ApiService {
   getModuleContent(courseId: string, sectionId: string, moduleID: string): Observable<Content[]>{
     return this.http.get<Content[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module/${moduleID}/content`)
   }
+
 }
