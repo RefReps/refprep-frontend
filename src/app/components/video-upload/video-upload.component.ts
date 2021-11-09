@@ -49,6 +49,8 @@ export class VideoUploadComponent implements OnInit {
             this.progress = Math.round(100 * event.loaded / event.total);
           } else if (event instanceof HttpResponse) {
             this.message = 'File Uploaded!';
+            //reload the page
+            window.location.reload();
           }
         },
         (err: any) => {
