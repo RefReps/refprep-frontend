@@ -1,0 +1,11 @@
+<form>
+    <h4>Choose the Section</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Section</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="sectionName">
+        <mat-option *ngFor="let section of sectionInfo; let i = index" [value]="sectionInfo[i].sectionName">
+          Section {{section.sectionName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</form>

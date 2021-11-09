@@ -33,17 +33,24 @@ export class VideoUploadComponent implements OnInit {
     }
   }
 
+  
+
   upload(): void {
     this.progress = 0;
     this.message = "";
 
     if (this.currentFile) {
-      this.uploadService.upload(this.currentFile).subscribe(
+      if(!(this.courseID && this.sectionID && this.moduleID)){
+        return
+      }
+      this.uploadService.upload(this.currentFile, this.courseID, this.sectionID, this.moduleID).subscribe(
         (event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
             this.progress = Math.round(100 * event.loaded / event.total);
           } else if (event instanceof HttpResponse) {
-            this.message = event.body.message;
+            this.message = 'File Uploaded!';
+            //reload the page
+            window.location.reload();
           }
         },
         (err: any) => {
@@ -58,6 +65,7 @@ export class VideoUploadComponent implements OnInit {
 
           this.currentFile = undefined;
         });
+        console.log("courseID: ", this.courseID, "sectionID: ", this.sectionID, "moduleID: ", this.moduleID);
     }
 
   }

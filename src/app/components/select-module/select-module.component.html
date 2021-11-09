@@ -1,0 +1,11 @@
+<form>
+  <h4>Choose the module</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Module</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="moduleName">
+      <mat-option *ngFor="let module of moduleInfo; let i = index" [value]="moduleInfo[i].moduleName">
+        Module {{module.moduleName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

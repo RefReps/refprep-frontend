@@ -4,15 +4,16 @@ import { CourseInfo } from 'src/app/models/course-info';
 import { ApiService } from 'src/service/api.service';
 
 @Component({
-  selector: 'app-module-display',
-  templateUrl: './module-display.component.html',
-  styleUrls: ['./module-display.component.css']
+  selector: 'app-edit-curriculum',
+  templateUrl: './edit-curriculum.component.html',
+  styleUrls: ['./edit-curriculum.component.css']
 })
-export class ModuleDisplayComponent implements OnInit {
-  
+export class EditCurriculumComponent implements OnInit {
   courseId: string = '';
   courseInfo: CourseInfo = {};
+
   
+  @Input() toEdit?: boolean=true;
 
   constructor(
     private Api: ApiService, 

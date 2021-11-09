@@ -1,4 +1,6 @@
 <div>
+  <div fxLayout ="row">
+  </div>
     <mat-toolbar *ngIf="currentFile" class="progress-bar">
       <mat-progress-bar color="accent" [value]="progress"></mat-progress-bar>
       <span class="progress">{{ progress }}%</span>
@@ -8,7 +10,7 @@
       <div>
         <mat-toolbar>
           <input matInput [value]="fileName" readonly/>
-  
+          
           <button
             mat-flat-button
             color="primary"
@@ -20,6 +22,7 @@
           type="file"
           id="fileInput"
           (change)="selectFile($event)"
+          multiple
           name="fileInput"
         />
       </div>
