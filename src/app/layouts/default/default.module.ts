@@ -9,6 +9,7 @@ import { HomeComponent } from 'src/app/modules/home/home.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { CourseHomeComponent } from 'src/app/modules/course-home/course-home.component';
 import { TestComponentComponent } from 'src/app/modules/test-component/test-component.component';
+import { EditCurriculumHomeComponent } from 'src/app/modules/edit-curriculum-home/edit-curriculum-home.component';
 
 
 
@@ -19,6 +20,7 @@ import { TestComponentComponent } from 'src/app/modules/test-component/test-comp
     HomeComponent,
     CourseHomeComponent,
     TestComponentComponent,
+    EditCurriculumHomeComponent
   ],
   imports: [
     CommonModule,

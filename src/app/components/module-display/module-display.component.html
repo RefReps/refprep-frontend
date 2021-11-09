@@ -5,10 +5,7 @@
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <div class="p-2 font-bold text-xl">
-                            Section {{section.sectionName}}
-                            <a *ngIf="true">
-                                <mat-icon>edit</mat-icon>
-                            </a>
+                            {{section.sectionName}}
                         </div>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
@@ -18,24 +15,20 @@
                     <mat-panel-title>
                         <div class="p-2 font-bold text-xl">
                             Module {{module.moduleName}}
-                            <a *ngIf="true">
-                                <mat-icon>edit</mat-icon>
-                            </a>
                         </div>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <!-- populate the module content-->
-                <p *ngFor="let content of module.content"> {{content.onModel}}-{{content.contentName}}</p>
-                <app-video-upload [courseID]=courseInfo._id [sectionID]=section._id [moduleID]=module._id></app-video-upload>
+                <mat-card *ngFor="let content of module.content"> {{content.onModel}}-{{content.contentName}}</mat-card>
+                <!--<app-video-upload [courseID]=courseInfo._id [sectionID]=section._id [moduleID]=module._id></app-video-upload>-->
             </mat-expansion-panel> 
         </div>
     </mat-expansion-panel>
     </div>
-
-<mat-card class="p-1">
-    <div class="p-2 font-bold text-xl">
-        
-    </div>
-</mat-card>
 </div>
 </mat-accordion>
+<div class="float-right">
+    <mat-card class="p-1">
+            <button mat-raised-button color="primary" routerLink="./editCurriculum">Edit Curriculum</button>
+    </mat-card>
+</div>

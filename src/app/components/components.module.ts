@@ -30,6 +30,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { SelectSectionComponent } from './select-section/select-section.component';
+import { EditCurriculumComponent } from './edit-curriculum/edit-curriculum.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { SelectSectionComponent } from './select-section/select-section.componen
     VideoViewerComponent,
     SelectModuleComponent,
     SelectSectionComponent,
+    EditCurriculumComponent,
   ],
   imports: [
     CommonModule,
@@ -86,7 +88,8 @@ import { SelectSectionComponent } from './select-section/select-section.componen
     VideoUploadComponent,
     VideoViewerComponent,
     SelectModuleComponent,
-    SelectSectionComponent
+    SelectSectionComponent,
+    EditCurriculumComponent
   ],
 })
 export class ComponentsModule { }
