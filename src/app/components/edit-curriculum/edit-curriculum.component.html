@@ -23,7 +23,7 @@
                             <mat-card *ngFor="let content of module.content"> 
                                 <div>
                                     {{content.onModel}}-{{content.contentName}}
-                                    <button mat-raised-button color="warn" class="float-right" >DEL</button>
+                                    <!-- <button mat-raised-button color="warn" class="float-right" >DEL</button> -->
                                 </div>  
                                 </mat-card>
                             <app-video-upload [courseID]=courseInfo._id [sectionID]=section._id [moduleID]=module._id></app-video-upload>
