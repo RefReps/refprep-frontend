@@ -31,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { SelectSectionComponent } from './select-section/select-section.component';
 import { EditCurriculumComponent } from './edit-curriculum/edit-curriculum.component';
+import { CreateNewCourseComponent } from './create-new-course/create-new-course.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { EditCurriculumComponent } from './edit-curriculum/edit-curriculum.compo
     SelectModuleComponent,
     SelectSectionComponent,
     EditCurriculumComponent,
+    CreateNewCourseComponent
   ],
   imports: [
     CommonModule,
@@ -89,7 +91,8 @@ import { EditCurriculumComponent } from './edit-curriculum/edit-curriculum.compo
     VideoViewerComponent,
     SelectModuleComponent,
     SelectSectionComponent,
-    EditCurriculumComponent
+    EditCurriculumComponent,
+    CreateNewCourseComponent,
   ],
 })
 export class ComponentsModule { }

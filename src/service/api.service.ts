@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Video } from 'src/models/Video/video.model';
@@ -8,6 +8,7 @@ import { CourseInfo } from 'src/app/models/course-info';
 import { SectionsInfo } from 'src/app/models/sections-info';
 import { ModuleInfo } from 'src/app/models/module-info';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,12 @@ export class ApiService {
   courseUrl: string = `${this.baseUrl}/api/course`
 
   constructor(private http: HttpClient) { }
+
+
+//post new course
+//post new section
+//post new module
+
 
   getAll(): Observable<Video[]> {
     return this.http.get<Video[]>(`${this.videoUrl}`);
@@ -52,6 +59,19 @@ export class ApiService {
     return this.http.get<CourseBreifInfo[]>(`${this.courseUrl}`)
   }
 
+  postNewCourse(courseName: string, isPublished: string, isTemplateCourse: string): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('courseName', courseName);
+    formData.append('isTemplateCourse', isTemplateCourse);
+  //  formData.append('isPublished', isPublished);
+
+    const req = new HttpRequest('POST', `${this.baseUrl}/api/course`, formData, {
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
+
   getCourseInfo(courseId: string): Observable<CourseInfo> {
     return this.http.get<CourseInfo>(`${this.courseUrl}/${courseId}`)
   }
@@ -65,6 +85,10 @@ export class ApiService {
   }
 
   getModuleContent(courseId: string, sectionId: string, moduleID: string): Observable<Content[]>{
+    return this.http.get<Content[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module/${moduleID}/content`)
+  }
+
+  getVideoId(courseId: string, sectionId: string, moduleID: string): Observable<Content[]>{
     return this.http.get<Content[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module/${moduleID}/content`)
   }
 
