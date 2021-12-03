@@ -1,15 +1,17 @@
-FROM node:12-alpine as build-step
+FROM node:14
 
-WORKDIR /refprep-frontend
 
-COPY package.json /refprep-frontend
+WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY package*.json /app
 
 RUN npm install
+RUN npm install -g @angular/cli@12.2.9
 
-COPY . /refprep-frontend
+COPY . /app
 
-RUN npm run build
+EXPOSE 4200
 
-FROM nginx:1.17.1-alpine
-
-COPY --from=build-step /refprep-frontend /usr/share/nginx/html 
+CMD ["ng", "serve"]
