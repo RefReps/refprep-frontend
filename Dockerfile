@@ -16,4 +16,8 @@ FROM nginx:1.20.1
 
 COPY --from=build-step /app/dist/refprep-frontend /usr/share/nginx/html
 
+RUN mkdir -p etc/nginx
+
+COPY default.conf /etc/nginx/conf.d
+
 EXPOSE 4200:80
