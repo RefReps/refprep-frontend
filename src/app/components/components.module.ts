@@ -1,18 +1,33 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import {MatCardModule} from '@angular/material/card';
-import {MatIconModule} from '@angular/material/icon'
 
+// Mat Imports
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSelectModule} from '@angular/material/select';
+import { MatDividerModule} from '@angular/material/divider';
+import { MatListModule} from '@angular/material/list';
+import { MatExpansionModule} from '@angular/material/expansion';
+
+
+
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Component Imports
 import { CourseDashboardComponent } from './course-dashboard/course-dashboard.component';
 import { DragAreaComponent } from './drag-area/drag-area.component';
 import { SidebarIconComponent } from './sidebar-icon/sidebar-icon.component';
 import { VideoBoxComponent } from './video-box/video-box.component';
 import { VideoManagerComponent } from './video-manager/video-manager.component';
-import { RouterModule } from '@angular/router';
-import { MatDividerModule} from '@angular/material/divider';
-import { MatListModule} from '@angular/material/list';
-import { MatExpansionModule} from '@angular/material/expansion';
 import { CourseInfoHomeComponent } from './course-info-home/course-info-home.component';
 import { ContentHeaderComponent } from './content-header/content-header.component';
 import { ModuleDisplayComponent } from './module-display/module-display.component';
@@ -21,16 +36,16 @@ import { CourseSidebarComponent } from './course-sidebar/course-sidebar.componen
 import { VideoUploadComponent } from './video-upload/video-upload.component';
 import { VideoViewerComponent } from './video-viewer/video-viewer.component';
 import { SelectModuleComponent } from './select-module/select-module.component';
-
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select';
 import { SelectSectionComponent } from './select-section/select-section.component';
 import { EditCurriculumComponent } from './edit-curriculum/edit-curriculum.component';
+import { DisplayContentsComponent } from './display-contents/display-contents.component';
+import { DisplayModulesComponent } from './display-modules/display-modules.component';
+import { DisplaySectionsComponent } from './display-sections/display-sections.component';
+import { CourseCardComponent } from './course-card/course-card.component';
+import { CourseAddFormComponent } from './course-add-form/course-add-form.component';
+import { DialogFormComponent } from './dialog-form/dialog-form.component';
+import { DialogCreateCourseComponent } from './dialog-create-course/dialog-create-course.component';
+import { CourseEditFormComponent } from './course-edit-form/course-edit-form.component';
 
 
 @NgModule({
@@ -50,6 +65,14 @@ import { EditCurriculumComponent } from './edit-curriculum/edit-curriculum.compo
     SelectModuleComponent,
     SelectSectionComponent,
     EditCurriculumComponent,
+    DisplayContentsComponent,
+    DisplayModulesComponent,
+    DisplaySectionsComponent,
+    CourseCardComponent,
+    CourseAddFormComponent,
+    DialogFormComponent,
+    DialogCreateCourseComponent,
+    CourseEditFormComponent,
   ],
   imports: [
     CommonModule,
@@ -69,7 +92,10 @@ import { EditCurriculumComponent } from './edit-curriculum/edit-curriculum.compo
     MatListModule,
     ReactiveFormsModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
+    MatSlideToggleModule,
+
   ],  
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
@@ -89,7 +115,15 @@ import { EditCurriculumComponent } from './edit-curriculum/edit-curriculum.compo
     VideoViewerComponent,
     SelectModuleComponent,
     SelectSectionComponent,
-    EditCurriculumComponent
+    EditCurriculumComponent,
+    DisplayContentsComponent,
+    DisplayModulesComponent,
+    DisplaySectionsComponent,
+    CourseCardComponent,
+    CourseAddFormComponent,
+    DialogFormComponent,
+    DialogCreateCourseComponent,
+    CourseEditFormComponent,
   ],
 })
 export class ComponentsModule { }
