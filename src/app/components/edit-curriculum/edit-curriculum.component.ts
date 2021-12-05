@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CourseInfo } from 'src/app/models/course-info';
+import { Course } from 'src/app/models/course';
 import { ApiService } from 'src/service/api.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ApiService } from 'src/service/api.service';
 })
 export class EditCurriculumComponent implements OnInit {
   courseId: string = '';
-  courseInfo: CourseInfo = {};
+  courseInfo: Course = {};
 
   
   @Input() toEdit?: boolean=true;
@@ -32,7 +32,7 @@ export class EditCurriculumComponent implements OnInit {
   }
 
   getCourseInfo(): void {
-    this.Api.getCourseInfo(this.courseId)
+    this.Api.getCourse(this.courseId)
       .subscribe(info => this.courseInfo = info)
   }
 }

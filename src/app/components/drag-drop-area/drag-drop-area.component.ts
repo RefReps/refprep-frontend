@@ -9,9 +9,9 @@ import { Content } from 'src/app/models/content';
 })
 export class DragDropAreaComponent {
   @Input() contentList: Content[] = [
-    {orderInModule: 1, contentName: 'Intro to the basics', onModel: 'movie'},
-    {orderInModule: 2, contentName: 'Intro to fundementals', onModel: 'movie'},
-    {orderInModule: 3, contentName: 'Quiz', onModel: 'description'},
+    {contentOrder: 1, name: 'Intro to the basics', onModel: 'Video'},
+    {contentOrder: 2, name: 'Intro to fundementals', onModel: 'Video'},
+    {contentOrder: 3, name: 'Quiz', onModel: 'Quiz'},
   ]
 
   drop(event: CdkDragDrop<Content[]>): void {
@@ -29,7 +29,7 @@ export class DragDropAreaComponent {
 
   updateOrdering(): void {
     this.contentList.forEach((ele, index) => {
-      ele.orderInModule = index + 1;
+      ele.contentOrder = index + 1;
     })
   }
 }

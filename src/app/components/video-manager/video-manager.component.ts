@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/service/api.service';
 
-import { Video } from 'src/models/Video/video.model';
+import { Video } from 'src/app/models/video.model';
 
 @Component({
   selector: 'app-video-manager',
