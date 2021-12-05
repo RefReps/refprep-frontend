@@ -1,11 +1,11 @@
-<mat-accordion multi="false">
+<!-- <mat-accordion multi="false">
     <div class="p-1">
         <div *ngFor="let section of courseInfo.sections" class="p-1">
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <div class="p-2 font-bold text-xl">
-                            {{section.sectionName}}
+                            {{section.name}}
                         </div>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
@@ -14,13 +14,13 @@
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <div class="p-2 font-bold text-xl">
-                            {{module.moduleName}}
+                            {{module.name}}
                         </div>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <!-- populate the module content-->
-                <mat-card *ngFor="let content of module.content"> {{content.onModel}}-{{content.contentName}}</mat-card>
-                <!--<app-video-upload [courseID]=courseInfo._id [sectionID]=section._id [moduleID]=module._id></app-video-upload>-->
+
+                <mat-card *ngFor="let content of module.content"> {{content.onModel}}-{{content.name}}</mat-card>
+
             </mat-expansion-panel> 
         </div>
     </mat-expansion-panel>
@@ -31,4 +31,4 @@
     <mat-card class="p-1">
             <button mat-raised-button color="primary" routerLink="./editCurriculum">Edit Curriculum</button>
     </mat-card>
-</div>
+</div> -->
