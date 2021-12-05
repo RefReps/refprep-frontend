@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Video } from 'src/app/models/video.model';
+import { ApiService } from 'src/service/api.service';
+import {VgApiService} from '@videogular/ngx-videogular/core'
 
 @Component({
   selector: 'app-video-viewer',
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideoViewerComponent implements OnInit {
 
-  constructor() { }
+  @Input() videoId: string = '';
+  videoUrl: string = '';
+  videoMeta: Video = {}
+
+  // vgApi: VgApiService;
+
+  constructor(
+    private Api: ApiService,
+  ) { }
 
   ngOnInit(): void {
+    this.getVideo()
   }
+
+  getVideo(): void {
+    this.Api.getVideoMetadata(this.videoId)
+      .subscribe(info => {
+        this.loadVideoInHTMLPlayer()
+        console.log(this.videoId)
+      })
+  }
+
+  loadVideoInHTMLPlayer(): void {
+    const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
+    this.videoUrl = `${this.Api.videoUrl}/${this.videoId}`
+
+    videoPlayer.load()
+  }
+
 
 }
