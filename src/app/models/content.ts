@@ -1,7 +1,9 @@
 export class Content {
     _id?: string;
-    toContent?: string;
-    contentName?: string;
-    orderInModule?: number;
+    name?: string;
+    toDocument?: string;
     onModel?: string;
+    moduleId?: string;
+    isPublished?: boolean;
+    contentOrder?: number;
 }

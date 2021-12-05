@@ -1,6 +1,6 @@
 export class Settings {
     isEnforcements?: boolean;
-    enforcementsPercent?: number;
+    enforcementPercent?: number;
     isGradedQuizAdvance?: boolean;
-    maximumQuizAttempt?: number;
+    maximumQuizAttempts?: number;
 }
