@@ -10,7 +10,7 @@ import {VgCoreModule} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
-import {VgApiService} from '@videogular/ngx-videogular/core'
+// import {VgApiService} from '@videogular/ngx-videogular/core'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +35,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    VgApiService,
+    // VgApiService,
 
 
     DefaultModule, // import all layout modules
