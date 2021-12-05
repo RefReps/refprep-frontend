@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@ngneat/tailwind": "^7.0.3",
+    "@videogular/ngx-videogular": "^5.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -34,6 +35,7 @@
     "@tailwindcss/forms": "latest",
     "@tailwindcss/line-clamp": "latest",
     "@tailwindcss/typography": "latest",
+    "@types/core-js": "^2.5.5",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "autoprefixer": "^10.3.7",
