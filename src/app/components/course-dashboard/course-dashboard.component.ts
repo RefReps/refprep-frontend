@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseBreifInfo } from 'src/app/models/course-breif-info';
+import { Course } from 'src/app/models/course';
 import { ApiService } from 'src/service/api.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ApiService } from 'src/service/api.service';
 })
 export class CourseDashboardComponent implements OnInit {
 
-  courses: CourseBreifInfo[] = []
+  courses: Course[] = []
 
   constructor(private Api: ApiService) { }
 
@@ -18,8 +18,8 @@ export class CourseDashboardComponent implements OnInit {
   }
 
   getCourses(): void {
-    this.Api.getAllCoursesInfo()
-      .subscribe(courses => this.courses = courses)
+    this.Api.getAllCourses()
+      .subscribe(info => this.courses = info)
   }
 
 }
