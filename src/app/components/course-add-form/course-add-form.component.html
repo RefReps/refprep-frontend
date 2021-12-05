@@ -1,0 +1,17 @@
+<div>
+    Course Name: <input type="text" [(ngModel)]="data.name"><br>
+    <!-- switch for isTemplate -->
+    Template Course:
+    <label class="switch">
+        <input type="checkbox" [(ngModel)]="data.isTemplate">
+        <span class="slider round"></span>
+    </label><br>
+    <!-- switch for isPublished -->
+    Publish Course:
+    <label class="switch">
+        <input type="checkbox" [(ngModel)]="data.isPublished">
+        <span class="slider round"></span>
+    </label><br>
+
+    <button (click)="onSubmit()">Submit</button>
+</div>
