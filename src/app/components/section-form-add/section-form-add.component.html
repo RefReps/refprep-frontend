@@ -1,0 +1,25 @@
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
+    <p>
+        <mat-form-field apperance="fill">
+            <mat-label>Section Name</mat-label>
+            <input matInput name="name" formControlName="name">
+        </mat-form-field>
+    
+    </p>
+    <p>
+        <mat-slide-toggle name="isPublished" formControlName="isPublished" color="aqua" checked>
+            Publish Section
+        </mat-slide-toggle>
+    </p>
+    <p *ngIf="true">
+        <mat-form-field appearance="fill">
+            <mat-label>Sectin Drop Date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </p>
+    <p>
+        <button mat-button type="submit">Submit</button>
+    </p>
+</form>

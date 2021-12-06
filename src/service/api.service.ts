@@ -93,6 +93,10 @@ export class ApiService {
     return this.http.get<Section[]>(`${this.sectionUrl}?${query}`)
   }
 
+  postSection(sectionForm: FormData): void {
+    this.http.post(`${this.sectionUrl}`, sectionForm).subscribe();
+  }
+
   // Module Routes
 
   getModules(sectionId: string): Observable<Module[]> {
@@ -100,6 +104,9 @@ export class ApiService {
     return this.http.get<Module[]>(`${this.moduleUrl}?${query}`)
   }
 
+  postModule(moduleForm: FormData): void {
+    this.http.post(`${this.moduleUrl}`, moduleForm).subscribe();
+  }
   // Content Routes
 
   getContents(moduleId: string): Observable<Content[]> {

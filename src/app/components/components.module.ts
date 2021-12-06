@@ -16,6 +16,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatDividerModule} from '@angular/material/divider';
 import { MatListModule} from '@angular/material/list';
 import { MatExpansionModule} from '@angular/material/expansion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 
@@ -46,10 +47,12 @@ import { CourseAddFormComponent } from './course-add-form/course-add-form.compon
 import { DialogFormComponent } from './dialog-form/dialog-form.component';
 import { DialogCreateCourseComponent } from './dialog-create-course/dialog-create-course.component';
 import { CourseEditFormComponent } from './course-edit-form/course-edit-form.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { SectionFormAddComponent } from './section-form-add/section-form-add.component';
+import { ModuleFormAddComponent } from './module-form-add/module-form-add.component';
 import { EditDisplaySectionsComponent } from './edit-display-sections/edit-display-sections.component';
 import { EditDisplayModulesComponent } from './edit-display-modules/edit-display-modules.component';
 import { EditDisplayContentsComponent } from './edit-display-contents/edit-display-contents.component';
-
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -76,6 +79,9 @@ import { EditDisplayContentsComponent } from './edit-display-contents/edit-displ
     DialogFormComponent,
     DialogCreateCourseComponent,
     CourseEditFormComponent,
+    DialogComponent,
+    SectionFormAddComponent,
+    ModuleFormAddComponent,
     EditDisplaySectionsComponent,
     EditDisplayModulesComponent,
     EditDisplayContentsComponent,
@@ -101,7 +107,7 @@ import { EditDisplayContentsComponent } from './edit-display-contents/edit-displ
     MatSelectModule,
     MatDialogModule,
     MatSlideToggleModule,
-
+    MatDatepickerModule,
   ],  
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
@@ -130,6 +136,9 @@ import { EditDisplayContentsComponent } from './edit-display-contents/edit-displ
     DialogFormComponent,
     DialogCreateCourseComponent,
     CourseEditFormComponent,
+    DialogComponent,
+    SectionFormAddComponent,
+    ModuleFormAddComponent,
     EditDisplayContentsComponent,
     EditDisplayModulesComponent,
     EditDisplaySectionsComponent

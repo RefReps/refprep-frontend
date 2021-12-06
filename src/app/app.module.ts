@@ -12,6 +12,8 @@ import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 // import {VgApiService} from '@videogular/ngx-videogular/core'
 
+import { MatNativeDateModule } from '@angular/material/core';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultModule } from './layouts/default/default.module';
@@ -30,6 +32,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FormsModule,
     HttpClientModule,
     DragDropModule,
+    MatNativeDateModule,
 
     VgCoreModule,
     VgControlsModule,
