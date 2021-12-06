@@ -1,5 +1,5 @@
 export class Module {
-    _id?: string;
+    _id!: string;
     name?: string;
     sectionId?: string;
     isPublished?: boolean;

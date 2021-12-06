@@ -1,5 +1,5 @@
 export class Section {
-    _id?: string;
+    _id!: string;
     name?: string;
     courseId?: string;
     isPublished?: boolean;
