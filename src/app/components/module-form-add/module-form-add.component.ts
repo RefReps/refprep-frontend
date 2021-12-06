@@ -27,6 +27,7 @@ export class ModuleFormAddComponent {
   
   onFormSubmit() {
     this.Api.postModule(this.formGroup.value)
+    window.location.reload()
   }
 
 }
