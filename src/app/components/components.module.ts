@@ -16,6 +16,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatDividerModule} from '@angular/material/divider';
 import { MatListModule} from '@angular/material/list';
 import { MatExpansionModule} from '@angular/material/expansion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 
@@ -46,6 +47,9 @@ import { CourseAddFormComponent } from './course-add-form/course-add-form.compon
 import { DialogFormComponent } from './dialog-form/dialog-form.component';
 import { DialogCreateCourseComponent } from './dialog-create-course/dialog-create-course.component';
 import { CourseEditFormComponent } from './course-edit-form/course-edit-form.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { SectionFormAddComponent } from './section-form-add/section-form-add.component';
+import { ModuleFormAddComponent } from './module-form-add/module-form-add.component';
 
 
 @NgModule({
@@ -73,6 +77,9 @@ import { CourseEditFormComponent } from './course-edit-form/course-edit-form.com
     DialogFormComponent,
     DialogCreateCourseComponent,
     CourseEditFormComponent,
+    DialogComponent,
+    SectionFormAddComponent,
+    ModuleFormAddComponent,
   ],
   imports: [
     CommonModule,
@@ -95,7 +102,7 @@ import { CourseEditFormComponent } from './course-edit-form/course-edit-form.com
     MatSelectModule,
     MatDialogModule,
     MatSlideToggleModule,
-
+    MatDatepickerModule,
   ],  
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
@@ -124,6 +131,8 @@ import { CourseEditFormComponent } from './course-edit-form/course-edit-form.com
     DialogFormComponent,
     DialogCreateCourseComponent,
     CourseEditFormComponent,
+    DialogComponent,
+    SectionFormAddComponent,
   ],
 })
 export class ComponentsModule { }
