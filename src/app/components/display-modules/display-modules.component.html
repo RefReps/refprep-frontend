@@ -1,1 +1,16 @@
-<p>display-modules works!</p>
+<mat-accordion multi="false">
+    <div class="p-1">
+        <div *ngFor="let module of modules" class="p-1">
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="p-2 font-bold text-xl">
+                            {{module.name}}
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-display-contents [moduleId]=module._id></app-display-contents>
+    </mat-expansion-panel>
+    </div>
+</div>
+</mat-accordion>
