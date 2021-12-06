@@ -1,7 +1,7 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, Output } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { VideoUploadService } from 'src/service/video-upload.service';
+import { ApiService } from 'src/service/api.service';
 
 @Component({
   selector: 'app-video-upload',
@@ -9,11 +9,7 @@ import { VideoUploadService } from 'src/service/video-upload.service';
   styleUrls: ['./video-upload.component.css']
 })
 export class VideoUploadComponent implements OnInit {
-  
-  @Input() courseID? = "";
-  @Input() sectionID? = "";
-  @Input() moduleID? = "";
-  
+  @Output() videoId: string = " "
   currentFile?: File;
   progress = 0;
   message = '';
@@ -21,7 +17,7 @@ export class VideoUploadComponent implements OnInit {
   fileName = 'Select File';
   fileInfos?: Observable<any>;
 
-  constructor(private uploadService: VideoUploadService) { }
+  constructor(private api: ApiService) { }
 
   selectFile(event: any): void {
     if (event.target.files && event.target.files[0]) {
@@ -40,17 +36,14 @@ export class VideoUploadComponent implements OnInit {
     this.message = "";
 
     if (this.currentFile) {
-      if(!(this.courseID && this.sectionID && this.moduleID)){
-        return
-      }
-      this.uploadService.upload(this.currentFile, this.courseID, this.sectionID, this.moduleID).subscribe(
+
+      this.api.postVideo(this.currentFile).subscribe(
         (event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
             this.progress = Math.round(100 * event.loaded / event.total);
           } else if (event instanceof HttpResponse) {
             this.message = 'File Uploaded!';
-            //reload the page
-            window.location.reload();
+            this.videoId = event.body._id
           }
         },
         (err: any) => {
@@ -65,7 +58,7 @@ export class VideoUploadComponent implements OnInit {
 
           this.currentFile = undefined;
         });
-        console.log("courseID: ", this.courseID, "sectionID: ", this.sectionID, "moduleID: ", this.moduleID);
+  
     }
 
   }

@@ -8,6 +8,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { SidebarIconComponent } from '../components/sidebar-icon/sidebar-icon.component';
 import { ComponentsModule } from '../components/components.module';
+import { MatCard } from '@angular/material/card';
+import { CourseHomeComponent } from '../modules/course-home/course-home.component';
 
 
 @NgModule({
@@ -21,8 +23,7 @@ import { ComponentsModule } from '../components/components.module';
     RouterModule,
     FlexLayoutModule,
     MatIconModule,
-    
-    ComponentsModule
+    ComponentsModule,
 
   ],
   exports: [ // Export all components in the shared/components
