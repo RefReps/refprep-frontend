@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, Output } from '@angular/core';
+import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/service/api.service';
@@ -9,8 +9,8 @@ import { Video } from 'src/app/models/video.model';
   templateUrl: './video-upload.component.html',
   styleUrls: ['./video-upload.component.css']
 })
-export class VideoUploadComponent implements OnInit {
-  @Output() video: Video = {}
+export class VideoUploadComponent {
+  @Output() videoEvent = new EventEmitter<Video>()
   currentFile?: File;
   progress = 0;
   message = '';
@@ -19,6 +19,10 @@ export class VideoUploadComponent implements OnInit {
   fileInfos?: Observable<any>;
 
   constructor(private api: ApiService) { }
+
+  outputVideo(video: Video): void {
+    this.videoEvent.emit(video)
+  }
 
   selectFile(event: any): void {
     if (event.target.files && event.target.files[0]) {
@@ -30,21 +34,20 @@ export class VideoUploadComponent implements OnInit {
     }
   }
 
-  
-
   upload(): void {
     this.progress = 0;
     this.message = "";
 
     if (this.currentFile) {
 
-      this.api.postVideo(this.currentFile).subscribe(
+      this.api.uploadVideoWithProgress(this.currentFile).subscribe(
         (event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
             this.progress = Math.round(100 * event.loaded / event.total);
           } else if (event instanceof HttpResponse) {
             this.message = 'File Uploaded!';
-            this.video = event.body
+            const video = event.body
+            this.outputVideo(video)
           }
         },
         (err: any) => {
@@ -61,10 +64,6 @@ export class VideoUploadComponent implements OnInit {
         });
   
     }
-
-  }
-
-  ngOnInit(): void {
 
   }
 
