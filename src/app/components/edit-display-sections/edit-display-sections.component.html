@@ -1,0 +1,12 @@
+<div *ngFor="let section of sections">
+    <mat-card>
+            <mat-card-title>{{section.name}}</mat-card-title>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <div>
+        <app-edit-display-modules [sectionId]=section._id></app-edit-display-modules>
+    </div>
+</div>
+<mat-card class="max-w-min float-right">
+    <button mat-raised-button color="primary" routerLink="./editCurriculum">Finish</button>
+</mat-card>
