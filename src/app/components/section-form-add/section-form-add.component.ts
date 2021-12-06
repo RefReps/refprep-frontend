@@ -27,6 +27,7 @@ export class SectionFormAddComponent {
   
   onFormSubmit() {
     this.Api.postSection(this.formGroup.value)
+    window.location.reload()
   }
 
 }
