@@ -2,6 +2,7 @@ import { Component, OnInit,Input, Output } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/service/api.service';
+import { Video } from 'src/app/models/video.model';
 
 @Component({
   selector: 'app-video-upload',
@@ -9,7 +10,7 @@ import { ApiService } from 'src/service/api.service';
   styleUrls: ['./video-upload.component.css']
 })
 export class VideoUploadComponent implements OnInit {
-  @Output() videoId: string = " "
+  @Output() video: Video = {}
   currentFile?: File;
   progress = 0;
   message = '';
@@ -43,7 +44,7 @@ export class VideoUploadComponent implements OnInit {
             this.progress = Math.round(100 * event.loaded / event.total);
           } else if (event instanceof HttpResponse) {
             this.message = 'File Uploaded!';
-            this.videoId = event.body._id
+            this.video = event.body
           }
         },
         (err: any) => {
