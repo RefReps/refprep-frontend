@@ -53,6 +53,8 @@ import { ModuleFormAddComponent } from './module-form-add/module-form-add.compon
 import { EditDisplaySectionsComponent } from './edit-display-sections/edit-display-sections.component';
 import { EditDisplayModulesComponent } from './edit-display-modules/edit-display-modules.component';
 import { EditDisplayContentsComponent } from './edit-display-contents/edit-display-contents.component';
+import { SectionFormDeleteComponent } from './section-form-delete/section-form-delete.component';
+import { ContentFormAddVideoComponent } from './content-form-add-video/content-form-add-video.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -85,6 +87,8 @@ import { EditDisplayContentsComponent } from './edit-display-contents/edit-displ
     EditDisplaySectionsComponent,
     EditDisplayModulesComponent,
     EditDisplayContentsComponent,
+    SectionFormDeleteComponent,
+    ContentFormAddVideoComponent,
   ],
   imports: [
     CommonModule,
@@ -139,9 +143,11 @@ import { EditDisplayContentsComponent } from './edit-display-contents/edit-displ
     DialogComponent,
     SectionFormAddComponent,
     ModuleFormAddComponent,
-    EditDisplayContentsComponent,
+    EditDisplaySectionsComponent,
     EditDisplayModulesComponent,
-    EditDisplaySectionsComponent
+    EditDisplayContentsComponent,
+    SectionFormDeleteComponent,
+    ContentFormAddVideoComponent,
   ],
 })
 export class ComponentsModule { }
