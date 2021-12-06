@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course';
 import { ApiService } from 'src/service/api.service';
+import { DialogService } from 'src/service/dialog.service';
+import { CourseAddFormComponent } from '../course-add-form/course-add-form.component';
 
 @Component({
   selector: 'app-course-dashboard',
@@ -11,7 +13,10 @@ export class CourseDashboardComponent implements OnInit {
 
   courses: Course[] = []
 
-  constructor(private Api: ApiService) { }
+  constructor(
+    private Api: ApiService,
+    private dialogService: DialogService,
+    ) { }
 
   ngOnInit(): void {
     this.getCourses()
@@ -20,6 +25,10 @@ export class CourseDashboardComponent implements OnInit {
   getCourses(): void {
     this.Api.getAllCourses()
       .subscribe(info => this.courses = info)
+  }
+  
+  openAddCourseDialog(): void {
+    this.dialogService.open(CourseAddFormComponent, {})
   }
 
 }
