@@ -46,6 +46,9 @@ import { CourseAddFormComponent } from './course-add-form/course-add-form.compon
 import { DialogFormComponent } from './dialog-form/dialog-form.component';
 import { DialogCreateCourseComponent } from './dialog-create-course/dialog-create-course.component';
 import { CourseEditFormComponent } from './course-edit-form/course-edit-form.component';
+import { EditDisplaySectionsComponent } from './edit-display-sections/edit-display-sections.component';
+import { EditDisplayModulesComponent } from './edit-display-modules/edit-display-modules.component';
+import { EditDisplayContentsComponent } from './edit-display-contents/edit-display-contents.component';
 
 
 @NgModule({
@@ -73,6 +76,9 @@ import { CourseEditFormComponent } from './course-edit-form/course-edit-form.com
     DialogFormComponent,
     DialogCreateCourseComponent,
     CourseEditFormComponent,
+    EditDisplaySectionsComponent,
+    EditDisplayModulesComponent,
+    EditDisplayContentsComponent,
   ],
   imports: [
     CommonModule,
@@ -124,6 +130,9 @@ import { CourseEditFormComponent } from './course-edit-form/course-edit-form.com
     DialogFormComponent,
     DialogCreateCourseComponent,
     CourseEditFormComponent,
+    EditDisplayContentsComponent,
+    EditDisplayModulesComponent,
+    EditDisplaySectionsComponent
   ],
 })
 export class ComponentsModule { }
