@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Video } from 'src/app/models/video.model';
@@ -120,6 +120,19 @@ export class ApiService {
     return this.http.get<Video>(`${this.videoUrl}/${videoId}/meta`)
   }
 
+  postVideo(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
 
+    formData.append('video', file); //field name to file data 
 
+    const req = new HttpRequest('POST', `${this.baseUrl}/api/video/`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+
+    });
+
+    console.log(req);
+
+    return this.http.request(req);
+  }
 }

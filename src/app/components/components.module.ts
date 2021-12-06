@@ -50,7 +50,9 @@ import { CourseEditFormComponent } from './course-edit-form/course-edit-form.com
 import { DialogComponent } from './dialog/dialog.component';
 import { SectionFormAddComponent } from './section-form-add/section-form-add.component';
 import { ModuleFormAddComponent } from './module-form-add/module-form-add.component';
-
+import { EditDisplaySectionsComponent } from './edit-display-sections/edit-display-sections.component';
+import { EditDisplayModulesComponent } from './edit-display-modules/edit-display-modules.component';
+import { EditDisplayContentsComponent } from './edit-display-contents/edit-display-contents.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -80,6 +82,9 @@ import { ModuleFormAddComponent } from './module-form-add/module-form-add.compon
     DialogComponent,
     SectionFormAddComponent,
     ModuleFormAddComponent,
+    EditDisplaySectionsComponent,
+    EditDisplayModulesComponent,
+    EditDisplayContentsComponent,
   ],
   imports: [
     CommonModule,
@@ -133,6 +138,10 @@ import { ModuleFormAddComponent } from './module-form-add/module-form-add.compon
     CourseEditFormComponent,
     DialogComponent,
     SectionFormAddComponent,
+    ModuleFormAddComponent,
+    EditDisplayContentsComponent,
+    EditDisplayModulesComponent,
+    EditDisplaySectionsComponent
   ],
 })
 export class ComponentsModule { }
