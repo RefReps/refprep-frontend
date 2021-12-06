@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { VideoUploadComponent } from './components/video-upload/video-upload.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import { CourseHomeComponent } from './modules/course-home/course-home.component';
+import { CourseVideoComponent } from './modules/course-video/course-video.component';
 import { CoursesComponent } from './modules/courses/courses.component';
 import { EditCurriculumHomeComponent } from './modules/edit-curriculum-home/edit-curriculum-home.component';
 import { HomeComponent } from './modules/home/home.component';
@@ -14,7 +15,7 @@ const routes: Routes = [ // Always put more specific routes on the top
     component: DefaultComponent, 
     children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'}, 
-      {path: 'courses/:courseId/module/:moduleId', component: CourseHomeComponent},
+      {path: 'courses/:courseId/video/:videoId', component: CourseVideoComponent},
       {path: 'courses/:courseId', component: CourseHomeComponent},
       {path: 'courses', component: CoursesComponent},
       {path: 'home', component: HomeComponent},

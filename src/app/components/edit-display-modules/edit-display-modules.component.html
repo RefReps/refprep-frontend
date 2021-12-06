@@ -1,17 +1,30 @@
 <mat-accordion multi="false">
     <div class="p-1">
-        <div *ngFor="let module of modules" class="p-1">
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <div class="p-2 font-bold text-xl">
-                            {{module.name}}
-                        </div>
-                        <button mat-raised-button color="warn" class="float-right pl-52">DEL</button>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <app-edit-display-contents [moduleId]=module._id></app-edit-display-contents>
-    </mat-expansion-panel>
-    </div>
+        <div
+        *ngIf="modules.length != 0" class="list"
+                cdkDropList
+                #modulesList="cdkDropList"
+                [cdkDropListData]="modules"
+                (cdkDropListDropped)="onDrop($event)"
+        >
+            <div *ngFor="let module of modules" class="p-1">
+                <mat-expansion-panel hideToggle cdkDrag>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div class="p-2 font-bold text-xl">
+                                {{module.name}}
+                            </div>
+                            <div class="flex-1 flex-col">
+                                <button (click)="openAddContentVideoDialog(module._id)" mat-raised-button class="bg-green-400">
+                                    +
+                                </button>
+                                <button mat-raised-button color="warn" class="pl-52">DEL</button>
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-edit-display-contents [moduleId]=module._id></app-edit-display-contents>
+                </mat-expansion-panel>
+            </div>
+        </div>
 </div>
 </mat-accordion>

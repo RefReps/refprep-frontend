@@ -1,1 +1,5 @@
-<mat-card *ngFor="let content of contents">{{content.name}}</mat-card>
+<mat-card *ngFor="let content of contents">
+    <a *ngIf="content.toDocument" [routerLink]="['./video', content.toDocument]" >
+        {{content.name}}
+    </a>
+</mat-card>

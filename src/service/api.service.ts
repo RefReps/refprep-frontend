@@ -97,6 +97,14 @@ export class ApiService {
     this.http.post(`${this.sectionUrl}`, sectionForm).subscribe();
   }
 
+  updateSection(sectionId: string, form: FormData): void {
+    this.http.put(`${this.sectionUrl}/${sectionId}`, form).subscribe();
+  }
+
+  deleteSection(sectionId: string): void {
+    this.http.delete(`${this.sectionUrl}/${sectionId}`).subscribe();
+  }
+
   // Module Routes
 
   getModules(sectionId: string): Observable<Module[]> {
@@ -107,11 +115,24 @@ export class ApiService {
   postModule(moduleForm: FormData): void {
     this.http.post(`${this.moduleUrl}`, moduleForm).subscribe();
   }
+
+  updateModule(moduleId: string, form: FormData): void {
+    this.http.put(`${this.moduleUrl}/${moduleId}`, form).subscribe();
+  }
+
   // Content Routes
 
   getContents(moduleId: string): Observable<Content[]> {
     const query = `moduleId=${moduleId}`
     return this.http.get<Content[]>(`${this.contentUrl}?${query}`)
+  }
+
+  postContent(contentForm: FormData): void {
+    this.http.post(`${this.contentUrl}`, contentForm).subscribe()
+  }
+
+  updateContent(contentId: string, form: FormData): void {
+    this.http.put(`${this.contentUrl}/${contentId}`, form).subscribe();
   }
 
   // Video Routes
@@ -120,7 +141,13 @@ export class ApiService {
     return this.http.get<Video>(`${this.videoUrl}/${videoId}/meta`)
   }
 
-  postVideo(file: File): Observable<HttpEvent<any>> {
+  postVideo(file: File): Observable<Video> {
+    const form = new FormData()
+    form.append('video', file)
+    return this.http.post<Video>(`${this.videoUrl}`, form)
+  }
+
+  uploadVideoWithProgress(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
 
     formData.append('video', file); //field name to file data 

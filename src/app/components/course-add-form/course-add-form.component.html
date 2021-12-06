@@ -1,17 +1,18 @@
-<div>
-    Course Name: <input type="text" [(ngModel)]="data.name"><br>
-    <!-- switch for isTemplate -->
-    Template Course:
-    <label class="switch">
-        <input type="checkbox" [(ngModel)]="data.isTemplate">
-        <span class="slider round"></span>
-    </label><br>
-    <!-- switch for isPublished -->
-    Publish Course:
-    <label class="switch">
-        <input type="checkbox" [(ngModel)]="data.isPublished">
-        <span class="slider round"></span>
-    </label><br>
-
-    <button (click)="onSubmit()">Submit</button>
-</div>
+<h2>Add Course</h2>
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
+    <p>
+        <mat-form-field apperance="fill">
+            <mat-label>Course Name</mat-label>
+            <input matInput name="name" formControlName="name">
+        </mat-form-field>
+    
+    </p>
+    <p>
+        <mat-slide-toggle name="isPublished" formControlName="isPublished" color="aqua" checked>
+            Publish Course
+        </mat-slide-toggle>
+    </p>
+    <p>
+        <button mat-button type="submit" class="bg-green-400" mat-raised-button>Submit</button>
+    </p>
+</form>

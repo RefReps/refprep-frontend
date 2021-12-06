@@ -1,5 +1,13 @@
-<mat-card *ngFor="let content of contents">
-    {{content.name}}
-    <button mat-raised-button color="warn" class="float-right">DEL</button>
-</mat-card>
-<app-video-upload></app-video-upload>
+<div
+    *ngIf="contents.length != 0" class="list"
+    cdkDropList
+    #contentsList="cdkDropList"
+    [cdkDropListData]="contents"
+    (cdkDropListDropped)="onDrop($event)"
+>
+    <mat-card *ngFor="let content of contents" cdkDrag>
+        {{content.name}}
+        <button mat-raised-button color="warn" class="float-right">DEL</button>
+    </mat-card>
+</div>
+
