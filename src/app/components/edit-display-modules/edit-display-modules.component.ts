@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Module } from 'src/app/models/module';
 import { ApiService } from 'src/service/api.service';
+import { DialogService } from 'src/service/dialog.service';
+import { ModuleFormAddComponent } from '../module-form-add/module-form-add.component';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { ContentFormAddVideoComponent } from '../content-form-add-video/content-form-add-video.component';
 
 @Component({
   selector: 'app-edit-display-modules',
@@ -14,6 +18,7 @@ export class EditDisplayModulesComponent implements OnInit {
 
   constructor(
     private Api: ApiService,
+    private dialogService: DialogService,
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +28,30 @@ export class EditDisplayModulesComponent implements OnInit {
   getModules(): void {
     this.Api.getModules(this.sectionId)
       .subscribe(info => this.modules = info)
+  }
+
+  openAddModuleDialog(): void {
+    this.dialogService.open(ModuleFormAddComponent, {sectionId: this.sectionId})
+  }
+
+  openAddContentVideoDialog(moduleId: string): void {
+    this.dialogService.open(ContentFormAddVideoComponent, {moduleId})
+  }
+
+  onDrop(event: any) {
+    const moduleId = this.modules[event.previousIndex]._id
+    if (event.previousContainer === event.container && moduleId) {
+      this.updateModuleOrder(moduleId, event.currentIndex + 1)
+      moveItemInArray(event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+  }
+
+  updateModuleOrder(moduleId: string, newOrder: number): void {
+    const form = new FormData()
+    form.append('moduleOrder', newOrder.toString())
+    this.Api.updateModule(moduleId, form)
   }
 
 }
