@@ -1,0 +1,13 @@
+<div class="" fxLayout="column" fxLayoutAlign="start stretch">
+    <div>
+        <app-course-info-home></app-course-info-home>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="stretch start">
+        <div class="" id="course-sidebar">
+            <app-course-sidebar></app-course-sidebar>
+        </div>
+        <div fxFlex id="module-display">
+            <app-video-viewer *ngIf="videoId" [videoId]="videoId"></app-video-viewer>
+        </div>
+    </div>
+</div>
