@@ -1,0 +1,18 @@
+<h2>Add Video Content</h2>
+<form (ngSubmit)="onFormSubmit()" class="min-w-max">
+    <input type="file" class="file-input hidden"
+    (change)="onFileSelected($event)" #fileUpload>
+
+    <div class="file-upload">
+
+    {{fileName || "No file uploaded yet."}}
+
+    <button mat-mini-fab color="primary" class="upload-btn"
+    (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+    </div>
+    <p>
+        <button mat-button type="submit" class="bg-green-400" mat-raised-button>Submit</button>
+    </p>
+</form>
