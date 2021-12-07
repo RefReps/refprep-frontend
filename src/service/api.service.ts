@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -10,12 +10,15 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { Module } from 'src/app/models/module';
 import { Section } from 'src/app/models/section';
 
+import { environment as dev } from 'src/environments/environment';
+import { environment as prod } from 'src/environments/environment.prod';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   
-  baseUrl: string = 'http://localhost:3000';
+  baseUrl: string = isDevMode() ? dev.apiUrl : prod.apiUrl;
   apiUrl: string = `${this.baseUrl}/api/`;
   videoUrl: string = `${this.baseUrl}/api/video`;
   courseUrl: string = `${this.baseUrl}/api/course`;
@@ -23,7 +26,7 @@ export class ApiService {
   moduleUrl: string = `${this.baseUrl}/api/module`;
   contentUrl: string = `${this.baseUrl}/api/content`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<Video[]> {
     return this.http.get<Video[]>(`${this.videoUrl}`);
