@@ -25,6 +25,12 @@ export class SidebarComponent implements OnInit {
       route: '/courses', 
       tooltip: 'Courses'
     },
+    {
+      name: 'logout',
+      icon: 'logout',
+      route: '/logout',
+      tooltip: 'Logout'
+    }
     // {
     //   name: 'inbox', 
     //   icon: 'inbox', 
