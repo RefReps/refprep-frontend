@@ -8,30 +8,30 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 })
 export class QuizBuilderComponent implements OnInit {
 
-  quizForm = new FormGroup({
-    quizName: new FormControl(''),
-    quizQuestion: new FormControl(''),
-    quesType: new FormGroup({
-      selectedQuestType: new FormControl(''),
+  quizForm = this.formBuilder.group({
+    quizName: [''],
+    quizQuestion: [''],
+    quesType: this.formBuilder.group({
+      selectedQuestType: [''],
     }),
-    multipleChoiceType: new FormGroup({
-      answersAllowed: new FormControl(''),
-      option1Value: new FormControl(''),
-      option2Value: new FormControl(''),
-      option3Value: new FormControl(''),
-      option4Value: new FormControl(''),
-      correctAnswer: new FormControl(''),
+    multipleChoiceType: this.formBuilder.group({
+      answersAllowed: [''],
+      option1Value: [''],
+      option2Value: [''],
+      option3Value: [''],
+      option4Value: [''],
+      correctAnswer: [''],
     }),
-    trueFalseType: new FormGroup({
-      trueFalse: new FormControl(''),
+    trueFalseType: this.formBuilder.group({
+      trueFalse: [''],
     }),
-    textBoxType: new FormGroup({
-      freeResponse: new FormControl(''),
-      otherAccepted: new FormControl(''),
-      otherAccepted1: new FormControl(''),
-      otherAccepted2: new FormControl(''),
-      otherAccepted3: new FormControl(''),
-      otherAccepted4: new FormControl(''),
+    textBoxType: this.formBuilder.group({
+      freeResponse: [''],
+      otherAccepted: [''],
+      otherAccepted1: [''],
+      otherAccepted2: [''],
+      otherAccepted3: [''],
+      otherAccepted4: [''],
     }),
   });
 
@@ -49,5 +49,20 @@ export class QuizBuilderComponent implements OnInit {
     return this.quizForm.get('quizName')?.value;
   }
 
+  get option1Value() {
+    return this.quizForm.get(['multipleChoiceType', 'option1Value'])?.value;
+  }
+
+  get option2Value() {
+    return this.quizForm.get(['multipleChoiceType', 'option2Value'])?.value;
+  }
+
+  get option3Value() {
+    return this.quizForm.get(['multipleChoiceType', 'option3Value'])?.value;
+  }
+
+  get option4Value() {
+    return this.quizForm.get(['multipleChoiceType', 'option4Value'])?.value;
+  }
 
 }
