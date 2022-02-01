@@ -46,7 +46,8 @@ export class QuizBuilderComponent implements OnInit {
   }
 
   get quizName() {
-    return this.quizForm.get('quizName.value');
+    return this.quizForm.get('quizName')?.value;
   }
+
 
 }
