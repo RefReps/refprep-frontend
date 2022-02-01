@@ -55,6 +55,7 @@ import { EditDisplayModulesComponent } from './edit-display-modules/edit-display
 import { EditDisplayContentsComponent } from './edit-display-contents/edit-display-contents.component';
 import { SectionFormDeleteComponent } from './section-form-delete/section-form-delete.component';
 import { ContentFormAddVideoComponent } from './content-form-add-video/content-form-add-video.component';
+import { QuizBuilderComponent } from './quiz-builder/quiz-builder.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -89,6 +90,7 @@ import { ContentFormAddVideoComponent } from './content-form-add-video/content-f
     EditDisplayContentsComponent,
     SectionFormDeleteComponent,
     ContentFormAddVideoComponent,
+    QuizBuilderComponent,
   ],
   imports: [
     CommonModule,
@@ -148,6 +150,7 @@ import { ContentFormAddVideoComponent } from './content-form-add-video/content-f
     EditDisplayContentsComponent,
     SectionFormDeleteComponent,
     ContentFormAddVideoComponent,
-  ],
+    QuizBuilderComponent,
+  ],  
 })
 export class ComponentsModule { }
