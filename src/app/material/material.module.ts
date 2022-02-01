@@ -16,15 +16,16 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
     exports: [
         MatCardModule,
         MatIconModule,
         MatDividerModule,
-        MatListModule,
         MatExpansionModule,
-        MatCardModule,
         MatToolbarModule,
         MatButtonModule,
         MatInputModule,
@@ -36,6 +37,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
         MatSlideToggleModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatSidenavModule,
+        MatCheckboxModule,
+        MatGridListModule,
+        MatTooltipModule,
     ]
   })
   export class MaterialModule { }
