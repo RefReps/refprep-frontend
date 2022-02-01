@@ -15,27 +15,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
-    imports: [
-        MatCardModule,
-        MatIconModule,
-        MatDividerModule,
-        MatListModule,
-        MatExpansionModule,
-        MatCardModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatProgressBarModule,
-        MatListModule,
-        MatSelectModule,
-        MatDialogModule,
-        MatSlideToggleModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-    ],
     exports: [
         MatCardModule,
         MatIconModule,
