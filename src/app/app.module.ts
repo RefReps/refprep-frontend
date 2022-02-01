@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Videogular
 import {VgCoreModule} from '@videogular/ngx-videogular/core';
@@ -18,6 +18,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultModule } from './layouts/default/default.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { LoginModule } from './layouts/login/login.module';
+import { appInitializer } from './_helpers/app.initializer';
+import { AuthenticationService } from './_services/authentication.service';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { AuthInterceptor } from './_helpers/auth.interceptor';
 
 
 @NgModule({
@@ -42,8 +48,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
     DefaultModule, // import all layout modules
+    LoginModule
   ],
-  providers: [],
+  providers: [
+    // {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    // {provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthenticationService]},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
