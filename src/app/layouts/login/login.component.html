@@ -1,0 +1,33 @@
+<div class="h-screen flex flex-col items-center bg-primary">
+    
+    <mat-card class="min-w-min">
+        <p>Sign In</p>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <table>
+        <tr>
+            <td><mat-form-field>
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Ex. user@example.com">
+                <mat-error *ngIf="f.email.errors"></mat-error>
+            </mat-form-field></td>
+        </tr>
+        <tr>
+            <td><mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password">
+                <mat-error *ngIf="f.password.errors"></mat-error>
+            </mat-form-field></td>
+        </tr>
+        <tr>
+            <td>
+                <button mat-button>Login</button>
+            </td>
+        </tr>
+        </table>
+        </form>
+        <div *ngIf="error" class="text-red-600">{{error}}</div>
+
+
+    </mat-card>
+</div>
