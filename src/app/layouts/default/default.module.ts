@@ -11,6 +11,8 @@ import { CourseHomeComponent } from 'src/app/modules/course-home/course-home.com
 import { TestComponentComponent } from 'src/app/modules/test-component/test-component.component';
 import { EditCurriculumHomeComponent } from 'src/app/modules/edit-curriculum-home/edit-curriculum-home.component';
 import { CourseVideoComponent } from 'src/app/modules/course-video/course-video.component';
+import { MaterialModule } from 'src/app/material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -29,7 +31,10 @@ import { CourseVideoComponent } from 'src/app/modules/course-video/course-video.
     RouterModule,
     FlexLayoutModule,
     SharedModule,
-    ComponentsModule
+    ComponentsModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class DefaultModule { }
