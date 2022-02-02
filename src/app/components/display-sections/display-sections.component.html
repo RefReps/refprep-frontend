@@ -1,12 +1,19 @@
-<div *ngFor="let section of sections">
-    <mat-card>
-            <mat-card-title>{{section.name}}</mat-card-title>
-    </mat-card>
-    <mat-divider></mat-divider>
-    <div>
-        <app-display-modules [sectionId]=section._id></app-display-modules>
+<mat-accordion multi="false">
+    <div class="p-1">
+        <div *ngFor="let section of sections">
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="p-2 font-bold text-xl">
+                            {{section.name}}
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-display-modules [sectionId]=section._id></app-display-modules>
+            </mat-expansion-panel>
+        </div>
     </div>
-</div>
+</mat-accordion>
 <mat-card class="max-w-min float-right">
     <button mat-raised-button color="primary" routerLink="./editCurriculum">Edit Curriculum</button>
 </mat-card>

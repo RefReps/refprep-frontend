@@ -15,10 +15,10 @@
                                 {{module.name}}
                             </div>
                             <div class="flex-1 flex-col">
-                                <button (click)="openAddContentVideoDialog(module._id)" mat-raised-button class="bg-green-400">
-                                    +
+                                <button mat-icon-button color="warn" class="float-right"><mat-icon>delete</mat-icon></button>
+                                <button (click)="openAddContentVideoDialog(module._id)" mat-icon-button color="primary" class="float-right">
+                                    <mat-icon>add_circle</mat-icon>
                                 </button>
-                                <button mat-raised-button color="warn" class="pl-52">DEL</button>
                             </div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
