@@ -33,6 +33,7 @@ import { EditDisplayModulesComponent } from './edit-display-modules/edit-display
 import { EditDisplayContentsComponent } from './edit-display-contents/edit-display-contents.component';
 import { SectionFormDeleteComponent } from './section-form-delete/section-form-delete.component';
 import { ContentFormAddVideoComponent } from './content-form-add-video/content-form-add-video.component';
+import { QuizBuilderComponent } from './quiz-builder/quiz-builder.component';
 import { MaterialModule } from '../material/material.module';
 
 @NgModule({
@@ -64,6 +65,7 @@ import { MaterialModule } from '../material/material.module';
     EditDisplayContentsComponent,
     SectionFormDeleteComponent,
     ContentFormAddVideoComponent,
+    QuizBuilderComponent,
   ],
   imports: [
     MaterialModule,
@@ -104,6 +106,7 @@ import { MaterialModule } from '../material/material.module';
     EditDisplayContentsComponent,
     SectionFormDeleteComponent,
     ContentFormAddVideoComponent,
-  ],
+    QuizBuilderComponent,
+  ],  
 })
 export class ComponentsModule { }
