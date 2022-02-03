@@ -36,6 +36,7 @@ import { EditDisplayContentsComponent } from './edit-display-contents/edit-displ
 import { SectionFormDeleteComponent } from './section-form-delete/section-form-delete.component';
 import { ContentFormAddVideoComponent } from './content-form-add-video/content-form-add-video.component';
 import { CourseDuplicateFormComponent } from './course-duplicate-form/course-duplicate-form.component';
+import { CourseCreationHomeComponent } from './course-creation-home/course-creation-home.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { CourseDuplicateFormComponent } from './course-duplicate-form/course-dup
     SectionFormDeleteComponent,
     ContentFormAddVideoComponent,
     CourseDuplicateFormComponent,
+    CourseCreationHomeComponent,
   ],
   imports: [
     MaterialModule,
@@ -109,6 +111,7 @@ import { CourseDuplicateFormComponent } from './course-duplicate-form/course-dup
     SectionFormDeleteComponent,
     ContentFormAddVideoComponent,
     CourseDuplicateFormComponent,
+    CourseCreationHomeComponent,
   ],
 })
 export class ComponentsModule { }
