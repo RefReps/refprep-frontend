@@ -1,92 +1,106 @@
 <mat-card>
     <h1 class="content-center">Quiz Builder</h1>
 </mat-card>
-<form [formGroup]="quizForm" method="post" (ngSubmit)="onSubmit()">
-    <!--input the name of the quiz-->
-    <label for="questionTitle">Quiz name: </label>
-    <input type="text" id="questionTitle" class="min-w-full" formControlName="quizName"><br>
-    <!--Input Question-->
-    <label for="question">Question to be asked:</label><br>
-    <input type="text" id="question" class="min-w-full" formControlName="quizQuestion">
-    <br><br>
-    <!--Which quiz do they want to make-->
-    <label for="quiz-type">What is the type of quiz you want to make?</label>
-    <div formGroupName="quesType" class="col-auto">
-        <input type="radio" id="multiple-choice" value="multipleChoiceQuest" formControlName="selectedQuestType">
-        <label for="multiple-choice" class="pr-5"> Multiple Choice</label>
-
-        <input type="radio" id="trueFalse" value="trueFalseQuest" formControlName="selectedQuestType">
-        <label for="trueFalse" class="pr-5"> True/False </label>
-
-        <input type="radio" id="text" value="textQuest" formControlName="selectedQuestType">
-        <label for="text" class="pr-5"> Text Box</label>
-    </div>
-    <!--If the user choose multiple choice-->
-    <div formGroupName="multipleChoiceType" *ngIf="quizForm.value.quesType.selectedQuestType=='multipleChoiceQuest'"
-        class="row-auto">
-        <p>How many answers will be allowed?</p>
-        <input type="radio" id="oneAllowed" value="one" formControlName="answersAllowed">
-        <label for="oneAllowed" class="mr-5">One Allowed Right Answer</label>
-        <input type="radio" id="manyAllowed" value="many" formControlName="answersAllowed">
-        <label for="manyAllowed" class="mr-5">Many Allowed Right Answers</label>
-        <br>
-
-        <label for="option1">A:</label>
-        <input type="text" id="option1" formControlName="option1Value">
-        <input *ngIf="quizForm.value.multipleChoiceType.answersAllowed=='one'" type="radio" id="option1"
-            value={{option1Value}} formControlName="correctAnswer" class="m-5">
-        <input *ngIf="quizForm.value.multipleChoiceType.answersAllowed=='many'" type="checkbox" name="option1"
-            id="option1" value="option1" class="m-5">
-        <br>
-
-        <label for="option2">B:</label>
-        <input type="text" id="option2" formControlName="option2Value">
-        <input *ngIf="quizForm.value.multipleChoiceType.answersAllowed=='one'" type="radio" id="option2"
-            value={{option2Value}} formControlName="correctAnswer" class="m-5">
-        <input *ngIf="quizForm.value.multipleChoiceType.answersAllowed=='many'" type="checkbox" name="option2"
-            id="option3" value="option2" class="m-5">
-        <br>
-
-        <label for="option3">C:</label>
-        <input type="text" id="option3" formControlName="option3Value">
-        <input *ngIf="quizForm.value.multipleChoiceType.answersAllowed=='one'" type="radio" id="option3"
-            value={{option3Value}} formControlName="correctAnswer" class="m-5">
-        <input *ngIf="quizForm.value.multipleChoiceType.answersAllowed=='many'" type="checkbox" name="option3"
-            id="option3" value="option3" class="m-5">
-        <br>
-
-        <label for="option4">D:</label>
-        <input type="text" id="option4" formControlName="option4Value">
-        <input *ngIf="quizForm.value.multipleChoiceType.answersAllowed=='one'" type="radio" id="option4"
-            value={{option4Value}} formControlName="correctAnswer" class="m-5">
-        <input *ngIf="quizForm.value.multipleChoiceType.answersAllowed=='many'" type="checkbox" name="option4"
-            id="option4" value="option4" class="m-5">
-        <br>
-    </div>
-    <!--If the user chooses True False-->
-    <div formGroupName="trueFalseType" *ngIf="quizForm.value.quesType.selectedQuestType=='trueFalseQuest'">
-        <label for="True">True</label>
-        <input type="radio" value="true" formControlName="trueFalse"><br>
-        <label for="False">False</label>
-        <input type="radio" value="false" formControlName="trueFalse">
-    </div>
-    <div formGroupName="textBoxType" *ngIf="quizForm.value.quesType.selectedQuestType=='textQuest'">
-        <label for="freeResponse">correct answer: </label>
-        <input type="text" name="freeResponse" formControlName="freeResponse"><br>
-
-        <label for="accepted">Accept other answers</label>
-        <input type="radio" id="accepted" value="accepted" formControlName="otherAccepted"><br>
-        <input *ngIf="quizForm.value.textBoxType.otherAccepted=='accepted'" type="text" id="other1"
-            formControlName="otherAccepted1"><br>
-        <input *ngIf="quizForm.value.textBoxType.otherAccepted=='accepted'" type="text" id="other2"
-            formControlName="otherAccepted2"><br>
-        <input *ngIf="quizForm.value.textBoxType.otherAccepted=='accepted'" type="text" id="other3"
-            formControlName="otherAccepted3"><br>
-        <input *ngIf="quizForm.value.textBoxType.otherAccepted=='accepted'" type="text" id="other4"
-            formControlName="otherAccepted4"><br>
-
-    </div>
-    <button type="submit">Submit Question</button>
-</form>
-
-<h1 onsubmit="submit">{{quizName}}</h1>
+<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="quizForm">
+        <form [formGroup]="quizForm">
+            <ng-template matStepLabel> </ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Quiz Question</mat-label>
+                <input matInput placeholder="Quiz name" formControlName="quizQuestion" required>
+            </mat-form-field>
+            <br>
+            <mat-radio-group formControlName="selectedQuestType">
+                <mat-radio-button value="multipleChoiceQuest">Multiple Choice</mat-radio-button>
+                <mat-radio-button value="trueFalseQuest">True False</mat-radio-button>
+                <mat-radio-button value="textQuest">Text Question</mat-radio-button>
+            </mat-radio-group>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="multipleChoiceType" *ngIf="quizForm.value.selectedQuestType=='multipleChoiceQuest'">
+        <form [formGroup]="multipleChoiceType">
+            <ng-template matStepLabel>Multiple Choice Options</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label for="option1">A:</mat-label>
+                <input matInput type="text" id="option1" formControlName="A">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label for="option2">B:</mat-label>
+                <input matInput type="text" id="option2" formControlName="B">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label for="option3">C:</mat-label>
+                <input matInput type="text" id="option3" formControlName="C">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label for="option4">D:</mat-label>
+                <input matInput type="text" id="option4" formControlName="D">
+            </mat-form-field>
+            <br>
+            <mat-radio-group formControlName="answersAllowed">
+                <mat-radio-button value="one" class="m-5">One</mat-radio-button>
+                <mat-radio-button value="many" class="m-5">Many</mat-radio-button>
+            </mat-radio-group>
+            <br>
+            <mat-radio-group *ngIf="multipleChoiceType.value.answersAllowed=='one'" formControlName="answer">
+                <mat-radio-button value="A" class="m-5">A</mat-radio-button>
+                <mat-radio-button value="B" class="m-5">B</mat-radio-button>
+                <mat-radio-button value="C" class="m-5">C</mat-radio-button>
+                <mat-radio-button value="D" class="m-5">D</mat-radio-button>
+            </mat-radio-group>
+            <mat-checkbox-group *ngIf="multipleChoiceType.value.answersAllowed=='many'" formControlName="answers"
+                ngDefaultControl>
+                <mat-checkbox value="A" class="m-5">A</mat-checkbox>
+                <mat-checkbox value="B" class="m-5">B</mat-checkbox>
+                <mat-checkbox value="C" class="m-5">C</mat-checkbox>
+                <mat-checkbox value="D" class="m-5">D</mat-checkbox>
+            </mat-checkbox-group>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="trueFalseType" *ngIf="quizForm.value.selectedQuestType=='trueFalseQuest'">
+        <form [formGroup]="trueFalseType">
+            <ng-template matStepLabel>True False</ng-template>
+            <mat-radio-group aria-label="Select the correct answer">
+                <mat-radio-button value="true">True</mat-radio-button>
+                <mat-radio-button value="false">False</mat-radio-button>
+            </mat-radio-group>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="textBoxType" *ngIf="quizForm.value.selectedQuestType=='textQuest'">
+        <form [formGroup]="textBoxType">
+            <ng-template matStepLabel>Free Response Options</ng-template>
+            <mat-form-field>
+                <mat-label for="freeResponse">correct answer: </mat-label>
+                <input matInput type="text" id="freeResponse" formControlName="answer">
+            </mat-form-field>
+            <br>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)=onSubmit()> Save Question</button>
+        </div>
+    </mat-step>
+</mat-stepper>
