@@ -1,9 +1,11 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+// Module Imports
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material/material.module';
 
 // Component Imports
 import { CourseDashboardComponent } from './course-dashboard/course-dashboard.component';
@@ -33,8 +35,9 @@ import { EditDisplayModulesComponent } from './edit-display-modules/edit-display
 import { EditDisplayContentsComponent } from './edit-display-contents/edit-display-contents.component';
 import { SectionFormDeleteComponent } from './section-form-delete/section-form-delete.component';
 import { ContentFormAddVideoComponent } from './content-form-add-video/content-form-add-video.component';
+import { CourseDuplicateFormComponent } from './course-duplicate-form/course-duplicate-form.component';
+import { CourseCreationHomeComponent } from './course-creation-home/course-creation-home.component';
 import { QuizBuilderComponent } from './quiz-builder/quiz-builder.component';
-import { MaterialModule } from '../material/material.module';
 import { ContentFormAddQuizComponent } from './content-form-add-quiz/content-form-add-quiz.component';
 import { ContentAddTabSelectComponent } from './content-add-tab-select/content-add-tab-select.component';
 
@@ -67,6 +70,8 @@ import { ContentAddTabSelectComponent } from './content-add-tab-select/content-a
     EditDisplayContentsComponent,
     SectionFormDeleteComponent,
     ContentFormAddVideoComponent,
+    CourseDuplicateFormComponent,
+    CourseCreationHomeComponent,
     QuizBuilderComponent,
     ContentFormAddQuizComponent,
     ContentAddTabSelectComponent,
@@ -110,6 +115,8 @@ import { ContentAddTabSelectComponent } from './content-add-tab-select/content-a
     EditDisplayContentsComponent,
     SectionFormDeleteComponent,
     ContentFormAddVideoComponent,
+    CourseDuplicateFormComponent,
+    CourseCreationHomeComponent,
     QuizBuilderComponent,
     ContentFormAddQuizComponent,
     ContentAddTabSelectComponent,

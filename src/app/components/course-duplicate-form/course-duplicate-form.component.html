@@ -1,0 +1,27 @@
+<h2>Add Course</h2>
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
+    
+    <p>Select Template Course:</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Course</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let course of courses" [value]="course.name">
+                  {{course.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    <p>
+        <mat-form-field apperance="fill">
+            <mat-label>New Course Name</mat-label>
+            <input matInput name="name" formControlName="name">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-slide-toggle name="isPublished" formControlName="isPublished" color="aqua" checked>
+            Publish Course
+        </mat-slide-toggle>
+    </p>
+    <p>
+        <button mat-button type="submit" class="bg-green-400" mat-raised-button>Submit</button>
+    </p>
+</form>

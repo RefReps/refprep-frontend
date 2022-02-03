@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VideoUploadComponent } from './components/video-upload/video-upload.component';
 import { DefaultComponent } from './layouts/default/default.component';
+import { CourseCreationComponent } from './modules/course-creation/course-creation.component';
 import { CourseHomeComponent } from './modules/course-home/course-home.component';
 import { CourseVideoComponent } from './modules/course-video/course-video.component';
 import { CoursesComponent } from './modules/courses/courses.component';
@@ -21,7 +22,8 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'home', component: HomeComponent},
       {path: 'test', component: TestComponentComponent},
       {path: 'courses/:courseId/videoUpload', component: VideoUploadComponent},
-      {path: 'courses/:courseId/editCurriculum', component:EditCurriculumHomeComponent}
+      {path: 'courses/:courseId/editCurriculum', component:EditCurriculumHomeComponent},
+      {path: 'course-creation', component: CourseCreationComponent},
 
     ]
   },

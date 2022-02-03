@@ -19,7 +19,6 @@ import { DefaultModule } from './layouts/default/default.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MaterialModule } from './material/material.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -16,6 +16,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     FooterComponent,
   ],
   imports: [
+    MaterialModule,
     CommonModule,
     RouterModule,
     FlexLayoutModule,
