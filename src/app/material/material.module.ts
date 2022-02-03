@@ -19,6 +19,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
     exports: [
@@ -41,6 +43,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         MatCheckboxModule,
         MatGridListModule,
         MatTooltipModule,
+        MatRadioModule,
+        MatTabsModule,
     ]
   })
   export class MaterialModule { }
