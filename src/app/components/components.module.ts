@@ -35,6 +35,8 @@ import { SectionFormDeleteComponent } from './section-form-delete/section-form-d
 import { ContentFormAddVideoComponent } from './content-form-add-video/content-form-add-video.component';
 import { QuizBuilderComponent } from './quiz-builder/quiz-builder.component';
 import { MaterialModule } from '../material/material.module';
+import { ContentFormAddQuizComponent } from './content-form-add-quiz/content-form-add-quiz.component';
+import { ContentAddTabSelectComponent } from './content-add-tab-select/content-add-tab-select.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -66,6 +68,8 @@ import { MaterialModule } from '../material/material.module';
     SectionFormDeleteComponent,
     ContentFormAddVideoComponent,
     QuizBuilderComponent,
+    ContentFormAddQuizComponent,
+    ContentAddTabSelectComponent,
   ],
   imports: [
     MaterialModule,
@@ -107,6 +111,8 @@ import { MaterialModule } from '../material/material.module';
     SectionFormDeleteComponent,
     ContentFormAddVideoComponent,
     QuizBuilderComponent,
+    ContentFormAddQuizComponent,
+    ContentAddTabSelectComponent,
   ],  
 })
 export class ComponentsModule { }

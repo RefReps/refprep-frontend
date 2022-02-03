@@ -9,6 +9,7 @@ import { ModuleInfo } from 'src/app/models/module-info';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { Module } from 'src/app/models/module';
 import { Section } from 'src/app/models/section';
+import { Quiz } from 'src/app/models/quiz';
 
 import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
@@ -25,6 +26,7 @@ export class ApiService {
   sectionUrl: string = `${this.baseUrl}/api/section`;
   moduleUrl: string = `${this.baseUrl}/api/module`;
   contentUrl: string = `${this.baseUrl}/api/content`;
+  quizUrl: string = `${this.baseUrl}/api/quiz`;
 
   constructor(private http: HttpClient) {}
 
@@ -136,6 +138,12 @@ export class ApiService {
 
   updateContent(contentId: string, form: FormData): void {
     this.http.put(`${this.contentUrl}/${contentId}`, form).subscribe();
+  }
+
+  // Quiz Routes
+
+  postNewQuiz(name: string): Observable<Quiz> {
+    return this.http.post<Quiz>(`${this.quizUrl}`, {name})
   }
 
   // Video Routes

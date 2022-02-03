@@ -1,0 +1,8 @@
+<form [formGroup]="quizForm" (ngSubmit)="onFormSubmit()">
+    <mat-form-field>
+        <mat-label>Quiz Name</mat-label>
+        <input matInput formControlName="name" type="text">
+    </mat-form-field>
+
+    <button mat-button>Create Quiz</button>
+</form>
