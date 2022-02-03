@@ -1,0 +1,106 @@
+<mat-card>
+    <h1 class="content-center">Quiz Builder</h1>
+</mat-card>
+<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="quizForm">
+        <form [formGroup]="quizForm">
+            <ng-template matStepLabel> </ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Quiz Question</mat-label>
+                <input matInput placeholder="Quiz name" formControlName="quizQuestion" required>
+            </mat-form-field>
+            <br>
+            <mat-radio-group formControlName="selectedQuestType">
+                <mat-radio-button value="multipleChoiceQuest">Multiple Choice</mat-radio-button>
+                <mat-radio-button value="trueFalseQuest">True False</mat-radio-button>
+                <mat-radio-button value="textQuest">Text Question</mat-radio-button>
+            </mat-radio-group>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="multipleChoiceType" *ngIf="quizForm.value.selectedQuestType=='multipleChoiceQuest'">
+        <form [formGroup]="multipleChoiceType">
+            <ng-template matStepLabel>Multiple Choice Options</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label for="option1">A:</mat-label>
+                <input matInput type="text" id="option1" formControlName="A">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label for="option2">B:</mat-label>
+                <input matInput type="text" id="option2" formControlName="B">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label for="option3">C:</mat-label>
+                <input matInput type="text" id="option3" formControlName="C">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label for="option4">D:</mat-label>
+                <input matInput type="text" id="option4" formControlName="D">
+            </mat-form-field>
+            <br>
+            <mat-radio-group formControlName="answersAllowed">
+                <mat-radio-button value="one" class="m-5">One</mat-radio-button>
+                <mat-radio-button value="many" class="m-5">Many</mat-radio-button>
+            </mat-radio-group>
+            <br>
+            <mat-radio-group *ngIf="multipleChoiceType.value.answersAllowed=='one'" formControlName="answer">
+                <mat-radio-button value="A" class="m-5">A</mat-radio-button>
+                <mat-radio-button value="B" class="m-5">B</mat-radio-button>
+                <mat-radio-button value="C" class="m-5">C</mat-radio-button>
+                <mat-radio-button value="D" class="m-5">D</mat-radio-button>
+            </mat-radio-group>
+            <mat-checkbox-group *ngIf="multipleChoiceType.value.answersAllowed=='many'" formControlName="answers"
+                ngDefaultControl>
+                <mat-checkbox value="A" class="m-5">A</mat-checkbox>
+                <mat-checkbox value="B" class="m-5">B</mat-checkbox>
+                <mat-checkbox value="C" class="m-5">C</mat-checkbox>
+                <mat-checkbox value="D" class="m-5">D</mat-checkbox>
+            </mat-checkbox-group>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="trueFalseType" *ngIf="quizForm.value.selectedQuestType=='trueFalseQuest'">
+        <form [formGroup]="trueFalseType">
+            <ng-template matStepLabel>True False</ng-template>
+            <mat-radio-group aria-label="Select the correct answer">
+                <mat-radio-button value="true">True</mat-radio-button>
+                <mat-radio-button value="false">False</mat-radio-button>
+            </mat-radio-group>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="textBoxType" *ngIf="quizForm.value.selectedQuestType=='textQuest'">
+        <form [formGroup]="textBoxType">
+            <ng-template matStepLabel>Free Response Options</ng-template>
+            <mat-form-field>
+                <mat-label for="freeResponse">correct answer: </mat-label>
+                <input matInput type="text" id="freeResponse" formControlName="answer">
+            </mat-form-field>
+            <br>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)=onSubmit()> Save Question</button>
+        </div>
+    </mat-step>
+</mat-stepper>

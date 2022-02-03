@@ -15,34 +15,21 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
+
 
 @NgModule({
-    imports: [
-        MatCardModule,
-        MatIconModule,
-        MatDividerModule,
-        MatListModule,
-        MatExpansionModule,
-        MatCardModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatProgressBarModule,
-        MatListModule,
-        MatSelectModule,
-        MatDialogModule,
-        MatSlideToggleModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-    ],
     exports: [
         MatCardModule,
         MatIconModule,
         MatDividerModule,
-        MatListModule,
         MatExpansionModule,
-        MatCardModule,
         MatToolbarModule,
         MatButtonModule,
         MatInputModule,
@@ -54,6 +41,13 @@ import { MatNativeDateModule } from "@angular/material/core";
         MatSlideToggleModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatSidenavModule,
+        MatCheckboxModule,
+        MatGridListModule,
+        MatTooltipModule,
+        MatRadioModule,
+        MatTabsModule,
+        MatStepperModule,
     ]
-  })
-  export class MaterialModule { }
+})
+export class MaterialModule { }

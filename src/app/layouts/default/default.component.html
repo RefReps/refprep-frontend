@@ -1,19 +1,69 @@
-
-<div fxFlex="auto" class="z-50 m-0 p-0 min-w-min max-w-max h-screen">
-    <app-sidebar></app-sidebar>
-</div>
-<div flexLayout="column" fxFlex>
-
-    <!-- <div class="h-[5vh]">
-        <app-header></app-header>
-    </div> -->
-
-    <div class="h-[100vh] overflow-auto w-auto">
-        <router-outlet></router-outlet>
-        <!-- <div class="bg-blue-500 ">
-            <app-footer></app-footer>
-        </div> -->
-    </div>
-
-
-</div>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false"
+        class="bg-primary">
+      <!-- Image at top of navigation bar -->
+      <img src="../../../../assets/RR_Logo_12.png" alt="logo" class="w-20">
+      <mat-nav-list>
+        <!-- Router links -->
+        <div class="text-white">
+          <!-- Profile link -->
+          <a routerLink="/profile"
+          matTooltip="Profile" 
+          matTooltipPosition="right"
+          class="sidebar-icon group">
+          <mat-icon>account_circle</mat-icon></a>
+          <!-- Home link -->
+          <a routerLink="/home" 
+          matTooltip="Home" 
+          matTooltipPosition="right"
+          class="sidebar-icon group">
+          <mat-icon>home</mat-icon></a>
+          <!-- Courses link -->
+          <a routerLink="/courses" 
+          matTooltip="Courses" 
+          matTooltipPosition="right"
+          class="sidebar-icon group">
+          <mat-icon>library_books</mat-icon></a>
+          <!-- Copy Course Link -->
+          <a routerLink="/course-creation" 
+          matTooltip="Create Course" 
+          matTooltipPosition="right"
+          class="sidebar-icon group">
+          <mat-icon>library_add</mat-icon></a>
+          <!-- Logout link -->
+          <a routerLink="/logout" 
+          matTooltip="Logout" 
+          matTooltipPosition="right"
+          class="sidebar-icon group">
+          <mat-icon>logout</mat-icon></a>
+          <!-- Test link -->
+          <a routerLink="/test" 
+          matTooltip="Test" 
+          matTooltipPosition="right"
+          class="sidebar-icon group">
+          <mat-icon>science</mat-icon></a>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar class="bg-gray-100 app-toolbar">
+        <!-- Minimize Sidebar Button -->
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <!-- Toolbar Title -->
+        <span></span>
+      </mat-toolbar>
+      <!-- Display Main Content -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

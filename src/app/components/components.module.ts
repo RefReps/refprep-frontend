@@ -37,7 +37,9 @@ import { SectionFormDeleteComponent } from './section-form-delete/section-form-d
 import { ContentFormAddVideoComponent } from './content-form-add-video/content-form-add-video.component';
 import { CourseDuplicateFormComponent } from './course-duplicate-form/course-duplicate-form.component';
 import { CourseCreationHomeComponent } from './course-creation-home/course-creation-home.component';
-
+import { QuizBuilderComponent } from './quiz-builder/quiz-builder.component';
+import { ContentFormAddQuizComponent } from './content-form-add-quiz/content-form-add-quiz.component';
+import { ContentAddTabSelectComponent } from './content-add-tab-select/content-add-tab-select.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -70,6 +72,9 @@ import { CourseCreationHomeComponent } from './course-creation-home/course-creat
     ContentFormAddVideoComponent,
     CourseDuplicateFormComponent,
     CourseCreationHomeComponent,
+    QuizBuilderComponent,
+    ContentFormAddQuizComponent,
+    ContentAddTabSelectComponent,
   ],
   imports: [
     MaterialModule,
@@ -112,6 +117,9 @@ import { CourseCreationHomeComponent } from './course-creation-home/course-creat
     ContentFormAddVideoComponent,
     CourseDuplicateFormComponent,
     CourseCreationHomeComponent,
-  ],
+    QuizBuilderComponent,
+    ContentFormAddQuizComponent,
+    ContentAddTabSelectComponent,
+  ],  
 })
 export class ComponentsModule { }
