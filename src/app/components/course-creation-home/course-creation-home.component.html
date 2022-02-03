@@ -1,7 +1,16 @@
-<mat-grid-list cols="2" rowHeight="5:1">
-    <mat-grid-tile>
-        <button class="bg-blue-400" mat-raised-button (click)="openAddCourseDialog()">Create New Course</button>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <button class="bg-blue-400" mat-raised-button (click)="openDuplicateCourseDialog()">Create From Template</button>   </mat-grid-tile>
-    </mat-grid-list>
+<div class="header-bar">
+    Course Creation
+</div>
+<div class="flex flex-row flex-wrap">
+        <mat-card class="shadow-lg w-72 h-80">
+            <mat-card-title>Create New Course</mat-card-title>
+            <mat-card-subtitle>Create a completely new course from scratch</mat-card-subtitle>
+            <button class="bg-blue-400" mat-raised-button (click)="openAddCourseDialog()">Create New Course</button>
+        </mat-card>
+        <mat-card class="shadow-lg w-72 h-80">
+            <mat-card-title>Create From Template Course</mat-card-title>
+            <mat-card-subtitle>Create a new course using a template course as a base</mat-card-subtitle>
+            <button class="bg-blue-400" mat-raised-button (click)="openDuplicateCourseDialog()">Create From Template</button>
+        </mat-card>
+</div>
+

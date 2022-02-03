@@ -22,7 +22,7 @@ export class CourseDuplicateFormComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data: any
     ) {
     this.formGroup = formBuilder.group({
-      newName: '',
+      name: '',
       isPublished: true,
       isTemplate: false,
     })
