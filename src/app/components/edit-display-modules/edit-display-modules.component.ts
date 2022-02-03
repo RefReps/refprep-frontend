@@ -5,6 +5,7 @@ import { DialogService } from 'src/service/dialog.service';
 import { ModuleFormAddComponent } from '../module-form-add/module-form-add.component';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { ContentFormAddVideoComponent } from '../content-form-add-video/content-form-add-video.component';
+import { ContentAddTabSelectComponent } from '../content-add-tab-select/content-add-tab-select.component';
 
 @Component({
   selector: 'app-edit-display-modules',
@@ -36,6 +37,10 @@ export class EditDisplayModulesComponent implements OnInit {
 
   openAddContentVideoDialog(moduleId: string): void {
     this.dialogService.open(ContentFormAddVideoComponent, {moduleId})
+  }
+
+  openAddContentTabDialog(moduleId: string): void {
+    this.dialogService.open(ContentAddTabSelectComponent, {moduleId})
   }
 
   onDrop(event: any) {
