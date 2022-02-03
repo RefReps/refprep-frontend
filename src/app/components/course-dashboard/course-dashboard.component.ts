@@ -3,6 +3,7 @@ import { Course } from 'src/app/models/course';
 import { ApiService } from 'src/service/api.service';
 import { DialogService } from 'src/service/dialog.service';
 import { CourseAddFormComponent } from '../course-add-form/course-add-form.component';
+import { CourseDuplicateFormComponent } from '../course-duplicate-form/course-duplicate-form.component';
 
 @Component({
   selector: 'app-course-dashboard',
@@ -29,6 +30,10 @@ export class CourseDashboardComponent implements OnInit {
   
   openAddCourseDialog(): void {
     this.dialogService.open(CourseAddFormComponent, {})
+  }
+
+  openDuplicateCourseDialog(): void {
+    this.dialogService.open(CourseDuplicateFormComponent, {})
   }
 
 }
