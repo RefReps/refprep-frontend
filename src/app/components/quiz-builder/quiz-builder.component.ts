@@ -7,32 +7,29 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./quiz-builder.component.css']
 })
 export class QuizBuilderComponent implements OnInit {
+  isLinear = false;
 
   quizForm = this.formBuilder.group({
-    quizName: [''],
     quizQuestion: [''],
-    quesType: this.formBuilder.group({
-      selectedQuestType: [''],
-    }),
-    multipleChoiceType: this.formBuilder.group({
-      answersAllowed: [''],
-      option1Value: [''],
-      option2Value: [''],
-      option3Value: [''],
-      option4Value: [''],
-      correctAnswer: [''],
-    }),
-    trueFalseType: this.formBuilder.group({
-      trueFalse: [''],
-    }),
-    textBoxType: this.formBuilder.group({
-      freeResponse: [''],
-      otherAccepted: [''],
-      otherAccepted1: [''],
-      otherAccepted2: [''],
-      otherAccepted3: [''],
-      otherAccepted4: [''],
-    }),
+    selectedQuestType: [''],
+  });
+
+  multipleChoiceType = this.formBuilder.group({
+    answersAllowed: [''],
+    A: [''],
+    B: [''],
+    C: [''],
+    D: [''],
+    answer: [''],
+    answers: [''],
+  });
+
+  trueFalseType = this.formBuilder.group({
+    answer: [''],
+  });
+
+  textBoxType = this.formBuilder.group({
+    answer: [''],
   });
 
   constructor(private formBuilder: FormBuilder) { }
@@ -41,8 +38,7 @@ export class QuizBuilderComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.warn('Your quiz question has been submitted', this.quizForm.value);
-    this.quizForm.reset;
+    console.warn('Your quiz question has been submitted', this.quizForm.value, this.multipleChoiceType.value);
   }
 
   get quizName() {
