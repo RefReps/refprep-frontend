@@ -6,6 +6,7 @@ import { ModuleFormAddComponent } from '../module-form-add/module-form-add.compo
 import { SectionFormAddComponent } from '../section-form-add/section-form-add.component';
 import { SectionFormDeleteComponent } from '../section-form-delete/section-form-delete.component';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { QuizBuilderComponent } from '../quiz-builder/quiz-builder.component';
 
 @Component({
   selector: 'app-edit-display-sections',
@@ -32,24 +33,24 @@ export class EditDisplaySectionsComponent implements OnInit {
   }
 
   openAddSectionDialog(): void {
-    const dialogRef = this.dialogService.open(SectionFormAddComponent, {courseId: this.courseId})
+    const dialogRef = this.dialogService.open(SectionFormAddComponent, { courseId: this.courseId })
   }
 
   openDeleteSectionDialog(sectionId: string): void {
-    this.dialogService.open(SectionFormDeleteComponent, {sectionId})
+    this.dialogService.open(SectionFormDeleteComponent, { sectionId })
   }
 
   openAddModuleDialog(sectionId: string): void {
-    const dialogRef = this.dialogService.open(ModuleFormAddComponent, {sectionId})
+    const dialogRef = this.dialogService.open(ModuleFormAddComponent, { sectionId })
   }
 
   onDrop(event: any) {
     const sectionId = this.sections[event.previousIndex]._id;
     if (event.previousContainer === event.container && sectionId) {
-        this.updateSectionOrder(sectionId, event.currentIndex + 1)
-        moveItemInArray(event.container.data,
-          event.previousIndex,
-          event.currentIndex);
+      this.updateSectionOrder(sectionId, event.currentIndex + 1)
+      moveItemInArray(event.container.data,
+        event.previousIndex,
+        event.currentIndex);
     }
   }
 
