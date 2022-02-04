@@ -87,6 +87,10 @@ export class ApiService {
     this.http.post(`${this.courseUrl}`, courseForm).subscribe();
   }
 
+  copyCourse(courseId: string, courseForm: FormData): void {
+    this.http.post(`${this.courseUrl}/${courseId}/copy`, courseForm).subscribe();
+  }
+
   updateCourse(courseId: string, courseForm: FormData): void {
     this.http.put(`${this.courseUrl}/${courseId}`, courseForm).subscribe();
   }
