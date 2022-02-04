@@ -29,7 +29,7 @@ export class AuthenticationService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/api/auth/login`, {email, password}, {withCredentials: true})
+    return this.http.post<any>(`${environment.apiUrl}/api/auth/login`, {email, password})
         .pipe(map(res => {
           this.tokenService.saveToken(res.access_token)
         }))
@@ -44,7 +44,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.http.post<any>(`${environment.apiUrl}/api/auth/logout`, {}, {withCredentials: true})
+    this.http.post<any>(`${environment.apiUrl}/api/auth/logout`, {})
     // this.stopRefreshTokenTimer()
     this.userSubject.next(null)
     this.tokenService.removeRefreshToken()
