@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/service/api.service';
 import { Course } from 'src/app/models/course';
@@ -14,7 +14,7 @@ import { Course } from 'src/app/models/course';
 export class CourseDuplicateFormComponent implements OnInit{
   formGroup: FormGroup;
   courses: Course[] = []
-
+  courseId = new FormControl('');
 
   constructor(
     private Api: ApiService,
@@ -37,9 +37,16 @@ export class CourseDuplicateFormComponent implements OnInit{
       .subscribe(info => this.courses = info)
   }
 
+  get selectedCourseId() {
+    return this.courseId.value
+  }
+
   onFormSubmit() {
-    this.Api.postCourse(this.formGroup.value)
-    window.location.reload()
+    if (this.selectedCourseId) {
+      this.Api.copyCourse(this.selectedCourseId, this.formGroup.value)
+      window.location.reload()
+    }
+    // TODO: else -> pop up snackbar (material) that course needs to be selected
   }
 
 }

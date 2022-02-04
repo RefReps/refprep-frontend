@@ -4,8 +4,8 @@
     <p>Select Template Course:</p>
         <mat-form-field appearance="fill">
             <mat-label>Course</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let course of courses" [value]="course.name">
+            <mat-select [formControl]="courseId">
+                <mat-option *ngFor="let course of courses" [value]="course._id">
                   {{course.name}}
                 </mat-option>
             </mat-select>
