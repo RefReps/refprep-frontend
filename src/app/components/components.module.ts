@@ -40,6 +40,7 @@ import { CourseCreationHomeComponent } from './course-creation-home/course-creat
 import { QuizBuilderComponent } from './quiz-builder/quiz-builder.component';
 import { ContentFormAddQuizComponent } from './content-form-add-quiz/content-form-add-quiz.component';
 import { ContentAddTabSelectComponent } from './content-add-tab-select/content-add-tab-select.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -75,6 +76,7 @@ import { ContentAddTabSelectComponent } from './content-add-tab-select/content-a
     QuizBuilderComponent,
     ContentFormAddQuizComponent,
     ContentAddTabSelectComponent,
+    LogoutComponent,
   ],
   imports: [
     MaterialModule,
@@ -120,6 +122,7 @@ import { ContentAddTabSelectComponent } from './content-add-tab-select/content-a
     QuizBuilderComponent,
     ContentFormAddQuizComponent,
     ContentAddTabSelectComponent,
-  ],  
+    LogoutComponent,
+  ],
 })
 export class ComponentsModule { }
