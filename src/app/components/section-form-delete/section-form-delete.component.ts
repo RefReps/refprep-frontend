@@ -8,21 +8,18 @@ import { ApiService } from 'src/service/api.service';
   styleUrls: ['./section-form-delete.component.css']
 })
 export class SectionFormDeleteComponent implements OnInit {
-  sectionId: string | undefined;
 
   constructor(
     private Api: ApiService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-    this.sectionId = data.data.sectionId
-  }
+  ) { }
 
   ngOnInit(): void {
   }
 
   submitDeleteSection(): void {
-    if (this.sectionId) {
-      this.Api.deleteSection(this.sectionId)
+    if (this.data.data.sectionId) {
+      this.Api.deleteSection(this.data.data.sectionId)
       window.location.reload()
     }
   }

@@ -5,6 +5,7 @@ import { CourseDashboardComponent } from './course-dashboard.component';
 import { ApiService } from 'src/service/api.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('CourseDashboardComponent', () => {
   let component: CourseDashboardComponent;
@@ -16,6 +17,7 @@ describe('CourseDashboardComponent', () => {
         RouterTestingModule,
         MatDividerModule,
         MatCardModule,
+        MatDialogModule,
         HttpClientTestingModule, 
       ],
       declarations: [ 

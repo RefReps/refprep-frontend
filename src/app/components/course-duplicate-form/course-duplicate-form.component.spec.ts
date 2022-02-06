@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { CourseDuplicateFormComponent } from './course-duplicate-form.component';
 
@@ -8,7 +11,17 @@ describe('CourseDuplicateFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseDuplicateFormComponent ]
+      imports: [ 
+        HttpClientTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule
+       ],
+      declarations: [ CourseDuplicateFormComponent ],
+      providers: [{
+        provide: MAT_DIALOG_DATA,
+        useValue: {}
+      }]
     })
     .compileComponents();
   });

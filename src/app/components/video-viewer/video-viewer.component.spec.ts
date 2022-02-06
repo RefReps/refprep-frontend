@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VideoViewerComponent } from './video-viewer.component';
@@ -8,6 +9,7 @@ describe('VideoViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
       declarations: [ VideoViewerComponent ]
     })
     .compileComponents();
