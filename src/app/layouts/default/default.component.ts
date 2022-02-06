@@ -2,6 +2,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 
 @Component({
   selector: 'app-default',
@@ -16,5 +17,12 @@ export class DefaultComponent{
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private userInteraction: UserInteractionService,
+    ) {}
+
+    get isAdmin(): boolean {
+      return this.userInteraction.isAdmin
+    }
 }
