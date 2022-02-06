@@ -4,5 +4,6 @@ export class User {
     password?: string;
     firstName?: string;
     lastName?: string;
-    jwtToken?: string;
+    access_token?: string;
+    refresh_token?: string;
 }
