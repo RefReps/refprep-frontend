@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/_services/auth.service';
+import { TokenService } from 'src/app/_services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -25,8 +26,9 @@ export class LoginComponent implements OnInit  {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private tokenService: TokenService,
     ) {
-      if (this.authService.userValue) {
+      if (this.tokenService.getToken()) {
         this.router.navigate(['/'])
       }
     }
@@ -53,31 +55,10 @@ export class LoginComponent implements OnInit  {
         this.isLoadingResults = false
       }
       )
-    // this.submitted = true
+  }
 
-    // if (this.loginForm.invalid) {
-    //   return
-    // }
-
-    // this.loading = true
-    // this.authService.login(this.f.email.value, this.f.password.value)
-    //     .pipe(first())
-    //     .subscribe(resp => {
-    //       console.log(resp)
-    //       if (resp.headers.get('Authorization')) {
-    //         localStorage.setItem('AUTH-REFREP', resp.headers.get('Authorization'))
-    //         this.router.navigate([this.returnUrl])
-    //       }
-    //     })
-    //     .subscribe({
-    //       next: () => {
-    //         this.router.navigate([this.returnUrl])
-    //       },
-    //       error: error => {
-    //         this.error = error
-    //         this.loading = false
-    //       }
-    //     })
+  gotoRegister(): void {
+    this.router.navigate(['/register'])
   }
 
 }
