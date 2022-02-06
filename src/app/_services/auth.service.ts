@@ -67,7 +67,7 @@ export class AuthService {
       .set('refresh_token', refreshData.refresh_token)
       .set('grant_type', 'refresh_token')
     
-    return this.http.post<any>(`${environment.apiUrl}/api/auth/login`, body, HTTP_OPTIONS)
+    return this.http.post<any>(`${environment.apiUrl}/api/auth/refresh-token`, body, HTTP_OPTIONS)
       .pipe(tap(res => {
         this.tokenService.saveToken(res.access_token)
         this.tokenService.saveRefreshToken(res.refresh_token)
