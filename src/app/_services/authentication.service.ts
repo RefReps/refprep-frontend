@@ -35,7 +35,7 @@ export class AuthenticationService {
           this.tokenService.saveEmail(email)
           this.tokenService.saveToken(res.access_token)
           this.tokenService.saveRefreshToken(res.refresh_token)
-          this.tokenService.saveUserRole(res.userRole)
+          this.tokenService.saveUserRole(res.user_role)
           // this.startRefreshTokenTimer()
         }))
   }

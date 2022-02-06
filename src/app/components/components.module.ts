@@ -41,6 +41,7 @@ import { QuizBuilderComponent } from './quiz-builder/quiz-builder.component';
 import { ContentFormAddQuizComponent } from './content-form-add-quiz/content-form-add-quiz.component';
 import { ContentAddTabSelectComponent } from './content-add-tab-select/content-add-tab-select.component';
 import { LogoutComponent } from './logout/logout.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -77,6 +78,7 @@ import { LogoutComponent } from './logout/logout.component';
     ContentFormAddQuizComponent,
     ContentAddTabSelectComponent,
     LogoutComponent,
+    RegisterFormComponent,
   ],
   imports: [
     MaterialModule,
@@ -123,6 +125,7 @@ import { LogoutComponent } from './logout/logout.component';
     ContentFormAddQuizComponent,
     ContentAddTabSelectComponent,
     LogoutComponent,
+    RegisterFormComponent,
   ],
 })
 export class ComponentsModule { }

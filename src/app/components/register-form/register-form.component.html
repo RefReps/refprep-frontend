@@ -1,0 +1,11 @@
+<form [formGroup]="registerForm" (ngSubmit)="ngOnSubmit()">
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="email" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" required>
+    </mat-form-field>
+    <button mat-button>Register</button>
+</form>

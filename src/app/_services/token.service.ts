@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 const ACCESS_TOKEN = 'access_token'
 const REFRESH_TOKEN = 'refresh_token'
 const EMAIL = 'email'
-const ROLE = 'userRole'
+const ROLE = 'user_role'
 
 @Injectable({
   providedIn: 'root'
