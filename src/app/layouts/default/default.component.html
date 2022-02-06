@@ -10,11 +10,11 @@
         <!-- Router links -->
         <div class="text-white">
           <!-- Profile link -->
-          <a routerLink="/profile"
+          <!-- <a routerLink="/profile"
           matTooltip="Profile" 
           matTooltipPosition="right"
           class="sidebar-icon group">
-          <mat-icon>account_circle</mat-icon></a>
+          <mat-icon>account_circle</mat-icon></a> -->
           <!-- Home link -->
           <a routerLink="/home" 
           matTooltip="Home" 
@@ -28,7 +28,7 @@
           class="sidebar-icon group">
           <mat-icon>library_books</mat-icon></a>
           <!-- Copy Course Link -->
-          <a routerLink="/course-creation" 
+          <a routerLink="/course-creation" *ngIf="isAdmin"
           matTooltip="Create Course" 
           matTooltipPosition="right"
           class="sidebar-icon group">
@@ -40,7 +40,7 @@
           class="sidebar-icon group">
           <mat-icon>logout</mat-icon></a>
           <!-- Test link -->
-          <a routerLink="/test" 
+          <a routerLink="/test" *ngIf="isAdmin"
           matTooltip="Test" 
           matTooltipPosition="right"
           class="sidebar-icon group">
