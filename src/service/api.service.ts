@@ -97,6 +97,22 @@ export class ApiService {
     this.http.put(`${this.courseUrl}/${courseId}`, courseForm).subscribe();
   }
 
+  addStudentsToCourse(courseId: string, emails: string[]): void {
+    this.http.post(`${this.courseUrl}/${courseId}/students`, {emails}).subscribe()
+  }
+  
+  removeStudentsInCourse(courseId: string, emails: string[]): void {
+    this.http.post(`${this.courseUrl}/${courseId}/students/remove`, {emails}).subscribe()
+  }
+
+  addAuthorsToCourse(courseId: string, emails: string[]): void {
+    this.http.post(`${this.courseUrl}/${courseId}/authors`, {emails}).subscribe()
+  }
+
+  removeAuthorsInCourse(courseId: string, emails: string[]): void {
+    this.http.post(`${this.courseUrl}/${courseId}/authors/remove`, {emails}).subscribe()
+  }
+
   // Section Routes
 
   getSections(courseId: string): Observable<Section[]> {
