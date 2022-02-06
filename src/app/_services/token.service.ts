@@ -62,7 +62,7 @@ export class TokenService {
 
   emptyLocalStorage(): void {
     this.removeEmail()
-    this.removeRole
+    this.removeRole()
     this.removeRefreshToken()
     this.removeToken()
   }
