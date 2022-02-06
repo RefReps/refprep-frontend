@@ -42,6 +42,7 @@ import { ContentFormAddQuizComponent } from './content-form-add-quiz/content-for
 import { ContentAddTabSelectComponent } from './content-add-tab-select/content-add-tab-select.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -87,6 +88,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    FlexLayoutModule,
   ],  
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
