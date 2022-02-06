@@ -1,16 +1,18 @@
-<mat-accordion multi="false">
-    <div class="p-1">
-        <div *ngFor="let section of sections">
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <div class="p-2 font-bold text-xl">
-                            {{section.name}}
-                        </div>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <app-display-modules [sectionId]=section._id></app-display-modules>
-            </mat-expansion-panel>
+<div>
+    <mat-accordion multi="false">
+        <div class="p-1">
+            <div *ngFor="let section of sections">
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div class="p-2 font-bold text-xl">
+                                {{section.name}}
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-display-modules [sectionId]=section._id></app-display-modules>
+                </mat-expansion-panel>
+            </div>
         </div>
-    </div>
-</mat-accordion>
+    </mat-accordion>
+</div>
