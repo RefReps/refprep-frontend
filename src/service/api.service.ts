@@ -13,6 +13,7 @@ import { Quiz } from 'src/app/models/quiz';
 
 import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
+import { RegisterUser } from 'src/app/_models/registerUser';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,7 @@ export class ApiService {
   moduleUrl: string = `${this.baseUrl}/api/module`;
   contentUrl: string = `${this.baseUrl}/api/content`;
   quizUrl: string = `${this.baseUrl}/api/quiz`;
+  authUrl: string = `${this.baseUrl}/api/auth`;
 
   constructor(private http: HttpClient) {}
 
@@ -148,6 +150,11 @@ export class ApiService {
 
   postNewQuiz(name: string): Observable<Quiz> {
     return this.http.post<Quiz>(`${this.quizUrl}`, {name})
+  }
+
+  // User Routes
+  registerUser(data: RegisterUser): Observable<any> {
+    return this.http.post<RegisterUser>(`${this.authUrl}/register`, data)
   }
 
   // Video Routes
