@@ -31,12 +31,15 @@ export class AuthenticationService {
   login(email: string, password: string) {
     return this.http.post<any>(`${environment.apiUrl}/api/auth/login`, {email, password})
         .pipe(map(res => {
+          this.tokenService.saveEmail(email)
           this.tokenService.saveToken(res.access_token)
+          this.tokenService.saveRefreshToken(res.refresh_token)
+          // this.startRefreshTokenTimer()
         }))
   }
 
-  loginWithToken(token: string) {
-    return this.http.post<any>(`${environment.apiUrl}/api/auth/token-login`, {token})
+  loginWithToken(token: string, email: string) {
+    return this.http.post<any>(`${environment.apiUrl}/api/auth/token-login`, {refresh_token: token, email})
         .pipe(map(res => {
           this.tokenService.removeToken()
           this.tokenService.saveToken(res.access_token)
@@ -47,35 +50,40 @@ export class AuthenticationService {
     this.http.post<any>(`${environment.apiUrl}/api/auth/logout`, {})
     // this.stopRefreshTokenTimer()
     this.userSubject.next(null)
-    this.tokenService.removeRefreshToken()
-    this.tokenService.removeToken()
+    this.tokenService.emptyLocalStorage()
+    // this.stopRefreshTokenTimer()
     this.router.navigate(['/login'])
   }
 
-  // refreshToken() {
-  //   return this.http.post<any>(`${environment.apiUrl}/api/auth/refresh-token`, {}, {withCredentials: true, headers: {'Authorization': localStorage.getItem('AUTH-REFREP')!}})
-  //     .pipe(map((user) => {
-  //       this.userSubject.next(user)
-  //       this.startRefreshTokenTimer()        
-  //       return user
-  //     }))
-  // }
+  refreshToken() {
+    return this.http.post<any>(`${environment.apiUrl}/api/auth/refresh-token`, {}, {headers: {'Authorization': localStorage.getItem('AUTH-REFREP')!}})
+      .pipe(map((res) => {
+        // this.userSubject.next(user)
+        this.tokenService.saveRefreshToken(res.refresh_token)
+        this.tokenService.saveToken(res.access_token)
+        // this.startRefreshTokenTimer()        
+      }))
+  }
 
 
-  // private refreshTokenTimeout: any;
+  private refreshTokenTimeout: any;
 
-  // private startRefreshTokenTimer() {
-  //   if (!this.userValue || !this.userValue.jwtToken) {
-  //     return
-  //   }
-  //   const jwtToken = JSON.parse(atob(this.userValue.jwtToken?.split('.')[1]))
+  private startRefreshTokenTimer() {
+    if (!this.tokenService.getToken()) {
+      return
+    }
+    // const jwtToken = atob(this.tokenService.getToken())
+    const jwtToken = JSON.parse(`{"token": "${this.tokenService.getToken()}"}`)
 
-  //   const expires = new Date(jwtToken.exp * 1000)
-  //   const timeout = expires.getTime() - Date.now() - (60 * 1000)
-  //   this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout)
-  // }
+    const expires = new Date(jwtToken.exp * 1000)
+    const timeout = expires.getTime() - Date.now() - (60 * 1000)
+    this.refreshTokenTimeout = setTimeout(() => {
+      this.refreshToken().subscribe()
+    }
+    , timeout)
+  }
 
-  // private stopRefreshTokenTimer() {
-  //   clearTimeout(this.refreshTokenTimeout)
-  // }
+  private stopRefreshTokenTimer() {
+    clearTimeout(this.refreshTokenTimeout)
+  }
 }
