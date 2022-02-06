@@ -7,4 +7,5 @@ export class Course {
     isPublished?: boolean;
     isDeleted?: boolean;
     settings?: Settings;
+    isAuthor?: boolean;
 }

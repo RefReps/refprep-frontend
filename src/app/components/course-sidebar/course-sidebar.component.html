@@ -1,13 +1,23 @@
-<div class= "flex flex-col
-bg-gray-600 text-white shadow-lg
-max-w-min p-20 min-h-screen">
-    <ul>
-        <!--<li><a routerLink="edit">Edit Curriculum</a></li>-->
-        <br> 
-        <br>
-        <li>Module</li>
-        <br>
-        <br>
-        <!--<li><a [routerLink]="['./contentUpload']">Upload video</a></li>-->
-    </ul>
-</div>
+
+<mat-list fxFill class="text-primary w-1/12">
+    <!-- View Home in Course -->
+    <mat-list-item>
+        <a [routerLink]="['/courses', courseId]">Home</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <!-- View Authors in Course -->
+    <mat-list-item *ngIf="isAdmin">
+        <a [routerLink]="['/courses', courseId, 'authors']">Authors</a>
+    </mat-list-item>
+    <mat-divider *ngIf="isAdmin"></mat-divider>
+    <!-- View Students in Course -->
+    <mat-list-item *ngIf="isAuthor">
+        <a [routerLink]="['/courses', courseId, 'students']">Students</a>
+    </mat-list-item>
+    <mat-divider *ngIf="isAuthor"></mat-divider>
+    <!-- View Settings in Course -->
+    <mat-list-item *ngIf="isAuthor">
+        <a [routerLink]="['/courses', courseId, 'settings']">Settings</a>
+    </mat-list-item>
+
+</mat-list>

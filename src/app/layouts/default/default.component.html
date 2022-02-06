@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container fxLayout="row" fxFill>
     <mat-sidenav #drawer class="sidenav" fixedInViewport
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -48,8 +48,9 @@
         </div>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
-      <mat-toolbar class="bg-gray-100 app-toolbar">
+
+    <mat-sidenav-content fxLayout="column" fxFlex="100">
+      <mat-toolbar fxFlex="5" class="bg-gray-100">
         <!-- Minimize Sidebar Button -->
         <button
           type="button"
@@ -63,7 +64,9 @@
         <span></span>
       </mat-toolbar>
       <!-- Display Main Content -->
-      <router-outlet></router-outlet>
+      <div fxFlex="95"> 
+        <router-outlet></router-outlet>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
   

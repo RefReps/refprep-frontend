@@ -15,11 +15,15 @@
                         {{section.name}}
                     </div>
                     <div class="flex-1 flex-col">
-                        <button (click)="openDeleteSectionDialog(section._id)" mat-icon-button color="warn" class="float-right">
-                            <mat-icon>delete</mat-icon></button>
-                        <button (click)="openAddModuleDialog(section._id)" mat-icon-button color="primary" class="float-right">
-                            <mat-icon>add_circle</mat-icon>
-                        </button>
+                        <button mat-icon-button [matMenuTriggerFor]="editMenu" class="float-right"><mat-icon>more_vert</mat-icon></button>
+                        <mat-menu #editMenu>
+                            <button mat-icon-button color="black" class="float-left">
+                                <mat-icon>edit</mat-icon></button>
+                            <button (click)="openAddModuleDialog(section._id)" mat-icon-button color="primary" class="float-left">
+                                <mat-icon>add_circle</mat-icon></button>
+                            <button (click)="openDeleteSectionDialog(section._id)" mat-icon-button color="warn" class="float-left">
+                                <mat-icon>delete</mat-icon></button>
+                        </mat-menu>
                     </div>
                 </mat-panel-title>
             </mat-expansion-panel-header>

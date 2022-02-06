@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/models/course';
+import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
 import { CourseInfoHomeComponent } from '../course-info-home/course-info-home.component';
 
@@ -10,9 +11,23 @@ import { CourseInfoHomeComponent } from '../course-info-home/course-info-home.co
   styleUrls: ['./course-sidebar.component.css']
 })
 export class CourseSidebarComponent implements OnInit {
-  constructor() { }
+  constructor(
+    private userInteractionService: UserInteractionService,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  get isAuthor(): boolean {
+    return this.userInteractionService.isAuthor
+  }
+
+  get isAdmin(): boolean {
+    return this.userInteractionService.isAdmin
+  }
+
+  get courseId(): string {
+    return this.userInteractionService.getCourse._id!
   }
 
 }
