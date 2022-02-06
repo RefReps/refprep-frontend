@@ -1,14 +1,21 @@
-<div class="" fxLayout="column" fxLayoutAlign="start stretch">
-    <div>
+<div fxLayout="column" fxFill>
+    <div fxFlex="7">
         <app-course-info-home></app-course-info-home>
     </div>
-    <div fxLayout="row" fxLayoutAlign="stretch start">
-        <div class="" id="course-sidebar">
+
+    <mat-drawer-container fxLayout="column" fxFlex="93">
+
+        <mat-drawer #drawer mode="side" opened class="w-24 min-h-full ">
             <app-course-sidebar></app-course-sidebar>
-        </div>
-        <div fxFlex  id="module-display">
+        </mat-drawer>
+
+
+        <mat-drawer-container fxLayout="column" fxFill>
             <h1>EDIT THE CURRICULUM</h1>
             <app-edit-curriculum></app-edit-curriculum>
-        </div>
-    </div>
+        </mat-drawer-container>
+
+
+    </mat-drawer-container>
+
 </div>
