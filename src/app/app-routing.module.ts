@@ -12,6 +12,7 @@ import { EditCurriculumHomeComponent } from './modules/edit-curriculum-home/edit
 import { HomeComponent } from './modules/home/home.component';
 import { TestComponentComponent } from './modules/test-component/test-component.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 const routes: Routes = [ // Always put more specific routes on the top
 
@@ -35,6 +36,10 @@ const routes: Routes = [ // Always put more specific routes on the top
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterFormComponent,
   },
   {
     path: 'logout',
