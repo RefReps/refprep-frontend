@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from 'src/app/models/question';
-import { TokenService } from 'src/app/_services/token.service';
 
 @Component({
   selector: 'app-quiz-question',

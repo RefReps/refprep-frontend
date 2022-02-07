@@ -2,25 +2,25 @@
 <div id = "questions" *ngFor="let question of questionList"> 
     <mat-radio-group *ngIf="question.type === '1_CHOICE'">
         <label>{{question.question}}</label> <br>
-        <mat-radio-button value = "A">{{question.responses.A}}</mat-radio-button>
-        <mat-radio-button value = "B">{{question.responses.B}}</mat-radio-button>
-        <mat-radio-button value = "C">{{question.responses.C}}</mat-radio-button>
-        <mat-radio-button value = "D">{{question.responses.D}}</mat-radio-button>
+        <mat-radio-button color = "primary" value = "A">{{question.responses.A}}</mat-radio-button>
+        <mat-radio-button color = "primary" value = "B">{{question.responses.B}}</mat-radio-button>
+        <mat-radio-button color = "primary" value = "C">{{question.responses.C}}</mat-radio-button>
+        <mat-radio-button color = "primary" value = "D">{{question.responses.D}}</mat-radio-button>
     </mat-radio-group>
 
 
-    <mat-radio-group *ngIf="question.type === 'MULTI_CHOICE'">
+    <div *ngIf="question.type === 'MULTI_CHOICE'">
         <label>{{question.question}}</label> <br>
-        <mat-radio-button value = "A">{{question.responses.A}}</mat-radio-button>
-        <mat-radio-button value = "B">{{question.responses.B}}</mat-radio-button>
-        <mat-radio-button value = "C">{{question.responses.C}}</mat-radio-button>
-        <mat-radio-button value = "D">{{question.responses.D}}</mat-radio-button>
-    </mat-radio-group>
+        <mat-checkbox color = "primary" value = "A">{{question.responses.A}}</mat-checkbox>
+        <mat-checkbox color = "primary" value = "B">{{question.responses.B}}</mat-checkbox>
+        <mat-checkbox color = "primary" value = "C">{{question.responses.C}}</mat-checkbox>
+        <mat-checkbox color = "primary" value = "D">{{question.responses.D}}</mat-checkbox>
+    </div>
 
     <mat-radio-group *ngIf="question.type === 'TRUE_FALSE'">
         <label>{{question.question}}</label> <br>
-        <mat-radio-button value = "true">True</mat-radio-button>
-        <mat-radio-button value = "false">False</mat-radio-button>
+        <mat-radio-button color = "primary"value = "true">True</mat-radio-button>
+        <mat-radio-button color = "primary" value = "false">False</mat-radio-button>
     </mat-radio-group>
 
     
