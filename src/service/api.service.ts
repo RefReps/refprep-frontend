@@ -16,6 +16,8 @@ import { environment as prod } from 'src/environments/environment.prod';
 import { RegisterUser } from 'src/app/_models/registerUser';
 import { Student } from 'src/app/models/student';
 import { Author } from 'src/app/models/author';
+import { QuizQuestion } from 'src/app/models/quiz-question';
+
 
 @Injectable({
   providedIn: 'root'
@@ -99,14 +101,6 @@ export class ApiService {
     this.http.put(`${this.courseUrl}/${courseId}`, courseForm).subscribe();
   }
 
-  getStudentsInCourse(courseId: string): Observable<Student[]> {
-    return this.http.get<Student[]>(`${this.courseUrl}/${courseId}/students`)
-  }
-
-  getAuthorsInCourse(courseId: string): Observable<Student[]> {
-    return this.http.get<Author[]>(`${this.courseUrl}/${courseId}/authors`)
-  }
-
   addStudentsToCourse(courseId: string, emails: string[]): void {
     this.http.post(`${this.courseUrl}/${courseId}/students`, {emails}).subscribe()
   }
@@ -122,6 +116,15 @@ export class ApiService {
   removeAuthorsInCourse(courseId: string, emails: string[]): void {
     this.http.post(`${this.courseUrl}/${courseId}/authors/remove`, {emails}).subscribe()
   }
+
+  getStudentsInCourse(courseId: string): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.courseUrl}/${courseId}/students`)
+  }
+
+  getAuthorsInCourse(courseId: string): Observable<Author[]> {
+    return this.http.get<Author[]>(`${this.courseUrl}/${courseId}/authors`)
+  }
+
 
   // Section Routes
 
@@ -176,6 +179,10 @@ export class ApiService {
 
   postNewQuiz(name: string): Observable<Quiz> {
     return this.http.post<Quiz>(`${this.quizUrl}`, {name})
+  }
+
+  batchPutQuestions(quizId: string, quizQuestions: any): void {
+    this.http.put(`${this.quizUrl}/${quizId}/batch`, quizQuestions).subscribe()
   }
 
   // User Routes
