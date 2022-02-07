@@ -1,9 +1,10 @@
 export class Question {
     type? : string;
     question? : string;
-    response? : Responses;
+    responses? : any;
     answers? : string[];  
     answer? : boolean;
+    questionNumber? : number;
 
 }
 class Responses {
