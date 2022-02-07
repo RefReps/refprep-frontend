@@ -1,1 +1,22 @@
-<p>course-add-author works!</p>
+<h2>Authors</h2>
+<p>    
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="text" name="newEmail" [(ngModel)] = "newEmail">
+    </mat-form-field>
+    <button mat-raised-button (click)="addNewAuthor()">Add Author</button> 
+    <button mat-raised-button (click)="onSubmit()">Submit</button>
+</p>
+<p>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="text" name="removedEmail" [(ngModel)] = "removedEmail">
+    </mat-form-field>
+    <button mat-raised-button (click)="removeAuthor()">Remove Author</button> 
+</p>
+<mat-list *ngFor="let email of emails">
+    <mat-list-item>
+        {{email}}
+    </mat-list-item>
+</mat-list> 
+
