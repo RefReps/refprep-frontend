@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizStudentViewComponent implements OnInit {
 
-  userAnswers: any = {"1": "ABC", "2" : "Dog", "3" : true, "4" : "C"}
-  
+  userAnswers: any = {}
+
   constructor() { }
+
 
   ngOnInit(): void {
   }
