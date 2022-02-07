@@ -1,6 +1,7 @@
 export class QuizQuestion {
     questionNumber?: number;
     type?: string;
+    question?: string;
     responses?: Responses;
     answers?: string[];
     answer?: boolean;
