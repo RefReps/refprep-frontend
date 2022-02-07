@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from 'src/app/models/question';
+import { TokenService } from 'src/app/_services/token.service';
 
 @Component({
   selector: 'app-quiz-question',
@@ -7,6 +8,8 @@ import { Question } from 'src/app/models/question';
   styleUrls: ['./quiz-question.component.scss']
 })
 export class QuizQuestionComponent implements OnInit {
+
+  
 
   questionList: Question[] = [
     {questionNumber : 1,
@@ -45,12 +48,14 @@ export class QuizQuestionComponent implements OnInit {
         }
   ]
 
-  userAnswers: any = {"1": "ABC", "2" : "Dog", "3" : true, "4" : "C"}
+
 
   constructor() { 
-
+    
   }
 
   ngOnInit(): void {
+    
   }
+
 }

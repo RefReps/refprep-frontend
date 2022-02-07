@@ -1,38 +1,34 @@
 
-<div *ngFor="let question of questionList"> 
+<div id = "questions" *ngFor="let question of questionList"> 
     <mat-radio-group *ngIf="question.type === '1_CHOICE'">
-        <label>{{question.question}}</label>
-        <mat-radio-button>{{question.responses.A}}</mat-radio-button>
-        <mat-radio-button>{{question.responses.B}}</mat-radio-button>
-        <mat-radio-button>{{question.responses.C}}</mat-radio-button>
-        <mat-radio-button>{{question.responses.D}}</mat-radio-button>
+        <label>{{question.question}}</label> <br>
+        <mat-radio-button value = "A">{{question.responses.A}}</mat-radio-button>
+        <mat-radio-button value = "B">{{question.responses.B}}</mat-radio-button>
+        <mat-radio-button value = "C">{{question.responses.C}}</mat-radio-button>
+        <mat-radio-button value = "D">{{question.responses.D}}</mat-radio-button>
     </mat-radio-group>
-</div>
 
-<div *ngFor="let question of questionList"> 
+
     <mat-radio-group *ngIf="question.type === 'MULTI_CHOICE'">
-        <label>{{question.question}}</label>
-        <mat-radio-button>{{question.responses.A}}</mat-radio-button>
-        <mat-radio-button>{{question.responses.B}}</mat-radio-button>
-        <mat-radio-button>{{question.responses.C}}</mat-radio-button>
-        <mat-radio-button>{{question.responses.D}}</mat-radio-button>
+        <label>{{question.question}}</label> <br>
+        <mat-radio-button value = "A">{{question.responses.A}}</mat-radio-button>
+        <mat-radio-button value = "B">{{question.responses.B}}</mat-radio-button>
+        <mat-radio-button value = "C">{{question.responses.C}}</mat-radio-button>
+        <mat-radio-button value = "D">{{question.responses.D}}</mat-radio-button>
     </mat-radio-group>
-</div>
 
-<div *ngFor="let question of questionList"> 
     <mat-radio-group *ngIf="question.type === 'TRUE_FALSE'">
-        <label>{{question.question}}</label>
-        <mat-radio-button>True</mat-radio-button>
-        <mat-radio-button>False</mat-radio-button>
+        <label>{{question.question}}</label> <br>
+        <mat-radio-button value = "true">True</mat-radio-button>
+        <mat-radio-button value = "false">False</mat-radio-button>
     </mat-radio-group>
+
+    
+    <mat-form-field *ngIf="question.type === 'FREE_RESPONSE'" appearance="fill">
+        <mat-label>{{question.question}}</mat-label>
+        <textarea matInput></textarea>
+    </mat-form-field> 
 </div>
 
-<div *ngFor="let question of questionList" > 
-    <label>{{question.question}}</label>
-    <mat-form-field *ngIf="question.type === 'FREE_RESPONSE'" appearance="fill">
-        <mat-label>Answer</mat-label>
-        <textarea></textarea>
-    </mat-form-field>
-</div>
 
 

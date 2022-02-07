@@ -44,6 +44,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
+import { QuizStudentViewComponent } from './quiz-student-view/quiz-student-view.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
     ContentAddTabSelectComponent,
     LogoutComponent,
     RegisterFormComponent,
-    QuizQuestionComponent
+    QuizQuestionComponent,
+    QuizStudentViewComponent
   ],
   imports: [
     MaterialModule,
@@ -131,7 +133,8 @@ import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
     ContentAddTabSelectComponent,
     LogoutComponent,
     RegisterFormComponent,
-    QuizQuestionComponent
+    QuizQuestionComponent,
+    QuizStudentViewComponent
   ],
 })
 export class ComponentsModule { }
