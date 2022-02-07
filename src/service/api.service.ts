@@ -14,6 +14,7 @@ import { Quiz } from 'src/app/models/quiz';
 import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
 import { RegisterUser } from 'src/app/_models/registerUser';
+import { QuizQuestion } from 'src/app/models/quiz-question';
 
 @Injectable({
   providedIn: 'root'
@@ -166,6 +167,10 @@ export class ApiService {
 
   postNewQuiz(name: string): Observable<Quiz> {
     return this.http.post<Quiz>(`${this.quizUrl}`, {name})
+  }
+
+  batchPutQuestions(quizId: string, quizQuestions: any): void {
+    this.http.put(`${this.quizUrl}/${quizId}/batch`, quizQuestions).subscribe()
   }
 
   // User Routes
