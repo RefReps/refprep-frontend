@@ -43,6 +43,8 @@ import { ContentAddTabSelectComponent } from './content-add-tab-select/content-a
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CourseAddAuthorComponent } from './course-add-author/course-add-author.component';
+import { CourseAddStudentComponent } from './course-add-student/course-add-student.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -80,6 +82,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ContentAddTabSelectComponent,
     LogoutComponent,
     RegisterFormComponent,
+    CourseAddAuthorComponent,
+    CourseAddStudentComponent,
   ],
   imports: [
     MaterialModule,
@@ -128,6 +132,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ContentAddTabSelectComponent,
     LogoutComponent,
     RegisterFormComponent,
+    CourseAddAuthorComponent,
+    CourseAddStudentComponent,
   ],
 })
 export class ComponentsModule { }

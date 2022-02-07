@@ -1,0 +1,23 @@
+
+<div>    
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="text" name="newEmail" [(ngModel)] = "newEmail">
+    </mat-form-field>
+    <button mat-raised-button (click)="addNewAuthor()">Add Author</button> 
+    <button mat-raised-button (click)="onSubmit()">Complete</button>
+</div>
+<div>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="text" name="removedEmail" [(ngModel)] = "removedEmail">
+    </mat-form-field>
+    <button mat-raised-button (click)="removeAuthor()">Remove Author</button> 
+</div>
+<mat-list *ngFor="let email of emails">
+    <mat-list-item>
+        {{email}}
+    </mat-list-item>
+</mat-list> 
+
+
