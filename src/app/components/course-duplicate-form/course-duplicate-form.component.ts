@@ -25,6 +25,7 @@ export class CourseDuplicateFormComponent implements OnInit{
       name: '',
       isPublished: true,
       isTemplate: false,
+      authorEmail: ''
     })
    }
 
