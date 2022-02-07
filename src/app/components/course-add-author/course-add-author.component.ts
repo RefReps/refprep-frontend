@@ -11,7 +11,6 @@ export class CourseAddAuthorComponent implements OnInit {
 
   @Input() courseId: string = '';
   emails: string[] = [];
-  addedEmails: string[] = [];
   removedEmails: string[] = [];
   newEmail: string = '';
   removedEmail: string = '';

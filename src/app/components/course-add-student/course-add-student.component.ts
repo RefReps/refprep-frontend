@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/service/api.service';
 
 @Component({
   selector: 'app-course-add-student',
@@ -7,9 +9,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseAddStudentComponent implements OnInit {
 
-  constructor() { }
+  @Input() courseId: string = '';
+  emails: string[] = [];
+  addedEmails: string[] = [];
+  removedEmails: string[] = [];
+  newEmail: string = '';
+  removedEmail: string = '';
+
+  constructor(
+    private Api: ApiService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap
+      .subscribe(params => {
+        let id = params.get('courseId');
+        if (id) {
+          this.courseId = id;
+        }
+      })
+    }
+
+  addNewStudent() {
+    this.emails.push(this.newEmail)
+    this.newEmail = ''
   }
 
+  removeStudent() {
+    this.removedEmails.push(this.removedEmail)
+    this.Api.removeStudentsInCourse(this.courseId, this.removedEmails)
+    this.removedEmail = ''
+  }
+
+  onSubmit() {
+    this.Api.addStudentsToCourse(this.courseId, this.emails)
+    this.emails = []
+  }
 }
+

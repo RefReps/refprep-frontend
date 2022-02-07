@@ -13,8 +13,8 @@ import { HomeComponent } from './modules/home/home.component';
 import { TestComponentComponent } from './modules/test-component/test-component.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
-import { CourseAddAuthorComponent } from './components/course-add-author/course-add-author.component';
-import { CourseAddStudentComponent } from './components/course-add-student/course-add-student.component';
+import { CourseAuthorsComponent } from './modules/course-authors/course-authors.component';
+import { CourseStudentsComponent } from './modules/course-students/course-students.component';
 
 const routes: Routes = [ // Always put more specific routes on the top
 
@@ -26,8 +26,8 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: '', redirectTo: 'home', pathMatch: 'full'}, 
       {path: 'courses/:courseId/video/:videoId', component: CourseVideoComponent},
       {path: 'courses/:courseId', component: CourseHomeComponent},
-      {path: 'courses/:courseId/authors', component: CourseAddAuthorComponent},
-      {path: 'courses/:courseId/students', component: CourseAddStudentComponent},
+      {path: 'courses/:courseId/authors', component: CourseAuthorsComponent},
+      {path: 'courses/:courseId/students', component: CourseStudentsComponent},
       {path: 'courses', component: CoursesComponent},
       {path: 'home', component: HomeComponent},
       {path: 'test', component: TestComponentComponent},
