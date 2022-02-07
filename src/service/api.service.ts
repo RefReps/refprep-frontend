@@ -14,6 +14,8 @@ import { Quiz } from 'src/app/models/quiz';
 import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
 import { RegisterUser } from 'src/app/_models/registerUser';
+import { Student } from 'src/app/models/student';
+import { Author } from 'src/app/models/author';
 
 @Injectable({
   providedIn: 'root'
@@ -95,6 +97,14 @@ export class ApiService {
 
   updateCourse(courseId: string, courseForm: FormData): void {
     this.http.put(`${this.courseUrl}/${courseId}`, courseForm).subscribe();
+  }
+
+  getStudentsInCourse(courseId: string): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.courseUrl}/${courseId}/students`)
+  }
+
+  getAuthorsInCourse(courseId: string): Observable<Student[]> {
+    return this.http.get<Author[]>(`${this.courseUrl}/${courseId}/authors`)
   }
 
   addStudentsToCourse(courseId: string, emails: string[]): void {

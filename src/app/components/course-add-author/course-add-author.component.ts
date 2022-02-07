@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Author } from 'src/app/models/author';
 import { ApiService } from 'src/service/api.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class CourseAddAuthorComponent implements OnInit {
   removedEmails: string[] = [];
   newEmail: string = '';
   removedEmail: string = '';
+  currentAuthors: Author[] = [];
 
   constructor(
     private Api: ApiService,
@@ -28,11 +30,17 @@ export class CourseAddAuthorComponent implements OnInit {
           this.courseId = id;
         }
       })
+      this.getCourseAuthors()
     }
 
   addNewAuthor() {
     this.emails.push(this.newEmail)
     this.newEmail = ''
+  }
+
+  getCourseAuthors(): void {
+    this.Api.getAuthorsInCourse(this.courseId)
+      .subscribe(info => this.currentAuthors = info)
   }
 
   removeAuthor() {
@@ -44,5 +52,6 @@ export class CourseAddAuthorComponent implements OnInit {
   onSubmit() {
     this.Api.addAuthorsToCourse(this.courseId, this.emails)
     this.emails = []
+    window.location.reload();
   }
 }
