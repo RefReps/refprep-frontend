@@ -27,7 +27,6 @@ export class QuizQuestionComponent {
 
   updateAnswers(value: string) {
     let answer: any = {[this.question.questionNumber!]: value}
-    console.log(answer)
     this.quizAnswerService.saveAnswer(answer)
   }
 
