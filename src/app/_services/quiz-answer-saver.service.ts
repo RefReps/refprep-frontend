@@ -9,14 +9,15 @@ export class QuizAnswerSaverService {
 
   constructor() { }
 
-  getAnswers(): string {
-    return localStorage.getItem(QUESTION_ANSWERS)!
+  getAnswers(): {} {
+    return JSON.parse(localStorage.getItem(QUESTION_ANSWERS)!)
+    
   }
 
   saveAnswer(answer: any): void {
     let answers: any = {}
     if (this.getAnswers()) {
-      answers = JSON.parse(this.getAnswers())
+      answers = this.getAnswers()
     }
     answers[Object.keys(answer)[0]] = answer[Object.keys(answer)[0]]
     localStorage.setItem(QUESTION_ANSWERS, JSON.stringify(answers))

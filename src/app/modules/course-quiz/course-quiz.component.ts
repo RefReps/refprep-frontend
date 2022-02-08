@@ -9,7 +9,7 @@ import { ApiService } from 'src/service/api.service';
   styleUrls: ['./course-quiz.component.scss']
 })
 export class CourseQuizComponent implements OnInit {
-  quizId: string | undefined
+  quizId: string = ''
 
   constructor(
     private Api: ApiService,
