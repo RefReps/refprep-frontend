@@ -1,0 +1,7 @@
+<mat-grid-list rowHeight="4rem" cols="2">
+    <mat-grid-tile>Student Email:</mat-grid-tile>
+    <mat-grid-tile>Grade:</mat-grid-tile>
+<mat-grid-list rowHeight="4rem" cols="2" *ngFor="let userGrade of userGrades">
+    <mat-grid-tile>{{userGrade.email}}</mat-grid-tile>
+    <mat-grid-tile>{{userGrade.grade}}</mat-grid-tile>
+</mat-grid-list>

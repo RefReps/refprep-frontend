@@ -1,0 +1,22 @@
+<div fxLayout="column" fxFill>
+    <div fxFlex="7">
+        <app-course-info-home></app-course-info-home>
+    </div>
+
+    <mat-drawer-container fxLayout="column" fxFlex="93">
+
+        <mat-drawer #drawer mode="side" opened class="w-24 min-h-full">
+            <app-course-sidebar></app-course-sidebar>
+        </mat-drawer>
+
+
+        <mat-drawer-container fxLayout="column" fxFill>
+            <app-quiz-grades-viewer *ngIf="isAuthor" {{quizId}}></app-quiz-grades-viewer>
+            <!-- shows students grade on quiz, switch to taking quiz-->
+            <app-quiz-student-grade *ngIf="!isAuthor" {{quizId}}></app-quiz-student-grade>
+        </mat-drawer-container>
+
+
+    </mat-drawer-container>
+
+</div>
