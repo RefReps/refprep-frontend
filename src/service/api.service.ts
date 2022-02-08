@@ -208,6 +208,8 @@ export class ApiService {
 
   gradeQuiz(quizId: string): Observable<any> {
     return this.http.post(`${this.quizUrl}/${quizId}/grade`, {})
+  }
+  
   batchPutQuestions(quizId: string, quizQuestions: any): void {
     this.http.put(`${this.quizUrl}/${quizId}/batch`, quizQuestions).subscribe()
   }
