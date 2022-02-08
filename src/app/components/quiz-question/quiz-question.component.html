@@ -1,26 +1,38 @@
 
-<div *ngFor="let question of questionList"> 
-<form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
-    <mat-radio-group id = {{question.questionNumber}} *ngIf="question.type === '1_CHOICE'" formControlName="answer">
-        <mat-card>
-            <label>{{question.question}}</label> <br>
-            <mat-radio-button color = "primary" value = "A">{{question.responses.A}}</mat-radio-button>
-            <mat-radio-button color = "primary" value = "B">{{question.responses.B}}</mat-radio-button>
-            <mat-radio-button color = "primary" value = "C">{{question.responses.C}}</mat-radio-button>
-            <mat-radio-button color = "primary" value = "D">{{question.responses.D}}</mat-radio-button>
-            <mat-card-actions> 
-                <button type="submit" mat-raised-button color = "primary">Submit</button>
-            </mat-card-actions>
-        </mat-card>
+<mat-card *ngIf="question.type == '1_CHOICE'">
+    <mat-radio-group>
+        <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
+        <mat-radio-group>
+            <mat-radio-button #choice1 color="primary" value="A" (change)="updateAnswers(choice1.value)">{{question.responses.A}}</mat-radio-button><br>
+            <mat-radio-button #choice2 color="primary" value="B" (change)="updateAnswers(choice2.value)">{{question.responses.B}}</mat-radio-button><br>
+            <mat-radio-button #choice3 color="primary" value="C" (change)="updateAnswers(choice3.value)">{{question.responses.C}}</mat-radio-button><br>
+            <mat-radio-button #choice4 color="primary" value="D" (change)="updateAnswers(choice4.value)">{{question.responses.D}}</mat-radio-button><br>
+        </mat-radio-group>
     </mat-radio-group>
-</form>
+</mat-card>
+        
+<mat-card *ngIf="question.type == 'TRUE_FALSE'">
+    <mat-radio-group> 
+        <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
+        <mat-radio-group #tfAnswer>
+            <mat-radio-button #qTrue color="primary" value="true" (change)="updateAnswers(qTrue.value)">true</mat-radio-button><br>
+            <mat-radio-button #qFalse color="primary" value="false" (change)="updateAnswers(qFalse.value)">false</mat-radio-button><br>
+        </mat-radio-group>
+    </mat-radio-group>
+</mat-card>
 
-    
+<mat-card *ngIf="question.type == 'FREE_RESPONSE'">
+        <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
+        <mat-form-field>
+            <mat-placeholder>Enter Answer</mat-placeholder>
+            <input matInput #frAnswer (change)="updateAnswers(frAnswer.value)">
+        </mat-form-field>
+</mat-card>
 
-<form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
     <div *ngIf="question.type === 'MULTI_CHOICE'" >
         <mat-card>
-            <label>{{question.question}}</label> <br>
+            <mat-label>{{question.question}}</mat-label> <br>
             <mat-checkbox color = "primary" value = "A">{{question.responses.A}}</mat-checkbox>
             <mat-checkbox color = "primary" value = "B">{{question.responses.B}}</mat-checkbox>
             <mat-checkbox color = "primary" value = "C">{{question.responses.C}}</mat-checkbox>
@@ -31,12 +43,12 @@
            
         </mat-card>
     </div>
-</form>
+</form> -->
 
-<form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
     <mat-radio-group  *ngIf="question.type === 'TRUE_FALSE'" formControlName="answer">
         <mat-card>
-            <label>{{question.question}}</label> <br>
+            <mat-label>{{question.question}}</mat-label> <br>
             <mat-radio-button color = "primary"value = "true">True</mat-radio-button>
             <mat-radio-button color = "primary" value = "false">False</mat-radio-button>
             <mat-card-actions> 
@@ -60,4 +72,4 @@
 </div>
 
 
-
+ -->
