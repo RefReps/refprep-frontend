@@ -45,6 +45,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CourseAddAuthorComponent } from './course-add-author/course-add-author.component';
 import { CourseAddStudentComponent } from './course-add-student/course-add-student.component';
+import { QuizGradesViewerComponent } from './quiz-grades-viewer/quiz-grades-viewer.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -84,6 +85,7 @@ import { CourseAddStudentComponent } from './course-add-student/course-add-stude
     RegisterFormComponent,
     CourseAddAuthorComponent,
     CourseAddStudentComponent,
+    QuizGradesViewerComponent,
   ],
   imports: [
     MaterialModule,
@@ -134,6 +136,7 @@ import { CourseAddStudentComponent } from './course-add-student/course-add-stude
     RegisterFormComponent,
     CourseAddAuthorComponent,
     CourseAddStudentComponent,
+    QuizGradesViewerComponent,
   ],
 })
 export class ComponentsModule { }

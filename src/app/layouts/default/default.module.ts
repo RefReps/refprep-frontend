@@ -16,6 +16,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CourseAuthorsComponent } from 'src/app/modules/course-authors/course-authors.component';
 import { CourseStudentsComponent } from 'src/app/modules/course-students/course-students.component';
+import { CourseQuizComponent } from 'src/app/modules/course-quiz/course-quiz.component';
 
 
 
@@ -30,7 +31,8 @@ import { CourseStudentsComponent } from 'src/app/modules/course-students/course-
     EditCurriculumHomeComponent,
     CourseVideoComponent,
     CourseAuthorsComponent,
-    CourseStudentsComponent
+    CourseStudentsComponent,
+    CourseQuizComponent
   ],
   imports: [
     CommonModule,
