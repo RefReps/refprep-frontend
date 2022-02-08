@@ -46,6 +46,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CourseAddAuthorComponent } from './course-add-author/course-add-author.component';
 import { CourseAddStudentComponent } from './course-add-student/course-add-student.component';
 import { QuizGradesViewerComponent } from './quiz-grades-viewer/quiz-grades-viewer.component';
+import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-grade.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -86,6 +87,7 @@ import { QuizGradesViewerComponent } from './quiz-grades-viewer/quiz-grades-view
     CourseAddAuthorComponent,
     CourseAddStudentComponent,
     QuizGradesViewerComponent,
+    QuizStudentGradeComponent,
   ],
   imports: [
     MaterialModule,
@@ -137,6 +139,7 @@ import { QuizGradesViewerComponent } from './quiz-grades-viewer/quiz-grades-view
     CourseAddAuthorComponent,
     CourseAddStudentComponent,
     QuizGradesViewerComponent,
+    QuizStudentGradeComponent,
   ],
 })
 export class ComponentsModule { }

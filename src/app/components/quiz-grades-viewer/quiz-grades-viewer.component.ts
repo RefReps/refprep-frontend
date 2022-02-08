@@ -16,8 +16,7 @@ export class QuizGradesViewerComponent implements OnInit {
 
   constructor(
     private Api: ApiService,
-    private route: ActivatedRoute,
-    private userInteraction: UserInteractionService,
+
   ) { }
 
   ngOnInit(): void {
@@ -30,4 +29,5 @@ export class QuizGradesViewerComponent implements OnInit {
       this.userGrades = info
     })
   }
+
 }

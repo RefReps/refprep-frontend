@@ -1,18 +1,3 @@
-<!--<div class="" fxLayout="column" fxLayoutAlign="start stretch">
-    <div>
-        <app-course-info-home></app-course-info-home>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="stretch start">
-        <div class="" id="course-sidebar">
-            <app-course-sidebar></app-course-sidebar>
-        </div>
-        <div fxFlex id="module-display">
-            <app-quiz-grades-viewer *ngIf="quizId" [quizId]="quizId"></app-quiz-grades-viewer>
-        </div>
-    </div>
-</div>
--->
-
 <div fxLayout="column" fxFill>
     <div fxFlex="7">
         <app-course-info-home></app-course-info-home>
@@ -26,7 +11,9 @@
 
 
         <mat-drawer-container fxLayout="column" fxFill>
-            <app-quiz-grades-viewer *ngIf="quizId" [quizId]="quizId"></app-quiz-grades-viewer>
+            <app-quiz-grades-viewer *ngIf="isAuthor" {{quizId}}></app-quiz-grades-viewer>
+            <!-- shows students grade on quiz, switch to taking quiz-->
+            <app-quiz-student-grade *ngIf="!isAuthor" {{quizId}}></app-quiz-student-grade>
         </mat-drawer-container>
 
 

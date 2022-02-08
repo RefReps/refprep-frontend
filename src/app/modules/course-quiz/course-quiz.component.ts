@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
 
 @Component({
@@ -8,11 +9,12 @@ import { ApiService } from 'src/service/api.service';
   styleUrls: ['./course-quiz.component.scss']
 })
 export class CourseQuizComponent implements OnInit {
-  quizId: string | undefined;
+  quizId: string | undefined
 
   constructor(
     private Api: ApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userInteractionService: UserInteractionService
   ) { }
 
   ngOnInit(): void {
@@ -25,4 +27,7 @@ export class CourseQuizComponent implements OnInit {
       })
   }
 
+  get isAuthor(): boolean {
+    return this.userInteractionService.isAuthor || this.userInteractionService.isAdmin
+  }
 }
