@@ -152,6 +152,18 @@ export class ApiService {
     return this.http.post<Quiz>(`${this.quizUrl}`, {name})
   }
 
+  startQuiz(quizId: string): Observable<any> {
+    return this.http.get(`${this.quizUrl}/${quizId}/start`)
+  }
+
+  submissionSave(quizId: string, answers: any): Observable<any> {
+    return this.http.get(`${this.quizUrl}/${quizId}/submission-save`, answers)
+  }
+
+  gradeQuiz(quizId: string): Observable<any> {
+    return this.http.post(`${this.quizUrl}/${quizId}/grade`, {})
+  }
+
   // User Routes
   registerUser(data: RegisterUser): Observable<any> {
     return this.http.post<RegisterUser>(`${this.authUrl}/register`, data)
