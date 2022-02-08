@@ -87,7 +87,7 @@ import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-gra
     LogoutComponent,
     RegisterFormComponent,
     QuizQuestionComponent,
-    QuizStudentViewComponent
+    QuizStudentViewComponent,
     CourseAddAuthorComponent,
     CourseAddStudentComponent,
     QuizGradesViewerComponent,
@@ -141,7 +141,7 @@ import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-gra
     LogoutComponent,
     RegisterFormComponent,
     QuizQuestionComponent,
-    QuizStudentViewComponent
+    QuizStudentViewComponent,
     CourseAddAuthorComponent,
     CourseAddStudentComponent,
     QuizGradesViewerComponent,

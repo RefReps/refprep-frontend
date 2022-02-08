@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Question } from 'src/app/models/question';
 import { QuizAnswerSaverService } from 'src/app/_services/quiz-answer-saver.service';
+import { ApiService } from 'src/service/api.service';
 
 
 @Component({
@@ -9,167 +11,41 @@ import { QuizAnswerSaverService } from 'src/app/_services/quiz-answer-saver.serv
   styleUrls: ['./quiz-student-view.component.scss']
 })
 export class QuizStudentViewComponent implements OnInit {
-
-  questions: Question[] = [
-    {
-			"type": "1_CHOICE",
-			"questionNumber": 1,
-			"question": "What is my favorite color?",
-			"responses": {
-				"A": "Red",
-				"B": "Blue",
-				"C": "Cream",
-				"D": "Black"
-			},
-			"answers": ["B"]
-		},
-		{
-			"type": "TRUE_FALSE",
-			"questionNumber": 2,
-			"question": "This answer is false.",
-			"responses": {
-				"A": "A",
-				"B": "B",
-				"C": "C",
-				"D": "D"
-			},
-			"answer": false
-		},
-		{
-			"type": "FREE_RESPONSE",
-			"questionNumber": 3,
-			"question": "Enter Sandman",
-			"answers": ["Sandman", "sandman", "SANDMAN"]
-		},
-    {
-			"type": "1_CHOICE",
-			"questionNumber": 1,
-			"question": "What is my favorite color?",
-			"responses": {
-				"A": "Red",
-				"B": "Blue",
-				"C": "Cream",
-				"D": "Black"
-			},
-			"answers": ["B"]
-		},
-		{
-			"type": "TRUE_FALSE",
-			"questionNumber": 2,
-			"question": "This answer is false.",
-			"responses": {
-				"A": "A",
-				"B": "B",
-				"C": "C",
-				"D": "D"
-			},
-			"answer": false
-		},
-		{
-			"type": "FREE_RESPONSE",
-			"questionNumber": 3,
-			"question": "Enter Sandman",
-			"answers": ["Sandman", "sandman", "SANDMAN"]
-		},
-    {
-			"type": "1_CHOICE",
-			"questionNumber": 1,
-			"question": "What is my favorite color?",
-			"responses": {
-				"A": "Red",
-				"B": "Blue",
-				"C": "Cream",
-				"D": "Black"
-			},
-			"answers": ["B"]
-		},
-		{
-			"type": "TRUE_FALSE",
-			"questionNumber": 2,
-			"question": "This answer is false.",
-			"responses": {
-				"A": "A",
-				"B": "B",
-				"C": "C",
-				"D": "D"
-			},
-			"answer": false
-		},
-		{
-			"type": "FREE_RESPONSE",
-			"questionNumber": 3,
-			"question": "Enter Sandman",
-			"answers": ["Sandman", "sandman", "SANDMAN"]
-		},
-    {
-			"type": "1_CHOICE",
-			"questionNumber": 1,
-			"question": "What is my favorite color?",
-			"responses": {
-				"A": "Red",
-				"B": "Blue",
-				"C": "Cream",
-				"D": "Black"
-			},
-			"answers": ["B"]
-		},
-		{
-			"type": "TRUE_FALSE",
-			"questionNumber": 2,
-			"question": "This answer is false.",
-			"responses": {
-				"A": "A",
-				"B": "B",
-				"C": "C",
-				"D": "D"
-			},
-			"answer": false
-		},
-		{
-			"type": "FREE_RESPONSE",
-			"questionNumber": 3,
-			"question": "Enter Sandman",
-			"answers": ["Sandman", "sandman", "SANDMAN"]
-		},
-    {
-			"type": "1_CHOICE",
-			"questionNumber": 1,
-			"question": "What is my favorite color?",
-			"responses": {
-				"A": "Red",
-				"B": "Blue",
-				"C": "Cream",
-				"D": "Black"
-			},
-			"answers": ["B"]
-		},
-		{
-			"type": "TRUE_FALSE",
-			"questionNumber": 2,
-			"question": "This answer is false.",
-			"responses": {
-				"A": "A",
-				"B": "B",
-				"C": "C",
-				"D": "D"
-			},
-			"answer": false
-		},
-		{
-			"type": "FREE_RESPONSE",
-			"questionNumber": 3,
-			"question": "Enter Sandman",
-			"answers": ["Sandman", "sandman", "SANDMAN"]
-		},
-  ]
+  @Input() quizId: string = ''
+  questions: Question[] = []
  
 
   constructor(
-    private quizAnswersSaver: QuizAnswerSaverService,
+    private quizAnswerService: QuizAnswerSaverService,
+	private api: ApiService,
+  private router: Router,
+  private route: ActivatedRoute,
   ) { }
 
 
   ngOnInit(): void {
+	  if (this.quizId) {
+		  this.api.startQuiz(this.quizId).subscribe(data => {
+			  console.log(data)
+			  for (let i of Object.keys(data.questions)) {
+				  this.questions.push(data.questions[i])
+			  }
+		  })
+	  }
+  }
+
+  submitQuiz(): void  {
+    if (this.quizId) {
+      this.api.submissionSave(this.quizId, this.quizAnswerService.getAnswers()).subscribe(data => {
+        this.api.gradeQuiz(this.quizId).subscribe(data => {
+          this.route.paramMap
+          .subscribe(params => {
+            let id = params.get('courseId');
+            this.router.navigate(['/courses', id])
+          })
+        })
+      })
+    }
   }
 
 }
