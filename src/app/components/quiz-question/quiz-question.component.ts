@@ -31,15 +31,7 @@ export class QuizQuestionComponent {
     this.quizAnswerService.saveAnswer(answer)
   }
 
-  submitQuiz(): void  {
-    if (this.quizId) {
-      this.api.submissionSave(this.quizId, this.quizAnswerService.getAnswers()).subscribe(data => {
-        this.api.gradeQuiz(this.quizId).subscribe(data => {
-          console.log(data)
-        })
-      })
-    }
-  }
+
   
 
  

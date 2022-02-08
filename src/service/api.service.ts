@@ -203,11 +203,13 @@ export class ApiService {
   }
 
   submissionSave(quizId: string, answers: any): Observable<any> {
-    return this.http.get(`${this.quizUrl}/${quizId}/submission-save`, answers)
+    return this.http.put(`${this.quizUrl}/${quizId}/submission-save`, answers)
   }
 
   gradeQuiz(quizId: string): Observable<any> {
     return this.http.post(`${this.quizUrl}/${quizId}/grade`, {})
+  }
+  
   batchPutQuestions(quizId: string, quizQuestions: any): void {
     this.http.put(`${this.quizUrl}/${quizId}/batch`, quizQuestions).subscribe()
   }
