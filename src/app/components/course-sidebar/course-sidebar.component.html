@@ -9,12 +9,14 @@
     <mat-list-item *ngIf="isAdmin">
         <a [routerLink]="['/courses', courseId, 'authors']">Authors</a>
     </mat-list-item>
-    <mat-divider *ngIf="isAdmin"></mat-divider>
+    <mat-divider *ngIf="isAdmin">
+    </mat-divider>
     <!-- View Students in Course -->
     <mat-list-item *ngIf="isAuthor">
         <a [routerLink]="['/courses', courseId, 'students']">Students</a>
     </mat-list-item>
-    <mat-divider *ngIf="isAuthor"></mat-divider>
+    <mat-divider *ngIf="isAuthor">
+    </mat-divider>
     <!-- View Settings in Course -->
     <mat-list-item *ngIf="isAuthor">
         <a [routerLink]="['/courses', courseId, 'settings']">Settings</a>

@@ -1,0 +1,20 @@
+<div fxLayout="column" fxFill>
+    <div fxFlex="7">
+        <app-course-info-home></app-course-info-home>
+    </div>
+
+    <mat-drawer-container fxLayout="column" fxFlex="93">
+
+        <mat-drawer #drawer mode="side" opened class="w-24 min-h-full ">
+            <app-course-sidebar></app-course-sidebar>
+        </mat-drawer>
+
+
+        <mat-drawer-container fxLayout="column" fxFill>
+            <app-course-add-author></app-course-add-author>
+        </mat-drawer-container>
+
+
+    </mat-drawer-container>
+
+</div>

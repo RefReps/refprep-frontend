@@ -2,6 +2,8 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { Content } from 'src/app/models/content';
 import { ApiService } from 'src/service/api.service';
+import { DialogService } from 'src/service/dialog.service';
+import { QuizBuilderComponent } from '../quiz-builder/quiz-builder.component';
 
 @Component({
   selector: 'app-edit-display-contents',
@@ -15,10 +17,22 @@ export class EditDisplayContentsComponent implements OnInit {
 
   constructor(
     private Api: ApiService,
+    private DialogService: DialogService,
   ) { }
 
   ngOnInit(): void {
     this.getContents()
+  }
+
+  onEditClick(content: Content) {
+    switch (content.onModel) {
+      case 'Quiz':
+        this.DialogService.open(QuizBuilderComponent, {quizId: content.toDocument})
+        break;
+    
+      default:
+        break;
+    }
   }
 
   getContents(): void {

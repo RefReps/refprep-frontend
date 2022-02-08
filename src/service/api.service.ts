@@ -14,6 +14,11 @@ import { Quiz } from 'src/app/models/quiz';
 import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
 import { RegisterUser } from 'src/app/_models/registerUser';
+import { Student } from 'src/app/models/student';
+import { Author } from 'src/app/models/author';
+import { QuizQuestion } from 'src/app/models/quiz-question';
+import { UserGrade } from 'src/app/models/userGrade';
+
 
 @Injectable({
   providedIn: 'root'
@@ -97,6 +102,47 @@ export class ApiService {
     this.http.put(`${this.courseUrl}/${courseId}`, courseForm).subscribe();
   }
 
+
+  // Quiz Grade Routes
+
+  getAllQuizGrades(quizId: string): Observable<UserGrade[]> {
+    return this.http.get<UserGrade[]>(`${this.quizUrl}/${quizId}/view-grades`)
+  }
+
+  getQuizGrade(quizId: string, email: string): Observable<UserGrade> {
+    return this.http.get<UserGrade>(`${this.quizUrl}/${quizId}/grade`)
+  }
+
+  // Student Routes
+
+  addStudentsToCourse(courseId: string, emails: string[]): void {
+    this.http.post(`${this.courseUrl}/${courseId}/students`, {emails}).subscribe()
+  }
+  
+  removeStudentsInCourse(courseId: string, emails: string[]): void {
+    this.http.post(`${this.courseUrl}/${courseId}/students/remove`, {emails}).subscribe()
+  }
+
+  getStudentsInCourse(courseId: string): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.courseUrl}/${courseId}/students`)
+  }
+
+
+  // Author Routes
+
+  addAuthorsToCourse(courseId: string, emails: string[]): void {
+    this.http.post(`${this.courseUrl}/${courseId}/authors`, {emails}).subscribe()
+  }
+
+  removeAuthorsInCourse(courseId: string, emails: string[]): void {
+    this.http.post(`${this.courseUrl}/${courseId}/authors/remove`, {emails}).subscribe()
+  }
+
+  getAuthorsInCourse(courseId: string): Observable<Author[]> {
+    return this.http.get<Author[]>(`${this.courseUrl}/${courseId}/authors`)
+  }
+
+
   // Section Routes
 
   getSections(courseId: string): Observable<Section[]> {
@@ -150,6 +196,10 @@ export class ApiService {
 
   postNewQuiz(name: string): Observable<Quiz> {
     return this.http.post<Quiz>(`${this.quizUrl}`, {name})
+  }
+
+  batchPutQuestions(quizId: string, quizQuestions: any): void {
+    this.http.put(`${this.quizUrl}/${quizId}/batch`, quizQuestions).subscribe()
   }
 
   // User Routes
