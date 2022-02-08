@@ -43,6 +43,8 @@ import { ContentAddTabSelectComponent } from './content-add-tab-select/content-a
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
+import { QuizStudentViewComponent } from './quiz-student-view/quiz-student-view.component';
 import { CourseAddAuthorComponent } from './course-add-author/course-add-author.component';
 import { CourseAddStudentComponent } from './course-add-student/course-add-student.component';
 import { QuizGradesViewerComponent } from './quiz-grades-viewer/quiz-grades-viewer.component';
@@ -84,6 +86,8 @@ import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-gra
     ContentAddTabSelectComponent,
     LogoutComponent,
     RegisterFormComponent,
+    QuizQuestionComponent,
+    QuizStudentViewComponent
     CourseAddAuthorComponent,
     CourseAddStudentComponent,
     QuizGradesViewerComponent,
@@ -136,6 +140,8 @@ import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-gra
     ContentAddTabSelectComponent,
     LogoutComponent,
     RegisterFormComponent,
+    QuizQuestionComponent,
+    QuizStudentViewComponent
     CourseAddAuthorComponent,
     CourseAddStudentComponent,
     QuizGradesViewerComponent,
