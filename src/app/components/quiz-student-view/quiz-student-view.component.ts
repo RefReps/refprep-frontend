@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-quiz-student-view',
@@ -7,12 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizStudentViewComponent implements OnInit {
 
-  userAnswers: any = {}
+ 
 
-  constructor() { }
+  constructor() {
+    ({
+
+    })
+   }
 
 
   ngOnInit(): void {
+
   }
 
 }

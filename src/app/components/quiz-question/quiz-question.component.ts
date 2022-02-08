@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder,FormControl, FormGroup } from '@angular/forms';
 import { Question } from 'src/app/models/question';
 
 @Component({
@@ -7,8 +8,7 @@ import { Question } from 'src/app/models/question';
   styleUrls: ['./quiz-question.component.scss']
 })
 export class QuizQuestionComponent implements OnInit {
-
-  
+   
 
   questionList: Question[] = [
     {questionNumber : 1,
@@ -46,15 +46,20 @@ export class QuizQuestionComponent implements OnInit {
             
         }
   ]
+  userAnswer = this.formBuilder.group({
+    question: [''],
+    answer: new FormControl('')
+  });
 
-
-
-  constructor() { 
-    
+  constructor(private formBuilder: FormBuilder) {     
   }
 
   ngOnInit(): void {
     
   }
-
+  
+  onSubmit() {
+    console.warn(this.userAnswer.value)
+  }
+ 
 }

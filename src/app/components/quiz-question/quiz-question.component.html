@@ -1,33 +1,62 @@
 
-<div id = "questions" *ngFor="let question of questionList"> 
-    <mat-radio-group *ngIf="question.type === '1_CHOICE'">
-        <label>{{question.question}}</label> <br>
-        <mat-radio-button color = "primary" value = "A">{{question.responses.A}}</mat-radio-button>
-        <mat-radio-button color = "primary" value = "B">{{question.responses.B}}</mat-radio-button>
-        <mat-radio-button color = "primary" value = "C">{{question.responses.C}}</mat-radio-button>
-        <mat-radio-button color = "primary" value = "D">{{question.responses.D}}</mat-radio-button>
+<div *ngFor="let question of questionList"> 
+<form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
+    <mat-radio-group id = {{question.questionNumber}} *ngIf="question.type === '1_CHOICE'" formControlName="answer">
+        <mat-card>
+            <label>{{question.question}}</label> <br>
+            <mat-radio-button color = "primary" value = "A">{{question.responses.A}}</mat-radio-button>
+            <mat-radio-button color = "primary" value = "B">{{question.responses.B}}</mat-radio-button>
+            <mat-radio-button color = "primary" value = "C">{{question.responses.C}}</mat-radio-button>
+            <mat-radio-button color = "primary" value = "D">{{question.responses.D}}</mat-radio-button>
+            <mat-card-actions> 
+                <button type="submit" mat-raised-button color = "primary">Submit</button>
+            </mat-card-actions>
+        </mat-card>
     </mat-radio-group>
-
-
-    <div *ngIf="question.type === 'MULTI_CHOICE'">
-        <label>{{question.question}}</label> <br>
-        <mat-checkbox color = "primary" value = "A">{{question.responses.A}}</mat-checkbox>
-        <mat-checkbox color = "primary" value = "B">{{question.responses.B}}</mat-checkbox>
-        <mat-checkbox color = "primary" value = "C">{{question.responses.C}}</mat-checkbox>
-        <mat-checkbox color = "primary" value = "D">{{question.responses.D}}</mat-checkbox>
-    </div>
-
-    <mat-radio-group *ngIf="question.type === 'TRUE_FALSE'">
-        <label>{{question.question}}</label> <br>
-        <mat-radio-button color = "primary"value = "true">True</mat-radio-button>
-        <mat-radio-button color = "primary" value = "false">False</mat-radio-button>
-    </mat-radio-group>
+</form>
 
     
-    <mat-form-field *ngIf="question.type === 'FREE_RESPONSE'" appearance="fill">
-        <mat-label>{{question.question}}</mat-label>
-        <textarea matInput></textarea>
+
+<form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
+    <div *ngIf="question.type === 'MULTI_CHOICE'" >
+        <mat-card>
+            <label>{{question.question}}</label> <br>
+            <mat-checkbox color = "primary" value = "A">{{question.responses.A}}</mat-checkbox>
+            <mat-checkbox color = "primary" value = "B">{{question.responses.B}}</mat-checkbox>
+            <mat-checkbox color = "primary" value = "C">{{question.responses.C}}</mat-checkbox>
+            <mat-checkbox color = "primary" value = "D">{{question.responses.D}}</mat-checkbox>
+            <mat-card-actions> 
+                <button type="submit" mat-raised-button color = "primary">Submit</button>
+            </mat-card-actions>
+           
+        </mat-card>
+    </div>
+</form>
+
+<form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
+    <mat-radio-group  *ngIf="question.type === 'TRUE_FALSE'" formControlName="answer">
+        <mat-card>
+            <label>{{question.question}}</label> <br>
+            <mat-radio-button color = "primary"value = "true">True</mat-radio-button>
+            <mat-radio-button color = "primary" value = "false">False</mat-radio-button>
+            <mat-card-actions> 
+                <button type="submit" mat-raised-button color = "primary">Submit</button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-radio-group>
+</form>
+
+<form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
+    <mat-form-field  *ngIf="question.type === 'FREE_RESPONSE'" appearance="fill" >
+        <mat-card>
+            <mat-label>{{question.question}}</mat-label>
+            <textarea matInput formControlName="answer"></textarea>
+            <mat-card-actions> 
+                <button type="submit" mat-raised-button color = "primary">Submit</button>
+            </mat-card-actions>
+        </mat-card>
     </mat-form-field> 
+</form>
 </div>
 
 
