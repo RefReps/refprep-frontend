@@ -11,11 +11,21 @@ import { CourseInfoHomeComponent } from '../course-info-home/course-info-home.co
   styleUrls: ['./course-sidebar.component.css']
 })
 export class CourseSidebarComponent implements OnInit {
+  courseId: string = '';
+
   constructor(
     private userInteractionService: UserInteractionService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    this.route.paramMap
+    .subscribe(params => {
+      let id = params.get('courseId');
+      if (id) {
+        this.courseId = id;
+      }
+    })
   }
 
   get isAuthor(): boolean {
@@ -24,10 +34,6 @@ export class CourseSidebarComponent implements OnInit {
 
   get isAdmin(): boolean {
     return this.userInteractionService.isAdmin
-  }
-
-  get courseId(): string {
-    return this.userInteractionService.getCourse._id!
   }
 
 }
