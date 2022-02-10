@@ -47,6 +47,7 @@ export class CourseAddAuthorComponent implements OnInit {
     this.removedEmails.push(this.removedEmail)
     this.Api.removeAuthorsInCourse(this.courseId, this.removedEmails)
     this.removedEmail = ''
+    window.location.reload();
   }
 
   onSubmit() {

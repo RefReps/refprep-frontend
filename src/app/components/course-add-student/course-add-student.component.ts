@@ -48,6 +48,7 @@ export class CourseAddStudentComponent implements OnInit {
     this.removedEmails.push(this.removedEmail)
     this.Api.removeStudentsInCourse(this.courseId, this.removedEmails)
     this.removedEmail = ''
+    window.location.reload();
   }
 
   onSubmit() {
