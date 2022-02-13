@@ -24,7 +24,7 @@ import { UserGrade } from 'src/app/models/userGrade';
   providedIn: 'root'
 })
 export class ApiService {
-  
+
   baseUrl: string = isDevMode() ? dev.apiUrl : prod.apiUrl;
   apiUrl: string = `${this.baseUrl}/api/`;
   videoUrl: string = `${this.baseUrl}/api/video`;
@@ -35,7 +35,7 @@ export class ApiService {
   quizUrl: string = `${this.baseUrl}/api/quiz`;
   authUrl: string = `${this.baseUrl}/api/auth`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Video[]> {
     return this.http.get<Video[]>(`${this.videoUrl}`);
@@ -65,23 +65,23 @@ export class ApiService {
     return this.http.get<Video[]>(`${this.baseUrl}?title=${title}`);
   }
 
-  
-  getCourseSections(courseId: string): Observable<SectionsInfo[]>{
+
+  getCourseSections(courseId: string): Observable<SectionsInfo[]> {
     return this.http.get<SectionsInfo[]>(`${this.courseUrl}/${courseId}/section`)
   }
-  
-  getSectionModules(courseId: string, sectionId: string): Observable<ModuleInfo[]>{
+
+  getSectionModules(courseId: string, sectionId: string): Observable<ModuleInfo[]> {
     return this.http.get<ModuleInfo[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module`)
   }
-  
-  getModuleContent(courseId: string, sectionId: string, moduleID: string): Observable<Content[]>{
+
+  getModuleContent(courseId: string, sectionId: string, moduleID: string): Observable<Content[]> {
     return this.http.get<Content[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module/${moduleID}/content`)
   }
-  
+
   // Start of new calls //
-  
+
   // Course Routes
-  
+
   getAllCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(`${this.courseUrl}`)
   }
@@ -116,11 +116,11 @@ export class ApiService {
   // Student Routes
 
   addStudentsToCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/students`, {emails}).subscribe()
+    this.http.post(`${this.courseUrl}/${courseId}/students`, { emails }).subscribe()
   }
-  
+
   removeStudentsInCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/students/remove`, {emails}).subscribe()
+    this.http.post(`${this.courseUrl}/${courseId}/students/remove`, { emails }).subscribe()
   }
 
   getStudentsInCourse(courseId: string): Observable<Student[]> {
@@ -131,11 +131,11 @@ export class ApiService {
   // Author Routes
 
   addAuthorsToCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/authors`, {emails}).subscribe()
+    this.http.post(`${this.courseUrl}/${courseId}/authors`, { emails }).subscribe()
   }
 
   removeAuthorsInCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/authors/remove`, {emails}).subscribe()
+    this.http.post(`${this.courseUrl}/${courseId}/authors/remove`, { emails }).subscribe()
   }
 
   getAuthorsInCourse(courseId: string): Observable<Author[]> {
@@ -177,6 +177,10 @@ export class ApiService {
     this.http.put(`${this.moduleUrl}/${moduleId}`, form).subscribe();
   }
 
+  deleteModule(moduleId: string): void {
+    this.http.delete(`${this.moduleUrl}/${moduleId}`).subscribe();
+  }
+
   // Content Routes
 
   getContents(moduleId: string): Observable<Content[]> {
@@ -192,10 +196,14 @@ export class ApiService {
     this.http.put(`${this.contentUrl}/${contentId}`, form).subscribe();
   }
 
+  deleteContent(contentId: string): void {
+    this.http.delete(`${this.contentUrl}/${contentId}`).subscribe();
+  }
+
   // Quiz Routes
 
   postNewQuiz(name: string): Observable<Quiz> {
-    return this.http.post<Quiz>(`${this.quizUrl}`, {name})
+    return this.http.post<Quiz>(`${this.quizUrl}`, { name })
   }
 
   startQuiz(quizId: string): Observable<any> {
@@ -209,7 +217,7 @@ export class ApiService {
   gradeQuiz(quizId: string): Observable<any> {
     return this.http.post(`${this.quizUrl}/${quizId}/grade`, {})
   }
-  
+
   batchPutQuestions(quizId: string, quizQuestions: any): void {
     this.http.put(`${this.quizUrl}/${quizId}/batch`, quizQuestions).subscribe()
   }
