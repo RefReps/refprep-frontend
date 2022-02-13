@@ -196,6 +196,10 @@ export class ApiService {
     this.http.put(`${this.contentUrl}/${contentId}`, form).subscribe();
   }
 
+  deleteContent(contentId: string): void {
+    this.http.delete(`${this.contentUrl}/${contentId}`).subscribe();
+  }
+
   // Quiz Routes
 
   postNewQuiz(name: string): Observable<Quiz> {

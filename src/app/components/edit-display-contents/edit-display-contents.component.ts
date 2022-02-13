@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Content } from 'src/app/models/content';
 import { ApiService } from 'src/service/api.service';
 import { DialogService } from 'src/service/dialog.service';
+import { ContentDeleteFormComponent } from '../content-delete-form/content-delete-form.component';
 import { QuizBuilderComponent } from '../quiz-builder/quiz-builder.component';
 
 @Component({
@@ -27,9 +28,9 @@ export class EditDisplayContentsComponent implements OnInit {
   onEditClick(content: Content) {
     switch (content.onModel) {
       case 'Quiz':
-        this.DialogService.open(QuizBuilderComponent, {quizId: content.toDocument})
+        this.DialogService.open(QuizBuilderComponent, { quizId: content.toDocument })
         break;
-    
+
       default:
         break;
     }
@@ -38,6 +39,10 @@ export class EditDisplayContentsComponent implements OnInit {
   getContents(): void {
     this.Api.getContents(this.moduleId)
       .subscribe(info => this.contents = info)
+  }
+
+  openDeleteContentDialog(contentId: string): void {
+    this.DialogService.open(ContentDeleteFormComponent, { contentId })
   }
 
   onDrop(event: any) {
