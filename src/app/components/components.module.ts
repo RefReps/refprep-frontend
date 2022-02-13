@@ -49,6 +49,7 @@ import { CourseAddAuthorComponent } from './course-add-author/course-add-author.
 import { CourseAddStudentComponent } from './course-add-student/course-add-student.component';
 import { QuizGradesViewerComponent } from './quiz-grades-viewer/quiz-grades-viewer.component';
 import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-grade.component';
+import { ModuleDeleteFormComponent } from './module-delete-form/module-delete-form.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -92,6 +93,7 @@ import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-gra
     CourseAddStudentComponent,
     QuizGradesViewerComponent,
     QuizStudentGradeComponent,
+    ModuleDeleteFormComponent,
   ],
   imports: [
     MaterialModule,
@@ -101,8 +103,8 @@ import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-gra
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
-  ],  
-  schemas:[
+  ],
+  schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
   exports: [ // Export all components in the app/component folder
@@ -132,6 +134,7 @@ import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-gra
     EditDisplayModulesComponent,
     EditDisplayContentsComponent,
     SectionFormDeleteComponent,
+    ModuleDeleteFormComponent,
     ContentFormAddVideoComponent,
     CourseDuplicateFormComponent,
     CourseCreationHomeComponent,
