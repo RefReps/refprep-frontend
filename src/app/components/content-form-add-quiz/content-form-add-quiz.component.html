@@ -4,10 +4,5 @@
         <textarea matInput formControlName="name" type="text"></textarea>
     </mat-form-field>
 
-    <button mat-button (click)="onCreate()">Create Quiz</button>
-
-    <div *ngIf="isCreated== true">
-        <button mat-button (click)="finish()">Finish</button>
-        <button mat-button (click)="openAddQuestionDialog(this.quizForm.value.name)"> Add Questions</button>
-    </div>
+    <button mat-button>Create Quiz</button>
 </form>

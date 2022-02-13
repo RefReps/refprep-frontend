@@ -14,7 +14,6 @@ export class ContentFormAddQuizComponent {
   moduleId: string;
   quizForm: FormGroup;
 
-  isCreated = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -32,9 +31,6 @@ export class ContentFormAddQuizComponent {
     return this.quizForm.get('name')?.value
   }
 
-  onCreate(): void {
-    this.isCreated = true;
-  }
 
   finish(): void {
     window.location.reload();
