@@ -11,27 +11,29 @@ import { TokenService } from 'src/app/_services/token.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit  {
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loading = false;
   submitted = false;
   returnUrl = '/';
   error = '';
 
+  hide = true;
+
   isLoadingResults = false;
 
-  constructor (
+  constructor(
     private authService: AuthenticationService,
     private authServ: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private tokenService: TokenService,
-    ) {
-      if (this.tokenService.getToken()) {
-        this.router.navigate(['/'])
-      }
+  ) {
+    if (this.tokenService.getToken()) {
+      this.router.navigate(['/'])
     }
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({

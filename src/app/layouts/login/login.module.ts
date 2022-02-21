@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 
@@ -18,10 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 
     ReactiveFormsModule,
 
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule
+    MaterialModule
   ]
 })
 export class LoginModule { }
