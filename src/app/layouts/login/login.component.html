@@ -18,7 +18,6 @@
                     <td>
                         <mat-form-field>
                             <mat-label>Password</mat-label>
-                            <!--<input matInput [type]="hide ? 'password' : 'text'" formControlName="password">-->
                             <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
                                 formControlName="password" required>
                             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
