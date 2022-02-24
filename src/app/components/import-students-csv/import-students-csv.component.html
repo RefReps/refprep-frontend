@@ -8,14 +8,14 @@
     <table class="table table-bordered table-dark">
         <thead>
             <tr>
-                <th *ngFor="let item of headLines[0]; let i = index">
-                    {{item}}
+                <th *ngFor="let title of headLines[0]; let i = index">
+                    {{title}}
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of rowLines[0]; let i = index">
-                <td *ngFor="let items of headLines[0]; let j = index">
+                <td *ngFor="let titles of headLines[0]; let j = index">
                     {{item[j]}}
                 </td>
             </tr>
