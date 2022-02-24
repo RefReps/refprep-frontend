@@ -1,11 +1,30 @@
-<form [formGroup]="registerForm" (ngSubmit)="ngOnSubmit()">
-    <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput type="text" formControlName="email" required>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" required>
-    </mat-form-field>
-    <button mat-button>Register</button>
-</form>
+
+<div class="h-screen flex justify-center items-center bg-primary">
+
+    <mat-card class="max-w-max">
+        <form [formGroup]="registerForm" (ngSubmit)="ngOnSubmit()">
+            <div style="text-align: center;">
+                <mat-card-title>Create an Account</mat-card-title>
+            </div>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input type="text" matInput formControlName="email" placeholder="Ex. user@example.com">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" [type]="hide? 'password' : 'text'"
+                    formControlName="password" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+            <div style="text-align: center;">
+                <button class="bg-blue-200" mat-raised-button>Sign Up</button>
+            </div>
+        </form>
+        <div style="text-align: center; padding-bottom: 6em;">Already have an account?
+            <a href='/login' style="color: blue">Sign in here!</a>
+        </div>
+        <div *ngIf="error" class="text-red-600">{{error}}</div>
+    </mat-card>
+
+</div>

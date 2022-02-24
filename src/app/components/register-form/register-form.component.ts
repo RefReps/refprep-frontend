@@ -14,6 +14,9 @@ import { ApiService } from 'src/service/api.service';
 export class RegisterFormComponent {
   registerForm: FormGroup;
   errors: any = {}
+  error = ''
+
+  hide = true;
 
   constructor(
     private fb: FormBuilder,

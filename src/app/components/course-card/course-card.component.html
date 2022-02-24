@@ -1,17 +1,17 @@
 <a [routerLink]="['/courses', course._id]"
 routerLinkActive="router-link-active" class="cursor-pointer">
     <mat-card class="shadow-lg w-72 h-80">
-        <!-- <img mat-card-image class="bg-fifthary h-48 min-w-full" src="../../../assets/RR_Logo_12.png"> -->
-        <div class="flex justify-center 
-                    bg-fifthary h-48 min-w-full">
+        <div fxLayoutGap="10px" style="margin: 0px 0px 10px 0px" class="flex justify-center 
+                    bg-fifthary h-48 min-w-full" >
             <img src="../../../assets/RR_Logo_12.png" alt="logo" >
         </div>
-            
+        <div>    
         <mat-card-title>{{course.name}}</mat-card-title>
         <mat-divider></mat-divider>
         <br>
         <mat-card-subtitle>{{this.courseSubtitle}}</mat-card-subtitle>
         <mat-card-content></mat-card-content>
         <mat-card-footer></mat-card-footer>
+    </div>
     </mat-card>
 </a>
