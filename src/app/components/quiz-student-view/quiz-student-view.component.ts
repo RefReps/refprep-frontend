@@ -11,7 +11,7 @@ import { ApiService } from 'src/service/api.service';
   styleUrls: ['./quiz-student-view.component.scss']
 })
 export class QuizStudentViewComponent implements OnInit {
-  @Input() quizId: string = ''
+  quizId: string = ''
   questions: Question[] = []
  
 
@@ -24,6 +24,14 @@ export class QuizStudentViewComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.route.paramMap
+    .subscribe(params => {
+      let id = params.get('quizId');
+      if(id) {
+        this.quizId = id
+      }
+    })
+
 	  if (this.quizId) {
 		  this.api.startQuiz(this.quizId).subscribe(data => {
 			  console.log(data)

@@ -21,6 +21,7 @@ export class QuizGradesViewerComponent implements OnInit {
   @Input() quizId: string = '';
   userGrades: UserGrade[] = [];
   quizInfo: Quiz= {};
+  highestGrades: UserGrade[] = [];
 
   constructor(
     private Api: ApiService,
@@ -54,7 +55,7 @@ export class QuizGradesViewerComponent implements OnInit {
 
     this.userGrades = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
-      const isDesc = sort.direction === 'desc'
+      const isDesc = sort.direction === 'desc';
       switch (sort.active) {
         case 'email':
           return compare(a.email, b.email, isAsc);

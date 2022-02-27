@@ -9,7 +9,7 @@
 </div>
 
 <table matSort (matSortChange)="sortGrades($event)">
-    <thead class=>
+    <thead>
         <tr>
             <th mat-sort-header="email">Student Email</th>
             <th mat-sort-header="grade">Grade</th>
@@ -18,8 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let userGrade of userGrades" 
-        ng-repeat="userGrade in tableA|orderBy:[+Email,+Grade]">
+        <tr *ngFor="let userGrade of userGrades" >
             <td>{{userGrade.email}}</td>
             <td>{{getGradePercentage(userGrade.grade)}}%  ({{getLetterGrade(userGrade.grade)}})</td>
             <td>{{userGrade.dateStarted | date : 'medium'}}</td>
