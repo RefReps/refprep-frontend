@@ -1,5 +1,12 @@
+import { DataSource } from '@angular/cdk/collections';
+import { DatePipe } from '@angular/common';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Sort } from '@angular/material/sort';
+import { string } from 'joi';
+import { Observable, ReplaySubject } from 'rxjs';
+import { Quiz } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/userGrade';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
@@ -13,14 +20,22 @@ export class QuizGradesViewerComponent implements OnInit {
 
   @Input() quizId: string = '';
   userGrades: UserGrade[] = [];
+  quizInfo: Quiz= {};
 
   constructor(
     private Api: ApiService,
-
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
+    this.getQuizName()
     this.getQuizGrades()
+  }
+
+  getQuizName() {
+    this.Api.getQuizInfo(this.quizId)
+    .subscribe(info => {
+      this.quizInfo = info
+    })
   }
 
   getQuizGrades(): void {
@@ -29,6 +44,37 @@ export class QuizGradesViewerComponent implements OnInit {
       this.userGrades = info
     })
   }
+
+  sortGrades(sort: Sort) {
+    const data = this.userGrades.slice();
+    if (!sort.active || sort.direction === '') {
+      this.userGrades = data;
+      return;
+    }
+
+    this.userGrades = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      const isDesc = sort.direction === 'desc'
+      switch (sort.active) {
+        case 'email':
+          return compare(a.email, b.email, isAsc);
+        case 'grade':
+          if (a.email == b.email){
+            return compare(a.grade, b.grade, isDesc);
+          }
+          else {
+            return compare(a.email, b.email, isAsc);
+          }
+        case 'dateStarted':
+          return compare(a.dateStarted, b.dateStarted, isAsc);
+        case 'dateFinished':
+          return compare(a.dateFinished, b.dateFinished, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+  
 
   getGradePercentage(stringDecGrade: string | undefined){
     var percentGrade: Number = Number(stringDecGrade)*100
@@ -80,4 +126,13 @@ export class QuizGradesViewerComponent implements OnInit {
     }
   }
 
+}
+
+function compare(a: string | undefined, b: string | undefined, isAsc: boolean) {
+if (typeof a != "undefined" && typeof b != "undefined") {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+else {
+  return 0
+}
 }
