@@ -1,4 +1,39 @@
+<div class="center">
+    <h1 class = "text-display">{{quizInfo.name}}</h1>
+</div>
+<div class="center">
+   <a routerLink="./take">
+        <button class="bg-blue-200" mat-raised-button>Start Quiz</button>
+    </a>
+</div>
+<div class="center">
+    <h1 class = "text-display">Previous Submissions:</h1>
+</div>
+
 <mat-grid-list rowHeight="4rem"cols="2">
     <mat-grid-tile>Grade:</mat-grid-tile>
-    <mat-grid-tile>{{userGrade.grade}}</mat-grid-tile>
+    <mat-grid-tile>
+        {{userGrade.grade}}
+    </mat-grid-tile>
 </mat-grid-list>
+
+<!--
+<table>
+    <thead>
+        <tr>
+            <th>Student Email</th>
+            <th>Grade</th>
+            <th>Started</th>
+            <th>Submitted</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let userGrade of userGrades" >
+        <tr *ngIf="this.email" >
+            <td>{{userGrade.email}}</td>
+            <td>{{getGradePercentage(userGrade.grade)}}%  ({{getLetterGrade(userGrade.grade)}})</td>
+            <td>{{userGrade.dateStarted | date : 'medium'}}</td>
+            <td>{{userGrade.dateFinished | date : 'medium'}}</td>
+        </tr>
+    </tbody>
+</table>
+-->

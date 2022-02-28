@@ -103,16 +103,6 @@ export class ApiService {
   }
 
 
-  // Quiz Grade Routes
-
-  getAllQuizGrades(quizId: string): Observable<UserGrade[]> {
-    return this.http.get<UserGrade[]>(`${this.quizUrl}/${quizId}/view-grades`)
-  }
-
-  getQuizGrade(quizId: string, email: string): Observable<UserGrade> {
-    return this.http.get<UserGrade>(`${this.quizUrl}/${quizId}/grade`)
-  }
-
   // Student Routes
 
   addStudentsToCourse(courseId: string, emails: string[]): void {
@@ -202,6 +192,10 @@ export class ApiService {
 
   // Quiz Routes
 
+  getQuizInfo(quizId: string): Observable<any> {
+    return this.http.get(`${this.quizUrl}/${quizId}`)
+  }
+
   postNewQuiz(name: string): Observable<Quiz> {
     return this.http.post<Quiz>(`${this.quizUrl}`, { name })
   }
@@ -220,6 +214,16 @@ export class ApiService {
 
   batchPutQuestions(quizId: string, quizQuestions: any): void {
     this.http.put(`${this.quizUrl}/${quizId}/batch`, quizQuestions).subscribe()
+  }
+
+  // Quiz Grade Routes
+
+  getAllQuizGrades(quizId: string): Observable<UserGrade[]> {
+    return this.http.get<UserGrade[]>(`${this.quizUrl}/${quizId}/view-grades`)
+  }
+
+  getQuizGrade(quizId: string, email: string): Observable<UserGrade> {
+    return this.http.get<UserGrade>(`${this.quizUrl}/${quizId}/grade`)
   }
 
   // User Routes

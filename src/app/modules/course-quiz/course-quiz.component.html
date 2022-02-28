@@ -12,8 +12,7 @@
 
         <mat-drawer-container fxLayout="column" fxFill>
             <app-quiz-grades-viewer *ngIf="isAuthor" [quizId]="quizId"></app-quiz-grades-viewer>
-            <!-- shows students grade on quiz, switch to taking quiz-->
-            <app-quiz-student-view *ngIf="!isAuthor" [quizId]="quizId"></app-quiz-student-view>
+            <app-quiz-student-grade *ngIf="!isAuthor" [quizId]="quizId"></app-quiz-student-grade>
         </mat-drawer-container>
 
 
