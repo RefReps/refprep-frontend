@@ -4,7 +4,6 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Sort } from '@angular/material/sort';
-import { string } from 'joi';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Quiz } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/userGrade';
@@ -20,12 +19,12 @@ export class QuizGradesViewerComponent implements OnInit {
 
   @Input() quizId: string = '';
   userGrades: UserGrade[] = [];
-  quizInfo: Quiz= {};
+  quizInfo: Quiz = {};
   highestGrades: UserGrade[] = [];
 
   constructor(
     private Api: ApiService,
-  ) {  }
+  ) { }
 
   ngOnInit(): void {
     this.getQuizName()
@@ -34,16 +33,16 @@ export class QuizGradesViewerComponent implements OnInit {
 
   getQuizName() {
     this.Api.getQuizInfo(this.quizId)
-    .subscribe(info => {
-      this.quizInfo = info
-    })
+      .subscribe(info => {
+        this.quizInfo = info
+      })
   }
 
   getQuizGrades(): void {
     this.Api.getAllQuizGrades(this.quizId)
-    .subscribe(info => {
-      this.userGrades = info
-    })
+      .subscribe(info => {
+        this.userGrades = info
+      })
   }
 
   sortGrades(sort: Sort) {
@@ -60,7 +59,7 @@ export class QuizGradesViewerComponent implements OnInit {
         case 'email':
           return compare(a.email, b.email, isAsc);
         case 'grade':
-          if (a.email == b.email){
+          if (a.email == b.email) {
             return compare(a.grade, b.grade, isDesc);
           }
           else {
@@ -75,51 +74,51 @@ export class QuizGradesViewerComponent implements OnInit {
       }
     });
   }
-  
 
-  getGradePercentage(stringDecGrade: string | undefined){
-    var percentGrade: Number = Number(stringDecGrade)*100
+
+  getGradePercentage(stringDecGrade: string | undefined) {
+    var percentGrade: Number = Number(stringDecGrade) * 100
     var stringPercentGrade: String = percentGrade.toFixed(2)
     return stringPercentGrade
   }
 
-  getLetterGrade(stringDecGrade: string | undefined){
-    var percentGrade: Number = Number(stringDecGrade)*100
+  getLetterGrade(stringDecGrade: string | undefined) {
+    var percentGrade: Number = Number(stringDecGrade) * 100
     var letterGrade: String
-    if(percentGrade>=97 && percentGrade<=100){
+    if (percentGrade >= 97 && percentGrade <= 100) {
       return letterGrade = "A+"
     }
-    else if(percentGrade>=93 && percentGrade<=96.99){
+    else if (percentGrade >= 93 && percentGrade <= 96.99) {
       return letterGrade = "A"
     }
-    else if(percentGrade>=90 && percentGrade<=92.99){
+    else if (percentGrade >= 90 && percentGrade <= 92.99) {
       return letterGrade = "A-"
     }
-    else if(percentGrade>=87 && percentGrade<=89.99){
+    else if (percentGrade >= 87 && percentGrade <= 89.99) {
       return letterGrade = "B+"
     }
-    else if(percentGrade>=83 && percentGrade<=86.99){
+    else if (percentGrade >= 83 && percentGrade <= 86.99) {
       return letterGrade = "B"
     }
-    else if(percentGrade>=80 && percentGrade<=82.99){
+    else if (percentGrade >= 80 && percentGrade <= 82.99) {
       return letterGrade = "B-"
     }
-    else if(percentGrade>=77 && percentGrade<=79.99){
+    else if (percentGrade >= 77 && percentGrade <= 79.99) {
       return letterGrade = "C+"
     }
-    else if(percentGrade>=73 && percentGrade<=76.99){
+    else if (percentGrade >= 73 && percentGrade <= 76.99) {
       return letterGrade = "C"
     }
-    else if(percentGrade>=70 && percentGrade<=72.99){
+    else if (percentGrade >= 70 && percentGrade <= 72.99) {
       return letterGrade = "C-"
     }
-    else if(percentGrade>=67 && percentGrade<=69.99){
+    else if (percentGrade >= 67 && percentGrade <= 69.99) {
       return letterGrade = "D+"
     }
-    else if(percentGrade>=63 && percentGrade<=66.99){
+    else if (percentGrade >= 63 && percentGrade <= 66.99) {
       return letterGrade = "D"
     }
-    else if(percentGrade>=60 && percentGrade<=62.99){
+    else if (percentGrade >= 60 && percentGrade <= 62.99) {
       return letterGrade = "D-"
     }
     else {
@@ -130,10 +129,10 @@ export class QuizGradesViewerComponent implements OnInit {
 }
 
 function compare(a: string | undefined, b: string | undefined, isAsc: boolean) {
-if (typeof a != "undefined" && typeof b != "undefined") {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
-else {
-  return 0
-}
+  if (typeof a != "undefined" && typeof b != "undefined") {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+  else {
+    return 0
+  }
 }
