@@ -14,7 +14,8 @@
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #editMenu>
-                                    <button mat-icon-button color="black" class="float-left">
+                                    <button mat-icon-button color="black" class="float-left"
+                                        (click)="openUpdateModuleDialog(module._id)">
                                         <mat-icon>edit</mat-icon>
                                     </button>
                                     <button (click)="openAddContentTabDialog(module._id)" mat-icon-button

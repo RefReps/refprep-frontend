@@ -5,6 +5,7 @@ import { ApiService } from 'src/service/api.service';
 import { DialogService } from 'src/service/dialog.service';
 import { ContentDeleteFormComponent } from '../content-delete-form/content-delete-form.component';
 import { QuizBuilderComponent } from '../quiz-builder/quiz-builder.component';
+import { UpdateContentDialogComponent } from '../update-content-dialog/update-content-dialog.component';
 
 @Component({
   selector: 'app-edit-display-contents',
@@ -43,6 +44,10 @@ export class EditDisplayContentsComponent implements OnInit {
 
   openDeleteContentDialog(contentId: string): void {
     this.DialogService.open(ContentDeleteFormComponent, { contentId })
+  }
+
+  openUpdateContentDialog(contentId: string): void {
+    this.DialogService.open(UpdateContentDialogComponent, { contentId })
   }
 
   onDrop(event: any) {
