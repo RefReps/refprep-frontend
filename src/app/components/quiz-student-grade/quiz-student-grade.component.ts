@@ -1,8 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/app/models/quiz';
+import { QuizVersion } from 'src/app/models/quiz-version';
 import { UserGrade } from 'src/app/models/userGrade';
 import { ApiService } from 'src/service/api.service';
+
+interface QuizInfo {
+  quiz?: Quiz;
+  activeVersion?: QuizVersion;
+}
 
 @Component({
   selector: 'app-quiz-student-grade',
@@ -14,7 +20,7 @@ export class QuizStudentGradeComponent implements OnInit {
   @Input() quizId: string = '';
   email: string = '';
   userGrade: UserGrade[] = [];
-  quizInfo: Quiz = {};
+  quizInfo: QuizInfo = {};
   
   constructor(
     private Api: ApiService,
@@ -29,11 +35,11 @@ export class QuizStudentGradeComponent implements OnInit {
           this.email = id;
         }
       })
-    this.getQuizName();
+    this.getBasicQuizInfo();
     this.getQuizGrade();
   }
 
-  getQuizName() {
+  getBasicQuizInfo() {
     this.Api.getQuizInfo(this.quizId)
     .subscribe(info => {
       this.quizInfo = info
@@ -45,13 +51,13 @@ export class QuizStudentGradeComponent implements OnInit {
       .subscribe(info => this.userGrade = info)
   }
 
-  getGradePercentage(stringDecGrade: string | undefined){
+  getGradePercentage(stringDecGrade: Number | undefined){
     var percentGrade: Number = Number(stringDecGrade)*100
     var stringPercentGrade: String = percentGrade.toFixed(2)
     return stringPercentGrade
   }
 
-  getLetterGrade(stringDecGrade: string | undefined){
+  getLetterGrade(stringDecGrade: Number | undefined){
     var percentGrade: Number = Number(stringDecGrade)*100
     var letterGrade: String
     if(percentGrade>=97 && percentGrade<=100){

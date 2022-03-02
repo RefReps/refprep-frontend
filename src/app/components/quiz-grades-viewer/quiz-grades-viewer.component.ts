@@ -9,6 +9,12 @@ import { Quiz } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/userGrade';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
+import { QuizVersion } from 'src/app/models/quiz-version';
+
+interface QuizInfo {
+  quiz?: Quiz;
+  activeVersion?: QuizVersion;
+}
 
 @Component({
   selector: 'app-quiz-grades-viewer',
@@ -19,7 +25,7 @@ export class QuizGradesViewerComponent implements OnInit {
 
   @Input() quizId: string = '';
   userGrades: UserGrade[] = [];
-  quizInfo: Quiz = {};
+  quizInfo: QuizInfo = {};
   highestGrades: UserGrade[] = [];
 
   constructor(
@@ -76,13 +82,13 @@ export class QuizGradesViewerComponent implements OnInit {
   }
 
 
-  getGradePercentage(stringDecGrade: string | undefined) {
+  getGradePercentage(stringDecGrade: Number | undefined) {
     var percentGrade: Number = Number(stringDecGrade) * 100
     var stringPercentGrade: String = percentGrade.toFixed(2)
     return stringPercentGrade
   }
 
-  getLetterGrade(stringDecGrade: string | undefined) {
+  getLetterGrade(stringDecGrade: Number | undefined) {
     var percentGrade: Number = Number(stringDecGrade) * 100
     var letterGrade: String
     if (percentGrade >= 97 && percentGrade <= 100) {
@@ -128,7 +134,7 @@ export class QuizGradesViewerComponent implements OnInit {
 
 }
 
-function compare(a: string | undefined, b: string | undefined, isAsc: boolean) {
+function compare(a: string | Number |undefined, b: string | Number | undefined, isAsc: boolean) {
   if (typeof a != "undefined" && typeof b != "undefined") {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
