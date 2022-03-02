@@ -1,11 +1,14 @@
 <div class="center">
-    <h1 class = "text-display">{{quizInfo.name}}</h1>
+    <h1 class="text-display">{{quizInfo.name}}</h1>
 </div>
 <div class="center">
-    <button class="bg-blue-200" mat-raised-button>Edit Quiz</button>
+    <a [routerLink]="['./edit']">
+        <button class="bg-blue-200" mat-raised-button>Edit
+            Quiz</button>
+    </a>
 </div>
 <div class="center">
-    <h1 class = "text-display">Student Grades:</h1>
+    <h1 class="text-display">Student Grades:</h1>
 </div>
 
 <table matSort (matSortChange)="sortGrades($event)">
@@ -18,9 +21,9 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let userGrade of userGrades" >
+        <tr *ngFor="let userGrade of userGrades">
             <td>{{userGrade.email}}</td>
-            <td>{{getGradePercentage(userGrade.grade)}}%  ({{getLetterGrade(userGrade.grade)}})</td>
+            <td>{{getGradePercentage(userGrade.grade)}}% ({{getLetterGrade(userGrade.grade)}})</td>
             <td>{{userGrade.dateStarted | date : 'medium'}}</td>
             <td>{{userGrade.dateFinished | date : 'medium'}}</td>
         </tr>
