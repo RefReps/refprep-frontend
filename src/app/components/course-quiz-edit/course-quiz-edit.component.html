@@ -1,1 +1,6 @@
-<p>course-quiz-edit works!</p>
+<h1>Edit Quiz Questions</h1>
+<div>
+    <div *ngFor="let question of questions" class="m-5">
+        <app-edit-quiz-question [question]="question"></app-edit-quiz-question>
+    </div>
+</div>

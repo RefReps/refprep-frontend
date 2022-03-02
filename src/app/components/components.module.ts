@@ -52,6 +52,7 @@ import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-gra
 import { ModuleDeleteFormComponent } from './module-delete-form/module-delete-form.component';
 import { ContentDeleteFormComponent } from './content-delete-form/content-delete-form.component';
 import { CourseQuizEditComponent } from './course-quiz-edit/course-quiz-edit.component';
+import { EditQuizQuestionComponent } from './edit-quiz-question/edit-quiz-question.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -98,6 +99,7 @@ import { CourseQuizEditComponent } from './course-quiz-edit/course-quiz-edit.com
     ModuleDeleteFormComponent,
     ContentDeleteFormComponent,
     CourseQuizEditComponent,
+    EditQuizQuestionComponent,
   ],
   imports: [
     MaterialModule,
@@ -153,7 +155,8 @@ import { CourseQuizEditComponent } from './course-quiz-edit/course-quiz-edit.com
     CourseAddStudentComponent,
     QuizGradesViewerComponent,
     QuizStudentGradeComponent,
-    CourseQuizEditComponent
+    CourseQuizEditComponent,
+    EditQuizQuestionComponent
   ],
 })
 export class ComponentsModule { }

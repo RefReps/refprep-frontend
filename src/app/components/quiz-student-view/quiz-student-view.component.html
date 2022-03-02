@@ -1,14 +1,7 @@
+<h1>Quiz</h1>
 <div fxLayout="column">
-    <div *ngFor="let question of questions">
+    <div *ngFor="let question of questions" class="m-5">
         <app-quiz-question [question]="question"></app-quiz-question>
     </div>
     <button mat-raised-button color="primary" (click)="submitQuiz()">Submit</button>
 </div>
-
-
-
-
-    
-
-
-
