@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Question } from 'src/app/models/question';
+import { Quiz } from 'src/app/models/quiz';
 import { QuizAnswerSaverService } from 'src/app/_services/quiz-answer-saver.service';
 import { ApiService } from 'src/service/api.service';
 
@@ -13,6 +14,7 @@ import { ApiService } from 'src/service/api.service';
 export class QuizStudentViewComponent implements OnInit {
   quizId: string = ''
   questions: Question[] = []
+  quizInfo: Quiz = {};
 
 
   constructor(
@@ -40,6 +42,14 @@ export class QuizStudentViewComponent implements OnInit {
         }
       })
     }
+    this.getQuizName()
+  }
+
+  getQuizName() {
+    this.api.getQuizInfo(this.quizId)
+      .subscribe(info => {
+        this.quizInfo = info
+      })
   }
 
   submitQuiz(): void {

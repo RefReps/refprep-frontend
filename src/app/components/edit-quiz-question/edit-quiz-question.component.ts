@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Question } from 'src/app/models/question';
+import { Quiz } from 'src/app/models/quiz';
 import { QuizAnswerSaverService } from 'src/app/_services/quiz-answer-saver.service';
 import { ApiService } from 'src/service/api.service';
 
@@ -13,6 +14,7 @@ export class EditQuizQuestionComponent implements OnInit {
 
   @Input() question: Question = {}
   @Input() quizId: string = ''
+  quizInfo: Quiz = {};
 
   // need to formate {"1": "Answer"}
   constructor(
@@ -28,5 +30,12 @@ export class EditQuizQuestionComponent implements OnInit {
   updateAnswers(value: string) {
     let answer: any = { [this.question.questionNumber!]: value }
     this.quizAnswerService.saveAnswer(answer)
+  }
+
+  getQuizName() {
+    this.api.getQuizInfo(this.quizId)
+      .subscribe(info => {
+        this.quizInfo = info
+      })
   }
 }

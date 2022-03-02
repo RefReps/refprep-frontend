@@ -1,4 +1,6 @@
-<h1>Quiz</h1>
+<mat-card>
+    <mat-card-title class="text-center">You are taking {{quizInfo.name}}</mat-card-title>
+</mat-card>
 <div fxLayout="column">
     <div *ngFor="let question of questions" class="m-5">
         <app-quiz-question [question]="question"></app-quiz-question>

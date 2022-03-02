@@ -1,7 +1,7 @@
-<h1>Edit Quiz Questions</h1>
+<h1>Editing {{quizInfo.name}} Questions</h1>
 <div class="float-right">
     <mat-card class="max-w-min float-left">
-        <button mat-raised-button class="bg-green-400">Add New Question</button>
+        <button mat-raised-button class="bg-green-400" (click)="openQuizBuilderDialog(quizId)">Add New Question</button>
     </mat-card>
 </div>
 <div>
