@@ -1,5 +1,7 @@
 export class Quiz {
     _id?: string;
     name?: string;
-    questions?: Object;
+    quizVersions?: Object;
+    activeVersion?: number;
+    
 }

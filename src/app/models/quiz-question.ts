@@ -5,6 +5,7 @@ export class QuizQuestion {
     responses?: Responses;
     answers?: string[];
     answer?: boolean;
+    points?: Number;
 }
 
 class Responses {

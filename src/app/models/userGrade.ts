@@ -3,5 +3,6 @@ export class UserGrade {
     grade?: string;
     dateStarted?: string;
     dateFinished?: string;
+    submissionNumber?: string;
     email?: string;
 }

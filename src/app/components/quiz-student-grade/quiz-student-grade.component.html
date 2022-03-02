@@ -10,30 +10,22 @@
     <h1 class = "text-display">Previous Submissions:</h1>
 </div>
 
-<mat-grid-list rowHeight="4rem"cols="2">
-    <mat-grid-tile>Grade:</mat-grid-tile>
-    <mat-grid-tile>
-        {{userGrade.grade}}
-    </mat-grid-tile>
-</mat-grid-list>
 
-<!--
 <table>
     <thead>
         <tr>
-            <th>Student Email</th>
+            <th>Submission Number</th>
             <th>Grade</th>
             <th>Started</th>
             <th>Submitted</th>
         </tr>
     </thead>
-    <tbody *ngFor="let userGrade of userGrades" >
-        <tr *ngIf="this.email" >
-            <td>{{userGrade.email}}</td>
+    <tbody>
+        <tr *ngFor="let userGrade of userGrade">
+            <td>{{userGrade.submissionNumber}}</td>
             <td>{{getGradePercentage(userGrade.grade)}}%  ({{getLetterGrade(userGrade.grade)}})</td>
             <td>{{userGrade.dateStarted | date : 'medium'}}</td>
             <td>{{userGrade.dateFinished | date : 'medium'}}</td>
         </tr>
     </tbody>
 </table>
--->

@@ -13,8 +13,7 @@ export class QuizStudentGradeComponent implements OnInit {
 
   @Input() quizId: string = '';
   email: string = '';
-  userGrade: UserGrade = {};
-  userGrades: UserGrade[] = [];
+  userGrade: UserGrade[] = [];
   quizInfo: Quiz = {};
   
   constructor(
@@ -32,20 +31,12 @@ export class QuizStudentGradeComponent implements OnInit {
       })
     this.getQuizName();
     this.getQuizGrade();
-    this.getQuizGrades();
   }
 
   getQuizName() {
     this.Api.getQuizInfo(this.quizId)
     .subscribe(info => {
       this.quizInfo = info
-    })
-  }
-
-  getQuizGrades(): void {
-    this.Api.getAllQuizGrades(this.quizId)
-    .subscribe(info => {
-      this.userGrades = info
     })
   }
 
@@ -105,5 +96,3 @@ export class QuizStudentGradeComponent implements OnInit {
   }
 
 }
-
-
