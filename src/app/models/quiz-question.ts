@@ -1,3 +1,5 @@
+import { QuizSubmission } from "./quiz-submission";
+
 export class QuizQuestion {
     questionNumber?: number;
     type?: string;
@@ -13,4 +15,9 @@ class Responses {
     B?: string;
     C?: string;
     D?: string;
+}
+
+export interface QuizStart {
+    quizQuestions: QuizQuestion[];
+    quizSubmission: QuizSubmission;
 }

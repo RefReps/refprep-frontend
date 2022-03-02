@@ -35,8 +35,8 @@ export class QuizStudentViewComponent implements OnInit {
 	  if (this.quizId) {
 		  this.api.startQuiz(this.quizId).subscribe(data => {
 			  console.log(data)
-			  for (let i of Object.keys(data.questions)) {
-				  this.questions.push(data.questions[i])
+			  for (let i of Object.keys(data.QuizQuestion.questions)) {
+				  this.questions.push(data.QuizQuestion.questions[i])
 			  }
 		  })
 	  }

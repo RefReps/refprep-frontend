@@ -192,8 +192,7 @@ export class ApiService {
 
   // Quiz Routes
 
-  // !! currently not working !!
-  // returns 2 objects: Quiz and QuizVersions
+  // returns 2 objects: Quiz and QuizVersion (gets the active version)
   getQuizInfo(quizId: string): Observable<any> {
     return this.http.get(`${this.quizUrl}/${quizId}`)
   }

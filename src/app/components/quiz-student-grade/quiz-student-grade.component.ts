@@ -1,14 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Quiz } from 'src/app/models/quiz';
+import { ActiveVersion, Quiz } from 'src/app/models/quiz';
 import { QuizVersion } from 'src/app/models/quiz-version';
 import { UserGrade } from 'src/app/models/userGrade';
 import { ApiService } from 'src/service/api.service';
 
-interface QuizInfo {
-  quiz?: Quiz;
-  activeVersion?: QuizVersion;
-}
 
 @Component({
   selector: 'app-quiz-student-grade',
@@ -20,7 +16,7 @@ export class QuizStudentGradeComponent implements OnInit {
   @Input() quizId: string = '';
   email: string = '';
   userGrade: UserGrade[] = [];
-  quizInfo: QuizInfo = {};
+  quizInfo: ActiveVersion = {};
   
   constructor(
     private Api: ApiService,

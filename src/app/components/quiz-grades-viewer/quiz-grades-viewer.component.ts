@@ -5,16 +5,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Sort } from '@angular/material/sort';
 import { Observable, ReplaySubject } from 'rxjs';
-import { Quiz } from 'src/app/models/quiz';
+import { ActiveVersion, Quiz } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/userGrade';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
 import { QuizVersion } from 'src/app/models/quiz-version';
-
-interface QuizInfo {
-  quiz?: Quiz;
-  activeVersion?: QuizVersion;
-}
 
 @Component({
   selector: 'app-quiz-grades-viewer',
@@ -25,7 +20,7 @@ export class QuizGradesViewerComponent implements OnInit {
 
   @Input() quizId: string = '';
   userGrades: UserGrade[] = [];
-  quizInfo: QuizInfo = {};
+  quizInfo: ActiveVersion = {};
   highestGrades: UserGrade[] = [];
 
   constructor(
