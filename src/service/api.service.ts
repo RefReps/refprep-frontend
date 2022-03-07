@@ -3,12 +3,10 @@ import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@an
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Video } from 'src/app/models/video.model';
-import { Course } from 'src/app/models/course';
+import { Course, Section, Module } from 'src/app/models/course';
 import { SectionsInfo } from 'src/app/models/sections-info';
 import { ModuleInfo } from 'src/app/models/module-info';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
-import { Module } from 'src/app/models/module';
-import { Section } from 'src/app/models/course';
 import { Quiz } from 'src/app/models/quiz';
 
 import { environment as dev } from 'src/environments/environment';
