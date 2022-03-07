@@ -9,7 +9,7 @@ import { ActiveVersion, Quiz } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/userGrade';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
-import { QuizVersion } from 'src/app/models/quiz-version';
+import { QuizVersion } from 'src/app/models/quiz';
 
 @Component({
   selector: 'app-quiz-grades-viewer',
