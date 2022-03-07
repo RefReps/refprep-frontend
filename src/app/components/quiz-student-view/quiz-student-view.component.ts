@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Question } from 'src/app/models/question';
+import { QuizQuestion } from 'src/app/models/quiz';
 import { QuizAnswerSaverService } from 'src/app/_services/quiz-answer-saver.service';
 import { ApiService } from 'src/service/api.service';
 
@@ -12,7 +12,7 @@ import { ApiService } from 'src/service/api.service';
 })
 export class QuizStudentViewComponent implements OnInit {
   quizId: string = ''
-  questions: Question[] = []
+  questions: QuizQuestion[] = []
  
 
   constructor(
