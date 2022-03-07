@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Author } from 'src/app/models/author';
+import { User } from 'src/app/models/user';
 import { ApiService } from 'src/service/api.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class CourseAddAuthorComponent implements OnInit {
   removedEmails: string[] = [];
   newEmail: string = '';
   removedEmail: string = '';
-  currentAuthors: Author[] = [];
+  currentAuthors: User[] = [];
 
   constructor(
     private Api: ApiService,

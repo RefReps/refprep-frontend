@@ -10,8 +10,7 @@ import { Quiz } from 'src/app/models/quiz';
 import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
 import { RegisterUser } from 'src/app/_models/registerUser';
-import { Student } from 'src/app/models/student';
-import { Author } from 'src/app/models/author';
+import { User } from 'src/app/models/user';
 import { UserGrade } from 'src/app/models/userGrade';
 
 
@@ -108,8 +107,8 @@ export class ApiService {
     this.http.post(`${this.courseUrl}/${courseId}/students/remove`, { emails }).subscribe()
   }
 
-  getStudentsInCourse(courseId: string): Observable<Student[]> {
-    return this.http.get<Student[]>(`${this.courseUrl}/${courseId}/students`)
+  getStudentsInCourse(courseId: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.courseUrl}/${courseId}/students`)
   }
 
 
@@ -123,8 +122,8 @@ export class ApiService {
     this.http.post(`${this.courseUrl}/${courseId}/authors/remove`, { emails }).subscribe()
   }
 
-  getAuthorsInCourse(courseId: string): Observable<Author[]> {
-    return this.http.get<Author[]>(`${this.courseUrl}/${courseId}/authors`)
+  getAuthorsInCourse(courseId: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.courseUrl}/${courseId}/authors`)
   }
 
 
