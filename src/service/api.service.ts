@@ -8,7 +8,7 @@ import { SectionsInfo } from 'src/app/models/sections-info';
 import { ModuleInfo } from 'src/app/models/module-info';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { Module } from 'src/app/models/module';
-import { Section } from 'src/app/models/section';
+import { Section } from 'src/app/models/course';
 import { Quiz } from 'src/app/models/quiz';
 
 import { environment as dev } from 'src/environments/environment';

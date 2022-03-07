@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Section } from 'src/app/models/section';
+import { Section } from 'src/app/models/course';
 import { ApiService } from 'src/service/api.service';
 import { DialogService } from 'src/service/dialog.service';
 import { ModuleFormAddComponent } from '../module-form-add/module-form-add.component';
