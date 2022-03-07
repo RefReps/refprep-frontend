@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Content } from 'src/app/models/content';
-import { Course } from 'src/app/models/course';
+import { Course, Content } from 'src/app/models/course';
 import { TokenService } from 'src/app/_services/token.service';
 import { ApiService } from 'src/service/api.service';
 

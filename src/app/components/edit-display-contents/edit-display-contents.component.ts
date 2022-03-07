@@ -1,6 +1,6 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
-import { Content } from 'src/app/models/content';
+import { Content } from 'src/app/models/course';
 import { ApiService } from 'src/service/api.service';
 import { DialogService } from 'src/service/dialog.service';
 import { ContentDeleteFormComponent } from '../content-delete-form/content-delete-form.component';
