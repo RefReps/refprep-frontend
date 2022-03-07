@@ -4,8 +4,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Video } from 'src/app/models/video.model';
 import { Course, Section, Module } from 'src/app/models/course';
-import { SectionsInfo } from 'src/app/models/sections-info';
-import { ModuleInfo } from 'src/app/models/module-info';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { Quiz } from 'src/app/models/quiz';
 
@@ -64,12 +62,12 @@ export class ApiService {
   }
 
 
-  getCourseSections(courseId: string): Observable<SectionsInfo[]> {
-    return this.http.get<SectionsInfo[]>(`${this.courseUrl}/${courseId}/section`)
+  getCourseSections(courseId: string): Observable<Section[]> {
+    return this.http.get<Section[]>(`${this.courseUrl}/${courseId}/section`)
   }
 
-  getSectionModules(courseId: string, sectionId: string): Observable<ModuleInfo[]> {
-    return this.http.get<ModuleInfo[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module`)
+  getSectionModules(courseId: string, sectionId: string): Observable<Module[]> {
+    return this.http.get<Module[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module`)
   }
 
   getModuleContent(courseId: string, sectionId: string, moduleID: string): Observable<Content[]> {

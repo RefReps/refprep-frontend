@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/models/course';
-import { CourseBreifInfo } from 'src/app/models/course-breif-info';
-import { CourseInteractionService } from 'src/app/_services/course-interaction.service';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
 

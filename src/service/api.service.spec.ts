@@ -2,7 +2,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { TestBed } from '@angular/core/testing';
-import { CourseBreifInfo } from 'src/app/models/course-breif-info';
 
 describe('ApiService', () => {
   let httpTestingController: HttpTestingController;
