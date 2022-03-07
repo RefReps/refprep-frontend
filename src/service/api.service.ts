@@ -12,7 +12,7 @@ import { environment as prod } from 'src/environments/environment.prod';
 import { RegisterUser } from 'src/app/_models/registerUser';
 import { Student } from 'src/app/models/student';
 import { Author } from 'src/app/models/author';
-import { UserGrade } from 'src/app/models/userGrade';
+import { UserGrade } from 'src/app/models/quiz';
 
 
 @Injectable({
