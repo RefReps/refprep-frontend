@@ -3,10 +3,10 @@
     <mat-radio-group>
         <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
         <mat-radio-group>
-            <mat-radio-button #choice1 color="primary" value="A" (change)="updateAnswers(choice1.value)">{{question.responses.A}}</mat-radio-button><br>
-            <mat-radio-button #choice2 color="primary" value="B" (change)="updateAnswers(choice2.value)">{{question.responses.B}}</mat-radio-button><br>
-            <mat-radio-button #choice3 color="primary" value="C" (change)="updateAnswers(choice3.value)">{{question.responses.C}}</mat-radio-button><br>
-            <mat-radio-button #choice4 color="primary" value="D" (change)="updateAnswers(choice4.value)">{{question.responses.D}}</mat-radio-button><br>
+            <mat-radio-button #choice1 color="primary" value="A" (change)="updateAnswers(choice1.value)">{{question.responses?.A}}</mat-radio-button><br>
+            <mat-radio-button #choice2 color="primary" value="B" (change)="updateAnswers(choice2.value)">{{question.responses?.B}}</mat-radio-button><br>
+            <mat-radio-button #choice3 color="primary" value="C" (change)="updateAnswers(choice3.value)">{{question.responses?.C}}</mat-radio-button><br>
+            <mat-radio-button #choice4 color="primary" value="D" (change)="updateAnswers(choice4.value)">{{question.responses?.D}}</mat-radio-button><br>
         </mat-radio-group>
     </mat-radio-group>
 </mat-card>

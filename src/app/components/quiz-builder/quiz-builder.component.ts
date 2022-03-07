@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, NgForm, FormArray } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { QuizQuestion } from 'src/app/models/quiz-question';
+import { QuizQuestion } from 'src/app/models/quiz';
 import { ApiService } from 'src/service/api.service';
 
 @Component({
