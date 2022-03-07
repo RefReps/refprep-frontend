@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { RegisterUser } from 'src/app/_models/registerUser';
 import { TokenService } from 'src/app/_services/token.service';
 import { ApiService } from 'src/service/api.service';
 
