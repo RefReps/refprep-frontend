@@ -66,7 +66,7 @@ export class QuizBuilderComponent {
   saveQuestion(): void {
     this.questions.push({
       questionNumber: 100,
-      type: this.quizForm.get('type')?.value,
+      questionType: this.quizForm.get('type')?.value,
       question: this.quizForm.get('question')?.value,
       responses: {
         A: this.multipleChoiceType.get('A')?.value,

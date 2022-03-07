@@ -1,5 +1,5 @@
 
-<mat-card *ngIf="question.type == '1_CHOICE'">
+<mat-card *ngIf="question.questionType == '1_CHOICE'">
     <mat-radio-group>
         <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
         <mat-radio-group>
@@ -11,7 +11,7 @@
     </mat-radio-group>
 </mat-card>
         
-<mat-card *ngIf="question.type == 'TRUE_FALSE'">
+<mat-card *ngIf="question.questionType == 'TRUE_FALSE'">
     <mat-radio-group> 
         <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
         <mat-radio-group #tfAnswer>
@@ -21,7 +21,7 @@
     </mat-radio-group>
 </mat-card>
 
-<mat-card *ngIf="question.type == 'FREE_RESPONSE'">
+<mat-card *ngIf="question.questionType == 'FREE_RESPONSE'">
         <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
         <mat-form-field>
             <mat-placeholder>Enter Answer</mat-placeholder>

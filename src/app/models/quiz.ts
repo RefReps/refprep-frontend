@@ -24,7 +24,7 @@ export class QuizVersion {
 
 export class QuizQuestion {
     questionNumber?: number;
-    type?: string;
+    questionType?: string;
     question?: string;
     responses?: Responses;
     answers?: string[];
@@ -62,3 +62,5 @@ export class UserGrade {
     submissionNumber?: string;
     email?: string;
 }
+
+
