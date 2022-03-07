@@ -5,11 +5,13 @@ export class Course {
   isPublished?: boolean;
   isDeleted?: boolean;
   settings?: Settings;
-  isAuthor?: boolean; // do i need?
   // authors?: Author[];
-  //   students?: Student[];
+  // students?: Student[];
   sections?: Section[] | string[];
+
+  isAuthor?: boolean; // do i need?
 }
+
 export class Settings {
   isEnforcements?: boolean;
   enforcementPercent?: number;
@@ -25,6 +27,8 @@ export class Section {
   sectionOrder?: number;
   dropDate?: Date;
   modules?: Module[] | string[];
+
+  isAccessable?: boolean;
 }
 
 export class Module {
@@ -35,6 +39,8 @@ export class Module {
   moduleOrder?: number;
   dropDate?: Date;
   contents?: Content[] | string[];
+
+  isAccessable?: boolean;
 }
 export class Content {
   _id?: string;
@@ -45,4 +51,6 @@ export class Content {
   isPublished?: boolean;
   contentOrder?: number;
   dropDate?: Date;
+
+  isAccessable?: boolean;
 }
