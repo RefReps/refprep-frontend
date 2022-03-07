@@ -16,7 +16,6 @@ import { environment as prod } from 'src/environments/environment.prod';
 import { RegisterUser } from 'src/app/_models/registerUser';
 import { Student } from 'src/app/models/student';
 import { Author } from 'src/app/models/author';
-import { QuizQuestion } from 'src/app/models/quiz-question';
 import { UserGrade } from 'src/app/models/userGrade';
 
 
