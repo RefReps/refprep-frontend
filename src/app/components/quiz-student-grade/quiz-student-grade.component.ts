@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ActiveVersion, Quiz } from 'src/app/models/quiz';
 import { QuizVersion } from 'src/app/models/quiz';
-import { UserGrade } from 'src/app/models/userGrade';
+import { UserGrade } from 'src/app/models/quiz';
 import { ApiService } from 'src/service/api.service';
 
 

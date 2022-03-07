@@ -11,7 +11,7 @@ import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
 import { RegisterUser } from 'src/app/_models/registerUser';
 import { User } from 'src/app/models/user';
-import { UserGrade } from 'src/app/models/userGrade';
+import { UserGrade } from 'src/app/models/quiz';
 
 
 @Injectable({
