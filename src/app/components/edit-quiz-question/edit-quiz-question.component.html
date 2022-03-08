@@ -16,16 +16,16 @@
             </mat-menu>
         </div>
         <br>
-        <mat-radio-group>
-            <mat-radio-button class="m-1" #choice1 color="primary" value="A" (change)="updateAnswers(choice1.value)">
-                {{question.responses.A}}</mat-radio-button><br>
-            <mat-radio-button class="m-1" #choice2 color="primary" value="B" (change)="updateAnswers(choice2.value)">
-                {{question.responses.B}}</mat-radio-button><br>
-            <mat-radio-button class="m-1" #choice3 color="primary" value="C" (change)="updateAnswers(choice3.value)">
-                {{question.responses.C}}</mat-radio-button><br>
-            <mat-radio-button class="m-1" #choice4 color="primary" value="D" (change)="updateAnswers(choice4.value)">
-                {{question.responses.D}}</mat-radio-button><br>
-        </mat-radio-group>
+        <mat-list>
+            <mat-list-item class="">
+                {{question.responses.A}}</mat-list-item><br>
+            <mat-list-item class="">
+                {{question.responses.B}}</mat-list-item><br>
+            <mat-list-item class="">
+                {{question.responses.C}}</mat-list-item><br>
+            <mat-list-item class="">
+                {{question.responses.D}}</mat-list-item><br>
+        </mat-list>
     </mat-card>
 
     <mat-card *ngIf="question.type == 'TRUE_FALSE'">
