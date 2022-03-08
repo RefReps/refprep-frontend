@@ -1,3 +1,4 @@
+import { quizAnswerReducer } from './_store/quizAnswer/quizAnswer.reducer';
 import { quizReducer } from './_store/quiz/quiz.reducer';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -44,7 +45,7 @@ import { StoreModule } from '@ngrx/store';
     VgBufferingModule,
     // VgApiService,
 
-    StoreModule.forRoot({ quiz: quizReducer }),
+    StoreModule.forRoot({ quiz: quizReducer, quizAnswers: quizAnswerReducer }),
 
     DefaultModule, // import all layout modules
     LoginModule,
