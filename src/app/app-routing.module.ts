@@ -18,6 +18,7 @@ import { CourseAuthorsComponent } from './modules/course-authors/course-authors.
 import { CourseQuizComponent } from './modules/course-quiz/course-quiz.component';
 import { QuizStudentViewComponent } from './components/quiz-student-view/quiz-student-view.component';
 import { QuizQuestionComponent } from './components/quiz-question/quiz-question.component';
+import { ViewGradedQuizComponent } from './components/view-graded-quiz/view-graded-quiz.component';
 
 const routes: Routes = [ // Always put more specific routes on the top
 
@@ -30,6 +31,7 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'courses/:courseId/video/:videoId', component: CourseVideoComponent},
       {path: 'courses/:courseId/quiz/:quizId', component: CourseQuizComponent},
       {path: 'courses/:courseId/quiz/:quizId/take', component: QuizStudentViewComponent},
+      {path: 'courses/:courseId/quiz/:quizId/viewQuiz', component: ViewGradedQuizComponent},
       {path: 'courses/:courseId', component: CourseHomeComponent},
       {path: 'courses/:courseId/authors', component: CourseAuthorsComponent},
       {path: 'courses/:courseId/students', component: CourseStudentsComponent},

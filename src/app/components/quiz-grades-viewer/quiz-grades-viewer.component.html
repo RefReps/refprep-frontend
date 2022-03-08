@@ -11,6 +11,7 @@
 <table matSort (matSortChange)="sortGrades($event)">
   <thead>
     <tr>
+      <th>View</th>
       <th mat-sort-header="email">Student Email</th>
       <th mat-sort-header="submission">Submission Number</th>
       <th mat-sort-header="grade">Grade</th>
@@ -20,6 +21,15 @@
   </thead>
   <tbody>
     <tr *ngFor="let userGrade of userGrades">
+      
+      
+      <td>
+        <a routerLink="./viewQuiz">
+          <span class="material-icons">
+            visibility
+          </span>
+         </a>
+      </td>
       <td>{{ userGrade.email }}</td>
       <td>{{ userGrade.submissionNumber }}</td>
       <td>

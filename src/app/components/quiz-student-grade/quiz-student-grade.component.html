@@ -14,6 +14,7 @@
 <table *ngIf="userGrade.length > 0">
   <thead>
     <tr>
+      <th>View</th>
       <th>Submission Number</th>
       <th>Grade</th>
       <th>Started</th>
@@ -22,6 +23,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let userGrade of userGrade">
+      <td>
+        <a routerLink="./viewQuiz">
+          <span class="material-icons">
+            visibility
+          </span>
+         </a>
+      </td>
       <td>{{ userGrade.submissionNumber }}</td>
       <td>
         {{ getGradePercentage(userGrade.grade) }}% ({{
