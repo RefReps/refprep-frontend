@@ -31,7 +31,6 @@ export class QuizGradesViewerComponent implements OnInit {
 
   getQuizGrades(): void {
     this.QuizService.getAllQuizGrades(this.quizId).subscribe((info) => {
-      console.log(info || 'hi');
       this.userGrades = info;
     });
   }
@@ -49,6 +48,8 @@ export class QuizGradesViewerComponent implements OnInit {
       switch (sort.active) {
         case 'email':
           return compare(a.email, b.email, isAsc);
+        case 'submission':
+          return compare(a.submissionNumber, b.submissionNumber, isAsc);
         case 'grade':
           if (a.email == b.email) {
             return compare(a.grade, b.grade, isDesc);
