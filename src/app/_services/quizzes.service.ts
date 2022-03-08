@@ -84,4 +84,10 @@ export class QuizzesService {
       )
       .pipe(map((res) => res.submissions));
   }
+
+  getAllUserGrades(quizId: string): Observable<UserGrade[]> {
+    return this.http
+      .get<{ submissions: UserGrade[] }>(`${this.quizUrl}/${quizId}/grade`)
+      .pipe(map((res) => res.submissions));
+  }
 }
