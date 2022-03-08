@@ -7,4 +7,9 @@ export const addQuizAnswer = createAction(
   props<{ question: QuizQuestion }>()
 );
 
+export const saveQuizSubmissionId = createAction(
+  '[QuizAnswer] Save SubmissionId',
+  props<{ id: string }>()
+);
+
 export const clearQuizAnswers = createAction('[QuizAnswer] Clear Answers');

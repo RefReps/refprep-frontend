@@ -44,7 +44,7 @@ class Responses {
 // }
 
 export class QuizSubmission {
-  id?: string;
+  _id?: string;
   userId?: string;
   quizId?: string;
   quizVersionId?: string;
