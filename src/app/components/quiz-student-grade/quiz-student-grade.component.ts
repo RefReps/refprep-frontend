@@ -42,7 +42,6 @@ export class QuizStudentGradeComponent implements OnInit {
 
   getQuizGrade(): void {
     this.QuizService.getAllUserGrades(this.quizId).subscribe((info) => {
-      console.log(info);
       this.userGrade = info;
     });
   }
