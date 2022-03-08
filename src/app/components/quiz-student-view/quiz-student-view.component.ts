@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizQuestion } from 'src/app/models/quiz';
 import { QuizAnswerSaverService } from 'src/app/_services/quiz-answer-saver.service';
+import { QuizzesService } from 'src/app/_services/quizzes.service';
 import { ApiService } from 'src/service/api.service';
 
 
@@ -17,7 +18,8 @@ export class QuizStudentViewComponent implements OnInit {
 
   constructor(
     private quizAnswerService: QuizAnswerSaverService,
-	private api: ApiService,
+	private quizService: QuizzesService,
+  private api: ApiService,
   private router: Router,
   private route: ActivatedRoute,
   ) { }
@@ -33,11 +35,9 @@ export class QuizStudentViewComponent implements OnInit {
     })
 
 	  if (this.quizId) {
-		  this.api.startQuiz(this.quizId).subscribe(data => {
-			  console.log(data)
-			  for (let i of Object.keys(data.QuizQuestion.questions)) {
-				  this.questions.push(data.QuizQuestion.questions[i])
-			  }
+		  this.quizService.startQuiz(this.quizId).subscribe(data => {
+        this.questions = data.quizQuestions
+        console.log(this.questions)
 		  })
 	  }
   }
