@@ -27,7 +27,7 @@ export class QuizzesService {
     return this.http
       .put<QuizSubmission>(
         `${this.quizUrl}/${quizId}/submission/${submissionId}`,
-        questions
+        { questions }
       )
       .pipe(map((submission) => submission.userAnswers || []));
   }
