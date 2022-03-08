@@ -49,7 +49,6 @@ export class QuizStudentViewComponent implements OnInit {
     if (this.quizId) {
       this.questionAnswer$
         .subscribe((quiz) => {
-          console.log(quiz);
           this.quizService
             .saveUserQuizAnswers(this.quizId, quiz.id, quiz.questions)
             .subscribe(() => {
