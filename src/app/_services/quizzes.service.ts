@@ -1,3 +1,4 @@
+import { ActiveVersion, Quiz, UserGrade } from './../models/quiz';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
 import { provideRoutes } from '@angular/router';
@@ -6,15 +7,14 @@ import { QuizQuestion, QuizStart, QuizSubmission } from '../models/quiz';
 
 import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
-import { map } from 'rxjs/operators'
-
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuizzesService {
-  baseUrl: string = isDevMode() ? dev.apiUrl : prod.apiUrl
-  quizUrl: string = '${this.baseUrl}/api/quiz';
+  baseUrl: string = isDevMode() ? dev.apiUrl : prod.apiUrl;
+  quizUrl: string = `${this.baseUrl}/api/quiz`;
 
   constructor(private http: HttpClient) {}
 
@@ -44,5 +44,44 @@ export class QuizzesService {
     return this.http
       .get<QuizStart>(`${this.quizUrl}/${quizId}/start`)
       .pipe(map((quizStart) => quizStart));
+  }
+
+  getActiveQuiz(quizId: string): Observable<ActiveVersion> {
+    return this.http.get<ActiveVersion>(`${this.quizUrl}/${quizId}`);
+  }
+
+  postNewQuiz(name: string): Observable<Quiz> {
+    return this.http.post<Quiz>(`${this.quizUrl}`, { name });
+  }
+
+  finishSubmission(
+    quizId: string,
+    submissionId: string
+  ): Observable<QuizSubmission> {
+    return this.http
+      .post<{ submisson: QuizSubmission }>(
+        `${this.quizUrl}/${quizId}/grade/${submissionId}`,
+        {}
+      )
+      .pipe(map((res) => res.submisson));
+  }
+
+  batchPutQuestionsOnQuiz(
+    quizId: string,
+    questions: QuizQuestion[],
+    deleteQuestions: number[]
+  ): Observable<ActiveVersion> {
+    return this.http.put<ActiveVersion>(`${this.quizUrl}/${quizId}/batch`, {
+      questions,
+      deleteQuestions,
+    });
+  }
+
+  getAllQuizGrades(quizId: string): Observable<UserGrade[]> {
+    return this.http
+      .get<{ submissions: UserGrade[] }>(
+        `${this.quizUrl}/${quizId}/view-grades`
+      )
+      .pipe(map((res) => res.submissions));
   }
 }
