@@ -1,0 +1,122 @@
+<div class="shadow-lg max-w-4xl">
+    <mat-card *ngIf="question.questionType == '1_CHOICE'">
+        <mat-card class="font-bold text-lg">{{question.questionNumber}}: {{question.question}}</mat-card>
+        <!-- edit icon  -->
+        <div class="flex-1 flex-col">
+            <button mat-icon-button [matMenuTriggerFor]="editMenu" class="float-right">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #editMenu>
+                <button mat-icon-button color="black" class="float-left">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" class="float-right">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-menu>
+        </div>
+        <br>
+        <mat-list>
+            <mat-list-item class="">
+                {{question.responses?.A}}</mat-list-item><br>
+            <mat-list-item class="">
+                {{question.responses?.B}}</mat-list-item><br>
+            <mat-list-item class="">
+                {{question.responses?.C}}</mat-list-item><br>
+            <mat-list-item class="">
+                {{question.responses?.D}}</mat-list-item><br>
+        </mat-list>
+    </mat-card>
+
+    <mat-card *ngIf="question.questionType == 'TRUE_FALSE'">
+        <mat-card class="font-bold text-lg">{{question.questionNumber}}: {{question.question}}</mat-card>
+        <!-- edit icon  -->
+        <div class="flex-1 flex-col">
+            <button mat-icon-button [matMenuTriggerFor]="editMenu" class="float-right">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #editMenu>
+                <button mat-icon-button color="black" class="float-left">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" class="float-right">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-menu>
+        </div><br>
+        <mat-radio-group #tfAnswer>
+            <mat-radio-button class="m-1" #qTrue color="primary" value="true" (change)="updateAnswers(qTrue.value)">
+                true
+            </mat-radio-button><br>
+            <mat-radio-button class="m-1" #qFalse color="primary" value="false" (change)="updateAnswers(qFalse.value)">
+                false
+            </mat-radio-button><br>
+        </mat-radio-group>
+    </mat-card>
+
+    <mat-card *ngIf="question.questionType == 'FREE_RESPONSE'">
+        <mat-card class="font-bold text-lg">{{question.questionNumber}}: {{question.question}}</mat-card>
+        <!-- edit icon  -->
+        <div class="flex-1 flex-col">
+            <button mat-icon-button [matMenuTriggerFor]="editMenu" class="float-right">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #editMenu>
+                <button mat-icon-button color="black" class="float-left">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" class="float-right">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-menu>
+        </div><br>
+        <mat-form-field>
+            <mat-placeholder>Enter Answer</mat-placeholder>
+            <input matInput #frAnswer (change)="updateAnswers(frAnswer.value)">
+        </mat-form-field>
+    </mat-card>
+</div>
+<!-- <form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
+    <div *ngIf="question.type === 'MULTI_CHOICE'" >
+        <mat-card>
+            <mat-label>{{question.question}}</mat-label> <br>
+            <mat-checkbox color = "primary" value = "A">{{question.responses.A}}</mat-checkbox>
+            <mat-checkbox color = "primary" value = "B">{{question.responses.B}}</mat-checkbox>
+            <mat-checkbox color = "primary" value = "C">{{question.responses.C}}</mat-checkbox>
+            <mat-checkbox color = "primary" value = "D">{{question.responses.D}}</mat-checkbox>
+            <mat-card-actions> 
+                <button type="submit" mat-raised-button color = "primary">Submit</button>
+            </mat-card-actions>
+           
+        </mat-card>
+    </div>
+</form> -->
+
+<!-- <form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
+    <mat-radio-group  *ngIf="question.type === 'TRUE_FALSE'" formControlName="answer">
+        <mat-card>
+            <mat-label>{{question.question}}</mat-label> <br>
+            <mat-radio-button color = "primary"value = "true">True</mat-radio-button>
+            <mat-radio-button color = "primary" value = "false">False</mat-radio-button>
+            <mat-card-actions> 
+                <button type="submit" mat-raised-button color = "primary">Submit</button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-radio-group>
+</form>
+
+<form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
+    <mat-form-field  *ngIf="question.type === 'FREE_RESPONSE'" appearance="fill" >
+        <mat-card>
+            <mat-label>{{question.question}}</mat-label>
+            <textarea matInput formControlName="answer"></textarea>
+            <mat-card-actions> 
+                <button type="submit" mat-raised-button color = "primary">Submit</button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-form-field> 
+</form>
+</div>
+
+
+ -->

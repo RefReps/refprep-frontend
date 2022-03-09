@@ -52,6 +52,11 @@ import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-gra
 import { ModuleDeleteFormComponent } from './module-delete-form/module-delete-form.component';
 import { ContentDeleteFormComponent } from './content-delete-form/content-delete-form.component';
 import { ViewGradedQuizComponent } from './view-graded-quiz/view-graded-quiz.component';
+import { CourseQuizEditComponent } from './course-quiz-edit/course-quiz-edit.component';
+import { EditQuizQuestionComponent } from './edit-quiz-question/edit-quiz-question.component';
+import { UpdateSectionDialogComponent } from './update-section-dialog/update-section-dialog.component';
+import { UpdateModuleDialogComponent } from './update-module-dialog/update-module-dialog.component';
+import { UpdateContentDialogComponent } from './update-content-dialog/update-content-dialog.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -98,6 +103,11 @@ import { ViewGradedQuizComponent } from './view-graded-quiz/view-graded-quiz.com
     ModuleDeleteFormComponent,
     ContentDeleteFormComponent,
     ViewGradedQuizComponent,
+    CourseQuizEditComponent,
+    EditQuizQuestionComponent,
+    UpdateSectionDialogComponent,
+    UpdateModuleDialogComponent,
+    UpdateContentDialogComponent,
   ],
   imports: [
     MaterialModule,
@@ -154,6 +164,11 @@ import { ViewGradedQuizComponent } from './view-graded-quiz/view-graded-quiz.com
     QuizGradesViewerComponent,
     QuizStudentGradeComponent,
     ViewGradedQuizComponent,
+    CourseQuizEditComponent,
+    EditQuizQuestionComponent,
+    UpdateSectionDialogComponent,
+    UpdateModuleDialogComponent,
+    UpdateContentDialogComponent
   ],
 })
 export class ComponentsModule { }

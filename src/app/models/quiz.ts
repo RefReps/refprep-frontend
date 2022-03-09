@@ -1,6 +1,6 @@
 export interface ActiveVersion {
   quiz?: Quiz;
-  activeVersion?: QuizVersion;
+  quizVersion?: QuizVersion;
 }
 
 export interface QuizStart {

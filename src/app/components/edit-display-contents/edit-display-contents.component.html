@@ -6,8 +6,12 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #editMenu class="max-w-min">
-            <button mat-icon-button (click)="onEditClick(content)" color="black" class="float-left">
+            <button mat-icon-button (click)="openUpdateContentDialog(content._id!)" color="black" class="float-left">
                 <mat-icon>edit</mat-icon>
+            </button>
+            <button *ngIf=" content.onModel=='Quiz'" (click)="onEditClick(content)" mat-icon-button color="primary"
+                class="float-left">
+                <mat-icon>add_circle</mat-icon>
             </button>
             <button (click)="openDeleteContentDialog(content._id!)" mat-icon-button color="warn" class="float-left">
                 <mat-icon>delete</mat-icon>

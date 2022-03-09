@@ -12,23 +12,20 @@
 </mat-card>
         
 <mat-card *ngIf="question.questionType == 'TRUE_FALSE'">
-    <mat-radio-group> 
-        <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
-        <mat-radio-group #tfAnswer>
-            <mat-radio-button #qTrue color="primary" value="true" (change)="updateAnswers(qTrue.value)">true</mat-radio-button><br>
-            <mat-radio-button #qFalse color="primary" value="false" (change)="updateAnswers(qFalse.value)">false</mat-radio-button><br>
-        </mat-radio-group>
+    <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
+    <mat-radio-group #tfAnswer>
+        <mat-radio-button #qTrue color="primary" value="true" (change)="updateAnswers(qTrue.value)">true</mat-radio-button><br>
+        <mat-radio-button #qFalse color="primary" value="false" (change)="updateAnswers(qFalse.value)">false</mat-radio-button><br>
     </mat-radio-group>
 </mat-card>
 
 <mat-card *ngIf="question.questionType == 'FREE_RESPONSE'">
-        <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
-        <mat-form-field>
-            <mat-placeholder>Enter Answer</mat-placeholder>
-            <input matInput #frAnswer (change)="updateAnswers(frAnswer.value)">
-        </mat-form-field>
+    <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
+    <mat-form-field>
+        <mat-placeholder>Enter Answer</mat-placeholder>
+        <input matInput #frAnswer (change)="updateAnswers(frAnswer.value)">
+    </mat-form-field>
 </mat-card>
-
 <!-- <form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
     <div *ngIf="question.type === 'MULTI_CHOICE'" >
         <mat-card>
