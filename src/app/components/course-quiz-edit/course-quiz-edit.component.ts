@@ -35,12 +35,6 @@ export class CourseQuizEditComponent implements OnInit {
         this.quizInfo = activeVersion.quiz || {}
         this.questions = activeVersion.quizVersion?.questions || []
       })
-      // this.api.getQuizInfo(this.quizId).subscribe(data => {
-      //   console.log(data)
-      //   for (let i of Object.keys(data.questions)) {
-      //     this.questions.push(data.questions[i])
-      //   }
-      // })
     }
   }
 
