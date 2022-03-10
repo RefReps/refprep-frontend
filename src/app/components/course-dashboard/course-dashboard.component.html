@@ -3,9 +3,9 @@
         Course Dashboard
         <div style="float: right" >
             <mat-form-field>
-                <input matInput name="code" placeholder="Coupon Code">
+                <input matInput #codeInput name="code" placeholder="Coupon Code">
             </mat-form-field>
-            <button mat-button type="submit" class="bg-green-400" mat-raised-button>
+            <button mat-button (click)="joinCourseByCode(codeInput.value)" class="bg-green-400" mat-raised-button>
                 Join Course
             </button>
         </div>

@@ -1,3 +1,4 @@
+import { JoinCourseByCodeComponent } from './components/join-course-by-code/join-course-by-code.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -51,6 +52,10 @@ const routes: Routes = [ // Always put more specific routes on the top
   {
     path: 'register',
     component: RegisterFormComponent,
+  },
+  {
+    path: 'join/:courseCode',
+    component: JoinCourseByCodeComponent,
   },
   {
     path: 'logout',

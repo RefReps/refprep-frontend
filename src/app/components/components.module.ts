@@ -57,6 +57,7 @@ import { EditQuizQuestionComponent } from './edit-quiz-question/edit-quiz-questi
 import { UpdateSectionDialogComponent } from './update-section-dialog/update-section-dialog.component';
 import { UpdateModuleDialogComponent } from './update-module-dialog/update-module-dialog.component';
 import { UpdateContentDialogComponent } from './update-content-dialog/update-content-dialog.component';
+import { JoinCourseByCodeComponent } from './join-course-by-code/join-course-by-code.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -108,6 +109,7 @@ import { UpdateContentDialogComponent } from './update-content-dialog/update-con
     UpdateSectionDialogComponent,
     UpdateModuleDialogComponent,
     UpdateContentDialogComponent,
+    JoinCourseByCodeComponent,
   ],
   imports: [
     MaterialModule,
@@ -168,7 +170,8 @@ import { UpdateContentDialogComponent } from './update-content-dialog/update-con
     EditQuizQuestionComponent,
     UpdateSectionDialogComponent,
     UpdateModuleDialogComponent,
-    UpdateContentDialogComponent
+    UpdateContentDialogComponent,
+    JoinCourseByCodeComponent
   ],
 })
 export class ComponentsModule { }
