@@ -28,7 +28,6 @@ export class QuizQuestion {
   question?: string;
   responses?: Responses;
   answers?: string[];
-  answer?: boolean;
   points?: Number;
 }
 

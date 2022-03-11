@@ -7,9 +7,9 @@ const initState: QuizQuestion[] = [];
 export const quizReducer = createReducer(
   initState,
   on(QuizActions.addQuestion, (state, { question }) => {
-    state = state.filter((q) => q.questionNumber != question.questionNumber);
-    state.push(question);
-    return state;
+    const newState = state.filter((q) => q.questionNumber != question.questionNumber);
+    newState.push(question);
+    return newState;
   }),
   on(QuizActions.removeQuestion, (state, { number }) => {
     return state.filter((q) => q.questionNumber != number);

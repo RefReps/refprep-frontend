@@ -23,7 +23,7 @@ export class QuizStudentViewComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private store: Store
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
