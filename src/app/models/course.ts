@@ -25,7 +25,7 @@ export class Section {
   courseId?: string;
   isPublished?: boolean;
   sectionOrder?: number;
-  dropDate?: Date;
+  dropDate?: string;
   modules?: Module[] | string[];
 
   isAccessable?: boolean;
@@ -37,7 +37,7 @@ export class Module {
   sectionId?: string;
   isPublished?: boolean;
   moduleOrder?: number;
-  dropDate?: Date;
+  dropDate?: string;
   contents?: Content[] | string[];
 
   isAccessable?: boolean;
@@ -50,7 +50,7 @@ export class Content {
   moduleId?: string;
   isPublished?: boolean;
   contentOrder?: number;
-  dropDate?: Date;
+  dropDate?: string;
 
   isAccessable?: boolean;
 }
