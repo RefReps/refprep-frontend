@@ -1,10 +1,24 @@
 <mat-card *ngFor="let content of contents">
-    <!-- To Quiz Component -->
-    <a *ngIf="content.onModel=='Quiz'" [routerLink]="['./quiz', content.toDocument]" >
-        {{content.name}}
-    </a>
-    <!-- To Video Component -->
-    <a *ngIf="content.onModel=='Video'" [routerLink]="['./video', content.toDocument]" >
-        {{content.name}}
-    </a>
+    <div *ngIf="isAccessibleByDate(content) || isAuthor()" class="">
+        <!-- To Quiz Component -->
+        <a *ngIf="content.onModel=='Quiz'" [routerLink]="['./quiz', content.toDocument]" >
+            {{content.name}}
+        </a>
+        <!-- To Video Component -->
+        <a *ngIf="content.onModel=='Video'" [routerLink]="['./video', content.toDocument]" >
+            {{content.name}}
+        </a>
+    </div>
+    <div *ngIf="!isAccessibleByDate(content) && !isAuthor()" class="">
+        <!-- To Quiz Component -->
+        <span *ngIf="content.onModel=='Quiz'">
+            {{content.name}}
+        </span>
+        <!-- To Video Component -->
+        <span *ngIf="content.onModel=='Video'">
+            {{content.name}}
+        </span>
+        <mat-icon class="float-right">lock</mat-icon>
+        <span class="float-right">{{getContentDropDate(content)}}</span>
+    </div>
 </mat-card>
