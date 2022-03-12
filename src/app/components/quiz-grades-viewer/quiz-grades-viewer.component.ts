@@ -4,6 +4,7 @@ import { Sort } from '@angular/material/sort';
 import { ActiveVersion } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/quiz';
 import { ApiService } from 'src/service/api.service';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-quiz-grades-viewer',
@@ -34,15 +35,18 @@ export class QuizGradesViewerComponent implements OnInit {
     this.QuizService.getAllQuizGrades(this.quizId).subscribe((info) => {
       this.userGrades = info;
     });
-    this.viewOnlyHighestGrade
   }
 
-  viewOnlyHighestGrade() {
-    this.userGrades = Array.from(this.userGrades.reduce((m, obj) => {
-      const curr = m.get(obj.email);
-      return m.set(obj.email, curr ? (curr.grade < obj.grade! ? obj : curr) : obj);
+  viewOnlyHighestGrade(change: MatCheckboxChange) {
+    if (this.highestGradeOnly == true) {
+      this.userGrades = Array.from(this.userGrades.reduce((m, obj) => {
+        const curr = m.get(obj.email);
+        return m.set(obj.email, curr ? (curr.grade < obj.grade! ? obj : curr) : obj);
     }, new Map).values());
-      console.log(this.userGrades)
+  }
+    else {
+      this.getQuizGrades();
+    }
   }
 
 
@@ -61,7 +65,6 @@ export class QuizGradesViewerComponent implements OnInit {
         case 'submission':
           return compare(a.submissionNumber, b.submissionNumber, isAsc);
         case 'grade':
-          this.viewOnlyHighestGrade();
           return compare(a.grade, b.grade, isDesc)
         // if (a.email == b.email) {
           //   return compare(a.grade, b.grade, isDesc);
