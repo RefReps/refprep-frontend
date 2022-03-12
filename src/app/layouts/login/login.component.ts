@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   hide = true;
 
-  isLoadingResults = false;
+  isLoadingResults = true;
 
   constructor(
     private authService: AuthenticationService,
