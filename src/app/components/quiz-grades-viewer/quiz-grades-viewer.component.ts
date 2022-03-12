@@ -4,6 +4,7 @@ import { Sort } from '@angular/material/sort';
 import { ActiveVersion } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/quiz';
 import { ApiService } from 'src/service/api.service';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-quiz-grades-viewer',
@@ -15,6 +16,7 @@ export class QuizGradesViewerComponent implements OnInit {
   userGrades: UserGrade[] = [];
   quizInfo: ActiveVersion = {};
   highestGrades: UserGrade[] = [];
+  highestGradeOnly = false;
 
   constructor(private Api: ApiService, private QuizService: QuizzesService) {}
 
@@ -35,13 +37,25 @@ export class QuizGradesViewerComponent implements OnInit {
     });
   }
 
+  viewOnlyHighestGrade(change: MatCheckboxChange) {
+    if (this.highestGradeOnly == true) {
+      this.userGrades = Array.from(this.userGrades.reduce((m, obj) => {
+        const curr = m.get(obj.email);
+        return m.set(obj.email, curr ? (curr.grade < obj.grade! ? obj : curr) : obj);
+    }, new Map).values());
+  }
+    else {
+      this.getQuizGrades();
+    }
+  }
+
+
   sortGrades(sort: Sort) {
     const data = this.userGrades.slice();
     if (!sort.active || sort.direction === '') {
       this.userGrades = data;
       return;
     }
-
     this.userGrades = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       const isDesc = sort.direction === 'desc';
@@ -51,11 +65,12 @@ export class QuizGradesViewerComponent implements OnInit {
         case 'submission':
           return compare(a.submissionNumber, b.submissionNumber, isAsc);
         case 'grade':
-          if (a.email == b.email) {
-            return compare(a.grade, b.grade, isDesc);
-          } else {
-            return compare(a.email, b.email, isAsc);
-          }
+          return compare(a.grade, b.grade, isDesc)
+        // if (a.email == b.email) {
+          //   return compare(a.grade, b.grade, isDesc);
+          // } else {
+          //   return compare(a.email, b.email, isAsc);
+          // }
         case 'dateStarted':
           return compare(a.dateStarted, b.dateStarted, isAsc);
         case 'dateFinished':
@@ -116,3 +131,4 @@ function compare(
     return 0;
   }
 }
+

@@ -17,6 +17,14 @@
                     formControlName="password" required>
                 <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Confirm Password</mat-label>
+                <input matInput placeholder="Password" [type]="hide? 'password' : 'text'"
+                    formControlName="passwordCheck" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+            <div *ngIf="!match" class="text-red-600">Passwords do not match</div>
             <div style="text-align: center;">
                 <button class="bg-blue-200" mat-raised-button>Sign Up</button>
             </div>

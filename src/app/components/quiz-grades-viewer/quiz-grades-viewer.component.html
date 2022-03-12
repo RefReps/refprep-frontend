@@ -10,7 +10,9 @@
 <div class="center">
   <h1 class="text-display">Student Grades:</h1>
 </div>
-
+<div>
+  <mat-checkbox [(ngModel)]="highestGradeOnly" (ngModelChange)="viewOnlyHighestGrade($event)">Display Students Best Attempt</mat-checkbox>
+</div>
 <table matSort (matSortChange)="sortGrades($event)">
   <thead>
     <tr>
