@@ -8,6 +8,7 @@
   <h1 class="text-display">Student Grades:</h1>
 </div>
 
+<mat-checkbox [(ngModel)]="highestGradeOnly" (ngModelChange)="viewOnlyHighestGrade()">Display Students' Best Attempt</mat-checkbox>
 <table matSort (matSortChange)="sortGrades($event)">
   <thead>
     <tr>
@@ -21,8 +22,6 @@
   </thead>
   <tbody>
     <tr *ngFor="let userGrade of userGrades">
-      
-      
       <td>
         <a routerLink="./viewQuiz">
           <span class="material-icons">
