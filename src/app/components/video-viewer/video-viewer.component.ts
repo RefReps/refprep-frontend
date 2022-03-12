@@ -35,6 +35,24 @@ export class VideoViewerComponent implements OnInit {
   loadVideoInHTMLPlayer(): void {
     const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
     this.videoUrl = `${this.Api.videoUrl}/${this.videoId}`
+    var supposedCurrentTime = 0;
+    videoPlayer.addEventListener('timeupdate', function(){
+      if (!videoPlayer.seeking) {
+          supposedCurrentTime = videoPlayer.currentTime;
+      }
+    });
+
+    videoPlayer.addEventListener('seeking', function() {
+      var delta = videoPlayer.currentTime - supposedCurrentTime;
+      if (delta > 0.01) {
+        videoPlayer.currentTime = supposedCurrentTime;
+      }
+    });
+
+    videoPlayer.addEventListener('ended', function(){
+      supposedCurrentTime = 0;
+    })
+
 
     videoPlayer.load()
   }
