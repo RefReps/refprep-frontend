@@ -7,6 +7,11 @@ export const addQuestion = createAction(
   props<{ question: QuizQuestion }>()
 );
 
+export const moveQuestion = createAction(
+  '[Quiz] Move Question',
+  props<{ questionNumber: number; newNumber: number }>()
+);
+
 export const removeQuestion = createAction(
   '[Quiz] Remove Question',
   props<{ number: number }>()
