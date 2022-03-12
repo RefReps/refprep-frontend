@@ -7,6 +7,7 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { ContentFormAddVideoComponent } from '../content-form-add-video/content-form-add-video.component';
 import { ContentAddTabSelectComponent } from '../content-add-tab-select/content-add-tab-select.component';
 import { ModuleDeleteFormComponent } from '../module-delete-form/module-delete-form.component';
+import { UpdateModuleDialogComponent } from '../update-module-dialog/update-module-dialog.component';
 
 @Component({
   selector: 'app-edit-display-modules',
@@ -48,6 +49,9 @@ export class EditDisplayModulesComponent implements OnInit {
     this.dialogService.open(ModuleDeleteFormComponent, { moduleId })
   }
 
+  openUpdateModuleDialog(moduleId: string): void {
+    this.dialogService.open(UpdateModuleDialogComponent, { moduleId })
+  }
 
   onDrop(event: any) {
     const moduleId = this.modules[event.previousIndex]._id

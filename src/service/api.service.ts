@@ -1,3 +1,4 @@
+import { ApiResponse } from './../app/models/apiResponse';
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -93,6 +94,10 @@ export class ApiService {
 
   updateCourse(courseId: string, courseForm: FormData): void {
     this.http.put(`${this.courseUrl}/${courseId}`, courseForm).subscribe();
+  }
+
+  joinCourseByCode(code: string): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>(`${this.courseUrl}/code/${code}`, {})
   }
 
 

@@ -2,7 +2,10 @@
   <h1 class="text-display">{{ quizInfo?.quiz?.name }}</h1>
 </div>
 <div class="center">
-  <button class="bg-blue-200" mat-raised-button>Edit Quiz</button>
+  <a [routerLink]="['./edit']">
+    <button class="bg-blue-200" mat-raised-button>Edit
+        Quiz</button>
+  </a>
 </div>
 <div class="center">
   <h1 class="text-display">Student Grades:</h1>

@@ -70,7 +70,7 @@
     <mat-step optional="true" [stepControl]="trueFalseType" *ngIf="quizForm.get('type')?.value=='TRUE_FALSE'">
         <form [formGroup]="trueFalseType">
             <ng-template matStepLabel>True False</ng-template>
-            <mat-radio-group aria-label="Select the correct answer" formControlName="answer">
+            <mat-radio-group aria-label="Select the correct answer" formControlName="answers">
                 <mat-radio-button value="true">True</mat-radio-button>
                 <mat-radio-button value="false">False</mat-radio-button>
             </mat-radio-group>
@@ -100,8 +100,7 @@
         <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
-            <button mat-button (click)=onSubmit()> Save Question</button>
-            <button mat-button (click)=onPost()> Save Quiz</button>
+            <button mat-button (click)=addQuestion()> Add Question</button>
         </div>
     </mat-step>
 </mat-stepper>

@@ -27,6 +27,15 @@ export class DisplayContentsComponent implements OnInit {
       .subscribe(info => this.contents = info)
   }
 
+  isAccessibleByDate(content: Content): boolean {
+    return new Date() > new Date(content.dropDate!)
+  }
+
+  getContentDropDate(content: Content): string {
+    let date = new Date(content.dropDate!)
+    return date.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric' }) + ' ' + date.toLocaleTimeString('en-US')
+  }
+
   isAuthor(): boolean {
     return this.tokenService.getIsAuthor()
   }

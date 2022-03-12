@@ -1,14 +1,6 @@
 <div class="p-0 m-0">
     <div class="header-bar">
         Course Dashboard
-        <div style="float: right" >
-            <mat-form-field>
-                <input matInput name="code" formControlName="code" placeholder="Coupon Code">
-            </mat-form-field>
-            <button mat-button type="submit" class="bg-green-400" mat-raised-button>
-                Join Course
-            </button>
-        </div>
     </div>
     <mat-divider></mat-divider>
     <div class="flex flex-row flex-wrap">
@@ -17,5 +9,17 @@
             <app-course-card [course]="course"></app-course-card>
         </div>
 
+    </div>
+</div>
+<div>
+    <div style="float: bottom">
+        <mat-card class="max-w-min">
+            <mat-form-field>
+                <input matInput #codeInput name="code" placeholder="Coupon Code">
+            </mat-form-field>
+            <button mat-button (click)="joinCourseByCode(codeInput.value)" class="bg-green-400" mat-raised-button>
+                Join Course
+            </button>
+        </mat-card>
     </div>
 </div>

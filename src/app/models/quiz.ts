@@ -1,6 +1,6 @@
 export interface ActiveVersion {
   quiz?: Quiz;
-  activeVersion?: QuizVersion;
+  quizVersion?: QuizVersion;
 }
 
 export interface QuizStart {
@@ -28,7 +28,6 @@ export class QuizQuestion {
   question?: string;
   responses?: Responses;
   answers?: string[];
-  answer?: boolean;
   points?: Number;
 }
 

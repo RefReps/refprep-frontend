@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { QuizzesService } from 'src/app/_services/quizzes.service';
 import { ApiService } from 'src/service/api.service';
 import { DialogService } from 'src/service/dialog.service';
 import { QuizBuilderComponent } from '../quiz-builder/quiz-builder.component';
@@ -20,6 +21,7 @@ export class ContentFormAddQuizComponent {
     private formBuilder: FormBuilder,
     private Api: ApiService,
     private dialogService: DialogService,
+    private quizService: QuizzesService
   ) {
     this.moduleId = data.data.moduleId
     this.quizForm = this.formBuilder.group({
@@ -42,7 +44,7 @@ export class ContentFormAddQuizComponent {
 
   onFormSubmit() {
     if (this.moduleId && this.quizName) {
-      this.Api.postNewQuiz(this.quizName).subscribe(quiz => {
+      this.quizService.postNewQuiz(this.quizName).subscribe(quiz => {
         const form = new FormData()
         const data = {
           name: this.quizName,

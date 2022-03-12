@@ -1,8 +1,13 @@
+import { selectQuiz } from './../../_store/quiz/quiz.selector';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, NgForm, FormArray } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { QuizQuestion } from 'src/app/models/quiz';
+import { Quiz, QuizQuestion } from 'src/app/models/quiz';
+import { QuizzesService } from 'src/app/_services/quizzes.service';
 import { ApiService } from 'src/service/api.service';
+import { Store } from '@ngrx/store';
+import { ActivatedRoute, Router } from '@angular/router';
+import { addQuestion } from 'src/app/_store/quiz/quiz.actions';
 
 @Component({
   selector: 'app-quiz-builder',
@@ -12,8 +17,10 @@ import { ApiService } from 'src/service/api.service';
 export class QuizBuilderComponent {
   isLinear = false;
 
-  quizId: string;
-  questions: QuizQuestion[] = []
+  quizId: string = '';
+  questions: QuizQuestion[] = [];
+  quiz: Quiz = {};
+  quizQuestions$ = this.store.select(selectQuiz);
 
   quizForm = this.formBuilder.group({
     question: [''],
@@ -26,12 +33,11 @@ export class QuizBuilderComponent {
     B: [''],
     C: [''],
     D: [''],
-    answer: [''],
     answers: [''],
   });
 
   trueFalseType = this.formBuilder.group({
-    answer: [''],
+    answers: [''],
   });
 
   textBoxType = this.formBuilder.group({
@@ -41,25 +47,105 @@ export class QuizBuilderComponent {
   constructor(
     private formBuilder: FormBuilder,
     private api: ApiService,
+    private quizService: QuizzesService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private store: Store,
     @Inject(MAT_DIALOG_DATA) public data: any
-    ) {
-      this.quizId = data.data.quizId
-     }
+  ) {
+    this.quizId = data.data.quizId
+  }
+
+
+  addMultipleChoice(): void {
+    const question: QuizQuestion = {};
+    this.quizQuestions$.subscribe(questions => {
+      question.question = this.quizForm.get('question')?.value;
+      question.questionNumber = questions.length + 1;
+      question.questionType = this.quizForm.get('type')?.value;
+      question.responses = {
+        A: this.multipleChoiceType.get('A')?.value,
+        B: this.multipleChoiceType.get('B')?.value,
+        C: this.multipleChoiceType.get('C')?.value,
+        D: this.multipleChoiceType.get('D')?.value,
+      }
+      question.answers = [];
+      question.points = 1;
+      this.store.dispatch(addQuestion({ question }));
+    }).unsubscribe()
+    console.log(question);
+  };
+
+  addTrueFalse(): void {
+    const question: QuizQuestion = {};
+    this.quizQuestions$.subscribe(questions => {
+      question.question = this.quizForm.get('question')?.value;
+      question.questionNumber = questions.length + 1;
+      question.questionType = this.quizForm.get('type')?.value;
+      question.answers = [];
+      question.points = 1;
+      console.log(question);
+      this.store.dispatch(addQuestion({ question }));
+    }).unsubscribe()
+  }
+
+  addFreeResponse(): void {
+    let question: QuizQuestion = {};
+    this.quizQuestions$.subscribe(questions => {
+      console.log('...hi...')
+      question.question = this.quizForm.get('question')?.value;
+      question.questionNumber = questions.length + 1;
+      question.questionType = this.quizForm.get('type')?.value;
+      question.answers = [];
+      question.points = 1;
+      this.store.dispatch(addQuestion({ question }));
+    }).unsubscribe()
+    console.log(question);
+  }
+
+  addQuestion(): void {
+    let questionType = this.quizForm.get('type')?.value;
+
+    switch (questionType) {
+      case '1_CHOICE':
+        this.addMultipleChoice();
+        break;
+      case 'TRUE_FALSE':
+        this.addTrueFalse();
+        break;
+      case 'FREE_RESPONSE':
+        this.addFreeResponse();
+    }
+
+  }
 
   onSubmit(): void {
-    this.saveQuestion()
+    if (this.quizId) {
+      this.quizQuestions$
+        .subscribe((quiz) => {
+          this.quizService
+            .batchPutQuestionsOnQuiz(this.quizId, quiz, [])
+            .subscribe(() => {
+              this.route.paramMap.subscribe((params) => {
+                let id = params.get('courseId');
+                this.router.navigate(['/courses', id, 'quiz', this.quizId, '/batch']);
+              });
+            });
+        }).unsubscribe();
+    }
     console.warn('Your quiz question has been submitted', this.quizForm.value, this.multipleChoiceType.value);
   }
 
+
   onPost(): void {
     if (!this.quizId) {
-      return 
+      return
     }
     this.saveQuestion()
-    this.api.batchPutQuestions(this.quizId, {questions: this.questions})
-    while(this.questions.length > 0) {
+    this.quizService.batchPutQuestionsOnQuiz(this.quizId, this.questions, [])
+    while (this.questions.length > 0) {
       this.questions.pop();
-  }
+    }
     // window.location.reload()
   }
 
@@ -74,7 +160,6 @@ export class QuizBuilderComponent {
         C: this.multipleChoiceType.get('C')?.value,
         D: this.multipleChoiceType.get('D')?.value,
       },
-      answer: this.trueFalseType.get('answer')?.value,
       answers: this.answers
     })
     console.log(this.questions)
