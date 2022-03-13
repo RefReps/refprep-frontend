@@ -1,3 +1,4 @@
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import {
   addQuestion,
   moveQuestion,
@@ -26,7 +27,8 @@ export class CourseQuizEditComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private dialogService: DialogService,
     private quizService: QuizzesService,
-    private store: Store
+    private store: Store,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnDestroy(): void {
@@ -49,6 +51,12 @@ export class CourseQuizEditComponent implements OnInit, OnDestroy {
         });
       });
     }
+  }
+
+  openSnackBar(message: string, action: string): void {
+    const ONE_SECOND = 1000;
+    const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
+    this._snackBar.open(message, action, config);
   }
 
   openQuizBuilderDialog(contentId: string): void {
@@ -75,6 +83,7 @@ export class CourseQuizEditComponent implements OnInit, OnDestroy {
             .subscribe((res) => {
               res.quizVersion?.questions?.forEach((question) => {
                 this.store.dispatch(addQuestion({ question }));
+                this.openSnackBar('Quiz Questions have been saved!', '✓')
               });
             });
         })
