@@ -1,21 +1,45 @@
-<div *ngIf="contents.length != 0" class="list" cdkDropList #contentsList="cdkDropList" [cdkDropListData]="contents"
-    (cdkDropListDropped)="onDrop($event)">
-    <mat-card *ngFor="let content of contents" cdkDrag class="p-1">
-        {{content.name}}
-        <button mat-icon-button [matMenuTriggerFor]="editMenu" class="float-right">
-            <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #editMenu class="max-w-min">
-            <button mat-icon-button (click)="openUpdateContentDialog(content._id!)" color="black" class="float-left">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button *ngIf=" content.onModel=='Quiz'" (click)="onEditClick(content)" mat-icon-button color="primary"
-                class="float-left">
-                <mat-icon>add_circle</mat-icon>
-            </button>
-            <button (click)="openDeleteContentDialog(content._id!)" mat-icon-button color="warn" class="float-left">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </mat-menu>
-    </mat-card>
+<div
+  *ngIf="contents.length != 0"
+  class="list"
+  cdkDropList
+  #contentsList="cdkDropList"
+  [cdkDropListData]="contents"
+  (cdkDropListDropped)="onDrop($event)"
+>
+  <mat-card *ngFor="let content of contents" cdkDrag class="p-1">
+    <div class="flex flex-row justify-between align-middle">
+      <div class="self-center">
+        {{ content.name }}
+      </div>
+      <button mat-icon-button [matMenuTriggerFor]="editMenu" class="">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+    <mat-menu #editMenu class="w-10">
+      <div class="flex flex-col">
+        <div>
+          <button
+            mat-icon-button
+            (click)="openUpdateContentDialog(content._id!)"
+            color="black"
+            class=""
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          Edit
+        </div>
+        <div>
+          <button
+            (click)="openDeleteContentDialog(content._id!)"
+            mat-icon-button
+            color="warn"
+            class=""
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          Delete
+        </div>
+      </div>
+    </mat-menu>
+  </mat-card>
 </div>
