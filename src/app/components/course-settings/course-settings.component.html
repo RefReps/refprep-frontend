@@ -197,7 +197,7 @@
                     ></mat-datepicker-toggle>
                     <mat-datepicker
                       #couponDate
-                      disabled="false"
+                      [disabled]="!isAdmin"
                       [startAt]="couponExpDate"
                       (closed)="changeCouponExpDate(couponExpDateInput.value)"
                     ></mat-datepicker>
