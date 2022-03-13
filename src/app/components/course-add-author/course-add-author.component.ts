@@ -34,6 +34,7 @@ export class CourseAddAuthorComponent implements OnInit {
     }
 
   addNewAuthor() {
+    if (!this.newEmail) return
     this.emails.push(this.newEmail)
     this.newEmail = ''
   }

@@ -35,6 +35,7 @@ export class CourseAddStudentComponent implements OnInit {
     }
 
   addNewStudent(): void {
+    if (!this.newEmail) return
     this.emails.push(this.newEmail)
     this.newEmail = ''
   }
