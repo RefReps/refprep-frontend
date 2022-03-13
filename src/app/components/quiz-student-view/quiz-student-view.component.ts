@@ -3,7 +3,7 @@ import { selectQuizAnswers } from './../../_store/quizAnswer/quizAnswer.selector
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Quiz, QuizQuestion } from 'src/app/models/quiz';
+import { ActiveVersion, Quiz, QuizQuestion } from 'src/app/models/quiz';
 import { QuizzesService } from 'src/app/_services/quizzes.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class QuizStudentViewComponent implements OnInit {
   submissionId: string = '';
   questions: QuizQuestion[] = [];
   quiz: Quiz = {}
+  quizInfo: ActiveVersion = {};
   questionAnswer$ = this.store.select(selectQuizAnswers);
 
   constructor(
@@ -41,6 +42,13 @@ export class QuizStudentViewComponent implements OnInit {
         );
       });
     }
+    this.getQuizName()
+  }
+
+  getQuizName() {
+    this.quizService.getActiveQuiz(this.quizId).subscribe((info) => {
+      this.quizInfo = info;
+    });
   }
 
   submitQuiz(): void {
