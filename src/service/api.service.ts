@@ -100,6 +100,14 @@ export class ApiService {
     return this.http.put<ApiResponse>(`${this.courseUrl}/code/${code}`, {})
   }
 
+  updateAuthorSettings(courseId: string, settings: Object): Observable<{success: boolean, course: Course}> {
+    return this.http.put<{success: boolean, course: Course}>(`${this.courseUrl}/${courseId}/settings/author`, settings)
+  }
+
+  updateAdminSettings(courseId: string, settings: Object): Observable<{success: boolean, course: Course}> {
+    return this.http.put<{success: boolean, course: Course}>(`${this.courseUrl}/${courseId}/settings/admin`, settings)
+  }
+
 
   // Student Routes
 
