@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { UserInteractionService } from './../../_services/user-interaction.service';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from './../../../service/api.service';
@@ -15,8 +16,10 @@ export class CourseSettingsComponent implements OnInit {
   courseEnforcements: boolean = true;
   enforcementPercent: number = 90;
   maxQuizAttempts: number = 2;
+  studentCapacity: number = 30;
+  couponName: string = 'DEFAULT-1';
   couponLocked: boolean = false;
-  couponExpDate: Date = new Date();
+  couponExpDate = new FormControl(new Date());
 
   constructor(
     private api: ApiService,
@@ -31,11 +34,60 @@ export class CourseSettingsComponent implements OnInit {
         if (courseId) {
           this.api.getCourse(courseId).subscribe((course) => {
             this.course = course;
-            console.log(this.course);
+            this.updateCourseSettingsOnLocal(course);
           });
         }
       })
       .unsubscribe();
+  }
+
+  saveAuthorSettings(): void {
+    if (this.course._id) {
+      const settings: Object = {
+        courseEnforcements: this.courseEnforcements,
+        enforcementPercent: this.enforcementPercent,
+        maxQuizAttempts: this.maxQuizAttempts,
+        couponLocked: this.couponLocked,
+      };
+      this.api
+        .updateAuthorSettings(this.course._id, settings)
+        .subscribe((res) => {
+          if (res.success) {
+            this.updateCourseSettingsOnLocal(res.course);
+          }
+        });
+    }
+  }
+
+  saveAdminSettings(): void {
+    if (this.course._id) {
+      const settings: Object = {
+        studentCapacity: this.studentCapacity,
+        couponCodeName: this.couponName,
+        couponCodeExpDate: this.couponExpDate.value,
+      };
+      this.api
+        .updateAdminSettings(this.course._id, settings)
+        .subscribe((res) => {
+          if (res.success) {
+            this.updateCourseSettingsOnLocal(res.course);
+            // TODO: snackbar success
+          }
+          // TODO: snackbar failed
+        });
+    }
+  }
+
+  updateCourseSettingsOnLocal(courseInfo: Course): void {
+    this.courseEnforcements = courseInfo.settings?.isEnforcements || true;
+    this.enforcementPercent = courseInfo.settings?.enforcementPercent || 90;
+    this.maxQuizAttempts = courseInfo.settings?.maximumQuizAttempts || 2;
+    this.studentCapacity = courseInfo.settings?.courseCapacity || 31;
+    this.couponName = courseInfo.studentCourseCode?.code || 'NONE';
+    this.couponLocked = courseInfo.studentCourseCode?.isLocked || false;
+    this.couponExpDate.setValue(
+      new Date(courseInfo.studentCourseCode?.activeUntil!) || new Date()
+    );
   }
 
   toggleCourseEnforcements(): void {
@@ -52,6 +104,18 @@ export class CourseSettingsComponent implements OnInit {
 
   toggleCouponLock(): void {
     this.couponLocked = !this.couponLocked;
+  }
+
+  changeStudentCapacity(value: string): void {
+    this.studentCapacity = parseInt(value);
+  }
+
+  changeCouponCodeName(value: string): void {
+    this.couponName = value;
+  }
+
+  changeCouponExpDate(date: string): void {
+    this.couponExpDate.setValue(new Date(date));
   }
 
   get isAdmin(): boolean {

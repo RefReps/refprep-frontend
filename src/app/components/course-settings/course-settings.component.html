@@ -24,17 +24,33 @@
               >
                 <div class="flex-initial self-center text-lg">
                   Course Enforcements
+                  <mat-icon
+                    class="hover:cursor-pointer"
+                    matTooltip="Students will have to progress through the course in a linear manner."
+                    inline
+                    >help_outline</mat-icon
+                  >
                 </div>
                 <div class="flex self-center">
-                  <mat-slide-toggle [checked]="true"></mat-slide-toggle>
+                  <mat-slide-toggle
+                    [checked]="true"
+                    (toggleChange)="toggleCourseEnforcements()"
+                  ></mat-slide-toggle>
                 </div>
               </div>
               <!-- Enforcement Percent -->
               <div
                 class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
+                [ngClass]="{ 'bg-gray-200': !courseEnforcements }"
               >
                 <div class="flex-initial self-center text-lg">
                   Enforcement Percent
+                  <mat-icon
+                    class="hover:cursor-pointer"
+                    matTooltip="Students will have to get this percent before advancing or use all quiz attempts, whichever comes first."
+                    inline
+                    >help_outline</mat-icon
+                  >
                 </div>
                 <div class="flex self-center">
                   <mat-form-field class="w-10">
@@ -42,6 +58,7 @@
                       #enforcementPercentInput
                       matInput
                       type="number"
+                      [disabled]="!courseEnforcements"
                       [value]="enforcementPercent"
                       (change)="
                         changeEnforcementPercent(enforcementPercentInput.value)
@@ -69,7 +86,7 @@
                       (change)="
                         changeMaximumQuizAttempts(maxQuizAttemptInput.value)
                       "
-                      min="0"
+                      min="1"
                       max="99"
                     />
                   </mat-form-field>
@@ -92,10 +109,14 @@
             </div>
           </mat-card-content>
 
-          <!-- Save Button -->
+          <!-- Save Button for Author Settings -->
           <mat-card-actions class="border-t-2">
             <div class="grid grid-cols-1">
-              <button mat-button class="bg-green-300 w-1/6 justify-self-end">
+              <button
+                mat-raised-button
+                (click)="saveAuthorSettings()"
+                class="bg-green-300 w-1/6 justify-self-end"
+              >
                 Save
               </button>
             </div>
@@ -112,7 +133,7 @@
               <!-- Course Student Capacity -->
               <div
                 class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
-                [ngClass]="{ 'bg-gray-300': !isAdmin }"
+                [ngClass]="{ 'bg-gray-200': !isAdmin }"
               >
                 <div class="flex-initial self-center text-lg">
                   Student Capacity
@@ -121,11 +142,15 @@
                   <mat-form-field class="w-10">
                     <input
                       matInput
-                      [disabled]="!isAdmin"
+                      #studentCapacityInput
                       type="number"
-                      [value]="30"
+                      [value]="studentCapacity"
                       min="0"
                       max="500"
+                      [disabled]="!isAdmin"
+                      (change)="
+                        changeStudentCapacity(studentCapacityInput.value)
+                      "
                     />
                   </mat-form-field>
                 </div>
@@ -133,16 +158,18 @@
               <!-- Coupon Code Name -->
               <div
                 class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
-                [ngClass]="{ 'bg-gray-300': !isAdmin }"
+                [ngClass]="{ 'bg-gray-200': !isAdmin }"
               >
                 <div class="flex-initial self-center text-lg">Coupon Code</div>
                 <div class="flex self-center">
                   <mat-form-field class="max-w-sm">
                     <input
                       matInput
-                      [disabled]="!isAdmin"
+                      #couponCodeNameInput
+                      [value]="couponName"
                       type="text"
-                      value="COURSE-1"
+                      [disabled]="!isAdmin"
+                      (change)="changeCouponCodeName(couponCodeNameInput.value)"
                     />
                   </mat-form-field>
                 </div>
@@ -150,7 +177,7 @@
               <!-- Coupon Code Active Until -->
               <div
                 class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
-                [ngClass]="{ 'bg-gray-300': !isAdmin }"
+                [ngClass]="{ 'bg-gray-200': !isAdmin }"
               >
                 <div class="flex-initial self-center text-lg">
                   Coupon Valid Until
@@ -159,15 +186,21 @@
                   <mat-form-field class="max-w-sm">
                     <input
                       matInput
+                      #couponExpDateInput
                       [matDatepicker]="couponDate"
-                      [value]="couponExpDate"
-                      [disabled]="!isAdmin"
+                      [value]="couponExpDate.value"
+                      disabled
                     />
                     <mat-datepicker-toggle
                       matSuffix
                       [for]="couponDate"
                     ></mat-datepicker-toggle>
-                    <mat-datepicker #couponDate></mat-datepicker>
+                    <mat-datepicker
+                      #couponDate
+                      disabled="false"
+                      [startAt]="couponExpDate"
+                      (closed)="changeCouponExpDate(couponExpDateInput.value)"
+                    ></mat-datepicker>
                   </mat-form-field>
                 </div>
               </div>
@@ -177,10 +210,11 @@
           <!-- Save Button for Admin Settings -->
           <mat-card-actions class="border-t-2">
             <div class="flex flex-row justify-end items-center">
-                <mat-icon *ngIf="!isAdmin">lock</mat-icon>
+              <mat-icon *ngIf="!isAdmin">lock</mat-icon>
               <button
-                mat-button
+                mat-raised-button
                 [disabled]="!isAdmin"
+                (click)="saveAdminSettings()"
                 class="bg-green-300 w-1/6"
               >
                 Save
