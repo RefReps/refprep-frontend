@@ -77,6 +77,5 @@ export class CourseQuizEditComponent implements OnInit, OnDestroy {
         })
         .unsubscribe();
     }
-    console.warn('Your quiz question has been submitted');
   }
 }
