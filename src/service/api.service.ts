@@ -111,12 +111,12 @@ export class ApiService {
 
   // Student Routes
 
-  addStudentsToCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/students`, { emails }).subscribe()
+  addStudentsToCourse(courseId: string, emails: string[]): Observable<any> {
+    return this.http.post(`${this.courseUrl}/${courseId}/students`, { emails })
   }
 
-  removeStudentsInCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/students/remove`, { emails }).subscribe()
+  removeStudentsInCourse(courseId: string, emails: string[]): Observable<any> {
+    return this.http.post(`${this.courseUrl}/${courseId}/students/remove`, { emails })
   }
 
   getStudentsInCourse(courseId: string): Observable<User[]> {
@@ -126,12 +126,12 @@ export class ApiService {
 
   // Author Routes
 
-  addAuthorsToCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/authors`, { emails }).subscribe()
+  addAuthorsToCourse(courseId: string, emails: string[]): Observable<any> {
+    return this.http.post(`${this.courseUrl}/${courseId}/authors`, { emails })
   }
 
-  removeAuthorsInCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/authors/remove`, { emails }).subscribe()
+  removeAuthorsInCourse(courseId: string, emails: string[]): Observable<any> {
+    return this.http.post(`${this.courseUrl}/${courseId}/authors/remove`, { emails })
   }
 
   getAuthorsInCourse(courseId: string): Observable<User[]> {
