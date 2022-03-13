@@ -1,3 +1,4 @@
+import { CourseSettingsComponent } from './components/course-settings/course-settings.component';
 import { JoinCourseByCodeComponent } from './components/join-course-by-code/join-course-by-code.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -37,6 +38,7 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'courses/:courseId', component: CourseHomeComponent},
       {path: 'courses/:courseId/authors', component: CourseAuthorsComponent},
       {path: 'courses/:courseId/students', component: CourseStudentsComponent},
+      {path: 'courses/:courseId/settings', component: CourseSettingsComponent},
       {path: 'courses', component: CoursesComponent},
       {path: 'home', component: HomeComponent},
       {path: 'test', component: TestComponentComponent},
