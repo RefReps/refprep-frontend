@@ -35,6 +35,13 @@ export class VideoViewerComponent implements OnInit {
   loadVideoInHTMLPlayer(): void {
     const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
     this.videoUrl = `${this.Api.videoUrl}/${this.videoId}`
+    this.disableSeeking()
+    videoPlayer.load()
+  }
+
+  
+  disableSeeking(): void {
+    const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
     var supposedCurrentTime = 0;
     videoPlayer.addEventListener('timeupdate', function(){
       if (!videoPlayer.seeking) {
@@ -51,11 +58,9 @@ export class VideoViewerComponent implements OnInit {
 
     videoPlayer.addEventListener('ended', function(){
       supposedCurrentTime = 0;
+      console.log("video over")
     })
 
-
-    videoPlayer.load()
   }
-
 
 }
