@@ -1,22 +1,64 @@
-<h1>Editing {{quizInfo.name}} Questions</h1>
+<div fxLayout="column" fxFill>
+  <!-- Course Header -->
+  <div fxFlex="7">
+    <app-course-info-home></app-course-info-home>
+  </div>
 
-<div class="list" cdkDropList #contentsList="cdkDropList" [cdkDropListData]="quizQuestions$ | async"
-    (cdkDropListDropped)="onDrop($event)">
-    <div *ngFor="let question of quizQuestions$ | async" cdkDrag class="m-5">
-        <app-edit-quiz-question [question]="question"></app-edit-quiz-question>
-    </div>
-</div>
+  <mat-drawer-container fxLayout="column" fxFlex="93">
+    <!-- Course Sidebar -->
+    <mat-drawer #drawer mode="side" opened class="w-24 min-h-full">
+      <app-course-sidebar></app-course-sidebar>
+    </mat-drawer>
 
-<div class="flex flex-row m-5">
-    <div class="m-2">
-        <mat-card class="max-w-min">
-            <button mat-raised-button class="bg-green-400" (click)="openQuizBuilderDialog(quizId)">Add New Question</button>
-        </mat-card>
-    </div>
-    
-    <div class="m-2">
-        <mat-card class="max-w-min">
-            <button mat-raised-button class="bg-green-400" (click)="onQuizSave()">Save Quiz</button>
-        </mat-card>
-    </div>
+    <!-- Main Content for Settings -->
+    <mat-drawer-container fxLayout="column" fxFill>
+      <div class="ml-5 text-xl font-bold">
+        Editing {{ quizInfo.name }} Questions
+      </div>
+
+      <div
+        class="list"
+        cdkDropList
+        #contentsList="cdkDropList"
+        [cdkDropListData]="quizQuestions$ | async"
+        (cdkDropListDropped)="onDrop($event)"
+      >
+        <div
+          *ngFor="let question of quizQuestions$ | async"
+          cdkDrag
+          class="m-5"
+        >
+          <app-edit-quiz-question
+            [question]="question"
+          ></app-edit-quiz-question>
+        </div>
+      </div>
+
+      <div class="flex flex-row m-5">
+        <div class="m-2">
+          <mat-card class="max-w-min">
+            <button
+              mat-raised-button
+              class="bg-green-400"
+              (click)="openQuizBuilderDialog(quizId)"
+            >
+              Add New Question
+            </button>
+          </mat-card>
+        </div>
+
+        <div class="m-2">
+          <mat-card class="max-w-min">
+            <button
+              mat-raised-button
+              class="bg-green-400"
+              (click)="onQuizSave()"
+            >
+              Save Quiz
+            </button>
+          </mat-card>
+        </div>
+      </div>
+    </mat-drawer-container>
+  </mat-drawer-container>
 </div>
