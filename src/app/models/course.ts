@@ -5,6 +5,7 @@ export class Course {
   isPublished?: boolean;
   isDeleted?: boolean;
   settings?: Settings;
+  studentCourseCode?: CourseCode;
   // authors?: Author[];
   // students?: Student[];
   sections?: Section[] | string[];
@@ -12,11 +13,18 @@ export class Course {
   isAuthor?: boolean; // do i need?
 }
 
+export class CourseCode {
+  isLocked?: boolean;
+  code?: string;
+  activeUntil?: string;
+}
+
 export class Settings {
   isEnforcements?: boolean;
   enforcementPercent?: number;
   isGradedQuizAdvance?: boolean;
   maximumQuizAttempts?: number;
+  courseCapacity?: number;
 }
 
 export class Section {
