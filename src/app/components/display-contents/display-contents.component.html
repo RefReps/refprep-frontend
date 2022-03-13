@@ -1,24 +1,20 @@
-<mat-card *ngFor="let content of contents">
-    <div *ngIf="isAccessibleByDate(content) || isAuthor()" class="">
-        <!-- To Quiz Component -->
-        <a *ngIf="content.onModel=='Quiz'" [routerLink]="['./quiz', content.toDocument]" >
-            {{content.name}}
-        </a>
-        <!-- To Video Component -->
-        <a *ngIf="content.onModel=='Video'" [routerLink]="['./video', content.toDocument]" >
-            {{content.name}}
-        </a>
-    </div>
-    <div *ngIf="!isAccessibleByDate(content) && !isAuthor()" class="">
-        <!-- To Quiz Component -->
-        <span *ngIf="content.onModel=='Quiz'">
-            {{content.name}}
-        </span>
-        <!-- To Video Component -->
-        <span *ngIf="content.onModel=='Video'">
-            {{content.name}}
-        </span>
-        <mat-icon class="float-right">lock</mat-icon>
-        <span class="float-right">{{getContentDropDate(content)}}</span>
-    </div>
-</mat-card>
+<div *ngFor="let content of contents">
+  <a [routerLink]="getRoute(content)">
+    <mat-card
+      class="cursor-pointer"
+      [ngClass]="{
+        'bg-gray-200 cursor-not-allowed': !canAccessContent(content)
+      }"
+    >
+      <div class="flex flex-row justify-between align-middle">
+        <div class="justify-self-start self-center">{{ content.name }}</div>
+        <div class="flex justify-self-end self-end">
+          <span class="self-center" *ngIf="!canAccessContent(content)">{{
+            getContentDropDate(content)
+          }}</span>
+          <mat-icon class="self-end" *ngIf="!canAccessContent(content)">lock</mat-icon>
+        </div>
+      </div>
+    </mat-card>
+  </a>
+</div>

@@ -27,6 +27,10 @@ export class DisplayContentsComponent implements OnInit {
       .subscribe(info => this.contents = info)
   }
 
+  canAccessContent(content: Content): boolean {
+    return this.isAuthor() || this.isAccessibleByDate(content)
+  }
+
   isAccessibleByDate(content: Content): boolean {
     return new Date() > new Date(content.dropDate!)
   }
@@ -42,5 +46,19 @@ export class DisplayContentsComponent implements OnInit {
 
   isStudent(): boolean {
     return this.tokenService.getUserRole() === 'user'
+  }
+
+  getRoute(content: Content): string[] {
+    if (!this.canAccessContent(content)) {
+      return []
+    }
+    switch (content.onModel) {
+      case 'Quiz':
+        return ['./quiz', content.toDocument || '']
+      case 'Video':
+        return ['./video', content.toDocument || '']
+      default:
+        return []
+    }
   }
 }
