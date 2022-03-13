@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl } from '@angular/forms';
 import { UserInteractionService } from './../../_services/user-interaction.service';
 import { ActivatedRoute } from '@angular/router';
@@ -24,7 +25,8 @@ export class CourseSettingsComponent implements OnInit {
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
-    private user: UserInteractionService
+    private user: UserInteractionService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,10 @@ export class CourseSettingsComponent implements OnInit {
       .unsubscribe();
   }
 
+  openSnackBar(message: string, action: string): void {
+    this._snackBar.open(message, action);
+  }
+
   saveAuthorSettings(): void {
     if (this.course._id) {
       const settings: Object = {
@@ -54,6 +60,7 @@ export class CourseSettingsComponent implements OnInit {
         .subscribe((res) => {
           if (res.success) {
             this.updateCourseSettingsOnLocal(res.course);
+            this.openSnackBar('Saved author settings!', '✓');
           }
         });
     }
@@ -71,9 +78,10 @@ export class CourseSettingsComponent implements OnInit {
         .subscribe((res) => {
           if (res.success) {
             this.updateCourseSettingsOnLocal(res.course);
-            // TODO: snackbar success
+            this.openSnackBar('Saved course settings!', '✓');
+          } else {
+            this.openSnackBar(res.error.message, 'okay')
           }
-          // TODO: snackbar failed
         });
     }
   }
