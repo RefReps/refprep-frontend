@@ -1,4 +1,6 @@
-<vg-player>
+<div>
+    <vg-player>
+    <h1>Title</h1>
     <vg-overlay-play></vg-overlay-play>
     <vg-buffering></vg-buffering>
 
@@ -24,7 +26,8 @@
         <vg-fullscreen></vg-fullscreen>
     </vg-controls>
 
-    <video  #media  id="videoPlayer" width="650" preload="auto" controls controlsList="nodownload">
+    <video  #media  id="videoPlayer" width="1400" preload="auto" controls controlsList="nodownload">
         <source id="videoSource" [src]="videoUrl" type="video/mp4">
     </video>
 </vg-player>
+</div>
