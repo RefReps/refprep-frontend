@@ -1,4 +1,4 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { FormControl } from '@angular/forms';
 import { UserInteractionService } from './../../_services/user-interaction.service';
 import { ActivatedRoute } from '@angular/router';
@@ -44,7 +44,9 @@ export class CourseSettingsComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string): void {
-    this._snackBar.open(message, action);
+    const ONE_SECOND = 1000
+    const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
+    this._snackBar.open(message, action, config);
   }
 
   saveAuthorSettings(): void {
@@ -80,7 +82,7 @@ export class CourseSettingsComponent implements OnInit {
             this.updateCourseSettingsOnLocal(res.course);
             this.openSnackBar('Saved course settings!', '✓');
           } else {
-            this.openSnackBar(res.error.message, 'okay')
+            this.openSnackBar(res.error.message, 'okay');
           }
         });
     }
