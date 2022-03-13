@@ -1,4 +1,5 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserInteractionService } from './../../_services/user-interaction.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course';
 import { ApiService } from 'src/service/api.service';
@@ -18,6 +19,7 @@ export class CourseDashboardComponent implements OnInit {
   constructor(
     private Api: ApiService,
     private dialogService: DialogService,
+    private user: UserInteractionService,
     private _snackBar: MatSnackBar
     ) { }
 
@@ -37,7 +39,9 @@ export class CourseDashboardComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action)
+    const ONE_SECOND = 1000
+    const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
+    this._snackBar.open(message, action, config)
   }
 
   getCourses(): void {
@@ -51,6 +55,10 @@ export class CourseDashboardComponent implements OnInit {
 
   openDuplicateCourseDialog(): void {
     this.dialogService.open(CourseDuplicateFormComponent, {})
+  }
+
+  get isAdmin(): boolean {
+    return this.user.isAdmin
   }
 
 }

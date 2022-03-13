@@ -11,8 +11,8 @@
 
     </div>
 </div>
-<div>
-    <div style="float: bottom">
+<div *ngIf="!isAdmin">
+    <div style="float: bottom" class="ml-5">
         <mat-card class="max-w-min">
             <mat-form-field>
                 <input matInput #codeInput name="code" placeholder="Coupon Code">
