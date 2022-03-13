@@ -1,4 +1,4 @@
-import { ApiResponse } from './../app/models/apiResponse';
+import { ApiResponse, ErrorResponse } from './../app/models/apiResponse';
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -104,8 +104,8 @@ export class ApiService {
     return this.http.put<{success: boolean, course: Course}>(`${this.courseUrl}/${courseId}/settings/author`, settings)
   }
 
-  updateAdminSettings(courseId: string, settings: Object): Observable<{success: boolean, course: Course}> {
-    return this.http.put<{success: boolean, course: Course}>(`${this.courseUrl}/${courseId}/settings/admin`, settings)
+  updateAdminSettings(courseId: string, settings: Object): Observable<{success: boolean, error: ErrorResponse, course: Course}> {
+    return this.http.put<{success: boolean, error: ErrorResponse, course: Course}>(`${this.courseUrl}/${courseId}/settings/admin`, settings)
   }
 
 
