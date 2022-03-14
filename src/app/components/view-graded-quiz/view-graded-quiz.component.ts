@@ -51,14 +51,14 @@ export class ViewGradedQuizComponent implements OnInit {
     });
     if (this.quizId) {
       this.quizService.getStudentQuizAttempt(this.quizId, this.submissionId).subscribe((data) => {
-        this.gradedQuiz = data
-        this.getQuizQuestions()
-        this.getUserAnswers()
-        this.getAnswerOverrides()
+        this.gradedQuiz = data;
+        this.getQuizQuestions();
+        this.getUserAnswers();
+        this.getAnswerOverrides();
     })
   }
-  this.getQuizName()
-  this.getCourseInfo()
+  this.getQuizName();
+  this.getQuizPassingGrade();
   }
 
   getQuizName() {
@@ -67,7 +67,7 @@ export class ViewGradedQuizComponent implements OnInit {
     });
   }
 
-  getCourseInfo() {
+  getQuizPassingGrade() {
     this.api.getCourse(this.courseId).subscribe((info) => {
       this.courseInfo = info;
       if (typeof this.courseInfo.settings?.enforcementPercent != 'undefined') {
