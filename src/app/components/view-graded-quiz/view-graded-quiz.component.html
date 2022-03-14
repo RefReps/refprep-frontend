@@ -1,17 +1,15 @@
-<div class="center">
+<mat-card class="center">
     <h1 class="text-display">{{ quizInfo?.quiz?.name }}</h1>
-</div>
-<div class="center">
     <div [ngClass]="gradedQuiz.grade! >= passingGrade ? 'pass' : 'neutral'">
-        <h1 class="pr-3">{{ getGradePercentage(gradedQuiz.grade) }}% ({{
+        <h1 class="pl-10 pr-3">{{ getGradePercentage(gradedQuiz.grade) }}% ({{
                 getLetterGrade(gradedQuiz.grade)
               }})</h1>
     </div>
     <h1 class="pass" *ngIf="gradedQuiz.grade! >= passingGrade">
         Pass!
     </h1>
-</div>
-
+</mat-card>
+<div class="divider"></div>
 <a class="ml-6" [routerLink]="['/courses', courseId, 'quiz', quizId]">
 <button class="bg-blue-400" mat-raised-button>
     <span class="material-icons">

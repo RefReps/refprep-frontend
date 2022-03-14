@@ -90,9 +90,14 @@ export class ViewGradedQuizComponent implements OnInit {
   }
 
   getUserAnswerByQuestionNumber(i: number): string {
+    if (typeof this.userAnswers[i].answers != 'undefined') {  
       return this.userAnswers.filter(q => 
       q.questionNumber == i )[0]
-        .answers?.slice().shift() || ''
+        .answers?.slice().shift() || ' '
+      }
+    else {
+      return ' ';
+    }
   }
 
   getAnswerOverrides(): void {

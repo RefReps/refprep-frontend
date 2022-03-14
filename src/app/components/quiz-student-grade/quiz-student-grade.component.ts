@@ -42,7 +42,6 @@ export class QuizStudentGradeComponent implements OnInit {
     this.getBasicQuizInfo();
     this.getQuizGrade();
     this.getQuizPassingGrade();
-    console.log(this.userGrade)
   }
 
   viewGradedQuiz(submissionId: string) {
@@ -60,7 +59,6 @@ export class QuizStudentGradeComponent implements OnInit {
       this.courseInfo = info;
       if (typeof this.courseInfo.settings?.enforcementPercent != 'undefined') {
         this.passingGrade = this.courseInfo.settings?.enforcementPercent*.01
-        console.log(this.passingGrade)
       }
     })
     
