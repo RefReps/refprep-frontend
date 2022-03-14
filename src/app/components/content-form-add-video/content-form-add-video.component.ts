@@ -24,7 +24,7 @@ export class ContentFormAddVideoComponent {
         const form = new FormData()
         
         const data = {
-          name: videoMeta.originalname,
+          name: videoMeta.originalname?.replace(/.[^/.]+$/, ""),
           contentOrder: 50,
           toDocument: videoMeta._id,
           onModel: 'Video',

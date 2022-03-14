@@ -15,6 +15,7 @@ export class VideoViewerComponent implements OnInit {
   videoUrl: string = '';
   videoMeta: Video = {}
   videoTitle: string = '';
+  enforcements: boolean = true;
 
   // vgApi: VgApiService;
 
@@ -39,7 +40,9 @@ export class VideoViewerComponent implements OnInit {
   loadVideoInHTMLPlayer(): void {
     const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
     this.videoUrl = `${this.Api.videoUrl}/${this.videoId}`
-    this.disableSeeking()
+    if (this.enforcements == true) {
+      this.disableSeeking()
+    }
     this.setCheckpoints()
     this.videoEnd()
     videoPlayer.load()
@@ -47,17 +50,25 @@ export class VideoViewerComponent implements OnInit {
 
   disableSeeking(): void {
     const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
-    var supposedCurrentTime = 0;
+    var supposedCurrentTime = videoPlayer.currentTime;
+    var watchedTime =  0;
     videoPlayer.addEventListener('timeupdate', function(){
       if (!videoPlayer.seeking) {
+        if(videoPlayer.currentTime > watchedTime) {
+          watchedTime = videoPlayer.currentTime;
+        }
+        else {
           supposedCurrentTime = videoPlayer.currentTime;
+        }
       }
     });
 
     videoPlayer.addEventListener('seeking', function() {
-      var delta = videoPlayer.currentTime - supposedCurrentTime;
+      var delta = videoPlayer.currentTime - watchedTime;
       if (delta > 0.01) {
-        videoPlayer.currentTime = supposedCurrentTime;
+        videoPlayer.pause();
+        videoPlayer.currentTime = watchedTime;
+        videoPlayer.play();
       }
     });
 
