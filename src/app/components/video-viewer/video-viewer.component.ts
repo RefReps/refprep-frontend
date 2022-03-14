@@ -15,7 +15,7 @@ export class VideoViewerComponent implements OnInit {
   videoUrl: string = '';
   videoMeta: Video = {}
   videoTitle: string = '';
-  enforcements: boolean = false;
+  enforcements: boolean = true;
 
   // vgApi: VgApiService;
 
