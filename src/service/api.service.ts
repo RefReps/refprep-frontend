@@ -196,6 +196,10 @@ export class ApiService {
     this.http.delete(`${this.contentUrl}/${contentId}`).subscribe();
   }
 
+  updateContentDropDate(contentId: string, date: Date): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/date`, {date: date.getTime()})
+  }
+
   // Quiz Routes
 
   // returns 2 objects: Quiz and QuizVersion (gets the active version)
