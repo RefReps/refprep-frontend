@@ -7,9 +7,9 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #editMenu>
-                <button mat-icon-button color="black" class="float-left">
+                <!-- <button mat-icon-button color="black" class="float-left">
                     <mat-icon>edit</mat-icon>
-                </button>
+                </button> -->
                 <button (click)="removeQuestion()" mat-icon-button color="warn" class="float-right">
                     <mat-icon>delete</mat-icon>
                 </button>
@@ -18,14 +18,15 @@
         <br>
         <mat-list>
             <mat-list-item class="">
-                {{question.responses?.A}}</mat-list-item><br>
+                A: {{question.responses?.A}}</mat-list-item><br>
             <mat-list-item class="">
-                {{question.responses?.B}}</mat-list-item><br>
+                B: {{question.responses?.B}}</mat-list-item><br>
             <mat-list-item class="">
-                {{question.responses?.C}}</mat-list-item><br>
+                C: {{question.responses?.C}}</mat-list-item><br>
             <mat-list-item class="">
-                {{question.responses?.D}}</mat-list-item><br>
+                D: {{question.responses?.D}}</mat-list-item><br>
         </mat-list>
+        <h3><strong>Answer: {{question.answers}}</strong></h3>
     </mat-card>
 
     <mat-card *ngIf="question.questionType == 'TRUE_FALSE'">
@@ -36,22 +37,23 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #editMenu>
-                <button mat-icon-button color="black" class="float-left">
+                <!-- <button mat-icon-button color="black" class="float-left">
                     <mat-icon>edit</mat-icon>
-                </button>
-                <button (click)="removeQuestion()" mat-icon-button color="warn" class="float-right">
+                </button> -->
+                <button (click)="removeQuestion()" mat-icon-button color="warn">
                     <mat-icon>delete</mat-icon>
                 </button>
             </mat-menu>
         </div><br>
-        <mat-radio-group #tfAnswer>
-            <mat-radio-button class="m-1" #qTrue color="primary" value="true" (change)="updateAnswers(qTrue.value)">
+        <mat-list #tfAnswer>
+            <mat-list-item #qTrue color="primary" value="true">
                 true
-            </mat-radio-button><br>
-            <mat-radio-button class="m-1" #qFalse color="primary" value="false" (change)="updateAnswers(qFalse.value)">
+            </mat-list-item><br>
+            <mat-list-item #qFalse color="primary" value="false">
                 false
-            </mat-radio-button><br>
-        </mat-radio-group>
+            </mat-list-item><br>
+        </mat-list>
+        <h3><strong>Answer: {{question.answers}}</strong></h3>
     </mat-card>
 
     <mat-card *ngIf="question.questionType == 'FREE_RESPONSE'">
@@ -62,18 +64,20 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #editMenu>
-                <button mat-icon-button color="black" class="float-left">
+                <!-- <button mat-icon-button color="black" class="float-left">
                     <mat-icon>edit</mat-icon>
-                </button>
+                </button> -->
                 <button (click)="removeQuestion()" mat-icon-button color="warn" class="float-right">
                     <mat-icon>delete</mat-icon>
                 </button>
             </mat-menu>
         </div><br>
-        <mat-form-field>
+        <!-- <mat-form-field>
             <mat-placeholder>Enter Answer</mat-placeholder>
-            <input matInput #frAnswer (change)="updateAnswers(frAnswer.value)">
+            <input matInput #frAnswer>
         </mat-form-field>
+        <button mat-raised-button (click)="updateAnswers(frAnswer.value)">Change Answer</button> -->
+        <h3><strong>Answer: {{question.answers}}</strong></h3>
     </mat-card>
 </div>
 <!-- <form [formGroup] ="userAnswer" (ngSubmit)="onSubmit()">
