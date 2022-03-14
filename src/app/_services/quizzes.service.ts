@@ -18,6 +18,10 @@ export class QuizzesService {
 
   constructor(private http: HttpClient) {}
 
+  getQuizInfo(quizId: string): Observable<ActiveVersion> {
+    return this.http.get<ActiveVersion>(`${this.quizUrl}/${quizId}`);
+  }
+
   // Saves user's answers quiz questions to the submissionId on the quizId
   saveUserQuizAnswers(
     quizId: string,
