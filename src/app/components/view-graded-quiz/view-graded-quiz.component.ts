@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { QuizQuestion } from 'src/app/models/quiz';
+import { AnswerOverrides, GradedQuiz, QuizQuestion, UserAnswers } from 'src/app/models/quiz';
 import { QuizzesService } from 'src/app/_services/quizzes.service';
+import { selectQuiz } from 'src/app/_store/quiz/quiz.selector';
 import { saveQuizSubmissionId } from 'src/app/_store/quizAnswer/quizAnswer.action';
 
 @Component({
@@ -12,13 +13,16 @@ import { saveQuizSubmissionId } from 'src/app/_store/quizAnswer/quizAnswer.actio
 })
 export class ViewGradedQuizComponent implements OnInit {
   quizId: string = '';
+  submissionId: string = '';
   questions: QuizQuestion[] = [];
-  userAnswers?: QuizQuestion[] = [];
+  gradedQuiz: GradedQuiz = {};
+  userAnswers: UserAnswers[] = []
+  givenAnswer: any = ''
 
   constructor(
     private route: ActivatedRoute,
     private quizService: QuizzesService,
-    private store: Store,
+    
   ) { }
 
   ngOnInit(): void {
@@ -28,23 +32,41 @@ export class ViewGradedQuizComponent implements OnInit {
         this.quizId = id;
       }
     });
+    this.route.paramMap.subscribe((params) => {
+      let id = params.get('submissionId');
+      if (id) {
+        this.submissionId = id;
+      }
+    });
     if (this.quizId) {
-      this.quizService.startQuiz(this.quizId).subscribe((data) => {
-        this.questions = data.quizQuestions;
-        this.store.dispatch(
-          saveQuizSubmissionId({ id: data.quizSubmission._id || '' })
-        );
-      });
-    }
-  //  this.getUserQuizAnswers()
+      this.quizService.getStudentQuizAttempt(this.quizId, this.submissionId).subscribe((data) => {
+        this.gradedQuiz = data
+        this.getQuizQuestions()
+        this.getUserAnswers()
+    })
   }
 
-  // getUserQuizAnswers() {
-  //   this.quizService.fetchUserQuizAnswers(this.quizId).subscribe(info => {
-  //     this.store.select(
-  //       selectQuizAnswers
-  //     )
-  //   })
-  // }
+  }
 
+  getQuizQuestions() {
+    if (typeof this.gradedQuiz.quizQuestions != 'undefined') {
+      this.questions = this.gradedQuiz.quizQuestions;
+   }
+  }
+
+  getUserAnswers() {
+    if (typeof this.gradedQuiz.userAnswers != 'undefined') {
+      this.userAnswers = this.gradedQuiz.userAnswers;
+   }
+  }
+
+   getUserAnswerByQuestionNumber(i: number): string {
+     console.log(this.userAnswers)
+     if (typeof this.userAnswers != 'undefined') {
+        return this.userAnswers.filter(q => 
+         q.questionNumber == i 
+       )[0].answers?.splice(0).shift() || ''
+    }
+    return ''
+  }
 }

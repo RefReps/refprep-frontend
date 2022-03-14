@@ -33,7 +33,7 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'courses/:courseId/video/:videoId', component: CourseVideoComponent},
       {path: 'courses/:courseId/quiz/:quizId', component: CourseQuizComponent},
       {path: 'courses/:courseId/quiz/:quizId/take', component: QuizStudentViewComponent},
-      {path: 'courses/:courseId/quiz/:quizId/viewQuiz', component: ViewGradedQuizComponent},
+      {path: 'courses/:courseId/quiz/:quizId/viewQuiz/:submissionId', component: ViewGradedQuizComponent},
       { path: 'courses/:courseId/quiz/:quizId/edit', component: CourseQuizEditComponent },
       {path: 'courses/:courseId', component: CourseHomeComponent},
       {path: 'courses/:courseId/authors', component: CourseAuthorsComponent},

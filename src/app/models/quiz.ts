@@ -58,10 +58,39 @@ export class QuizSubmission {
 }
 
 export class UserGrade {
-  _id?: string;
+  submissionId?: string;
+  userId?: string;
+  quizId?: string;
   grade?: Number;
   dateStarted?: string;
   dateFinished?: string;
   submissionNumber?: number;
   email?: string;
+}
+
+export class GradedQuiz {
+  userId?: string;
+  submissionId?: string;
+  quizId?: string;
+  submissionNumber?: Number;
+  grade?: Number;
+  userAnswers?: UserAnswers[];
+  answerOverrides?: AnswerOverrides[];
+  quizQuestions?: QuizQuestion[];
+  dateStarted?: string;
+  dateFinished?: string;
+}
+
+export class AnswerOverrides {
+  questionNumber?: Number;
+  isCorrect?: boolean;
+  isPointDifferent?: boolean;
+  pointAward?: Number;
+}
+
+export class UserAnswers {
+  _id?: string;
+  questionNumber?: number;
+  answers?: string[]
+
 }

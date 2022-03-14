@@ -1,6 +1,6 @@
 import { QuizzesService } from './../../_services/quizzes.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ActiveVersion, Quiz } from 'src/app/models/quiz';
 import { QuizVersion } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/quiz';
@@ -20,7 +20,8 @@ export class QuizStudentGradeComponent implements OnInit {
   constructor(
     private Api: ApiService,
     private QuizService: QuizzesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +33,10 @@ export class QuizStudentGradeComponent implements OnInit {
     });
     this.getBasicQuizInfo();
     this.getQuizGrade();
+  }
+
+  viewGradedQuiz(submissionId: string) {
+    this.router.navigate(['/viewQuiz/:submissionId'])
   }
 
   getBasicQuizInfo() {

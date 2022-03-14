@@ -1,4 +1,4 @@
-import { ActiveVersion, Quiz, UserGrade } from './../models/quiz';
+import { ActiveVersion, GradedQuiz, Quiz, UserGrade } from './../models/quiz';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
 import { provideRoutes } from '@angular/router';
@@ -89,5 +89,11 @@ export class QuizzesService {
     return this.http
       .get<{ submissions: UserGrade[] }>(`${this.quizUrl}/${quizId}/grade`)
       .pipe(map((res) => res.submissions));
+  }
+
+  getStudentQuizAttempt(quizId: string, submissionId: string): Observable<GradedQuiz> {
+    return this.http
+      .get<GradedQuiz>(`${this.quizUrl}/${quizId}/submission/${submissionId}`)
+      .pipe(map((quizQuestions) => quizQuestions));
   }
 }
