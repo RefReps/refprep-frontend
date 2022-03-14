@@ -63,7 +63,7 @@ export class QuizStudentViewComponent implements OnInit {
                 .subscribe(() => {
                   this.route.paramMap.subscribe((params) => {
                     let id = params.get('courseId');
-                    this.router.navigate(['/courses', id, 'quiz', this.quizId]);
+                    this.router.navigate(['/courses', id, 'quiz', this.quizId, 'viewQuiz', quiz.id]);
                   });
                 });
             });
