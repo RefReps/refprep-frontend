@@ -21,7 +21,12 @@
         <mat-card *ngIf="question.questionType == '1_CHOICE'">
             <mat-radio-group>
                 <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label>
-                <mat-label class="float-right">Points Earned: {{getQuestionCorrectness(question.questionNumber!)}}/1</mat-label><br>
+                <div [ngClass]="getQuestionCorrectness(question.questionNumber!) === 1 ? 'pass' : 'fail'">
+                    <mat-label class="float-right">
+                        Points Earned: {{getQuestionCorrectness(question.questionNumber!)}}/1
+                    </mat-label>
+                </div>
+                <br>
                 <mat-radio-group class="mdc-radio--disabled" 
                     [value]="getUserAnswerByQuestionNumber(question.questionNumber!)">
                     <mat-radio-button #choice1 color="primary" value="A" disabled>{{question.responses?.A}}</mat-radio-button><br>
@@ -34,7 +39,11 @@
                 
         <mat-card *ngIf="question.questionType == 'TRUE_FALSE'">
             <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label>
-            <mat-label class="float-right">Points Earned: {{getQuestionCorrectness(question.questionNumber!)}}/1</mat-label><br>
+            <div [ngClass]="getQuestionCorrectness(question.questionNumber!) === 1 ? 'pass' : 'fail'">
+                <mat-label class="float-right">
+                    Points Earned: {{getQuestionCorrectness(question.questionNumber!)}}/1
+                </mat-label>
+            </div><br>
             <mat-radio-group #tfAnswer class="mdc-radio--disabled" [value]="getUserAnswerByQuestionNumber(question.questionNumber!)">
                 <mat-radio-button #qTrue color="primary" value="true" disabled>true</mat-radio-button><br>
                 <mat-radio-button #qFalse color="primary" value="false" disabled>false</mat-radio-button><br>
@@ -43,7 +52,11 @@
         
         <mat-card *ngIf="question.questionType == 'FREE_RESPONSE'">
             <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label>
-            <mat-label class="float-right">Points Earned: {{getQuestionCorrectness(question.questionNumber!)}}/1</mat-label><br>
+            <div [ngClass]="getQuestionCorrectness(question.questionNumber!) === 1 ? 'pass' : 'fail'">
+                <mat-label class="float-right">
+                    Points Earned: {{getQuestionCorrectness(question.questionNumber!)}}/1
+                </mat-label>
+            </div><br>
                 <div class="max-w-sm bg-gray-200 rounded-md px-5 py-2">
                     {{getUserAnswerByQuestionNumber(question.questionNumber!)}}
                 </div>

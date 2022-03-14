@@ -52,7 +52,6 @@ export class ViewGradedQuizComponent implements OnInit {
     if (this.quizId) {
       this.quizService.getStudentQuizAttempt(this.quizId, this.submissionId).subscribe((data) => {
         this.gradedQuiz = data
-        console.log("quiz grade", this.gradedQuiz.grade)
         this.getQuizQuestions()
         this.getUserAnswers()
         this.getAnswerOverrides()
@@ -73,7 +72,6 @@ export class ViewGradedQuizComponent implements OnInit {
       this.courseInfo = info;
       if (typeof this.courseInfo.settings?.enforcementPercent != 'undefined') {
         this.passingGrade = this.courseInfo.settings?.enforcementPercent*.01
-        console.log("passing grade", this.passingGrade)
       }
     })
     
