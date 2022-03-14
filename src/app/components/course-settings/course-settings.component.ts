@@ -92,8 +92,8 @@ export class CourseSettingsComponent implements OnInit {
     this.courseEnforcements = courseInfo.settings?.isEnforcements || true;
     this.enforcementPercent = courseInfo.settings?.enforcementPercent || 90;
     this.maxQuizAttempts = courseInfo.settings?.maximumQuizAttempts || 2;
-    this.studentCapacity = courseInfo.settings?.courseCapacity || 31;
-    this.couponName = courseInfo.studentCourseCode?.code || 'NONE';
+    this.studentCapacity = courseInfo.settings?.courseCapacity || 30;
+    this.couponName = courseInfo.studentCourseCode?.code || '';
     this.couponLocked = courseInfo.studentCourseCode?.isLocked || false;
     this.couponExpDate.setValue(
       new Date(courseInfo.studentCourseCode?.activeUntil!) || new Date()

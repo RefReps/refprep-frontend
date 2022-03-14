@@ -75,19 +75,21 @@ export class CourseAddStudentComponent implements OnInit {
 
   getCoruseCode() {
     this.Api.getCourse(this.courseId).subscribe((course) => {
-      console.log(course.studentCourseCode?.code);
       this.courseCode = course.studentCourseCode?.code || '';
     });
   }
 
   get courseLink(): string {
-    const {hostname, host, protocol, port} = window.location
-    return `${protocol}//${port == '80' ? hostname : host}/join/${this.courseCode}`
+    if (!this.courseCode) return 'No Course Code';
+    const { hostname, host, protocol, port } = window.location;
+    return `${protocol}//${port == '80' ? hostname : host}/join/${
+      this.courseCode
+    }`;
   }
 
   openSnackBar(message: string) {
-    const ONE_SECOND = 1000
-    const config: MatSnackBarConfig = {duration: ONE_SECOND}
-    this._snackBar.open(message, undefined, config)
+    const ONE_SECOND = 1000;
+    const config: MatSnackBarConfig = { duration: ONE_SECOND };
+    this._snackBar.open(message, undefined, config);
   }
 }
