@@ -89,7 +89,7 @@ export class CourseSettingsComponent implements OnInit {
   }
 
   updateCourseSettingsOnLocal(courseInfo: Course): void {
-    this.courseEnforcements = courseInfo.settings?.isEnforcements || true;
+    this.courseEnforcements = courseInfo.settings?.isEnforcements != undefined ? courseInfo.settings?.isEnforcements : true;
     this.enforcementPercent = courseInfo.settings?.enforcementPercent || 90;
     this.maxQuizAttempts = courseInfo.settings?.maximumQuizAttempts || 2;
     this.studentCapacity = courseInfo.settings?.courseCapacity || 30;
@@ -102,6 +102,7 @@ export class CourseSettingsComponent implements OnInit {
 
   toggleCourseEnforcements(): void {
     this.courseEnforcements = !this.courseEnforcements;
+    console.log(this.courseEnforcements)
   }
 
   changeEnforcementPercent(percent: string): void {
