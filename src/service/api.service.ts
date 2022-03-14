@@ -196,57 +196,8 @@ export class ApiService {
     this.http.delete(`${this.contentUrl}/${contentId}`).subscribe();
   }
 
-  // Quiz Routes
-
-  // returns 2 objects: Quiz and QuizVersion (gets the active version)
-  getQuizInfo(quizId: string): Observable<any> {
-    return this.http.get(`${this.quizUrl}/${quizId}`)
-  }
-
-  postNewQuiz(name: string): Observable<Quiz> {
-    return this.http.post<Quiz>(`${this.quizUrl}`, { name })
-  }
-
-  // !! currently not working possibly) !! 
-  // returns: Questions and QuizSubmission
-  // previously: just sent back questions
-  // now: sends back questions and the quiz submission the user is on
-  startQuiz(quizId: string): Observable<any> {
-    return this.http.get(`${this.quizUrl}/${quizId}/start`)
-  }
-
-  // !! currently not working (possibly) !!
-  // needs new url `${this.quizUrl}/${quizId}/submission/${submissionId}`
-  // previously: used to save the quizId, userId, and userAnswers
-  // now: sends back submissionId and userAnswers
-  submissionSave(quizId: string, answers: any): Observable<any> {
-    return this.http.put(`${this.quizUrl}/${quizId}/submission-save`, answers)
-  }
-
-  // !! currently not working !!
-  // needs new url '`${this.quizUrl}/${quizId}/grade/${submissionId}'
-  // previously: needed email and quizId as params
-  // now: needs emails, quizId, and submissionId as params
-  gradeQuiz(quizId: string): Observable<any> {
-    return this.http.post(`${this.quizUrl}/${quizId}/grade`, {})
-  }
-
-  batchPutQuestions(quizId: string, quizQuestions: any): void {
-    this.http.put(`${this.quizUrl}/${quizId}/batch`, quizQuestions).subscribe()
-  }
-
-  // Quiz Grade Routes
-
-  // !! currently not working (possibly) !!
-  // theoretically should work: only returns submissions
-  getAllQuizGrades(quizId: string): Observable<UserGrade[]> {
-    return this.http.get<UserGrade[]>(`${this.quizUrl}/${quizId}/view-grades`)
-  }
-
-  // !! currently not working (possibly) !!
-  // theoretically should work: only returns submissions
-  getQuizGrade(quizId: string, email: string): Observable<UserGrade[]> {
-    return this.http.get<UserGrade[]>(`${this.quizUrl}/${quizId}/grade`)
+  updateContentDropDate(contentId: string, date: Date): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/date`, {date: date.getTime()})
   }
 
   // User Routes

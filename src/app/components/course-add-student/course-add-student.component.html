@@ -3,7 +3,7 @@
     class="grid gap-2 mx-2 grid-flow-row-dense md:grid-flow-col-dense md:max-w-lg"
   >
     <mat-card class="shadow-lg min-w-max row-span-1 md:row-span-2">
-      <mat-card-title>Current Students:</mat-card-title>
+      <mat-card-title>Current Students ({{(currentStudents.asObservable() | async)?.length}}/{{course.settings?.courseCapacity}}):</mat-card-title>
       <mat-list *ngFor="let student of currentStudents | async">
         <mat-list-item>
           {{ student.email }}
@@ -68,14 +68,26 @@
   <mat-card class="m-2">
     <mat-card-title> Course Link: </mat-card-title>
     <mat-card-content>
+      <!-- Has Course Coupon -->
       <div
+        *ngIf="courseCode"
         [cdkCopyToClipboard]="courseLink"
         (click)="openSnackBar('Copied!')"
         matTooltip="Click to copy link."
         class="flex flex-row place-content-between text-xl truncate rouned-lg shadow-sm shadow-black bg-slate-100 p-3 cursor-pointer"
       >
         <div class="">{{ courseLink }}</div>
-        <mat-icon class="self-center">content_copy</mat-icon>
+        <mat-icon class="self-center" *ngIf="courseCode"
+          >content_paste</mat-icon
+        >
+      </div>
+      <!-- No Course Coupon -->
+      <div
+        *ngIf="!courseCode"
+        class="flex flex-row place-content-between text-xl truncate rouned-lg shadow-sm shadow-black bg-slate-100 p-3 cursor-default"
+      >
+        <div class="">{{ courseLink }}</div>
+        <mat-icon class="self-center">content_paste_off</mat-icon>
       </div>
     </mat-card-content>
   </mat-card>

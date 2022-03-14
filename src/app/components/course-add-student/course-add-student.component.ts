@@ -1,3 +1,4 @@
+import { Course } from './../../models/course';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
@@ -20,12 +21,11 @@ export class CourseAddStudentComponent implements OnInit {
   removedEmail: string = '';
   currentStudents = new BehaviorSubject<User[]>([]);
 
-  courseCode: string = '';
+  course: Course = {};
 
   constructor(
     private Api: ApiService,
     private route: ActivatedRoute,
-    private location: Location,
     private _snackBar: MatSnackBar
   ) {}
 
@@ -35,7 +35,7 @@ export class CourseAddStudentComponent implements OnInit {
       if (id) {
         this.courseId = id;
         this.getCourseStudents();
-        this.getCoruseCode();
+        this.fetchCourse();
       }
     });
   }
@@ -73,21 +73,27 @@ export class CourseAddStudentComponent implements OnInit {
     );
   }
 
-  getCoruseCode() {
+  fetchCourse() {
     this.Api.getCourse(this.courseId).subscribe((course) => {
-      console.log(course.studentCourseCode?.code);
-      this.courseCode = course.studentCourseCode?.code || '';
+      this.course = course;
     });
   }
 
+  get courseCode(): string {
+    return this.course.studentCourseCode?.code || '';
+  }
+
   get courseLink(): string {
-    const {hostname, host, protocol, port} = window.location
-    return `${protocol}//${port == '80' ? hostname : host}/join/${this.courseCode}`
+    if (!this.courseCode) return 'No Course Code';
+    const { hostname, host, protocol, port } = window.location;
+    return `${protocol}//${port == '80' ? hostname : host}/join/${
+      this.courseCode
+    }`;
   }
 
   openSnackBar(message: string) {
-    const ONE_SECOND = 1000
-    const config: MatSnackBarConfig = {duration: ONE_SECOND}
-    this._snackBar.open(message, undefined, config)
+    const ONE_SECOND = 1000;
+    const config: MatSnackBarConfig = { duration: ONE_SECOND };
+    this._snackBar.open(message, undefined, config);
   }
 }

@@ -1,3 +1,4 @@
+import { UpdateContentDateDialogComponent } from './../update-content-date-dialog/update-content-date-dialog.component';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { Content } from 'src/app/models/course';
@@ -64,6 +65,15 @@ export class EditDisplayContentsComponent implements OnInit {
     const form = new FormData()
     form.append('contentOrder', newOrder.toString())
     this.Api.updateContent(contentId, form)
+  }
+
+  openChangeDropDateDialog(contentId: string): void {
+    this.DialogService.open(UpdateContentDateDialogComponent, {contentId})
+  }
+
+  parseDate(date: string) {
+    const dateObj = new Date(date)
+    return `${dateObj.toLocaleDateString()} ${dateObj.toLocaleTimeString()}`
   }
 
 }

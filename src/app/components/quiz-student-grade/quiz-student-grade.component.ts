@@ -18,7 +18,6 @@ export class QuizStudentGradeComponent implements OnInit {
   quizInfo: ActiveVersion = {};
 
   constructor(
-    private Api: ApiService,
     private QuizService: QuizzesService,
     private route: ActivatedRoute,
     private router: Router
@@ -40,8 +39,8 @@ export class QuizStudentGradeComponent implements OnInit {
   }
 
   getBasicQuizInfo() {
-    this.Api.getQuizInfo(this.quizId).subscribe((info) => {
-      this.quizInfo = info;
+    this.QuizService.getQuizInfo(this.quizId).subscribe((activeVersion) => {
+      this.quizInfo = activeVersion;
     });
   }
 
