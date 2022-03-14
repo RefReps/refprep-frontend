@@ -9,6 +9,8 @@
   <mat-card *ngFor="let content of contents" cdkDrag class="p-1">
     <div class="flex flex-row justify-between align-middle">
       <div class="self-center">
+        <mat-icon *ngIf="content.onModel == 'Video'">videocam</mat-icon>
+        <mat-icon *ngIf="content.onModel == 'Quiz'">assignment</mat-icon> 
         {{ content.name }}
       </div>
       <div class="flex flex-row">
