@@ -15,6 +15,7 @@ export class VideoViewerComponent implements OnInit {
   videoUrl: string = '';
   videoMeta: Video = {}
   videoTitle: string = '';
+  enforcements: boolean = false;
 
   // vgApi: VgApiService;
 
@@ -39,7 +40,9 @@ export class VideoViewerComponent implements OnInit {
   loadVideoInHTMLPlayer(): void {
     const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
     this.videoUrl = `${this.Api.videoUrl}/${this.videoId}`
-    this.disableSeeking()
+    if (this.enforcements == true) {
+      this.disableSeeking()
+    }
     this.setCheckpoints()
     this.videoEnd()
     videoPlayer.load()
