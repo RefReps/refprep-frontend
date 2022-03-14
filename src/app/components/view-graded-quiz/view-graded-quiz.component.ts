@@ -17,7 +17,6 @@ export class ViewGradedQuizComponent implements OnInit {
   questions: QuizQuestion[] = [];
   gradedQuiz: GradedQuiz = {};
   userAnswers: UserAnswers[] = []
-  givenAnswer: any = ''
 
   constructor(
     private route: ActivatedRoute,
@@ -61,12 +60,8 @@ export class ViewGradedQuizComponent implements OnInit {
   }
 
    getUserAnswerByQuestionNumber(i: number): string {
-     console.log(this.userAnswers)
-     if (typeof this.userAnswers != 'undefined') {
-        return this.userAnswers.filter(q => 
-         q.questionNumber == i 
-       )[0].answers?.splice(0).shift() || ''
-    }
-    return ''
+      return this.userAnswers.filter(q => 
+      q.questionNumber == i )[0]
+        .answers?.slice().shift() || ''
   }
 }
