@@ -1,3 +1,12 @@
+<div class="center">
+    <h1 class="text-display">{{ quizInfo?.quiz?.name }}</h1>
+    <div [ngClass]="gradedQuiz.grade! > passingGrade ? 'pass' : 'fail'">
+        <h1 class="text-display px-10">{{ getGradePercentage(gradedQuiz.grade) }}% ({{
+            getLetterGrade(gradedQuiz.grade)
+          }})</h1>
+    </div>
+</div>
+
 <a class="ml-6" [routerLink]="['/courses', courseId, 'quiz', quizId]">
 <button class="bg-blue-400" mat-raised-button>
     <span class="material-icons">
@@ -5,6 +14,7 @@
     </span>
 </button>
 </a>
+
 
 <div class="flex flex-col">
     <div *ngFor="let question of questions" class="m-5">
