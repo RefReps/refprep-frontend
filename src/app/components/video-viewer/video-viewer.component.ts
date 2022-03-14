@@ -47,17 +47,28 @@ export class VideoViewerComponent implements OnInit {
 
   disableSeeking(): void {
     const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
-    var supposedCurrentTime = 0;
+    var supposedCurrentTime = videoPlayer.currentTime;
+    var watchedTime =  0;
+    var lastUpdate = 'currentTime';
     videoPlayer.addEventListener('timeupdate', function(){
       if (!videoPlayer.seeking) {
+        if(videoPlayer.currentTime > watchedTime) {
+          watchedTime = videoPlayer.currentTime;
+          lastUpdate = 'watchedTime';
+        }
+        else {
           supposedCurrentTime = videoPlayer.currentTime;
+          lastUpdate = 'currentTime';
+        }
       }
     });
 
     videoPlayer.addEventListener('seeking', function() {
-      var delta = videoPlayer.currentTime - supposedCurrentTime;
+      var delta = videoPlayer.currentTime - watchedTime;
       if (delta > 0.01) {
+        videoPlayer.pause();
         videoPlayer.currentTime = supposedCurrentTime;
+        videoPlayer.play();
       }
     });
 
