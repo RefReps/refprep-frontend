@@ -3,7 +3,7 @@
     class="grid gap-2 mx-2 grid-flow-row-dense md:grid-flow-col-dense md:max-w-lg"
   >
     <mat-card class="shadow-lg min-w-max row-span-1 md:row-span-2">
-      <mat-card-title>Current Students:</mat-card-title>
+      <mat-card-title>Current Students ({{(currentStudents.asObservable() | async)?.length}}/{{course.settings?.courseCapacity}}):</mat-card-title>
       <mat-list *ngFor="let student of currentStudents | async">
         <mat-list-item>
           {{ student.email }}
