@@ -1,8 +1,12 @@
 <div class="center">
     <h1 class="text-display">{{ quizInfo?.quiz?.name }}</h1>
-    <h1 class="text-display px-10">{{ getGradePercentage(gradedQuiz.grade) }}% ({{
-            getLetterGrade(gradedQuiz.grade)
-          }})</h1>
+</div>
+<div class="center">
+    <div [ngClass]="gradedQuiz.grade! >= passingGrade ? 'pass' : 'neutral'">
+        <h1 class="pr-3">{{ getGradePercentage(gradedQuiz.grade) }}% ({{
+                getLetterGrade(gradedQuiz.grade)
+              }})</h1>
+    </div>
     <h1 class="pass" *ngIf="gradedQuiz.grade! >= passingGrade">
         Pass!
     </h1>
