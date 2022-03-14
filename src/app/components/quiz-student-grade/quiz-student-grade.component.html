@@ -2,9 +2,17 @@
   <h1 class="text-display">{{ quizInfo?.quiz?.name }}</h1>
 </div>
 <div class="center">
-  <a routerLink="./take">
-    <button class="bg-blue-200" mat-raised-button>Start Quiz</button>
-  </a>
+  <div matTooltip="All Attempts Used"
+       matTooltipPosition="above"
+       [matTooltipDisabled]="!isAttemptsExhausted">
+    <button class="bg-blue-200" 
+            mat-raised-button
+            (click)="takeQuiz()"
+            [disabled]="isAttemptsExhausted"
+            >
+            Start Quiz
+    </button>
+  </div>
 </div>
 
 <div *ngIf="userGrade.length > 0" class="center">
