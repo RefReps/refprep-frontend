@@ -1,17 +1,19 @@
+import { courseReducer } from './_store/course/course.reducer';
+import { quizAnswerReducer } from './_store/quizAnswer/quizAnswer.reducer';
+import { quizReducer } from './_store/quiz/quiz.reducer';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Videogular
-import {VgCoreModule} from '@videogular/ngx-videogular/core';
-import {VgControlsModule} from '@videogular/ngx-videogular/controls';
-import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
-import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 // import {VgApiService} from '@videogular/ngx-videogular/core'
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,12 +26,10 @@ import { AuthenticationService } from './_services/authentication.service';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
-
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     MaterialModule,
     BrowserModule,
@@ -46,16 +46,21 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
     VgBufferingModule,
     // VgApiService,
 
+    StoreModule.forRoot({
+      quiz: quizReducer,
+      quizAnswers: quizAnswerReducer,
+      course: courseReducer,
+    }),
 
     DefaultModule, // import all layout modules
-    LoginModule
+    LoginModule,
   ],
   providers: [
     // {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
     // {provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthenticationService]},
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

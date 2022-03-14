@@ -11,3 +11,15 @@
 
     </div>
 </div>
+<div *ngIf="!isAdmin">
+    <div style="float: bottom" class="ml-5">
+        <mat-card class="max-w-min">
+            <mat-form-field>
+                <input matInput #codeInput name="code" placeholder="Coupon Code">
+            </mat-form-field>
+            <button mat-button (click)="joinCourseByCode(codeInput.value)" class="bg-green-400" mat-raised-button>
+                Join Course
+            </button>
+        </mat-card>
+    </div>
+</div>

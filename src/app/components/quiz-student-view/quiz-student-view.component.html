@@ -1,14 +1,9 @@
+<mat-card>
+    <mat-card-title class="text-center">You are taking {{quizInfo?.quiz?.name || 'NOT AVAILABLE'}}</mat-card-title>
+</mat-card>
 <div fxLayout="column">
-    <div *ngFor="let question of questions">
+    <div *ngFor="let question of questions" class="m-5">
         <app-quiz-question [question]="question"></app-quiz-question>
     </div>
     <button mat-raised-button color="primary" (click)="submitQuiz()">Submit</button>
 </div>
-
-
-
-
-    
-
-
-

@@ -1,0 +1,228 @@
+<div fxLayout="column" fxFill>
+  <!-- Course Header -->
+  <div fxFlex="7">
+    <app-course-info-home></app-course-info-home>
+  </div>
+
+  <mat-drawer-container fxLayout="column" fxFlex="93">
+    <!-- Course Sidebar -->
+    <mat-drawer #drawer mode="side" opened class="w-24 min-h-full">
+      <app-course-sidebar></app-course-sidebar>
+    </mat-drawer>
+
+    <!-- Main Content for Settings -->
+    <mat-drawer-container fxLayout="column" fxFill>
+      <!-- Author Settings -->
+      <div class="ml-5 mr-5 max-w-md">
+        <mat-card class="bg-gray-[50]">
+          <!-- Settings -->
+          <mat-card-content>
+            <div class="flex flex-col align-middle">
+              <!-- Course Enforcements -->
+              <div
+                class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
+              >
+                <div class="flex-initial self-center text-lg">
+                  Course Enforcements
+                  <mat-icon
+                    class="hover:cursor-pointer"
+                    matTooltip="Students will have to progress through the course in a linear manner."
+                    inline
+                    >help_outline</mat-icon
+                  >
+                </div>
+                <div class="flex self-center">
+                  <mat-slide-toggle
+                    [checked]="true"
+                    (toggleChange)="toggleCourseEnforcements()"
+                  ></mat-slide-toggle>
+                </div>
+              </div>
+              <!-- Enforcement Percent -->
+              <div
+                class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
+                [ngClass]="{ 'bg-gray-200': !courseEnforcements }"
+              >
+                <div class="flex-initial self-center text-lg">
+                  Enforcement Percent
+                  <mat-icon
+                    class="hover:cursor-pointer"
+                    matTooltip="Students will have to get this percent before advancing or use all quiz attempts, whichever comes first."
+                    inline
+                    >help_outline</mat-icon
+                  >
+                </div>
+                <div class="flex self-center">
+                  <mat-form-field class="w-10">
+                    <input
+                      #enforcementPercentInput
+                      matInput
+                      type="number"
+                      [disabled]="!courseEnforcements"
+                      [value]="enforcementPercent"
+                      (change)="
+                        changeEnforcementPercent(enforcementPercentInput.value)
+                      "
+                      min="0"
+                      max="100"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- Maximum Quiz Attempts -->
+              <div
+                class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
+              >
+                <div class="flex-initial self-center text-lg">
+                  Max Quiz Attempts
+                </div>
+                <div class="flex self-center">
+                  <mat-form-field class="w-10">
+                    <input
+                      #maxQuizAttemptInput
+                      matInput
+                      type="number"
+                      [value]="maxQuizAttempts"
+                      (change)="
+                        changeMaximumQuizAttempts(maxQuizAttemptInput.value)
+                      "
+                      min="1"
+                      max="99"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- Lock Coupon Code -->
+              <div
+                class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
+              >
+                <div class="flex-initial self-center text-lg">
+                  Lock Coupon Code
+                </div>
+                <div class="flex self-center">
+                  <mat-slide-toggle
+                    [checked]="couponLocked"
+                    (toggleChange)="toggleCouponLock()"
+                  ></mat-slide-toggle>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <!-- Save Button for Author Settings -->
+          <mat-card-actions class="border-t-2">
+            <div class="grid grid-cols-1">
+              <button
+                mat-raised-button
+                (click)="saveAuthorSettings()"
+                class="bg-green-300 w-1/6 justify-self-end"
+              >
+                Save
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <!-- Admin Settings -->
+      <div class="ml-5 mr-5 mt-5 max-w-md">
+        <mat-card class="bg-gray-[50]">
+          <!-- Settings -->
+          <mat-card-content>
+            <div class="flex flex-col align-middle">
+              <!-- Course Student Capacity -->
+              <div
+                class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
+                [ngClass]="{ 'bg-gray-200': !isAdmin }"
+              >
+                <div class="flex-initial self-center text-lg">
+                  Student Capacity
+                </div>
+                <div class="flex self-center">
+                  <mat-form-field class="w-10">
+                    <input
+                      matInput
+                      #studentCapacityInput
+                      type="number"
+                      [value]="studentCapacity"
+                      min="0"
+                      max="500"
+                      [disabled]="!isAdmin"
+                      (change)="
+                        changeStudentCapacity(studentCapacityInput.value)
+                      "
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- Coupon Code Name -->
+              <div
+                class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
+                [ngClass]="{ 'bg-gray-200': !isAdmin }"
+              >
+                <div class="flex-initial self-center text-lg">Coupon Code</div>
+                <div class="flex self-center">
+                  <mat-form-field class="max-w-sm">
+                    <input
+                      matInput
+                      #couponCodeNameInput
+                      [value]="couponName"
+                      type="text"
+                      [disabled]="!isAdmin"
+                      (change)="changeCouponCodeName(couponCodeNameInput.value)"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- Coupon Code Active Until -->
+              <div
+                class="flex flex-initial place-content-between w-full shadow-md p-1 mb-2 rounded-md"
+                [ngClass]="{ 'bg-gray-200': !isAdmin }"
+              >
+                <div class="flex-initial self-center text-lg">
+                  Coupon Valid Until
+                </div>
+                <div class="flex self-center">
+                  <mat-form-field class="max-w-sm">
+                    <input
+                      matInput
+                      #couponExpDateInput
+                      [matDatepicker]="couponDate"
+                      [value]="couponExpDate.value"
+                      disabled
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="couponDate"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker
+                      #couponDate
+                      [disabled]="!isAdmin"
+                      [startAt]="couponExpDate"
+                      (closed)="changeCouponExpDate(couponExpDateInput.value)"
+                    ></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <!-- Save Button for Admin Settings -->
+          <mat-card-actions class="border-t-2">
+            <div class="flex flex-row justify-end items-center">
+              <mat-icon *ngIf="!isAdmin">lock</mat-icon>
+              <button
+                mat-raised-button
+                [disabled]="!isAdmin"
+                (click)="saveAdminSettings()"
+                class="bg-green-300 w-1/6"
+              >
+                Save
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-drawer-container>
+  </mat-drawer-container>
+</div>

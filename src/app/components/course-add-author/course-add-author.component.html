@@ -1,37 +1,65 @@
-<div fxLayout="row">
-    <mat-card class="shadow-lg h-400 w-72">
-        <mat-card-title>Current Authors:</mat-card-title>
-        <mat-list *ngFor="let author of currentAuthors">
-            <mat-list-item>
-                {{author.email}}
-            </mat-list-item>
-        </mat-list>
-    </mat-card>
-    <mat-card class="shadow-lg h-400 w-72">
-        <mat-card-title>Add Authors:</mat-card-title>
-        <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input matInput type="text" name="newEmail" [(ngModel)] = "newEmail">
-        </mat-form-field>
-        <button mat-raised-button (click)="addNewAuthor()">Add Author</button> 
-        <mat-list *ngFor="let email of emails">
-            <mat-list-item>
-                {{email}}
-            </mat-list-item>
-        </mat-list>
-        <button mat-raised-button (click)="onSubmit()">Complete</button>
-    
-    </mat-card>
-    <mat-card class="shadow-lg h-400 w-72">
-        <mat-card-title>Remove Authors:</mat-card-title>
-    <div>
-        <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input matInput type="text" name="removedEmail" [(ngModel)] = "removedEmail">
-        </mat-form-field>
-        <button mat-raised-button (click)="removeAuthor()">Remove</button> 
+<div
+  class="grid gap-2 mx-2 grid-flow-row-dense md:grid-flow-col-dense md:max-w-lg"
+>
+  <mat-card class="shadow-lg min-w-max row-span-1 md:row-span-2">
+    <mat-card-title>Current Authors:</mat-card-title>
+    <mat-list *ngFor="let author of currentAuthors | async">
+      <mat-list-item>
+        {{ author.email }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+  <!-- Add Author Card -->
+  <mat-card class="shadow-lg h-400">
+    <mat-card-title>Add Authors:</mat-card-title>
+    <div class="grid grid-flow-row">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="text" name="newEmail" [(ngModel)]="newEmail" />
+      </mat-form-field>
+      <div class="flex flex-row">
+        <button
+          class="w-40 bg-green-400"
+          mat-raised-button
+          (click)="addNewAuthor()"
+        >
+          Add Author
+        </button>
+        <button
+          class="w-40 bg-green-400"
+          mat-raised-button
+          (click)="onSubmit()"
+        >
+          Submit Authors
+        </button>
+      </div>
+      <mat-list *ngFor="let email of emails">
+        <mat-list-item>
+          {{ email }}
+        </mat-list-item>
+      </mat-list>
     </div>
-    
-    </mat-card>
+  </mat-card>
+  <!-- Remove Author Card -->
+  <mat-card class="shadow-lg h-400">
+    <mat-card-title>Remove Authors:</mat-card-title>
+    <div class="grid grid-flow-row">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="text"
+          name="removedEmail"
+          [(ngModel)]="removedEmail"
+        />
+      </mat-form-field>
+      <button
+        class="w-40 bg-red-500"
+        mat-raised-button
+        (click)="removeAuthor()"
+      >
+        Remove
+      </button>
+    </div>
+  </mat-card>
 </div>
-

@@ -1,8 +1,9 @@
+import { loadCourse } from './../../_store/course/course.actions';
+import { selectCourse } from './../../_store/course/course.selector';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Course } from 'src/app/models/course';
-import { CourseBreifInfo } from 'src/app/models/course-breif-info';
-import { CourseInteractionService } from 'src/app/_services/course-interaction.service';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
 
@@ -14,12 +15,13 @@ import { ApiService } from 'src/service/api.service';
 export class CourseHomeComponent implements OnInit {
   courseId: string = '';
   course: Course = {};
-  
+  course$ = this.store.select(selectCourse)
 
   constructor(
     private Api: ApiService, 
     private route: ActivatedRoute,
     private userInteraction: UserInteractionService,
+    private store: Store,
     ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class CourseHomeComponent implements OnInit {
     .subscribe(info => {
       this.course = info
       this.userInteraction.setCourse(this.course)
+      this.store.dispatch(loadCourse({course: info}))
     })
   }
 

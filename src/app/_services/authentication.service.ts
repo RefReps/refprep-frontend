@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { User } from '../_models/user';
+import { User } from '../models/user';
 import { TokenService } from './token.service';
 
 @Injectable({

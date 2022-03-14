@@ -1,34 +1,94 @@
-<div fxLayout="row">
-    <mat-card class="shadow-lg h-400 w-72">
-        <mat-card-title>Current Students:</mat-card-title>
-        <mat-list *ngFor="let student of currentStudents">
-            <mat-list-item>
-                {{student.email}}
-            </mat-list-item>
-        </mat-list>
+<div class="flex flex-col max-w-xl">
+  <div
+    class="grid gap-2 mx-2 grid-flow-row-dense md:grid-flow-col-dense md:max-w-lg"
+  >
+    <mat-card class="shadow-lg min-w-max row-span-1 md:row-span-2">
+      <mat-card-title>Current Students ({{(currentStudents.asObservable() | async)?.length}}/{{course.settings?.courseCapacity}}):</mat-card-title>
+      <mat-list *ngFor="let student of currentStudents | async">
+        <mat-list-item>
+          {{ student.email }}
+        </mat-list-item>
+      </mat-list>
     </mat-card>
-    <mat-card class="shadow-lg h-400 w-72">
-        <mat-card-title>Add Students:</mat-card-title>
+    <!-- Add Students Card -->
+    <mat-card class="shadow-lg h-400">
+      <mat-card-title>Add Students:</mat-card-title>
+      <div class="grid grid-flow-row">
         <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input matInput type="text" name="newEmail" [(ngModel)] = "newEmail">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" name="newEmail" [(ngModel)]="newEmail" />
         </mat-form-field>
-        <button mat-raised-button (click)="addNewStudent()">Add Student</button> 
+        <div class="flex flex-row">
+          <button
+            class="w-40 bg-green-400"
+            mat-raised-button
+            (click)="addNewStudent()"
+          >
+            Add Student
+          </button>
+          <button
+            class="w-40 bg-green-400"
+            mat-raised-button
+            (click)="onSubmit()"
+          >
+            Submit Students
+          </button>
+        </div>
         <mat-list *ngFor="let email of emails">
-            <mat-list-item>
-                {{email}}
-            </mat-list-item>
+          <mat-list-item>
+            {{ email }}
+          </mat-list-item>
         </mat-list>
-        <button mat-raised-button (click)="onSubmit()">Complete</button>
+      </div>
     </mat-card>
-    <mat-card class="shadow-lg h-400 w-72">
-        <mat-card-title>Remove Student:</mat-card-title>
-    <div>
+    <!-- Remove Student Card -->
+    <mat-card class="shadow-lg h-400">
+      <mat-card-title>Remove Student:</mat-card-title>
+      <div class="grid grid-flow-row">
         <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input matInput type="text" name="removedEmail" [(ngModel)] = "removedEmail">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="text"
+            name="removedEmail"
+            [(ngModel)]="removedEmail"
+          />
         </mat-form-field>
-        <button mat-raised-button (click)="removeStudent()">Remove</button> 
-    </div>
-    
+        <button
+          class="w-40 bg-red-500"
+          mat-raised-button
+          (click)="removeStudent()"
+        >
+          Remove
+        </button>
+      </div>
     </mat-card>
+  </div>
+  <!-- Course Link For Students Card -->
+  <mat-card class="m-2">
+    <mat-card-title> Course Link: </mat-card-title>
+    <mat-card-content>
+      <!-- Has Course Coupon -->
+      <div
+        *ngIf="courseCode"
+        [cdkCopyToClipboard]="courseLink"
+        (click)="openSnackBar('Copied!')"
+        matTooltip="Click to copy link."
+        class="flex flex-row place-content-between text-xl truncate rouned-lg shadow-sm shadow-black bg-slate-100 p-3 cursor-pointer"
+      >
+        <div class="">{{ courseLink }}</div>
+        <mat-icon class="self-center" *ngIf="courseCode"
+          >content_paste</mat-icon
+        >
+      </div>
+      <!-- No Course Coupon -->
+      <div
+        *ngIf="!courseCode"
+        class="flex flex-row place-content-between text-xl truncate rouned-lg shadow-sm shadow-black bg-slate-100 p-3 cursor-default"
+      >
+        <div class="">{{ courseLink }}</div>
+        <mat-icon class="self-center">content_paste_off</mat-icon>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Content } from 'src/app/models/content';
+import { Content } from 'src/app/models/course';
 
 @Component({
   selector: 'app-drag-drop-area',

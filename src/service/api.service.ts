@@ -1,23 +1,17 @@
+import { ApiResponse, ErrorResponse } from './../app/models/apiResponse';
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Video } from 'src/app/models/video.model';
-import { Course } from 'src/app/models/course';
-import { SectionsInfo } from 'src/app/models/sections-info';
-import { ModuleInfo } from 'src/app/models/module-info';
+import { Course, Section, Module } from 'src/app/models/course';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
-import { Module } from 'src/app/models/module';
-import { Section } from 'src/app/models/section';
 import { Quiz } from 'src/app/models/quiz';
 
 import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
-import { RegisterUser } from 'src/app/_models/registerUser';
-import { Student } from 'src/app/models/student';
-import { Author } from 'src/app/models/author';
-import { QuizQuestion } from 'src/app/models/quiz-question';
-import { UserGrade } from 'src/app/models/userGrade';
+import { User } from 'src/app/models/user';
+import { UserGrade } from 'src/app/models/quiz';
 
 
 @Injectable({
@@ -66,12 +60,12 @@ export class ApiService {
   }
 
 
-  getCourseSections(courseId: string): Observable<SectionsInfo[]> {
-    return this.http.get<SectionsInfo[]>(`${this.courseUrl}/${courseId}/section`)
+  getCourseSections(courseId: string): Observable<Section[]> {
+    return this.http.get<Section[]>(`${this.courseUrl}/${courseId}/section`)
   }
 
-  getSectionModules(courseId: string, sectionId: string): Observable<ModuleInfo[]> {
-    return this.http.get<ModuleInfo[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module`)
+  getSectionModules(courseId: string, sectionId: string): Observable<Module[]> {
+    return this.http.get<Module[]>(`${this.courseUrl}/${courseId}/section/${sectionId}/module`)
   }
 
   getModuleContent(courseId: string, sectionId: string, moduleID: string): Observable<Content[]> {
@@ -102,34 +96,46 @@ export class ApiService {
     this.http.put(`${this.courseUrl}/${courseId}`, courseForm).subscribe();
   }
 
+  joinCourseByCode(code: string): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>(`${this.courseUrl}/code/${code}`, {})
+  }
+
+  updateAuthorSettings(courseId: string, settings: Object): Observable<{success: boolean, course: Course}> {
+    return this.http.put<{success: boolean, course: Course}>(`${this.courseUrl}/${courseId}/settings/author`, settings)
+  }
+
+  updateAdminSettings(courseId: string, settings: Object): Observable<{success: boolean, error: ErrorResponse, course: Course}> {
+    return this.http.put<{success: boolean, error: ErrorResponse, course: Course}>(`${this.courseUrl}/${courseId}/settings/admin`, settings)
+  }
+
 
   // Student Routes
 
-  addStudentsToCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/students`, { emails }).subscribe()
+  addStudentsToCourse(courseId: string, emails: string[]): Observable<any> {
+    return this.http.post(`${this.courseUrl}/${courseId}/students`, { emails })
   }
 
-  removeStudentsInCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/students/remove`, { emails }).subscribe()
+  removeStudentsInCourse(courseId: string, emails: string[]): Observable<any> {
+    return this.http.post(`${this.courseUrl}/${courseId}/students/remove`, { emails })
   }
 
-  getStudentsInCourse(courseId: string): Observable<Student[]> {
-    return this.http.get<Student[]>(`${this.courseUrl}/${courseId}/students`)
+  getStudentsInCourse(courseId: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.courseUrl}/${courseId}/students`)
   }
 
 
   // Author Routes
 
-  addAuthorsToCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/authors`, { emails }).subscribe()
+  addAuthorsToCourse(courseId: string, emails: string[]): Observable<any> {
+    return this.http.post(`${this.courseUrl}/${courseId}/authors`, { emails })
   }
 
-  removeAuthorsInCourse(courseId: string, emails: string[]): void {
-    this.http.post(`${this.courseUrl}/${courseId}/authors/remove`, { emails }).subscribe()
+  removeAuthorsInCourse(courseId: string, emails: string[]): Observable<any> {
+    return this.http.post(`${this.courseUrl}/${courseId}/authors/remove`, { emails })
   }
 
-  getAuthorsInCourse(courseId: string): Observable<Author[]> {
-    return this.http.get<Author[]>(`${this.courseUrl}/${courseId}/authors`)
+  getAuthorsInCourse(courseId: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.courseUrl}/${courseId}/authors`)
   }
 
 
@@ -190,45 +196,13 @@ export class ApiService {
     this.http.delete(`${this.contentUrl}/${contentId}`).subscribe();
   }
 
-  // Quiz Routes
-
-  getQuizInfo(quizId: string): Observable<any> {
-    return this.http.get(`${this.quizUrl}/${quizId}`)
-  }
-
-  postNewQuiz(name: string): Observable<Quiz> {
-    return this.http.post<Quiz>(`${this.quizUrl}`, { name })
-  }
-
-  startQuiz(quizId: string): Observable<any> {
-    return this.http.get(`${this.quizUrl}/${quizId}/start`)
-  }
-
-  submissionSave(quizId: string, answers: any): Observable<any> {
-    return this.http.put(`${this.quizUrl}/${quizId}/submission-save`, answers)
-  }
-
-  gradeQuiz(quizId: string): Observable<any> {
-    return this.http.post(`${this.quizUrl}/${quizId}/grade`, {})
-  }
-
-  batchPutQuestions(quizId: string, quizQuestions: any): void {
-    this.http.put(`${this.quizUrl}/${quizId}/batch`, quizQuestions).subscribe()
-  }
-
-  // Quiz Grade Routes
-
-  getAllQuizGrades(quizId: string): Observable<UserGrade[]> {
-    return this.http.get<UserGrade[]>(`${this.quizUrl}/${quizId}/view-grades`)
-  }
-
-  getQuizGrade(quizId: string, email: string): Observable<UserGrade> {
-    return this.http.get<UserGrade>(`${this.quizUrl}/${quizId}/grade`)
+  updateContentDropDate(contentId: string, date: Date): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/date`, {date: date.getTime()})
   }
 
   // User Routes
-  registerUser(data: RegisterUser): Observable<any> {
-    return this.http.post<RegisterUser>(`${this.authUrl}/register`, data)
+  registerUser(data: User): Observable<any> {
+    return this.http.post<User>(`${this.authUrl}/register`, data)
   }
 
   // Video Routes

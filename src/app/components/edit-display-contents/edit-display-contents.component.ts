@@ -1,10 +1,12 @@
+import { UpdateContentDateDialogComponent } from './../update-content-date-dialog/update-content-date-dialog.component';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
-import { Content } from 'src/app/models/content';
+import { Content } from 'src/app/models/course';
 import { ApiService } from 'src/service/api.service';
 import { DialogService } from 'src/service/dialog.service';
 import { ContentDeleteFormComponent } from '../content-delete-form/content-delete-form.component';
 import { QuizBuilderComponent } from '../quiz-builder/quiz-builder.component';
+import { UpdateContentDialogComponent } from '../update-content-dialog/update-content-dialog.component';
 
 @Component({
   selector: 'app-edit-display-contents',
@@ -45,6 +47,10 @@ export class EditDisplayContentsComponent implements OnInit {
     this.DialogService.open(ContentDeleteFormComponent, { contentId })
   }
 
+  openUpdateContentDialog(contentId: string): void {
+    this.DialogService.open(UpdateContentDialogComponent, { contentId })
+  }
+
   onDrop(event: any) {
     const contentId = this.contents[event.previousIndex]._id
     if (event.previousContainer === event.container && contentId) {
@@ -59,6 +65,15 @@ export class EditDisplayContentsComponent implements OnInit {
     const form = new FormData()
     form.append('contentOrder', newOrder.toString())
     this.Api.updateContent(contentId, form)
+  }
+
+  openChangeDropDateDialog(contentId: string): void {
+    this.DialogService.open(UpdateContentDateDialogComponent, {contentId})
+  }
+
+  parseDate(date: string) {
+    const dateObj = new Date(date)
+    return `${dateObj.toLocaleDateString()} ${dateObj.toLocaleTimeString()}`
   }
 
 }

@@ -51,6 +51,15 @@ import { QuizGradesViewerComponent } from './quiz-grades-viewer/quiz-grades-view
 import { QuizStudentGradeComponent } from './quiz-student-grade/quiz-student-grade.component';
 import { ModuleDeleteFormComponent } from './module-delete-form/module-delete-form.component';
 import { ContentDeleteFormComponent } from './content-delete-form/content-delete-form.component';
+import { ViewGradedQuizComponent } from './view-graded-quiz/view-graded-quiz.component';
+import { CourseQuizEditComponent } from './course-quiz-edit/course-quiz-edit.component';
+import { EditQuizQuestionComponent } from './edit-quiz-question/edit-quiz-question.component';
+import { UpdateSectionDialogComponent } from './update-section-dialog/update-section-dialog.component';
+import { UpdateModuleDialogComponent } from './update-module-dialog/update-module-dialog.component';
+import { UpdateContentDialogComponent } from './update-content-dialog/update-content-dialog.component';
+import { JoinCourseByCodeComponent } from './join-course-by-code/join-course-by-code.component';
+import { CourseSettingsComponent } from './course-settings/course-settings.component';
+import { UpdateContentDateDialogComponent } from './update-content-date-dialog/update-content-date-dialog.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -96,6 +105,15 @@ import { ContentDeleteFormComponent } from './content-delete-form/content-delete
     QuizStudentGradeComponent,
     ModuleDeleteFormComponent,
     ContentDeleteFormComponent,
+    ViewGradedQuizComponent,
+    CourseQuizEditComponent,
+    EditQuizQuestionComponent,
+    UpdateSectionDialogComponent,
+    UpdateModuleDialogComponent,
+    UpdateContentDialogComponent,
+    JoinCourseByCodeComponent,
+    CourseSettingsComponent,
+    UpdateContentDateDialogComponent,
   ],
   imports: [
     MaterialModule,
@@ -151,6 +169,15 @@ import { ContentDeleteFormComponent } from './content-delete-form/content-delete
     CourseAddStudentComponent,
     QuizGradesViewerComponent,
     QuizStudentGradeComponent,
+    ViewGradedQuizComponent,
+    CourseQuizEditComponent,
+    EditQuizQuestionComponent,
+    UpdateSectionDialogComponent,
+    UpdateModuleDialogComponent,
+    UpdateContentDialogComponent,
+    JoinCourseByCodeComponent,
+    CourseSettingsComponent,
+    UpdateContentDateDialogComponent,
   ],
 })
 export class ComponentsModule { }

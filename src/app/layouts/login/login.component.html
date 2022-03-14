@@ -19,6 +19,9 @@
                 <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-error *ngIf="f.password.errors"></mat-error>
             </mat-form-field>
+            <div *ngIf="!isLoadingResults" class="text-red-600" style="text-align: center">
+                Email or Password is incorrect
+            </div>
             <div style="text-align: center;">
                 <button class="bg-blue-200" mat-raised-button>Login</button>
             </div>
