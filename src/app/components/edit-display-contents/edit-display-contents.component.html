@@ -11,9 +11,18 @@
       <div class="self-center">
         {{ content.name }}
       </div>
-      <button mat-icon-button [matMenuTriggerFor]="editMenu" class="">
-        <mat-icon>more_vert</mat-icon>
-      </button>
+      <div class="flex flex-row">
+        <!-- Display drop date if there is enough space -->
+        <div class="hidden sm:block min-w-max self-center p-1 bg-black rounded-md">
+          <div class="text-xl self-center rounded-md bg-blue-100 px-5">
+            {{parseDate(content.dropDate!)}}
+          </div>
+        </div>
+        <!-- Menu for buttons -->
+        <button mat-icon-button [matMenuTriggerFor]="editMenu" class="">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
     </div>
     <mat-menu #editMenu class="w-10">
       <div class="flex flex-col">
@@ -27,6 +36,14 @@
             <mat-icon>edit</mat-icon>
           </button>
           Edit
+        </div>
+        <div>
+          <button mat-icon-button color="blue"
+          (click)="openChangeDropDateDialog(content._id!)"
+           class="">
+            <mat-icon>event</mat-icon>
+          </button>
+          Drop Date
         </div>
         <div>
           <button

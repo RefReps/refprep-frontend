@@ -1,0 +1,47 @@
+<div class="flex flex-col">
+  <mat-form-field>
+    <mat-label>Choose a drop date</mat-label>
+    <input
+      matInput
+      #dropDateInput
+      disabled
+      [matDatepicker]="dropDate"
+      [value]="contentDropDate.value"
+    />
+    <mat-datepicker-toggle matSuffix [for]="dropDate"></mat-datepicker-toggle>
+    <mat-datepicker
+      #dropDate
+      (closed)="changeDropDate(dropDateInput.value)"
+      disabled="false"
+    ></mat-datepicker>
+  </mat-form-field>
+  <div class="flex flex-row">
+    <!-- Hour -->
+    <div class="flex flex-col">
+      <!-- <button (click)="incrementHours()"><mat-icon>keyboard_arrow_up</mat-icon></button> -->
+      <input [(ngModel)]="hours" value="12" type="number" min="1" max="12" />
+      <!-- <button (click)="decrementHours()"><mat-icon>keyboard_arrow_down</mat-icon></button> -->
+    </div>
+    <!-- Minute -->
+    <div class="flex flex-col">
+      <!-- <button><mat-icon>keyboard_arrow_up</mat-icon></button> -->
+      <input [(ngModel)]="minutes" [value]="0" type="number" min="0" max="59" />
+      <!-- <button><mat-icon>keyboard_arrow_down</mat-icon></button> -->
+    </div>
+    <!-- AM/PM Button -->
+    <div class="flex flex-col">
+      <button
+        mat-raised-button
+        class="bg-blue-300 font-bold self-center"
+        (click)="toggleIsAm()"
+      >
+        {{ isAm ? "AM" : "PM" }}
+      </button>
+    </div>
+  </div>
+  <div class="flex flex-row my-2">
+    <button mat-raised-button (click)="submitDropDate()" class="bg-green-300">
+      Save
+    </button>
+  </div>
+</div>
