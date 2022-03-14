@@ -27,7 +27,7 @@
   <tbody>
     <tr *ngFor="let userGrade of userGrades">
       <td>
-        <a routerLink="./viewQuiz">
+        <a [routerLink]="['./viewQuiz', userGrade.submissionId]">
           <span class="material-icons">
             visibility
           </span>

@@ -14,9 +14,11 @@ import { saveQuizSubmissionId } from 'src/app/_store/quizAnswer/quizAnswer.actio
 export class ViewGradedQuizComponent implements OnInit {
   quizId: string = '';
   submissionId: string = '';
+  courseId: string = '';
   questions: QuizQuestion[] = [];
   gradedQuiz: GradedQuiz = {};
-  userAnswers: UserAnswers[] = []
+  userAnswers: UserAnswers[] = [];
+  answerOverrides: AnswerOverrides[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,15 +28,17 @@ export class ViewGradedQuizComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      let id = params.get('quizId');
-      if (id) {
-        this.quizId = id;
+      let qid = params.get('quizId');
+      if (qid) {
+        this.quizId = qid;
       }
-    });
-    this.route.paramMap.subscribe((params) => {
-      let id = params.get('submissionId');
-      if (id) {
-        this.submissionId = id;
+      let sid = params.get('submissionId');
+      if (sid) {
+        this.submissionId = sid;
+      }
+      let cid = params.get('courseId');
+      if (cid) {
+        this.courseId = cid;
       }
     });
     if (this.quizId) {
@@ -42,6 +46,7 @@ export class ViewGradedQuizComponent implements OnInit {
         this.gradedQuiz = data
         this.getQuizQuestions()
         this.getUserAnswers()
+        this.getAnswerOverrides()
     })
   }
 
@@ -64,4 +69,33 @@ export class ViewGradedQuizComponent implements OnInit {
       q.questionNumber == i )[0]
         .answers?.slice().shift() || ''
   }
+
+  getAnswerOverrides(): void {
+    if (typeof this.gradedQuiz.answerOverrides != 'undefined') {
+      this.answerOverrides = this.gradedQuiz.answerOverrides;
+   }
+  }
+
+  getQuestionCorrectness(i: number): number {
+    const correct = this.answerOverrides.filter(q => 
+      q.questionNumber == i )[0].isCorrect
+    if (correct == true) {
+      return 1
+    }
+    else {
+      return 0
+    }
+  }
+
+  // compareUserToCorrectAnswer(i: number): string {
+  //   const userResponse = this.userAnswers.filter(q => 
+  //     q.questionNumber == i )[0]
+  //       .answers?.slice().shift() || ''
+  //   const correctResponse = this.questions.filter(q =>
+  //     q.questionNumber == i)[0]
+  //       .answers?.slice().shift || ''
+  //   if (userResponse == correctResponse) {
+
+  //   }
+  // }
 }
