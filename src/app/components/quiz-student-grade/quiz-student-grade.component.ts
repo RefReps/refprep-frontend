@@ -5,6 +5,7 @@ import { ActiveVersion, Quiz } from 'src/app/models/quiz';
 import { QuizVersion } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/quiz';
 import { ApiService } from 'src/service/api.service';
+import { Course } from 'src/app/models/course';
 
 @Component({
   selector: 'app-quiz-student-grade',
@@ -14,13 +15,17 @@ import { ApiService } from 'src/service/api.service';
 export class QuizStudentGradeComponent implements OnInit {
   @Input() quizId: string = '';
   email: string = '';
+  courseId: string = '';
+  passingGrade: number = 0;
+  courseInfo: Course = {};
   userGrade: UserGrade[] = [];
   quizInfo: ActiveVersion = {};
 
   constructor(
     private QuizService: QuizzesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private api: ApiService,
   ) {}
 
   ngOnInit(): void {
@@ -29,9 +34,15 @@ export class QuizStudentGradeComponent implements OnInit {
       if (id) {
         this.email = id;
       }
+      let courseId = params.get('courseId');
+      if (courseId) {
+        this.courseId = courseId
+      }
     });
     this.getBasicQuizInfo();
     this.getQuizGrade();
+    this.getQuizPassingGrade();
+    console.log(this.userGrade)
   }
 
   viewGradedQuiz(submissionId: string) {
@@ -42,6 +53,17 @@ export class QuizStudentGradeComponent implements OnInit {
     this.QuizService.getQuizInfo(this.quizId).subscribe((activeVersion) => {
       this.quizInfo = activeVersion;
     });
+  }
+
+  getQuizPassingGrade() {
+    this.api.getCourse(this.courseId).subscribe((info) => {
+      this.courseInfo = info;
+      if (typeof this.courseInfo.settings?.enforcementPercent != 'undefined') {
+        this.passingGrade = this.courseInfo.settings?.enforcementPercent*.01
+        console.log(this.passingGrade)
+      }
+    })
+    
   }
 
   getQuizGrade(): void {
