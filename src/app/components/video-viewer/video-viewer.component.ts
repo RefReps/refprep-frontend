@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Video } from 'src/app/models/video.model';
 import { ApiService } from 'src/service/api.service';
 import {VgApiService} from '@videogular/ngx-videogular/core'
-import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-video-viewer',
@@ -64,7 +63,6 @@ export class VideoViewerComponent implements OnInit {
     videoPlayer.addEventListener('ended', function(){
       supposedCurrentTime = 0;
     })
-
   }
 
   setCheckpoints(): void {
@@ -76,7 +74,6 @@ export class VideoViewerComponent implements OnInit {
         counter++
       }
     });
-
   }
 
   videoEnd(): void {
@@ -90,8 +87,7 @@ export class VideoViewerComponent implements OnInit {
   getVideoTitle(): any{
     this.Api.getVideoMetadata(this.videoId)
     .subscribe(video => {
-      this.videoTitle = video.originalname?.replace(/.[^/.]+$/, "") || "Invalid"})
+      this.videoTitle = video.originalname?.replace(/.[^/.]+$/, "") || "Invalid Title"})
   }
-
 
 }
