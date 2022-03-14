@@ -70,6 +70,16 @@ export class QuizStudentGradeComponent implements OnInit {
     });
   }
 
+  get isAttemptsExhausted(): boolean {
+    const attempts = this.courseInfo.settings?.maximumQuizAttempts || 100
+    return this.userGrade.length >= attempts
+  }
+
+  takeQuiz(): void {
+    const path: string[] = this.isAttemptsExhausted ? [] : ['take']
+    this.router.navigate(path, {relativeTo: this.route})
+  }
+
   getGradePercentage(stringDecGrade: Number | undefined) {
     var percentGrade: Number = Number(stringDecGrade) * 100;
     var stringPercentGrade: String = percentGrade.toFixed(2);
