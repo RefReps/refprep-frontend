@@ -9,10 +9,7 @@ import { ApiService } from 'src/service/api.service';
   styleUrls: ['./update-module-dialog.component.css']
 })
 export class UpdateModuleDialogComponent implements OnInit {
-  @Input() sectionId: string = '';
-  sectionInfo: Section = {
-    _id: this.sectionId
-  };
+
   constructor(
     private api: ApiService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
