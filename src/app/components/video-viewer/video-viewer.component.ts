@@ -32,7 +32,6 @@ export class VideoViewerComponent implements OnInit {
     this.Api.getVideoMetadata(this.videoId)
       .subscribe(info => {
         this.loadVideoInHTMLPlayer()
-        console.log(this.videoId)
       })
   }
 
@@ -65,9 +64,7 @@ export class VideoViewerComponent implements OnInit {
     videoPlayer.addEventListener('seeking', function() {
       var delta = videoPlayer.currentTime - watchedTime;
       if (delta > 0.01) {
-        videoPlayer.pause();
         videoPlayer.currentTime = watchedTime;
-        videoPlayer.play();
       }
     });
 
@@ -81,7 +78,6 @@ export class VideoViewerComponent implements OnInit {
     var counter = 1
     videoPlayer.addEventListener('timeupdate', function(){
     if ((Math.round(videoPlayer.currentTime)) == (Math.round(videoPlayer.duration*(.1*counter)))) {
-        console.log("10 percent interval reached")
         counter++
       }
     });
@@ -90,7 +86,6 @@ export class VideoViewerComponent implements OnInit {
   videoEnd(): void {
     const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
     videoPlayer.addEventListener('ended', function(){
-      console.log("Video Over")
     })
 
   }
