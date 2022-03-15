@@ -1,3 +1,5 @@
+import { ActivatedRoute } from '@angular/router';
+import { Course } from './../../models/course';
 import { Component, Input, OnInit } from '@angular/core';
 import { Video } from 'src/app/models/video.model';
 import { ApiService } from 'src/service/api.service';
@@ -13,25 +15,47 @@ export class VideoViewerComponent implements OnInit {
   @Input() videoId: string = '';
   videoUrl: string = '';
   videoMeta: Video = {}
-  videoTitle: string = '';
   enforcements: boolean = true;
+
+  course: Course = {}
 
   // vgApi: VgApiService;
 
   constructor(
     private Api: ApiService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.getVideo()
-    this.getVideoTitle()
-   
+    this.getCourse()
+  }
+
+  setup(): void {
+
+  }
+
+  getCourse(): void {
+    this.route.paramMap.subscribe(params => {
+      const courseId = params.get('courseId')
+      if (courseId) {
+        this.Api.getCourse(courseId).subscribe(course => {
+          this.course = course
+          this.changeEnforcements(this.course.settings?.isEnforcements != undefined ? this.course.settings?.isEnforcements : true)
+          this.loadVideoInHTMLPlayer()
+      })
+      }
+    })
+  }
+
+  changeEnforcements(value: boolean): void {
+    this.enforcements = value
   }
 
   getVideo(): void {
     this.Api.getVideoMetadata(this.videoId)
-      .subscribe(info => {
-        this.loadVideoInHTMLPlayer()
+      .subscribe(video => {
+        this.videoMeta = video
       })
   }
 
@@ -90,10 +114,8 @@ export class VideoViewerComponent implements OnInit {
 
   }
 
-  getVideoTitle(): any{
-    this.Api.getVideoMetadata(this.videoId)
-    .subscribe(video => {
-      this.videoTitle = video.originalname?.replace(/.[^/.]+$/, "") || "Invalid Title"})
+  get videoTitle(): string {
+    return this.videoMeta.originalname?.replace(/.[^/.]+$/, "") || "Invalid Title"
   }
 
 }
