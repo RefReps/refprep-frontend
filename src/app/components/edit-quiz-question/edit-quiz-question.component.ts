@@ -29,6 +29,10 @@ export class EditQuizQuestionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get answer(): string {
+    return this.question.answers?.slice().shift() || ' '
+  }
+
   updateAnswers(value: string) {
     let answer: any = { [this.question.questionNumber!]: value }
     this.quizAnswerService.saveAnswer(answer)
