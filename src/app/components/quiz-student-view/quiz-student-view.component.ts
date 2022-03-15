@@ -1,7 +1,7 @@
-import { saveQuizSubmissionId } from './../../_store/quizAnswer/quizAnswer.action';
+import { saveQuizSubmissionId, clearQuizAnswers } from './../../_store/quizAnswer/quizAnswer.action';
 import { selectQuizAnswers } from './../../_store/quizAnswer/quizAnswer.selector';
 import { Store } from '@ngrx/store';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActiveVersion, Quiz, QuizQuestion } from 'src/app/models/quiz';
 import { QuizzesService } from 'src/app/_services/quizzes.service';
@@ -11,7 +11,7 @@ import { QuizzesService } from 'src/app/_services/quizzes.service';
   templateUrl: './quiz-student-view.component.html',
   styleUrls: ['./quiz-student-view.component.scss'],
 })
-export class QuizStudentViewComponent implements OnInit {
+export class QuizStudentViewComponent implements OnInit, OnDestroy {
   quizId: string = '';
   submissionId: string = '';
   questions: QuizQuestion[] = [];
@@ -25,6 +25,10 @@ export class QuizStudentViewComponent implements OnInit {
     private route: ActivatedRoute,
     private store: Store
   ) { }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(clearQuizAnswers())
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -63,7 +67,7 @@ export class QuizStudentViewComponent implements OnInit {
                 .subscribe(() => {
                   this.route.paramMap.subscribe((params) => {
                     let id = params.get('courseId');
-                    this.router.navigate(['/courses', id, 'quiz', this.quizId]);
+                    this.router.navigate(['/courses', id, 'quiz', this.quizId, 'viewQuiz', quiz.id]);
                   });
                 });
             });

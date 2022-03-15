@@ -1,7 +1,8 @@
 <h2>Update Section name</h2>
 <div>
     <mat-form-field>
-        <input matInput type="text" placeholder="New Section Name">
+        <input matInput type="text" #name placeholder="New Section Name">
     </mat-form-field>
-    <button mat-raised-button class="bg-green-600">Update Section Name</button>
+    <button mat-raised-button class="bg-green-600" (click)="updateSectionName(name.value)">Update Section
+        Name</button>
 </div>

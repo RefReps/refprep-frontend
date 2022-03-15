@@ -7,16 +7,22 @@
       }"
     >
       <div class="flex flex-row justify-between align-middle">
-        <div class="justify-self-start self-center">
-          <mat-icon *ngIf="content.onModel == 'Video'">videocam</mat-icon>
-          <mat-icon *ngIf="content.onModel == 'Quiz'">assignment</mat-icon> 
-          {{ content.name }}
+        <div class="flex flex-row marker:justify-self-start self-center">
+          <div class="align-bottom">
+            <mat-icon *ngIf="content.onModel == 'Quiz'">assignment</mat-icon>
+            <mat-icon *ngIf="content.onModel == 'Video'">videocam</mat-icon>
+          </div>
+          <div class="self-center">
+            &nbsp;&nbsp;{{ content.name }}
+          </div>
         </div>
         <div class="flex justify-self-end self-end">
           <span class="self-center" *ngIf="!canAccessContent(content)">{{
             getContentDropDate(content)
           }}</span>
-          <mat-icon class="self-end" *ngIf="!canAccessContent(content)">lock</mat-icon>
+          <mat-icon class="self-end" *ngIf="!canAccessContent(content)"
+            >lock</mat-icon
+          >
         </div>
       </div>
     </mat-card>

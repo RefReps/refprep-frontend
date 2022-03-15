@@ -1,7 +1,7 @@
 <h2>Update Content Name</h2>
 <div>
     <mat-form-field>
-        <input matInput type="text" placeholder="New Content Name">
+        <input matInput type="text" #name placeholder="New Content Name">
     </mat-form-field>
-    <button mat-raised-button class="bg-green-600">Update Content Name</button>
+    <button mat-raised-button class="bg-green-600" (click)="updateContentName(name.value)">Update Content Name</button>
 </div>
