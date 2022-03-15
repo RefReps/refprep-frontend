@@ -26,7 +26,7 @@
                   Course Enforcements
                   <mat-icon
                     class="hover:cursor-pointer"
-                    matTooltip="Students will have to progress through the course in a linear manner."
+                    matTooltip="Students will be unable to skip parts of videos if enabled."
                     inline
                     >help_outline</mat-icon
                   >
@@ -75,6 +75,12 @@
               >
                 <div class="flex-initial self-center text-lg">
                   Max Quiz Attempts
+                  <mat-icon
+                    class="hover:cursor-pointer"
+                    matTooltip="Students will get this many attempts at taking a quiz before being able to move forward without a passing grade."
+                    inline
+                    >help_outline</mat-icon
+                  >
                 </div>
                 <div class="flex self-center">
                   <mat-form-field class="w-10">
@@ -98,6 +104,12 @@
               >
                 <div class="flex-initial self-center text-lg">
                   Lock Coupon Code
+                  <mat-icon
+                    class="hover:cursor-pointer"
+                    matTooltip="Enable to prevent any other students from joining using this coupon code."
+                    inline
+                    >help_outline</mat-icon
+                  >
                 </div>
                 <div class="flex self-center">
                   <mat-slide-toggle
@@ -137,6 +149,12 @@
               >
                 <div class="flex-initial self-center text-lg">
                   Student Capacity
+                  <mat-icon
+                    class="hover:cursor-pointer"
+                    matTooltip="Number of students allowed in course. Once this number has been reached, students will be unable to join course."
+                    inline
+                    >help_outline</mat-icon
+                  >
                 </div>
                 <div class="flex self-center">
                   <mat-form-field class="w-10">
@@ -161,6 +179,12 @@
                 [ngClass]="{ 'bg-gray-200': !isAdmin }"
               >
                 <div class="flex-initial self-center text-lg">Coupon Code</div>
+                <mat-icon
+                    class="hover:cursor-pointer"
+                    matTooltip="Students can use this code to join this course."
+                    inline
+                    >help_outline</mat-icon
+                  >
                 <div class="flex self-center">
                   <mat-form-field class="max-w-sm">
                     <input
@@ -181,6 +205,12 @@
               >
                 <div class="flex-initial self-center text-lg">
                   Coupon Valid Until
+                  <mat-icon
+                    class="hover:cursor-pointer"
+                    matTooltip="After this date, this coupon code won't allow students to join this course."
+                    inline
+                    >help_outline</mat-icon
+                  >
                 </div>
                 <div class="flex self-center">
                   <mat-form-field class="max-w-sm">
