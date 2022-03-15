@@ -1,7 +1,7 @@
 <h2>Update Module name</h2>
 <div>
     <mat-form-field>
-        <input matInput type="text" placeholder="New Module Name">
+        <input matInput type="text" #name placeholder="New Module Name">
     </mat-form-field>
-    <button mat-raised-button class="bg-green-600">Update Module Name</button>
+    <button mat-raised-button class="bg-green-600" (click)="updateModuleName(name.value)">Update Module Name</button>
 </div>
