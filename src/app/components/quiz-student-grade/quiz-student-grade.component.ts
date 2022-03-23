@@ -58,7 +58,12 @@ export class QuizStudentGradeComponent implements OnInit {
     this.api.getCourse(this.courseId).subscribe((info) => {
       this.courseInfo = info;
       if (typeof this.courseInfo.settings?.enforcementPercent != 'undefined') {
-        this.passingGrade = this.courseInfo.settings?.enforcementPercent*.01
+        if (this.courseInfo.settings?.isEnforcements == false) {
+          this.passingGrade = 100
+        }
+        else {
+          this.passingGrade = this.courseInfo.settings?.enforcementPercent*.01
+      }
       }
     })
     
