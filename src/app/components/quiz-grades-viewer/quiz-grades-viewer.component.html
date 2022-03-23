@@ -35,7 +35,7 @@
       </td>
       <td>{{ userGrade.email }}</td>
       <td>{{ userGrade.submissionNumber }}</td>
-      <td>
+      <td [ngClass]="userGrade.grade! >= passingGrade ? 'pass' : 'fail'">
         {{ getGradePercentage(userGrade.grade) }}% ({{
           getLetterGrade(userGrade.grade)
         }})

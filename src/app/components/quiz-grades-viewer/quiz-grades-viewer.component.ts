@@ -5,6 +5,8 @@ import { ActiveVersion } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/quiz';
 import { ApiService } from 'src/service/api.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { ActivatedRoute } from '@angular/router';
+import { Course } from 'src/app/models/course';
 
 @Component({
   selector: 'app-quiz-grades-viewer',
@@ -13,16 +15,30 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 })
 export class QuizGradesViewerComponent implements OnInit {
   @Input() quizId: string = '';
-  userGrades: UserGrade[] = [];
-  quizInfo: ActiveVersion = {};
-  highestGrades: UserGrade[] = [];
+  courseId: string = '';
+  passingGrade: number = 0;
   highestGradeOnly = false;
+  courseInfo: Course = {};
+  quizInfo: ActiveVersion = {};
+  userGrades: UserGrade[] = [];
+  highestGrades: UserGrade[] = [];
 
-  constructor(private Api: ApiService, private QuizService: QuizzesService) {}
+  constructor(
+    private api: ApiService, 
+    private QuizService: QuizzesService,
+    private route: ActivatedRoute
+    ) {}
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      let courseId = params.get('courseId');
+      if (courseId) {
+        this.courseId = courseId
+      }
+    });
     this.getQuizName();
     this.getQuizGrades();
+    this.getQuizPassingGrade();
   }
 
   getQuizName() {
@@ -49,6 +65,20 @@ export class QuizGradesViewerComponent implements OnInit {
     }
   }
 
+  getQuizPassingGrade() {
+    this.api.getCourse(this.courseId).subscribe((info) => {
+      this.courseInfo = info;
+      if (typeof this.courseInfo.settings?.enforcementPercent != 'undefined') {
+        if (this.courseInfo.settings?.isEnforcements == false) {
+          this.passingGrade = 100
+        }
+        else {
+          this.passingGrade = this.courseInfo.settings?.enforcementPercent*.01
+      }
+      }
+    })
+    
+  }
 
   sortGrades(sort: Sort) {
     const data = this.userGrades.slice();
