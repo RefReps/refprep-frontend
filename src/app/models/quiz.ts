@@ -28,7 +28,7 @@ export class QuizQuestion {
   question?: string;
   responses?: Responses;
   answers?: string[];
-  points?: Number;
+  points?: number;
 }
 
 class Responses {
@@ -85,7 +85,7 @@ export class AnswerOverrides {
   questionNumber?: Number;
   isCorrect?: boolean;
   isPointDifferent?: boolean;
-  pointAward?: Number;
+  pointAward?: number;
 }
 
 export class UserAnswers {

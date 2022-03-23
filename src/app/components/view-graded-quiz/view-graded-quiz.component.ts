@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Course } from 'src/app/models/course';
@@ -19,6 +19,8 @@ export class ViewGradedQuizComponent implements OnInit {
   submissionId: string = '';
   courseId: string = '';
   passingGrade: number = 0;
+  totalPoints: number = 0;
+  earnedPoints: number = 0;
   quizInfo: ActiveVersion = {};
   gradedQuiz: GradedQuiz = {};
   courseInfo: Course = {};
@@ -31,7 +33,6 @@ export class ViewGradedQuizComponent implements OnInit {
     private route: ActivatedRoute,
     private quizService: QuizzesService,
     private api: ApiService,
-    
   ) { }
 
   ngOnInit(): void {
@@ -55,11 +56,13 @@ export class ViewGradedQuizComponent implements OnInit {
         this.getQuizQuestions();
         this.getUserAnswers();
         this.getAnswerOverrides();
-    })
-  }
+        this.getPointTotal();
+      })
+    }
   this.getQuizName();
   this.getQuizPassingGrade();
   }
+
 
   getQuizName() {
     this.quizService.getActiveQuiz(this.quizId).subscribe((info) => {
@@ -71,7 +74,12 @@ export class ViewGradedQuizComponent implements OnInit {
     this.api.getCourse(this.courseId).subscribe((info) => {
       this.courseInfo = info;
       if (typeof this.courseInfo.settings?.enforcementPercent != 'undefined') {
+        if (this.courseInfo.settings?.isEnforcements == false) {
+          this.passingGrade = 100
+        }
+        else {
         this.passingGrade = this.courseInfo.settings?.enforcementPercent*.01
+      }
       }
     })
     
@@ -103,6 +111,29 @@ export class ViewGradedQuizComponent implements OnInit {
       this.answerOverrides = this.gradedQuiz.answerOverrides;
    }
   }
+
+  getPointTotal() {
+    for (const i of this.questions) {
+      if (typeof i.points != 'undefined')
+        this.totalPoints += i.points
+    }
+    for (const j of this.answerOverrides) {
+      if (typeof j.pointAward != 'undefined')
+        this.earnedPoints += j.pointAward
+    }
+  }
+
+  getPointsEarnedPerQuestion(i: number): number {
+    const points = this.answerOverrides.filter(q => 
+      q.questionNumber == i )[0].pointAward
+    if (typeof points != 'undefined') {
+        return points
+      }
+    else {
+      return 0
+    }
+  }
+  
 
   getQuestionCorrectness(i: number): number {
     const correct = this.answerOverrides.filter(q => 
