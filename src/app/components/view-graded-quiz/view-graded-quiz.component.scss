@@ -28,7 +28,8 @@
 
 .passInput {
     color: rgb(0, 140, 0);
-    max-width: 24rem;
+    max-width: fit-content;
+    overflow-wrap: break-word;
     background-color: rgb(207, 255, 194);
     border-radius: 0.375rem;
     padding-left: 1.25rem;
@@ -39,7 +40,8 @@
 
 .failInput {
     color: rgb(174, 0, 0);
-    max-width: 24rem;
+    max-width: fit-content;
+    overflow-wrap: break-word;
     background-color: rgb(255, 187, 187);
     border-radius: 0.375rem;
     padding-left: 1.25rem;
