@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Course {
   _id?: string;
   name?: string;
@@ -59,6 +61,6 @@ export class Content {
   isPublished?: boolean;
   contentOrder?: number;
   dropDate?: string;
-
+  studentsCompleted?: User[];
   isAccessable?: boolean;
 }
