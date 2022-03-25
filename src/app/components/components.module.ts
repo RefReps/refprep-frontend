@@ -13,7 +13,6 @@ import { DragAreaComponent } from './drag-area/drag-area.component';
 import { SidebarIconComponent } from './sidebar-icon/sidebar-icon.component';
 import { CourseInfoHomeComponent } from './course-info-home/course-info-home.component';
 import { ContentHeaderComponent } from './content-header/content-header.component';
-import { ModuleDisplayComponent } from './module-display/module-display.component';
 import { DragDropAreaComponent } from './drag-drop-area/drag-drop-area.component';
 import { CourseSidebarComponent } from './course-sidebar/course-sidebar.component';
 import { VideoUploadComponent } from './video-upload/video-upload.component';
@@ -68,7 +67,6 @@ import { UpdateContentDateDialogComponent } from './update-content-date-dialog/u
     SidebarIconComponent,
     CourseInfoHomeComponent,
     ContentHeaderComponent,
-    ModuleDisplayComponent,
     DragDropAreaComponent,
     CourseSidebarComponent,
     VideoUploadComponent,
@@ -133,7 +131,6 @@ import { UpdateContentDateDialogComponent } from './update-content-date-dialog/u
     SidebarIconComponent,
     CourseInfoHomeComponent,
     ContentHeaderComponent,
-    ModuleDisplayComponent,
     DragDropAreaComponent,
     CourseSidebarComponent,
     VideoUploadComponent,
