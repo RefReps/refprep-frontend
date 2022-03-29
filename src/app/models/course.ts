@@ -10,7 +10,7 @@ export class Course {
   studentCourseCode?: CourseCode;
   // authors?: Author[];
   // students?: Student[];
-  sections?: Section[] | string[];
+  sections?: Section[];
 
   isAuthor?: boolean; // do i need?
 }
@@ -36,7 +36,7 @@ export class Section {
   isPublished?: boolean;
   sectionOrder?: number;
   dropDate?: string;
-  modules?: Module[] | string[];
+  modules?: Module[];
 
   isAccessable?: boolean;
 }
@@ -48,7 +48,7 @@ export class Module {
   isPublished?: boolean;
   moduleOrder?: number;
   dropDate?: string;
-  contents?: Content[] | string[];
+  contents?: Content[];
 
   isAccessable?: boolean;
 }

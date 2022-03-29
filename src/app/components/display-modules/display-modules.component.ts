@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Module } from 'src/app/models/course';
 import { ApiService } from 'src/service/api.service';
 
@@ -10,19 +11,18 @@ import { ApiService } from 'src/service/api.service';
 export class DisplayModulesComponent implements OnInit {
 
   @Input() sectionId: string = '';
-  modules: Module[] = [];
+  @Input() modules: Module[] = [];
+
 
   constructor(
-    private Api: ApiService,
   ) { }
 
   ngOnInit(): void {
-    this.getModules()
+    //this.getModules()
   }
 
   getModules(): void {
-    this.Api.getModules(this.sectionId)
-      .subscribe(info => this.modules = info)
+    
   }
 
 }
