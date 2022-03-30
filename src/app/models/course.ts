@@ -61,6 +61,8 @@ export class Content {
   isPublished?: boolean;
   contentOrder?: number;
   dropDate?: string;
-  studentsCompleted?: User[];
+  isCompleted?: boolean;
+  // studentsCompleted?: StudentsCompleted[];
   isAccessable?: boolean;
 }
+

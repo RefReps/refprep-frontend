@@ -22,11 +22,16 @@ export class DisplayContentsComponent implements OnInit {
   }
 
   canAccessContent(content: Content): boolean {
-    return this.isAuthor() || this.isAccessibleByDate(content)
+    return this.isAuthor() || (this.isAccessibleByDate(content) && this.isAccessibleByProgress(content))
   }
 
   isAccessibleByDate(content: Content): boolean {
     return new Date() > new Date(content.dropDate!)
+  }
+
+
+  isAccessibleByProgress(content: Content): boolean {
+    return content.isCompleted || false
   }
 
   getContentDropDate(content: Content): string {
