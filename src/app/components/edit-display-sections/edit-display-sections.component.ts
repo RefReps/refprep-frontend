@@ -8,6 +8,8 @@ import { SectionFormDeleteComponent } from '../section-form-delete/section-form-
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { QuizBuilderComponent } from '../quiz-builder/quiz-builder.component';
 import { UpdateSectionDialogComponent } from '../update-section-dialog/update-section-dialog.component';
+import { Store } from '@ngrx/store';
+import { selectCourse } from 'src/app/_store/course/course.selector';
 
 @Component({
   selector: 'app-edit-display-sections',
@@ -18,10 +20,12 @@ export class EditDisplaySectionsComponent implements OnInit {
 
   @Input() courseId: string = '';
   sections: Section[] = [];
+  course$ = this.store.select(selectCourse);
 
   constructor(
     private Api: ApiService,
     private dialogService: DialogService,
+    private store: Store,
   ) { }
 
   ngOnInit(): void {
@@ -29,8 +33,12 @@ export class EditDisplaySectionsComponent implements OnInit {
   }
 
   getSections(): void {
-    this.Api.getSections(this.courseId)
-      .subscribe(info => this.sections = info)
+    this.course$.subscribe( state =>
+      { if (state.course) {
+        let sections = state.course.sections as Section[]
+          this.sections = sections
+       }
+     })
   }
 
   openAddSectionDialog(): void {

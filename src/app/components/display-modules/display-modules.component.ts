@@ -18,11 +18,5 @@ export class DisplayModulesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.getModules()
   }
-
-  getModules(): void {
-    
-  }
-
 }
