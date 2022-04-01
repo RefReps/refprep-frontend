@@ -106,13 +106,9 @@ export class VideoViewerComponent implements OnInit {
 
   disableSeekingTimeUpdateListener(): void {
     const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
-    var supposedCurrentTime = videoPlayer.currentTime;
     if (!videoPlayer.seeking) {
       if(videoPlayer.currentTime > this.watchedTime) {
         this.watchedTime = videoPlayer.currentTime;
-      }
-      else {
-        supposedCurrentTime = videoPlayer.currentTime;
       }
     }
 
