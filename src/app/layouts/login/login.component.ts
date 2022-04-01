@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.f.email.value, this.f.password.value)
       .subscribe(() => {
         this.isLoadingResults = false
-        this.router.navigate(['/home']).then(_ => console.log('You are logged in'))
+        this.router.navigate(['/courses']).then(_ => console.log('You are logged in'))
       }, (err: any) => {
         console.log(err)
         this.isLoadingResults = false

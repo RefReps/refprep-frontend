@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store, StoreModule } from '@ngrx/store';
-import { string } from 'joi';
 import { Course, Section } from 'src/app/models/course';
 import { selectCourse } from 'src/app/_store/course/course.selector';
 import { ApiService } from 'src/service/api.service';
