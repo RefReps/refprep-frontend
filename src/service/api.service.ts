@@ -236,4 +236,8 @@ export class ApiService {
 
     return this.http.request(req);
   }
+
+  updateVideoProgressOnContent(contentId: string, percentComplete: number): Observable<any> {
+    return this.http.put(`${this.contentUrl}/${contentId}/progress/video`, { percentComplete })
+  }
 }

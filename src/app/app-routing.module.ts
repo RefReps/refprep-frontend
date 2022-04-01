@@ -30,7 +30,7 @@ const routes: Routes = [ // Always put more specific routes on the top
     canActivate: [AuthGuard],
     children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'}, 
-      {path: 'courses/:courseId/video/:videoId', component: CourseVideoComponent},
+      {path: 'courses/:courseId/content/:contentId/video/:videoId', component: CourseVideoComponent},
       {path: 'courses/:courseId/quiz/:quizId', component: CourseQuizComponent},
       {path: 'courses/:courseId/quiz/:quizId/take', component: QuizStudentViewComponent},
       {path: 'courses/:courseId/quiz/:quizId/viewQuiz/:submissionId', component: ViewGradedQuizComponent},
