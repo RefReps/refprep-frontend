@@ -48,10 +48,19 @@ export class DisplayContentsComponent implements OnInit {
     return this.tokenService.getUserRole() === 'user'
   }
 
-  openSnackBar(message: string, action: string): void {
-    const ONE_SECOND = 1000
-    const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
-    this._snackBar.open(message, action, config);
+  openSnackBar(content: Content): void {
+    if (!this.isAccessibleByDate(content)) {
+      let message = 'Content not yet available'
+      const ONE_SECOND = 1000
+      const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
+      this._snackBar.open(message, 'x', config);
+    }
+    else if (!this.isAccessibleByProgress(content)) {
+      let message = 'Complete previous content to progress'
+      const ONE_SECOND = 1000
+      const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
+      this._snackBar.open(message, 'x', config);
+    }
   }
 
   getRoute(content: Content): string[] {

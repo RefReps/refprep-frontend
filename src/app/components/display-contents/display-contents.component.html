@@ -3,10 +3,10 @@
     <mat-card
       class="cursor-pointer"
       [ngClass]="{
-        'bg-gray-200 cursor-not-allowed': !canAccessContent(content)
+        'bg-gray-200': !canAccessContent(content)
       }"
     >
-      <div class="flex flex-row justify-between align-middle">
+      <div class="flex flex-row justify-between align-middle" (click)="openSnackBar(content)">
         <div class="flex flex-row marker:justify-self-start self-center">
           <div class="align-bottom">
             <mat-icon *ngIf="content.onModel == 'Quiz'">assignment</mat-icon>
