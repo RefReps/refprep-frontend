@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Course, Content } from 'src/app/models/course';
 import { TokenService } from 'src/app/_services/token.service';
 import { ApiService } from 'src/service/api.service';
@@ -15,23 +16,23 @@ export class DisplayContentsComponent implements OnInit {
 
   constructor(
     private Api: ApiService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
   }
 
   canAccessContent(content: Content): boolean {
-    return this.isAuthor() || (this.isAccessibleByDate(content) && this.isAccessibleByProgress(content))
+    return this.isAccessibleByDate(content) && this.isAccessibleByProgress(content)
   }
 
   isAccessibleByDate(content: Content): boolean {
-    return new Date() > new Date(content.dropDate!)
+    return new Date() > new Date(content.dropDate!) || this.isAuthor()
   }
 
-
   isAccessibleByProgress(content: Content): boolean {
-    return content.isCompleted || false
+    return content.isCompleted || this.isAuthor()
   }
 
   getContentDropDate(content: Content): string {
@@ -45,6 +46,12 @@ export class DisplayContentsComponent implements OnInit {
 
   isStudent(): boolean {
     return this.tokenService.getUserRole() === 'user'
+  }
+
+  openSnackBar(message: string, action: string): void {
+    const ONE_SECOND = 1000
+    const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
+    this._snackBar.open(message, action, config);
   }
 
   getRoute(content: Content): string[] {

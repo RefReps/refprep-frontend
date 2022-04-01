@@ -17,9 +17,9 @@
           </div>
         </div>
         <div class="flex justify-self-end self-end">
-          <span class="self-center" *ngIf="!canAccessContent(content)">{{
-            getContentDropDate(content)
-          }}</span>
+          <span class="self-center" *ngIf="!isAccessibleByDate(content)">
+            Opens: {{getContentDropDate(content)}}
+          </span>
           <mat-icon class="self-end" *ngIf="!canAccessContent(content)"
             >lock</mat-icon
           >
