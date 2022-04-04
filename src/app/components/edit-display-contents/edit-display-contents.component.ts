@@ -37,6 +37,10 @@ export class EditDisplayContentsComponent implements OnInit {
     }
   }
 
+  isContentPublished(content: Content) {
+    return content.isPublished
+  }
+
   openDeleteContentDialog(contentId: string): void {
     this.DialogService.open(ContentDeleteFormComponent, { contentId })
   }

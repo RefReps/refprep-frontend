@@ -35,6 +35,10 @@ export class DisplayContentsComponent implements OnInit {
     return content.isCompleted || this.isAuthor()
   }
 
+  isContentPublished(content: Content) {
+    return content.isPublished
+  }
+
   getContentDropDate(content: Content): string {
     let date = new Date(content.dropDate!)
     return date.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric' }) + ' ' + date.toLocaleTimeString('en-US')

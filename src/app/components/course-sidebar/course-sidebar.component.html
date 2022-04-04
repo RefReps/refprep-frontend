@@ -5,6 +5,12 @@
         <a [routerLink]="['/courses', courseId]">Home</a>
     </mat-list-item>
     <mat-divider></mat-divider>
+    <!-- View Grades for Course -->
+    <mat-list-item *ngIf="isAuthor">
+        <a [routerLink]="['/courses', courseId, 'grades']">Grades</a>
+    </mat-list-item>
+    <mat-divider *ngIf="isAuthor">
+    </mat-divider>
     <!-- View Authors in Course -->
     <mat-list-item *ngIf="isAdmin">
         <a [routerLink]="['/courses', courseId, 'authors']">Authors</a>
