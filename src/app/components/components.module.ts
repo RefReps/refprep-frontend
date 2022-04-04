@@ -59,6 +59,7 @@ import { UpdateContentDialogComponent } from './update-content-dialog/update-con
 import { JoinCourseByCodeComponent } from './join-course-by-code/join-course-by-code.component';
 import { CourseSettingsComponent } from './course-settings/course-settings.component';
 import { UpdateContentDateDialogComponent } from './update-content-date-dialog/update-content-date-dialog.component';
+import { CourseGradesComponent } from './course-grades/course-grades.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -112,6 +113,7 @@ import { UpdateContentDateDialogComponent } from './update-content-date-dialog/u
     JoinCourseByCodeComponent,
     CourseSettingsComponent,
     UpdateContentDateDialogComponent,
+    CourseGradesComponent,
   ],
   imports: [
     MaterialModule,
@@ -175,6 +177,7 @@ import { UpdateContentDateDialogComponent } from './update-content-date-dialog/u
     JoinCourseByCodeComponent,
     CourseSettingsComponent,
     UpdateContentDateDialogComponent,
+    CourseGradesComponent,
   ],
 })
 export class ComponentsModule { }

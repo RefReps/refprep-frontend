@@ -6,7 +6,13 @@
   [cdkDropListData]="contents"
   (cdkDropListDropped)="onDrop($event)"
 >
-  <mat-card *ngFor="let content of contents" cdkDrag class="p-1">
+  <mat-card 
+  *ngFor="let content of contents" 
+  cdkDrag class="p-1"
+  [ngClass]="{
+    'bg-gray-200': !isContentPublished(content)
+  }">
+
     <div class="flex flex-row justify-between align-middle">
       <div class="self-center">
         <mat-icon *ngIf="content.onModel == 'Video'">videocam</mat-icon>
