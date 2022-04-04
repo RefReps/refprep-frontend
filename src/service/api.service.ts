@@ -84,8 +84,8 @@ export class ApiService {
     return this.http.get<Course>(`${this.courseUrl}/${courseId}`)
   }
 
-  getCourseForStudent(courseId: string): Observable<Course> {
-    return this.http.get<Course>(`${this.courseUrl}/${courseId}/complete`)  
+  getCourseForStudent(courseId: string): Observable<{course: Course}> {
+    return this.http.get<{course: Course}>(`${this.courseUrl}/${courseId}/complete`)  
   }
 
   postCourse(courseForm: FormData): void {

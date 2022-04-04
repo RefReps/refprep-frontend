@@ -27,9 +27,10 @@ export class DisplaySectionsComponent implements OnInit {
 
   getSections(): void {
     this.course$.subscribe( state =>
-       { if (state.course) {
-         let sections = state.course.sections as Section[]
-           this.sections = sections
+      { 
+         if (state.course) {
+            let sections = state.course.sections as Section[]
+            this.sections = sections
         }
       })
     }
