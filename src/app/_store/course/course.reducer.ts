@@ -7,7 +7,7 @@ const initState: Course = {};
 export const courseReducer = createReducer(
   initState,
   on(CourseActions.loadCourse, (state, { course }) => {
-    return course;
+    return { ...state, course: {...course} };
   }),
   on(CourseActions.clearCourse, () => {
     return {};

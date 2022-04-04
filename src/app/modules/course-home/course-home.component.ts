@@ -10,31 +10,30 @@ import { ApiService } from 'src/service/api.service';
 @Component({
   selector: 'app-course-home',
   templateUrl: './course-home.component.html',
-  styleUrls: ['./course-home.component.css']
+  styleUrls: ['./course-home.component.css'],
 })
 export class CourseHomeComponent implements OnInit {
   courseId: string = '';
   course: Course = {};
-  course$ = this.store.select(selectCourse)
+  course$ = this.store.select(selectCourse);
 
   constructor(
-    private Api: ApiService, 
+    private Api: ApiService,
     private route: ActivatedRoute,
     private userInteraction: UserInteractionService,
-    private store: Store,
-    ) { }
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap
-    .subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       let id = params.get('courseId');
       if (id) {
         this.courseId = id;
       }
-    })
+    });
     this.getCourseInfo();
   }
-  
+
   // getCourseInfoForAuthor(): void {
   //   this.Api.getCourse(this.courseId)
   //   .subscribe(info => {
@@ -43,19 +42,16 @@ export class CourseHomeComponent implements OnInit {
   //     this.store.dispatch(loadCourse({course: info}))
   //   })
   // }
-  
+
   getCourseInfo(): void {
-    this.Api.getCourseForStudent(this.courseId)
-    .subscribe(info => {
-      this.course = info
-      this.userInteraction.setCourse(this.course)
-      this.store.dispatch(loadCourse({course: info}))
-    })
-    
+    this.Api.getCourseForStudent(this.courseId).subscribe((info) => {
+      this.course = info.course;
+      this.userInteraction.setCourse(this.course);
+      this.store.dispatch(loadCourse({ course: info.course }));
+    });
   }
 
   get canEdit(): boolean {
-    return this.userInteraction.isAuthor
+    return this.userInteraction.isAuthor;
   }
-
 }

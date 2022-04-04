@@ -29,6 +29,6 @@ export class UserInteractionService {
 
   // Return true if the user is an author of the course or an admin
   get isAuthor(): boolean {
-    return this.tokenService.getIsAuthor()
+    return this.course.isAuthor || false
   }
 }
