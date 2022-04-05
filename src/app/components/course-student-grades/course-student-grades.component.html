@@ -17,10 +17,47 @@
   <table>
     <thead>
       <tr>
-        <th>View</th>
-        <th>Assignment</th>
-        <th>Best Attempt</th>
+        <th>View Submission</th>
+        <th>Quiz</th>
         <th>Submission Number</th>
+        <th>Grade</th>
       </tr>
     </thead>
+    <tbody>
+        <tr *ngFor="let studentGrade of studentGrades">
+            <td>
+                <div *ngIf="studentGrade.isTaken">
+                    <a [routerLink]="['/courses', courseId, 'quiz', studentGrade.quizId, 'viewQuiz', studentGrade.submissionId]">
+                        <span class="material-icons">
+                            visibility
+                        </span>
+                    </a>
+                </div>
+                <div *ngIf="!studentGrade.isTaken">-</div>
+            </td>
+            <td>
+                <div *ngIf="studentGrade.isTaken" style="color: blue; text-decoration: underline;">
+                    <a [routerLink]="['/courses', courseId, 'quiz', studentGrade.quizId]">
+                        {{ studentGrade.quizName }}
+                    </a>
+                </div>
+                <div *ngIf="!studentGrade.isTaken">
+                    {{ studentGrade.quizName }}
+                </div>
+            </td>
+            <td>
+                <div *ngIf="studentGrade.isTaken">
+                    {{ studentGrade.submissionNumber }}
+                </div>
+                <div *ngIf="!studentGrade.isTaken">-</div>
+            </td>
+            <td>
+                <div *ngIf="studentGrade.isTaken">
+                    {{ getGradePercentage(studentGrade.grade) }}% ({{
+                    getLetterGrade(studentGrade.grade)}})
+                </div>
+                <div *ngIf="!studentGrade.isTaken">-</div>
+        </td>
+        </tr>
+    </tbody>
   </table>

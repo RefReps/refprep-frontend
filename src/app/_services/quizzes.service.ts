@@ -8,6 +8,7 @@ import { QuizQuestion, QuizStart, QuizSubmission } from '../models/quiz';
 import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
 import { map } from 'rxjs/operators';
+import { StudentGrades } from '../models/course';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,8 @@ import { map } from 'rxjs/operators';
 export class QuizzesService {
   baseUrl: string = isDevMode() ? dev.apiUrl : prod.apiUrl;
   quizUrl: string = `${this.baseUrl}/api/quiz`;
+  courseUrl: string = `${this.baseUrl}/api/course`;
+
 
   constructor(private http: HttpClient) {}
 
@@ -99,5 +102,11 @@ export class QuizzesService {
     return this.http
       .get<GradedQuiz>(`${this.quizUrl}/${quizId}/submission/${submissionId}`)
       .pipe(map((quizQuestions) => quizQuestions));
+  }
+
+  getAllStudentGrades(courseId: string): Observable<StudentGrades[]> {
+    return this.http
+      .get<{ submissions: StudentGrades[] }>(`${this.courseUrl}/${courseId}/grades-student`)
+      .pipe(map((res) => res.submissions));
   }
 }
