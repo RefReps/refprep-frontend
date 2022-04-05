@@ -22,6 +22,7 @@ import { QuizStudentViewComponent } from './components/quiz-student-view/quiz-st
 import { ViewGradedQuizComponent } from './components/view-graded-quiz/view-graded-quiz.component';
 import { CourseQuizEditComponent } from './components/course-quiz-edit/course-quiz-edit.component';
 import { CourseGradesComponent } from './components/course-grades/course-grades.component';
+import { CourseStudentGradesComponent } from './components/course-student-grades/course-student-grades.component';
 
 const routes: Routes = [ // Always put more specific routes on the top
 
@@ -37,7 +38,8 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'courses/:courseId/quiz/:quizId/viewQuiz/:submissionId', component: ViewGradedQuizComponent},
       {path: 'courses/:courseId/quiz/:quizId/edit', component: CourseQuizEditComponent },
       {path: 'courses/:courseId', component: CourseHomeComponent},
-      {path: 'courses/:courseId/grades', component: CourseGradesComponent},
+      {path: 'courses/:courseId/grades', component: CourseStudentGradesComponent},
+      {path: 'courses/:courseId/allgrades', component: CourseGradesComponent},
       {path: 'courses/:courseId/authors', component: CourseAuthorsComponent},
       {path: 'courses/:courseId/students', component: CourseStudentsComponent},
       {path: 'courses/:courseId/settings', component: CourseSettingsComponent},

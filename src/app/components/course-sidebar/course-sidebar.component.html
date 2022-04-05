@@ -5,11 +5,17 @@
         <a [routerLink]="['/courses', courseId]">Home</a>
     </mat-list-item>
     <mat-divider></mat-divider>
-    <!-- View Grades for Course -->
+    <!-- View All Grades for Course -->
     <mat-list-item *ngIf="isAuthor">
-        <a [routerLink]="['/courses', courseId, 'grades']">Grades</a>
+        <a [routerLink]="['/courses', courseId, 'allgrades']">Grades</a>
     </mat-list-item>
     <mat-divider *ngIf="isAuthor">
+    </mat-divider>
+    <!-- View Single Student Grades for Course -->
+    <mat-list-item *ngIf="!isAuthor">
+        <a [routerLink]="['/courses', courseId, 'grades']">Grades</a>
+    </mat-list-item>
+    <mat-divider *ngIf="!isAuthor">
     </mat-divider>
     <!-- View Authors in Course -->
     <mat-list-item *ngIf="isAdmin">
