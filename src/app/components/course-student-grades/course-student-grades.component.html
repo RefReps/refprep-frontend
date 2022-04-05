@@ -36,9 +36,12 @@
                 <div *ngIf="!studentGrade.isTaken">-</div>
             </td>
             <td>
-                <div *ngIf="studentGrade.isTaken" style="color: blue; text-decoration: underline;">
+                <div *ngIf="studentGrade.isTaken">
+                    {{ studentGrade.quizName }}
                     <a [routerLink]="['/courses', courseId, 'quiz', studentGrade.quizId]">
-                        {{ studentGrade.quizName }}
+                        <span class="material-icons" style="color:rgb(135, 133, 157); font-size:medium;" >
+                            info
+                        </span>
                     </a>
                 </div>
                 <div *ngIf="!studentGrade.isTaken">

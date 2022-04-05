@@ -30,12 +30,17 @@ export class CourseStudentGradesComponent implements OnInit {
 
   getGrades(): void {
     this.QuizService.getAllStudentGrades(this.courseId).subscribe((grades) => {
-      console.log(grades);
       this.studentGrades = grades;
     });
   }
 
-  
+  // viewBySubmissionDate() {
+  //   const sortedGrades = this.studentGrades.slice();
+  //   this.studentGrades = sortedGrades.sort((a.dateFinished, b.dateFinished) => {
+  //     return (a.dateFinished < b.dateFinished ? -1 : 1)
+  //   }
+  // }
+
   getGradePercentage(stringDecGrade: Number | undefined) {
     var percentGrade: Number = Number(stringDecGrade) * 100;
     var stringPercentGrade: String = percentGrade.toFixed(2);

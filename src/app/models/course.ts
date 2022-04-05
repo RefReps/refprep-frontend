@@ -79,3 +79,13 @@ export class StudentGrades {
   isTaken?: boolean;
 }
 
+export class GradeOverview {
+  _id?: string;
+  user?: {
+    _id?: string;
+    email?: string;
+  }
+  courseGrade?: number;
+  }
+
+

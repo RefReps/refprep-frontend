@@ -21,6 +21,18 @@
               <th>Grade</th>
           </tr>
         </thead>
+        <tbody>
+          <tr *ngFor="let grade of allGrades">
+            <td>
+              <a [routerLink]="['/courses', courseId, 'grades']">
+                {{ grade.user?.email }}
+              </a>
+            </td>
+            <td>
+              {{ getGradePercentage(grade.courseGrade) }}% ({{getLetterGrade(grade.courseGrade)}})
+            </td>
+          </tr>
+        </tbody>
       </table>
     </mat-drawer-container>
     </div>

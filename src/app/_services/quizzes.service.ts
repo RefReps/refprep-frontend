@@ -8,7 +8,7 @@ import { QuizQuestion, QuizStart, QuizSubmission } from '../models/quiz';
 import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
 import { map } from 'rxjs/operators';
-import { StudentGrades } from '../models/course';
+import { GradeOverview, StudentGrades } from '../models/course';
 
 @Injectable({
   providedIn: 'root',
@@ -108,5 +108,11 @@ export class QuizzesService {
     return this.http
       .get<{ submissions: StudentGrades[] }>(`${this.courseUrl}/${courseId}/grades-student`)
       .pipe(map((res) => res.submissions));
+  }
+
+  getOverallGrades(courseId: string): Observable<GradeOverview[]> {
+    return this.http
+      .get<{ overviews: GradeOverview[] }>(`${this.courseUrl}/${courseId}/grades-all`)
+      .pipe(map((res) => res.overviews));
   }
 }
