@@ -13,7 +13,6 @@ import { DragAreaComponent } from './drag-area/drag-area.component';
 import { SidebarIconComponent } from './sidebar-icon/sidebar-icon.component';
 import { CourseInfoHomeComponent } from './course-info-home/course-info-home.component';
 import { ContentHeaderComponent } from './content-header/content-header.component';
-import { ModuleDisplayComponent } from './module-display/module-display.component';
 import { DragDropAreaComponent } from './drag-drop-area/drag-drop-area.component';
 import { CourseSidebarComponent } from './course-sidebar/course-sidebar.component';
 import { VideoUploadComponent } from './video-upload/video-upload.component';
@@ -60,6 +59,8 @@ import { UpdateContentDialogComponent } from './update-content-dialog/update-con
 import { JoinCourseByCodeComponent } from './join-course-by-code/join-course-by-code.component';
 import { CourseSettingsComponent } from './course-settings/course-settings.component';
 import { UpdateContentDateDialogComponent } from './update-content-date-dialog/update-content-date-dialog.component';
+import { CourseGradesComponent } from './course-grades/course-grades.component';
+import { CourseStudentGradesComponent } from './course-student-grades/course-student-grades.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -68,7 +69,6 @@ import { UpdateContentDateDialogComponent } from './update-content-date-dialog/u
     SidebarIconComponent,
     CourseInfoHomeComponent,
     ContentHeaderComponent,
-    ModuleDisplayComponent,
     DragDropAreaComponent,
     CourseSidebarComponent,
     VideoUploadComponent,
@@ -114,6 +114,8 @@ import { UpdateContentDateDialogComponent } from './update-content-date-dialog/u
     JoinCourseByCodeComponent,
     CourseSettingsComponent,
     UpdateContentDateDialogComponent,
+    CourseGradesComponent,
+    CourseStudentGradesComponent,
   ],
   imports: [
     MaterialModule,
@@ -133,7 +135,6 @@ import { UpdateContentDateDialogComponent } from './update-content-date-dialog/u
     SidebarIconComponent,
     CourseInfoHomeComponent,
     ContentHeaderComponent,
-    ModuleDisplayComponent,
     DragDropAreaComponent,
     CourseSidebarComponent,
     VideoUploadComponent,
@@ -178,6 +179,8 @@ import { UpdateContentDateDialogComponent } from './update-content-date-dialog/u
     JoinCourseByCodeComponent,
     CourseSettingsComponent,
     UpdateContentDateDialogComponent,
+    CourseGradesComponent,
+    CourseStudentGradesComponent,
   ],
 })
 export class ComponentsModule { }

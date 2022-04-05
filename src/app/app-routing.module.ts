@@ -21,6 +21,8 @@ import { CourseQuizComponent } from './modules/course-quiz/course-quiz.component
 import { QuizStudentViewComponent } from './components/quiz-student-view/quiz-student-view.component';
 import { ViewGradedQuizComponent } from './components/view-graded-quiz/view-graded-quiz.component';
 import { CourseQuizEditComponent } from './components/course-quiz-edit/course-quiz-edit.component';
+import { CourseGradesComponent } from './components/course-grades/course-grades.component';
+import { CourseStudentGradesComponent } from './components/course-student-grades/course-student-grades.component';
 
 const routes: Routes = [ // Always put more specific routes on the top
 
@@ -29,13 +31,15 @@ const routes: Routes = [ // Always put more specific routes on the top
     component: DefaultComponent,
     canActivate: [AuthGuard],
     children: [
-      {path: '', redirectTo: 'home', pathMatch: 'full'}, 
-      {path: 'courses/:courseId/video/:videoId', component: CourseVideoComponent},
+      {path: '', redirectTo: 'courses', pathMatch: 'full'}, 
+      {path: 'courses/:courseId/content/:contentId/video/:videoId', component: CourseVideoComponent},
       {path: 'courses/:courseId/quiz/:quizId', component: CourseQuizComponent},
       {path: 'courses/:courseId/quiz/:quizId/take', component: QuizStudentViewComponent},
       {path: 'courses/:courseId/quiz/:quizId/viewQuiz/:submissionId', component: ViewGradedQuizComponent},
-      { path: 'courses/:courseId/quiz/:quizId/edit', component: CourseQuizEditComponent },
+      {path: 'courses/:courseId/quiz/:quizId/edit', component: CourseQuizEditComponent },
       {path: 'courses/:courseId', component: CourseHomeComponent},
+      {path: 'courses/:courseId/grades', component: CourseStudentGradesComponent},
+      {path: 'courses/:courseId/allgrades', component: CourseGradesComponent},
       {path: 'courses/:courseId/authors', component: CourseAuthorsComponent},
       {path: 'courses/:courseId/students', component: CourseStudentsComponent},
       {path: 'courses/:courseId/settings', component: CourseSettingsComponent},

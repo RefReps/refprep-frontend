@@ -84,6 +84,10 @@ export class ApiService {
     return this.http.get<Course>(`${this.courseUrl}/${courseId}`)
   }
 
+  getCourseForStudent(courseId: string): Observable<{course: Course}> {
+    return this.http.get<{course: Course}>(`${this.courseUrl}/${courseId}/complete`)  
+  }
+
   postCourse(courseForm: FormData): void {
     this.http.post(`${this.courseUrl}`, courseForm).subscribe();
   }
@@ -231,5 +235,9 @@ export class ApiService {
     console.log(req);
 
     return this.http.request(req);
+  }
+
+  updateVideoProgressOnContent(contentId: string, percentComplete: number): Observable<any> {
+    return this.http.put(`${this.contentUrl}/${contentId}/progress/video`, { percentComplete })
   }
 }

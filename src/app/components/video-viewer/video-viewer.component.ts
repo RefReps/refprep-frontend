@@ -16,6 +16,8 @@ export class VideoViewerComponent implements OnInit {
   videoUrl: string = '';
   videoMeta: Video = {}
   enforcements: boolean = true;
+  watchedTime: number = 0;
+  highestWatchPercentage: number = 0;
 
   course: Course = {}
 
@@ -29,10 +31,22 @@ export class VideoViewerComponent implements OnInit {
   ngOnInit(): void {
     this.getVideo()
     this.getCourse()
+    this.updateProgress(0);
+   }
+
+  // Get the contentId from the url from the route
+  get contentId(): string {
+    return this.route.snapshot.paramMap.get('contentId') || '';
+  }
+
+  // send api request to update the user's progress on the video
+  updateProgress(amount: number): void {
+    this.Api.updateVideoProgressOnContent(this.contentId, amount).subscribe(res => {
+      this.highestWatchPercentage = res.percentComplete
+    })
   }
 
   setup(): void {
-
   }
 
   getCourse(): void {
@@ -64,37 +78,58 @@ export class VideoViewerComponent implements OnInit {
     this.videoUrl = `${this.Api.videoUrl}/${this.videoId}`
     if (this.enforcements == true) {
       this.disableSeeking()
-    }
+    } 
     this.setCheckpoints()
-    this.videoEnd()
     videoPlayer.load()
+
+    videoPlayer.addEventListener('loadeddata', this.loadHighestWatchTime.bind(this))
+  }
+
+  loadHighestWatchTime(): void {
+    const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
+    // set the video to the highest watched time of the user on the video 
+    // if the user has watched the video before
+    if (this.highestWatchPercentage > 0) {
+      this.watchedTime = this.highestWatchPercentage / 100 * videoPlayer.duration
+      videoPlayer.currentTime = this.watchedTime
+    }
   }
 
   disableSeeking(): void {
     const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
-    var supposedCurrentTime = videoPlayer.currentTime;
-    var watchedTime =  0;
-    videoPlayer.addEventListener('timeupdate', function(){
-      if (!videoPlayer.seeking) {
-        if(videoPlayer.currentTime > watchedTime) {
-          watchedTime = videoPlayer.currentTime;
-        }
-        else {
-          supposedCurrentTime = videoPlayer.currentTime;
-        }
-      }
-    });
+    videoPlayer.addEventListener('timeupdate', this.disableSeekingTimeUpdateListener.bind(this));
 
-    videoPlayer.addEventListener('seeking', function() {
-      var delta = videoPlayer.currentTime - watchedTime;
-      if (delta > 0.01) {
-        videoPlayer.currentTime = watchedTime;
-      }
-    });
+    videoPlayer.addEventListener('seeking', this.disableSeekingSeekingListener.bind(this));
 
-    videoPlayer.addEventListener('ended', function(){
-      supposedCurrentTime = 0;
-    })
+    videoPlayer.addEventListener('ended', this.videoEnd.bind(this));
+  }
+
+  disableSeekingTimeUpdateListener(): void {
+    const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
+    if (!videoPlayer.seeking) {
+      if(videoPlayer.currentTime > this.watchedTime) {
+        this.watchedTime = videoPlayer.currentTime;
+      }
+    }
+
+    // cast watchedTime to percentage of video duration
+    var percentageWatched = Math.round((this.watchedTime / videoPlayer.duration) * 100)
+    // update the watched time of the video every 10 of the watchedTime (10% of the video)
+    if (percentageWatched % 10 == 0 && this.highestWatchPercentage < percentageWatched) {
+      this.updateProgress(percentageWatched)
+    }
+  }
+
+  disableSeekingSeekingListener(): void {
+    const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
+    var delta = videoPlayer.currentTime - this.watchedTime;
+    if (delta > 0.01) {
+      videoPlayer.currentTime = this.watchedTime;
+    }
+  }
+
+  videoEnd(): void {
+    this.updateProgress(100)
   }
 
   setCheckpoints(): void {
@@ -105,13 +140,6 @@ export class VideoViewerComponent implements OnInit {
         counter++
       }
     });
-  }
-
-  videoEnd(): void {
-    const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
-    videoPlayer.addEventListener('ended', function(){
-    })
-
   }
 
   get videoTitle(): string {

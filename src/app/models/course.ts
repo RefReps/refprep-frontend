@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Course {
   _id?: string;
   name?: string;
@@ -8,7 +10,7 @@ export class Course {
   studentCourseCode?: CourseCode;
   // authors?: Author[];
   // students?: Student[];
-  sections?: Section[] | string[];
+  sections?: Section[];
 
   isAuthor?: boolean; // do i need?
 }
@@ -34,7 +36,7 @@ export class Section {
   isPublished?: boolean;
   sectionOrder?: number;
   dropDate?: string;
-  modules?: Module[] | string[];
+  modules?: Module[];
 
   isAccessable?: boolean;
 }
@@ -46,7 +48,7 @@ export class Module {
   isPublished?: boolean;
   moduleOrder?: number;
   dropDate?: string;
-  contents?: Content[] | string[];
+  contents?: Content[];
 
   isAccessable?: boolean;
 }
@@ -59,6 +61,8 @@ export class Content {
   isPublished?: boolean;
   contentOrder?: number;
   dropDate?: string;
-
+  isCompleted?: boolean;
+  // studentsCompleted?: StudentsCompleted[];
   isAccessable?: boolean;
 }
+
