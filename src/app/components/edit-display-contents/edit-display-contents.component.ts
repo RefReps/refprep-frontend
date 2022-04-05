@@ -16,7 +16,7 @@ import { UpdateContentDialogComponent } from '../update-content-dialog/update-co
 export class EditDisplayContentsComponent implements OnInit {
 
   @Input() moduleId: string = '';
-  @Input() contents: Content[] = [];
+  contents: Content[] = [];
 
   constructor(
     private Api: ApiService,
@@ -24,6 +24,7 @@ export class EditDisplayContentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getContents()
   }
 
   onEditClick(content: Content) {
@@ -35,6 +36,11 @@ export class EditDisplayContentsComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  getContents(): void {
+    this.Api.getContents(this.moduleId).subscribe(
+      info => this.contents = info)
   }
 
   isContentPublished(content: Content) {

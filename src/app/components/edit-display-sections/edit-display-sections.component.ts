@@ -33,12 +33,8 @@ export class EditDisplaySectionsComponent implements OnInit {
   }
 
   getSections(): void {
-    this.course$.subscribe( state =>
-      { if (state.course) {
-        let sections = state.course.sections as Section[]
-          this.sections = sections
-       }
-     })
+    this.Api.getSections(this.courseId).subscribe(
+      info => this.sections = info)
   }
 
   openAddSectionDialog(): void {

@@ -17,7 +17,7 @@ import { UpdateModuleDialogComponent } from '../update-module-dialog/update-modu
 export class EditDisplayModulesComponent implements OnInit {
 
   @Input() sectionId: string = '';
-  @Input() modules: Module[] = [];
+  modules: Module[] = [];
 
   constructor(
     private Api: ApiService,
@@ -25,8 +25,13 @@ export class EditDisplayModulesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getModules()
   }
 
+  getModules(): void {
+    this.Api.getModules(this.sectionId).subscribe(
+      info => this.modules = info)
+    }
 
   openAddModuleDialog(): void {
     this.dialogService.open(ModuleFormAddComponent, { sectionId: this.sectionId })
