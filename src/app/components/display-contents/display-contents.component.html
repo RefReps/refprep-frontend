@@ -3,7 +3,7 @@
     <mat-card
       class="cursor-pointer"
       [ngClass]="{
-        'bg-gray-200': !canAccessContent(content)
+        'bg-gray-200': !canAccessContent(content) || !isContentPublished(content)
       }"
     >
       <div class="flex flex-row justify-between align-middle" (click)="openSnackBar(content)">
