@@ -24,7 +24,7 @@
         <tbody>
           <tr *ngFor="let grade of allGrades">
             <td>
-              <a [routerLink]="['/courses', courseId, 'grades']">
+              <a [routerLink]="['/courses', courseId, 'grades', grade.user?._id]">
                 {{ grade.user?.email }}
               </a>
             </td>

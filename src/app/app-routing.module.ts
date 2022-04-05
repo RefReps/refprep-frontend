@@ -38,6 +38,7 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'courses/:courseId/quiz/:quizId/viewQuiz/:submissionId', component: ViewGradedQuizComponent},
       {path: 'courses/:courseId/quiz/:quizId/edit', component: CourseQuizEditComponent },
       {path: 'courses/:courseId', component: CourseHomeComponent},
+      {path: 'courses/:courseId/grades/:studentId', component: CourseStudentGradesComponent},
       {path: 'courses/:courseId/grades', component: CourseStudentGradesComponent},
       {path: 'courses/:courseId/allgrades', component: CourseGradesComponent},
       {path: 'courses/:courseId/authors', component: CourseAuthorsComponent},

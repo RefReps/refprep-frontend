@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentGrades } from 'src/app/models/course';
 import { QuizzesService } from 'src/app/_services/quizzes.service';
+import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 
 @Component({
   selector: 'app-course-student-grades',
@@ -11,8 +12,10 @@ import { QuizzesService } from 'src/app/_services/quizzes.service';
 export class CourseStudentGradesComponent implements OnInit {
   courseId: string = '';
   studentGrades: StudentGrades[] = [];
+  studentId: string = '';
 
   constructor(
+    private userInteractionService: UserInteractionService,
     private route: ActivatedRoute,
     private QuizService: QuizzesService,
     private router: Router,
@@ -25,14 +28,28 @@ export class CourseStudentGradesComponent implements OnInit {
         this.courseId = id;
       }
     });
+    //get student id from url params
+    this.route.paramMap.subscribe((params) => {
+      let id = params.get('studentId');
+      if (id) {
+        this.studentId = id;
+      }
+    });
     this.getGrades();
   }
 
   getGrades(): void {
+    if (this.isAuthor && this.studentId) {
+      this.QuizService.getSingleStudentsGradesForAuthor(this.courseId, this.studentId).subscribe((grades) => {
+        this.studentGrades = grades;
+      });
+    }
+    if (!this.isAuthor) {
     this.QuizService.getAllStudentGrades(this.courseId).subscribe((grades) => {
       this.studentGrades = grades;
     });
   }
+}
 
   // viewBySubmissionDate() {
   //   const sortedGrades = this.studentGrades.slice();
@@ -40,6 +57,10 @@ export class CourseStudentGradesComponent implements OnInit {
   //     return (a.dateFinished < b.dateFinished ? -1 : 1)
   //   }
   // }
+
+  get isAuthor(): boolean {
+    return this.userInteractionService.isAuthor
+  }
 
   getGradePercentage(stringDecGrade: Number | undefined) {
     var percentGrade: Number = Number(stringDecGrade) * 100;

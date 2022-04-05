@@ -110,6 +110,12 @@ export class QuizzesService {
       .pipe(map((res) => res.submissions));
   }
 
+  getSingleStudentsGradesForAuthor(courseId: string, studentId: string): Observable<StudentGrades[]> {
+    return this.http
+      .get<{ submissions: StudentGrades[] }>(`${this.courseUrl}/${courseId}/grades-student/${studentId}`)
+      .pipe(map((res) => res.submissions));
+  }
+
   getOverallGrades(courseId: string): Observable<GradeOverview[]> {
     return this.http
       .get<{ overviews: GradeOverview[] }>(`${this.courseUrl}/${courseId}/grades-all`)
