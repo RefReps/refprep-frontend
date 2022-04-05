@@ -1,1 +1,26 @@
-<p>course-grades works!</p>
+<div fxLayout="column" fxFill>
+    <!-- Course Header -->
+    <div fxFlex="7">
+      <app-course-info-home></app-course-info-home>
+    </div>
+  
+    <mat-drawer-container fxLayout="column" fxFlex="93">
+      <!-- Course Sidebar -->
+      <mat-drawer #drawer mode="side" opened class="w-24 min-h-full">
+        <app-course-sidebar></app-course-sidebar>
+      </mat-drawer>
+
+      <div class="center">
+        <h1 class="text-display">Grades:</h1>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+              <th>Student</th>
+              <th>Grade</th>
+          </tr>
+        </thead>
+      </table>
+    </mat-drawer-container>
+    </div>
