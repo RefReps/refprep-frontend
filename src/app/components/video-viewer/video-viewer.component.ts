@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Video } from 'src/app/models/video.model';
 import { ApiService } from 'src/service/api.service';
 import {VgApiService} from '@videogular/ngx-videogular/core'
+import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 
 @Component({
   selector: 'app-video-viewer',
@@ -26,6 +27,7 @@ export class VideoViewerComponent implements OnInit {
   constructor(
     private Api: ApiService,
     private route: ActivatedRoute,
+    private userInteraction: UserInteractionService,
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,10 @@ export class VideoViewerComponent implements OnInit {
 
   // send api request to update the user's progress on the video
   updateProgress(amount: number): void {
+    // do not update progress if the user is an author
+    if (this.isAuthor) {
+      return
+    }
     this.Api.updateVideoProgressOnContent(this.contentId, amount).subscribe(res => {
       this.highestWatchPercentage = res.percentComplete
     })
@@ -55,6 +61,7 @@ export class VideoViewerComponent implements OnInit {
       if (courseId) {
         this.Api.getCourse(courseId).subscribe(course => {
           this.course = course
+          this.userInteraction.setCourse(course)
           this.changeEnforcements(this.course.settings?.isEnforcements != undefined ? this.course.settings?.isEnforcements : true)
           this.loadVideoInHTMLPlayer()
       })
@@ -76,7 +83,7 @@ export class VideoViewerComponent implements OnInit {
   loadVideoInHTMLPlayer(): void {
     const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
     this.videoUrl = `${this.Api.videoUrl}/${this.videoId}`
-    if (this.enforcements == true) {
+    if (this.enforcements == true && !this.isAuthor) {
       this.disableSeeking()
     } 
     this.setCheckpoints()
@@ -144,6 +151,10 @@ export class VideoViewerComponent implements OnInit {
 
   get videoTitle(): string {
     return this.videoMeta.originalname?.replace(/.[^/.]+$/, "") || "Invalid Title"
+  }
+
+  get isAuthor(): boolean {
+    return this.userInteraction.isAuthor
   }
 
 }
