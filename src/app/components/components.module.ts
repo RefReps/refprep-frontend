@@ -6,8 +6,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { AngularEditorModule } from '@kolkov/angular-editor';
-import { HttpClientModule } from '@angular/common/http';
 
 // Component Imports
 import { CourseDashboardComponent } from './course-dashboard/course-dashboard.component';
@@ -61,8 +59,6 @@ import { UpdateContentDialogComponent } from './update-content-dialog/update-con
 import { JoinCourseByCodeComponent } from './join-course-by-code/join-course-by-code.component';
 import { CourseSettingsComponent } from './course-settings/course-settings.component';
 import { UpdateContentDateDialogComponent } from './update-content-date-dialog/update-content-date-dialog.component';
-import { ImportStudentsCsvComponent } from './import-students-csv/import-students-csv.component';
-import { ContentFormAddTextComponent } from './content-form-add-text/content-form-add-text.component';
 import { CourseGradesComponent } from './course-grades/course-grades.component';
 import { CourseStudentGradesComponent } from './course-student-grades/course-student-grades.component';
 
@@ -118,8 +114,6 @@ import { CourseStudentGradesComponent } from './course-student-grades/course-stu
     JoinCourseByCodeComponent,
     CourseSettingsComponent,
     UpdateContentDateDialogComponent,
-    ImportStudentsCsvComponent,
-    ContentFormAddTextComponent,
     CourseGradesComponent,
     CourseStudentGradesComponent,
   ],
@@ -131,8 +125,6 @@ import { CourseStudentGradesComponent } from './course-student-grades/course-stu
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
-    AngularEditorModule,
-    HttpClientModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -187,8 +179,6 @@ import { CourseStudentGradesComponent } from './course-student-grades/course-stu
     JoinCourseByCodeComponent,
     CourseSettingsComponent,
     UpdateContentDateDialogComponent,
-    ImportStudentsCsvComponent,
-    ContentFormAddTextComponent
     CourseGradesComponent,
     CourseStudentGradesComponent,
   ],
