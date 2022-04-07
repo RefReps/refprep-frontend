@@ -11,9 +11,9 @@
   <h1 class="text-display">Student Grades:</h1>
 </div>
 <div>
-  <mat-checkbox class="ml-12" [(ngModel)]="highestGradeOnly" (ngModelChange)="viewOnlyHighestGrade($event)">Display Students Best Attempt</mat-checkbox>
+  <mat-checkbox class="ml-3 text-base" [(ngModel)]="highestGradeOnly" (ngModelChange)="viewOnlyHighestGrade($event)">Display Students Best Attempt</mat-checkbox>
 </div>
-<table matTable (matSortChange)="sortGrades($event)" class="table-auto" matSort>
+<table matTable (matSortChange)="sortGrades($event)" matSort>
   <thead>
     <tr>
       <th class="view">View</th>
