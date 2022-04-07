@@ -1,9 +1,8 @@
 <div class="flex flex-col max-w-xl">
-  <div
-    class="grid gap-2 mx-2 grid-flow-row-dense md:grid-flow-col-dense md:max-w-lg"
-  >
+  <div class="grid gap-2 mx-2 grid-flow-row-dense md:grid-flow-col-dense md:max-w-lg">
     <mat-card class="shadow-lg min-w-max row-span-1 md:row-span-2">
-      <mat-card-title>Current Students ({{(currentStudents.asObservable() | async)?.length}}/{{course.settings?.courseCapacity}}):</mat-card-title>
+      <mat-card-title>Current Students ({{(currentStudents.asObservable() |
+        async)?.length}}/{{course.settings?.courseCapacity}}):</mat-card-title>
       <mat-list *ngFor="let student of currentStudents | async">
         <mat-list-item>
           {{ student.email }}
@@ -19,18 +18,10 @@
           <input matInput type="text" name="newEmail" [(ngModel)]="newEmail" />
         </mat-form-field>
         <div class="flex flex-row">
-          <button
-            class="w-40 bg-green-300"
-            mat-raised-button
-            (click)="addNewStudent()"
-          >
+          <button class="w-40 bg-green-300" mat-raised-button (click)="addNewStudent()">
             Add Student
           </button>
-          <button
-            class="w-40 bg-green-300"
-            mat-raised-button
-            (click)="onSubmit()"
-          >
+          <button class="w-40 bg-green-300" mat-raised-button (click)="onSubmit()">
             Submit Students
           </button>
         </div>
@@ -47,18 +38,9 @@
       <div class="grid grid-flow-row">
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input
-            matInput
-            type="text"
-            name="removedEmail"
-            [(ngModel)]="removedEmail"
-          />
+          <input matInput type="text" name="removedEmail" [(ngModel)]="removedEmail" />
         </mat-form-field>
-        <button
-          class="w-40 bg-red-400"
-          mat-raised-button
-          (click)="removeStudent()"
-        >
+        <button class="w-40 bg-red-400" mat-raised-button (click)="removeStudent()">
           Remove
         </button>
       </div>
@@ -69,26 +51,24 @@
     <mat-card-title> Course Link: </mat-card-title>
     <mat-card-content>
       <!-- Has Course Coupon -->
-      <div
-        *ngIf="courseCode"
-        [cdkCopyToClipboard]="courseLink"
-        (click)="openSnackBar('Copied!')"
+      <div *ngIf="courseCode" [cdkCopyToClipboard]="courseLink" (click)="openSnackBar('Copied!')"
         matTooltip="Click to copy link."
-        class="flex flex-row place-content-between text-xl truncate rouned-lg shadow-sm shadow-black bg-slate-100 p-3 cursor-pointer"
-      >
+        class="flex flex-row place-content-between text-xl truncate rouned-lg shadow-sm shadow-black bg-slate-100 p-3 cursor-pointer">
         <div class="">{{ courseLink }}</div>
-        <mat-icon class="self-center" *ngIf="courseCode"
-          >content_paste</mat-icon
-        >
+        <mat-icon class="self-center" *ngIf="courseCode">content_paste</mat-icon>
       </div>
       <!-- No Course Coupon -->
-      <div
-        *ngIf="!courseCode"
-        class="flex flex-row place-content-between text-xl truncate rouned-lg shadow-sm shadow-black bg-slate-100 p-3 cursor-default"
-      >
+      <div *ngIf="!courseCode"
+        class="flex flex-row place-content-between text-xl truncate rouned-lg shadow-sm shadow-black bg-slate-100 p-3 cursor-default">
         <div class="">{{ courseLink }}</div>
         <mat-icon class="self-center">content_paste_off</mat-icon>
       </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="m-2">
+    <mat-card-title> Import Student Emails from CSV: </mat-card-title>
+    <mat-card-content>
+      <app-import-students-csv></app-import-students-csv>
     </mat-card-content>
   </mat-card>
 </div>
