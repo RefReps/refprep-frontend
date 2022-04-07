@@ -63,6 +63,7 @@ export class Content {
   dropDate?: string;
   isCompleted?: boolean;
   isAccessable?: boolean;
+  isKeepOpen?: boolean;
 }
 
 export class StudentGrades {

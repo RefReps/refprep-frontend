@@ -10,7 +10,7 @@
   *ngFor="let content of contents" 
   cdkDrag class="p-1"
   [ngClass]="{
-    'bg-gray-200': !isContentPublished(content)
+    'bg-gray-100': !isContentPublished(content)
   }">
 
     <div class="flex flex-row justify-between align-middle">
@@ -20,6 +20,8 @@
         {{ content.name }}
       </div>
       <div class="flex flex-row">
+        <mat-icon class="pr-10 self-center" *ngIf="!content.isPublished">visibility_off</mat-icon>
+        <mat-icon class="pr-10 self-center" *ngIf="content.isKeepOpen">grade</mat-icon>
         <!-- Display drop date if there is enough space -->
         <div class="hidden sm:block min-w-max self-center p-1 bg-black rounded-md">
           <div class="text-xl self-center rounded-md bg-blue-100 px-5">
@@ -36,13 +38,46 @@
       <div class="flex flex-col">
         <div>
           <button
+          mat-icon-button
+          (click)="openContent(content._id!)"
+          color="black"
+          class=""
+          >
+          <mat-icon *ngIf="content.isKeepOpen">star_outline</mat-icon>
+          <mat-icon *ngIf="!content.isKeepOpen">grade</mat-icon>
+        </button>
+        <span *ngIf="!content.isKeepOpen">
+          Keep Open
+        </span>
+        <span *ngIf="content.isKeepOpen">
+          Close
+        </span>
+        </div>
+        <div>
+          <button
+            (click)="publishContent(content._id!)"
             mat-icon-button
-            (click)="openUpdateContentDialog(content._id!)"
-            color="black"
             class=""
           >
-            <mat-icon>edit</mat-icon>
+            <mat-icon *ngIf="!isContentPublished(content)">visibility</mat-icon>
+            <mat-icon *ngIf="isContentPublished(content)">visibility_off</mat-icon>
           </button>
+          <span *ngIf="!isContentPublished(content)">
+            Publish
+          </span>
+          <span *ngIf="isContentPublished(content)">
+            Unpublish
+          </span>
+        </div>
+        <div>
+          <button
+          mat-icon-button
+          (click)="openUpdateContentDialog(content._id!)"
+          color="black"
+          class=""
+          >
+          <mat-icon>edit</mat-icon>
+        </button>
           Edit
         </div>
         <div>
@@ -63,22 +98,6 @@
             <mat-icon>delete</mat-icon>
           </button>
           Delete
-        </div>
-        <div>
-          <button
-            (click)="publishContent(content._id!)"
-            mat-icon-button
-            class=""
-          >
-            <mat-icon *ngIf="!isContentPublished(content)">visibility</mat-icon>
-            <mat-icon *ngIf="isContentPublished(content)">visibility_off</mat-icon>
-          </button>
-          <span *ngIf="!isContentPublished(content)">
-            Publish
-          </span>
-          <span *ngIf="isContentPublished(content)">
-            Unpublish
-          </span>
         </div>
       </div>
     </mat-menu>

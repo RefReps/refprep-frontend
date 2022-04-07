@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentGrades } from 'src/app/models/course';
 import { QuizzesService } from 'src/app/_services/quizzes.service';
+import { TokenService } from 'src/app/_services/token.service';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 
 @Component({
@@ -13,12 +14,13 @@ export class CourseStudentGradesComponent implements OnInit {
   courseId: string = '';
   studentGrades: StudentGrades[] = [];
   studentId: string = '';
+  email: string = '';
 
   constructor(
     private userInteractionService: UserInteractionService,
     private route: ActivatedRoute,
     private QuizService: QuizzesService,
-    private router: Router,
+    private token: TokenService,
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class CourseStudentGradesComponent implements OnInit {
       }
     });
     this.getGrades();
+    this.getStudentEmail();
   }
 
   getGrades(): void {
@@ -51,6 +54,9 @@ export class CourseStudentGradesComponent implements OnInit {
   }
 }
 
+  getStudentEmail(): void {
+    this.email = this.token.getEmail()
+  }
   // viewBySubmissionDate() {
   //   const sortedGrades = this.studentGrades.slice();
   //   this.studentGrades = sortedGrades.sort((a.dateFinished, b.dateFinished) => {

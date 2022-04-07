@@ -62,6 +62,13 @@ export class EditDisplayContentsComponent implements OnInit {
       })
   }
 
+  openContent(contentId: string): void {
+    this.Api.openContent(contentId).subscribe(
+      info => {
+        window.location.reload()
+      })
+  }
+
   onDrop(event: any) {
     const contentId = this.contents[event.previousIndex]._id
     if (event.previousContainer === event.container && contentId) {

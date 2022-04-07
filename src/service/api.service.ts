@@ -208,6 +208,10 @@ export class ApiService {
 
   }
 
+  openContent(contentId: string): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/keep-open`, contentId)
+  }
+
   // User Routes
   registerUser(data: User): Observable<any> {
     return this.http.post<User>(`${this.authUrl}/register`, data)
