@@ -1,0 +1,35 @@
+.center {
+    display: flex;
+    justify-content: center;
+    padding-top: 4em;
+}
+
+.text-display {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+table {
+    width: 100%;
+    text-align: center !important;
+}
+
+tr {
+    height: 50px;
+}
+
+:host ::ng-deep .mat-sort-header-container {
+    justify-content: center;
+}
+
+.mat-header-cell {
+    text-align: center !important;
+}
+
+.pass {
+    color: green
+}
+
+.fail {
+    color: black
+}

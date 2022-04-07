@@ -1,1 +1,66 @@
-<p>course-student-grades works!</p>
+<div fxLayout="column" fxFill>
+    <!-- Course Header -->
+    <div fxFlex="7">
+      <app-course-info-home></app-course-info-home>
+    </div>
+  
+    <mat-drawer-container fxLayout="column" fxFlex="93">
+      <!-- Course Sidebar -->
+      <mat-drawer #drawer mode="side" opened class="w-24 min-h-full">
+        <app-course-sidebar></app-course-sidebar>
+      </mat-drawer>
+
+<div class="center">
+    <h1 class="text-display">Grades:</h1>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>View Submission</th>
+        <th>Quiz</th>
+        <th>Submission Number</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let studentGrade of studentGrades">
+            <td>
+                <div *ngIf="studentGrade.isTaken">
+                    <a [routerLink]="['/courses', courseId, 'quiz', studentGrade.quizId, 'viewQuiz', studentGrade.submissionId]">
+                        <span class="material-icons">
+                            visibility
+                        </span>
+                    </a>
+                </div>
+                <div *ngIf="!studentGrade.isTaken">-</div>
+            </td>
+            <td>
+                <div *ngIf="studentGrade.isTaken">
+                    {{ studentGrade.quizName }}
+                    <a [routerLink]="['/courses', courseId, 'quiz', studentGrade.quizId]">
+                        <span class="material-icons" style="color:rgb(135, 133, 157); font-size:medium;" >
+                            info
+                        </span>
+                    </a>
+                </div>
+                <div *ngIf="!studentGrade.isTaken">
+                    {{ studentGrade.quizName }}
+                </div>
+            </td>
+            <td>
+                <div *ngIf="studentGrade.isTaken">
+                    {{ studentGrade.submissionNumber }}
+                </div>
+                <div *ngIf="!studentGrade.isTaken">-</div>
+            </td>
+            <td>
+                <div *ngIf="studentGrade.isTaken">
+                    {{ getGradePercentage(studentGrade.grade) }}% ({{
+                    getLetterGrade(studentGrade.grade)}})
+                </div>
+                <div *ngIf="!studentGrade.isTaken">-</div>
+        </td>
+        </tr>
+    </tbody>
+  </table>

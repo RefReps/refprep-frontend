@@ -62,7 +62,30 @@ export class Content {
   contentOrder?: number;
   dropDate?: string;
   isCompleted?: boolean;
-  // studentsCompleted?: StudentsCompleted[];
   isAccessable?: boolean;
 }
+
+export class StudentGrades {
+  _id?: string;
+  submissionId?: string;
+  userId?: string;
+  quizId?: string;
+  quizName?: string;
+  email?: string;
+  grade?: number;
+  submissionNumber?: string;
+  dateStarted?: string;
+  dateFinished?: string;
+  isTaken?: boolean;
+}
+
+export class GradeOverview {
+  _id?: string;
+  user?: {
+    _id?: string;
+    email?: string;
+  }
+  courseGrade?: number;
+  }
+
 
