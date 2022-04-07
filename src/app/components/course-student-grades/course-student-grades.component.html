@@ -12,20 +12,20 @@
 
 <div class="center">
     <h1 class="text-display">Grades:</h1>
-  </div>
+</div>
 
   <table>
     <thead>
       <tr>
-        <th>View Submission</th>
-        <th>Quiz</th>
-        <th>Submission Number</th>
-        <th>Grade</th>
+        <th class="view">View Submission</th>
+        <th class="name">Quiz</th>
+        <th>#</th>
+        <th class="grade">Grade</th>
       </tr>
     </thead>
     <tbody>
         <tr *ngFor="let studentGrade of studentGrades">
-            <td>
+            <td class="view">
                 <div *ngIf="studentGrade.isTaken">
                     <a [routerLink]="['/courses', courseId, 'quiz', studentGrade.quizId, 'viewQuiz', studentGrade.submissionId]">
                         <span class="material-icons">
@@ -35,7 +35,7 @@
                 </div>
                 <div *ngIf="!studentGrade.isTaken">-</div>
             </td>
-            <td>
+            <td class="name">
                 <div *ngIf="studentGrade.isTaken">
                     {{ studentGrade.quizName }}
                     <a [routerLink]="['/courses', courseId, 'quiz', studentGrade.quizId]">
@@ -54,7 +54,7 @@
                 </div>
                 <div *ngIf="!studentGrade.isTaken">-</div>
             </td>
-            <td>
+            <td class="grade">
                 <div *ngIf="studentGrade.isTaken">
                     {{ getGradePercentage(studentGrade.grade) }}% ({{
                     getLetterGrade(studentGrade.grade)}})

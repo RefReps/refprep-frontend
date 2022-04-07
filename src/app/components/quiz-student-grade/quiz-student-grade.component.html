@@ -22,30 +22,30 @@
 <table *ngIf="userGrade.length > 0">
   <thead>
     <tr>
-      <th>View</th>
-      <th>Submission Number</th>
-      <th>Grade</th>
-      <th>Started</th>
-      <th>Submitted</th>
+      <th class="view">View</th>
+      <th class="submission">#</th>
+      <th class="grade">Grade</th>
+      <th class="hidden lg:table-cell">Started</th>
+      <th class="hidden lg:table-cell">Submitted</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let userGrade of userGrade">
-      <td>
+      <td class="view">
         <a [routerLink]="['./viewQuiz', userGrade.submissionId]">
           <span class="material-icons">
             visibility
           </span>
          </a>
       </td>
-      <td>{{ userGrade.submissionNumber }}</td>
-      <td [ngClass]="userGrade.grade! >= passingGrade ? 'pass' : 'fail'">
+      <td class="submission">{{ userGrade.submissionNumber }}</td>
+      <td class="grade" [ngClass]="userGrade.grade! >= passingGrade ? 'pass' : 'fail'">
         {{ getGradePercentage(userGrade.grade) }}% ({{
           getLetterGrade(userGrade.grade)
         }})
       </td>
-      <td>{{ userGrade.dateStarted | date: "medium" }}</td>
-      <td>{{ userGrade.dateFinished | date: "medium" }}</td>
+      <td class="hidden lg:table-cell">{{ userGrade.dateStarted | date: "medium" }}</td>
+      <td class="hidden lg:table-cell">{{ userGrade.dateFinished | date: "medium" }}</td>
     </tr>
   </tbody>
 </table>

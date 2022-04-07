@@ -13,35 +13,35 @@
 <div>
   <mat-checkbox class="ml-12" [(ngModel)]="highestGradeOnly" (ngModelChange)="viewOnlyHighestGrade($event)">Display Students Best Attempt</mat-checkbox>
 </div>
-<table matSort (matSortChange)="sortGrades($event)">
+<table matTable (matSortChange)="sortGrades($event)" class="table-auto" matSort>
   <thead>
     <tr>
-      <th>View</th>
-      <th mat-sort-header="email">Student Email</th>
-      <th mat-sort-header="submission">Submission Number</th>
-      <th mat-sort-header="grade">Grade</th>
-      <th mat-sort-header="dateStarted">Started</th>
-      <th mat-sort-header="dateFinished">Submitted</th>
+      <th class="view">View</th>
+      <th mat-sort-header="email" class="email">Student Email</th>
+      <th mat-sort-header="submission">#</th>
+      <th mat-sort-header="grade" class="grade">Grade</th>
+      <th mat-sort-header="dateStarted" class="hidden lg:table-cell">Started</th>
+      <th mat-sort-header="dateFinished" class="hidden lg:table-cell">Submitted</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let userGrade of userGrades">
-      <td>
+      <td class="view">
         <a [routerLink]="['./viewQuiz', userGrade.submissionId]">
           <span class="material-icons">
             visibility
           </span>
          </a>
       </td>
-      <td>{{ userGrade.email }}</td>
-      <td>{{ userGrade.submissionNumber }}</td>
-      <td [ngClass]="userGrade.grade! >= passingGrade ? 'pass' : 'fail'">
+      <td class="email">{{ userGrade.email }}</td>
+      <td class="submission">{{ userGrade.submissionNumber }}</td>
+      <td class="grade" [ngClass]="userGrade.grade! >= passingGrade ? 'pass' : 'fail'">
         {{ getGradePercentage(userGrade.grade) }}% ({{
           getLetterGrade(userGrade.grade)
         }})
       </td>
-      <td>{{ userGrade.dateStarted | date: "medium" }}</td>
-      <td>{{ userGrade.dateFinished | date: "medium" }}</td>
+      <td class="hidden lg:table-cell">{{ userGrade.dateStarted | date: "medium" }}</td>
+      <td class="hidden lg:table-cell">{{ userGrade.dateFinished | date: "medium" }}</td>
     </tr>
   </tbody>
 </table>
