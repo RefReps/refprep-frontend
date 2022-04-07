@@ -17,6 +17,8 @@
           </div>
         </div>
         <div class="flex justify-self-end self-end">
+          <mat-icon class="pr-10 self-center" *ngIf="!content.isPublished">visibility_off</mat-icon>
+          <mat-icon class="pr-10 self-center" *ngIf="content.isKeepOpen">grade</mat-icon>
           <span class="self-center" *ngIf="!isAccessibleByDate(content)">
             Opens: {{getContentDropDate(content)}}
           </span>
