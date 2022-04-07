@@ -39,8 +39,12 @@ export class EditDisplayContentsComponent implements OnInit {
   }
 
   getContents(): void {
-    this.Api.getContents(this.moduleId)
-      .subscribe(info => this.contents = info)
+    this.Api.getContents(this.moduleId).subscribe(
+      info => this.contents = info)
+  }
+
+  isContentPublished(content: Content) {
+    return content.isPublished
   }
 
   openDeleteContentDialog(contentId: string): void {
@@ -49,6 +53,13 @@ export class EditDisplayContentsComponent implements OnInit {
 
   openUpdateContentDialog(contentId: string): void {
     this.DialogService.open(UpdateContentDialogComponent, { contentId })
+  }
+
+  publishContent(contentId: string): void {
+    this.Api.publishContent(contentId).subscribe(
+      info => {
+        window.location.reload()
+      })
   }
 
   onDrop(event: any) {

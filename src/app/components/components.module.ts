@@ -15,7 +15,6 @@ import { DragAreaComponent } from './drag-area/drag-area.component';
 import { SidebarIconComponent } from './sidebar-icon/sidebar-icon.component';
 import { CourseInfoHomeComponent } from './course-info-home/course-info-home.component';
 import { ContentHeaderComponent } from './content-header/content-header.component';
-import { ModuleDisplayComponent } from './module-display/module-display.component';
 import { DragDropAreaComponent } from './drag-drop-area/drag-drop-area.component';
 import { CourseSidebarComponent } from './course-sidebar/course-sidebar.component';
 import { VideoUploadComponent } from './video-upload/video-upload.component';
@@ -64,6 +63,8 @@ import { CourseSettingsComponent } from './course-settings/course-settings.compo
 import { UpdateContentDateDialogComponent } from './update-content-date-dialog/update-content-date-dialog.component';
 import { ImportStudentsCsvComponent } from './import-students-csv/import-students-csv.component';
 import { ContentFormAddTextComponent } from './content-form-add-text/content-form-add-text.component';
+import { CourseGradesComponent } from './course-grades/course-grades.component';
+import { CourseStudentGradesComponent } from './course-student-grades/course-student-grades.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -72,7 +73,6 @@ import { ContentFormAddTextComponent } from './content-form-add-text/content-for
     SidebarIconComponent,
     CourseInfoHomeComponent,
     ContentHeaderComponent,
-    ModuleDisplayComponent,
     DragDropAreaComponent,
     CourseSidebarComponent,
     VideoUploadComponent,
@@ -120,6 +120,8 @@ import { ContentFormAddTextComponent } from './content-form-add-text/content-for
     UpdateContentDateDialogComponent,
     ImportStudentsCsvComponent,
     ContentFormAddTextComponent,
+    CourseGradesComponent,
+    CourseStudentGradesComponent,
   ],
   imports: [
     MaterialModule,
@@ -141,7 +143,6 @@ import { ContentFormAddTextComponent } from './content-form-add-text/content-for
     SidebarIconComponent,
     CourseInfoHomeComponent,
     ContentHeaderComponent,
-    ModuleDisplayComponent,
     DragDropAreaComponent,
     CourseSidebarComponent,
     VideoUploadComponent,
@@ -188,6 +189,8 @@ import { ContentFormAddTextComponent } from './content-form-add-text/content-for
     UpdateContentDateDialogComponent,
     ImportStudentsCsvComponent,
     ContentFormAddTextComponent
+    CourseGradesComponent,
+    CourseStudentGradesComponent,
   ],
 })
 export class ComponentsModule { }

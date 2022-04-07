@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Section } from 'src/app/models/course';
+import { Store, StoreModule } from '@ngrx/store';
+import { Course, Section } from 'src/app/models/course';
+import { selectCourse } from 'src/app/_store/course/course.selector';
 import { ApiService } from 'src/service/api.service';
 
 @Component({
@@ -11,9 +13,12 @@ export class DisplaySectionsComponent implements OnInit {
 
   @Input() courseId: string = '';
   sections: Section[] = [];
+  course: Course = {};
+  course$ = this.store.select(selectCourse);
 
   constructor(
     private Api: ApiService,
+    private store: Store,
   ) { }
 
   ngOnInit(): void {
@@ -21,8 +26,13 @@ export class DisplaySectionsComponent implements OnInit {
   }
 
   getSections(): void {
-    this.Api.getSections(this.courseId)
-      .subscribe(info => this.sections = info)
+    this.course$.subscribe( state =>
+      { 
+         if (state.course) {
+            let sections = state.course.sections as Section[]
+            this.sections = sections
+        }
+      })
+    }
   }
-
-}
+        

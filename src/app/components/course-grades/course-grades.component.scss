@@ -1,7 +1,7 @@
 .center {
     display: flex;
     justify-content: center;
-    padding-top: 2em;
+    padding-top: 4em;
 }
 
 .text-display {
@@ -19,14 +19,14 @@ tr {
     font-size: 16px;
 }
 
-tr:hover {
-    background-color: rgb(237, 244, 250)
+th {
+    font-size: 20px;
+    text-align: left;
+    border-bottom: 1px solid currentColor;
 }
 
-th {
-    text-align: left;
-    font-size: 20px;
-    border-bottom: 1px solid currentColor;
+tr:hover {
+    background-color: rgb(237, 244, 250)
 }
 
 .pass {
@@ -39,14 +39,13 @@ th {
 
 .view {
     width: 32px;
-    border-right: 1px solid currentColor;
     text-align: center;
     padding-left: 24px;
     padding-right: 12px;
 }
 
-.submission {
-    padding-left: 16px;
+.student {
+    padding-left: 24px;
 }
 
 .grade {

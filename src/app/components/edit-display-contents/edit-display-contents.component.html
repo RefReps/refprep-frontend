@@ -6,7 +6,13 @@
   [cdkDropListData]="contents"
   (cdkDropListDropped)="onDrop($event)"
 >
-  <mat-card *ngFor="let content of contents" cdkDrag class="p-1">
+  <mat-card 
+  *ngFor="let content of contents" 
+  cdkDrag class="p-1"
+  [ngClass]="{
+    'bg-gray-200': !isContentPublished(content)
+  }">
+
     <div class="flex flex-row justify-between align-middle">
       <div class="self-center">
         <mat-icon *ngIf="content.onModel == 'Video'">videocam</mat-icon>
@@ -57,6 +63,22 @@
             <mat-icon>delete</mat-icon>
           </button>
           Delete
+        </div>
+        <div>
+          <button
+            (click)="publishContent(content._id!)"
+            mat-icon-button
+            class=""
+          >
+            <mat-icon *ngIf="!isContentPublished(content)">visibility</mat-icon>
+            <mat-icon *ngIf="isContentPublished(content)">visibility_off</mat-icon>
+          </button>
+          <span *ngIf="!isContentPublished(content)">
+            Publish
+          </span>
+          <span *ngIf="isContentPublished(content)">
+            Unpublish
+          </span>
         </div>
       </div>
     </mat-menu>

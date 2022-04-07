@@ -29,9 +29,9 @@ export class EditDisplayModulesComponent implements OnInit {
   }
 
   getModules(): void {
-    this.Api.getModules(this.sectionId)
-      .subscribe(info => this.modules = info)
-  }
+    this.Api.getModules(this.sectionId).subscribe(
+      info => this.modules = info)
+    }
 
   openAddModuleDialog(): void {
     this.dialogService.open(ModuleFormAddComponent, { sectionId: this.sectionId })

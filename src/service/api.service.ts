@@ -59,7 +59,6 @@ export class ApiService {
     return this.http.get<Video[]>(`${this.baseUrl}?title=${title}`);
   }
 
-
   getCourseSections(courseId: string): Observable<Section[]> {
     return this.http.get<Section[]>(`${this.courseUrl}/${courseId}/section`)
   }
@@ -82,6 +81,10 @@ export class ApiService {
 
   getCourse(courseId: string): Observable<Course> {
     return this.http.get<Course>(`${this.courseUrl}/${courseId}`)
+  }
+
+  getCourseForStudent(courseId: string): Observable<{course: Course}> {
+    return this.http.get<{course: Course}>(`${this.courseUrl}/${courseId}/complete`)  
   }
 
   postCourse(courseForm: FormData): void {
@@ -200,6 +203,11 @@ export class ApiService {
     return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/date`, {date: date.getTime()})
   }
 
+  publishContent(contentId: string): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/publish`, contentId)
+
+  }
+
   // User Routes
   registerUser(data: User): Observable<any> {
     return this.http.post<User>(`${this.authUrl}/register`, data)
@@ -231,5 +239,9 @@ export class ApiService {
     console.log(req);
 
     return this.http.request(req);
+  }
+
+  updateVideoProgressOnContent(contentId: string, percentComplete: number): Observable<any> {
+    return this.http.put(`${this.contentUrl}/${contentId}/progress/video`, { percentComplete })
   }
 }
