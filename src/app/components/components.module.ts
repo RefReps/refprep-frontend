@@ -188,7 +188,7 @@ import { CourseStudentGradesComponent } from './course-student-grades/course-stu
     CourseSettingsComponent,
     UpdateContentDateDialogComponent,
     ImportStudentsCsvComponent,
-    ContentFormAddTextComponent
+    ContentFormAddTextComponent,
     CourseGradesComponent,
     CourseStudentGradesComponent,
   ],
