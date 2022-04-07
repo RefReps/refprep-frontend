@@ -64,6 +64,22 @@
           </button>
           Delete
         </div>
+        <div>
+          <button
+            (click)="publishContent(content._id!)"
+            mat-icon-button
+            class=""
+          >
+            <mat-icon *ngIf="!isContentPublished(content)">visibility</mat-icon>
+            <mat-icon *ngIf="isContentPublished(content)">visibility_off</mat-icon>
+          </button>
+          <span *ngIf="!isContentPublished(content)">
+            Publish
+          </span>
+          <span *ngIf="isContentPublished(content)">
+            Unpublish
+          </span>
+        </div>
       </div>
     </mat-menu>
   </mat-card>

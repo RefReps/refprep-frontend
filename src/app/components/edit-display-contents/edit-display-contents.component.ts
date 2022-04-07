@@ -55,6 +55,13 @@ export class EditDisplayContentsComponent implements OnInit {
     this.DialogService.open(UpdateContentDialogComponent, { contentId })
   }
 
+  publishContent(contentId: string): void {
+    this.Api.publishContent(contentId).subscribe(
+      info => {
+        window.location.reload()
+      })
+  }
+
   onDrop(event: any) {
     const contentId = this.contents[event.previousIndex]._id
     if (event.previousContainer === event.container && contentId) {

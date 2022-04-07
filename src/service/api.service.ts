@@ -59,7 +59,6 @@ export class ApiService {
     return this.http.get<Video[]>(`${this.baseUrl}?title=${title}`);
   }
 
-
   getCourseSections(courseId: string): Observable<Section[]> {
     return this.http.get<Section[]>(`${this.courseUrl}/${courseId}/section`)
   }
@@ -202,6 +201,11 @@ export class ApiService {
 
   updateContentDropDate(contentId: string, date: Date): Observable<ApiResponse> {
     return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/date`, {date: date.getTime()})
+  }
+
+  publishContent(contentId: string): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/publish`, contentId)
+
   }
 
   // User Routes
