@@ -6,12 +6,53 @@ routerLinkActive="router-link-active" class="cursor-pointer">
             <img src="../../../assets/RR_Logo_12.png" alt="logo" >
         </div>
         <div>    
-        <mat-card-title>{{course.name}}</mat-card-title>
+            <mat-card-title>
+            <div class="flex flex-row">
+                <div class="mr-auto">
+                    {{course.name}}
+                </div>
+                <div *ngIf="isAdmin" class="justify-self-end">
+                    <button mat-icon [matMenuTriggerFor]="courseMenu" (click)="openMenu($event)">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                </div>
+            </div>    
+            </mat-card-title>
         <mat-divider></mat-divider>
         <br>
         <mat-card-subtitle>{{this.courseSubtitle}}</mat-card-subtitle>
         <mat-card-content></mat-card-content>
         <mat-card-footer></mat-card-footer>
     </div>
-    </mat-card>
+</mat-card>
 </a>
+    <mat-menu #courseMenu class="w-10 pl-3">
+        <div class="flex flex-col">
+            <div>
+                <button
+                mat-icon-button
+                (click)="deleteCourse()"
+                color="black"
+                class=""
+                >
+                <mat-icon>delete</mat-icon>
+                <span>
+                    Delete
+                </span>
+            </button>
+            </div>
+            <div>
+                <button
+                mat-icon-button
+                (click)="duplicateCourse()"
+                color="black"
+                class=""
+                >
+                <mat-icon>content_copy</mat-icon>
+                <span>
+                    Duplicate
+                </span>
+            </button>
+            </div>
+        </div>
+</mat-menu>
