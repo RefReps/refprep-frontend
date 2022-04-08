@@ -57,6 +57,28 @@ export class CourseStudentGradesComponent implements OnInit {
   }
 }
 
+  //get student average grade 
+  getAverageGrade(): string {
+    let total = 0;
+    let average = 0;
+    let length = 0;
+    for (let i = 0; i < this.studentGrades.length; i++) {
+      if (this.studentGrades[i].isTaken) {
+        total += this.studentGrades[i].grade || 0;
+        length++;
+      }
+    }
+    if (length == 0) {
+      average = 0;
+    }
+    else {
+      average = total / length;
+    }
+    return average.toFixed(4);
+}
+
+
+
   // viewBySubmissionDate() {
   //   const sortedGrades = this.studentGrades.slice();
   //   this.studentGrades = sortedGrades.sort((a.dateFinished, b.dateFinished) => {
@@ -68,13 +90,13 @@ export class CourseStudentGradesComponent implements OnInit {
     return this.userInteractionService.isAuthor
   }
 
-  getGradePercentage(stringDecGrade: Number | undefined) {
+  getGradePercentage(stringDecGrade: string | Number | undefined) {
     var percentGrade: Number = Number(stringDecGrade) * 100;
     var stringPercentGrade: String = percentGrade.toFixed(2);
     return stringPercentGrade;
   }
 
-  getLetterGrade(stringDecGrade: Number | undefined) {
+  getLetterGrade(stringDecGrade: string | Number | undefined) {
     var percentGrade: Number = Number(stringDecGrade) * 100;
     var letterGrade: String;
     if (percentGrade >= 97 && percentGrade <= 100) {

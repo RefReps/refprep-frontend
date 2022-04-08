@@ -13,7 +13,9 @@
 <div class="center">
     <h1 class="text-display">Grades for {{email}}</h1>
 </div>
-
+<div class="text-center">
+    <h2>Total: {{getGradePercentage(getAverageGrade())}}% ({{getLetterGrade(getAverageGrade())}})</h2>
+</div>
   <table>
     <thead>
       <tr>
