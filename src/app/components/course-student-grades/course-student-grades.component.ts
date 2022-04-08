@@ -38,25 +38,25 @@ export class CourseStudentGradesComponent implements OnInit {
       }
     });
     this.getGrades();
-    this.getStudentEmail();
   }
 
   getGrades(): void {
+    //gets student's grades for an author
     if (this.isAuthor && this.studentId) {
       this.QuizService.getSingleStudentsGradesForAuthor(this.courseId, this.studentId).subscribe((grades) => {
         this.studentGrades = grades;
+        this.email = grades[0].email || '';
       });
     }
-    if (!this.isAuthor) {
+    //gets all quiz grades if a student
+    else if (!this.isAuthor) {
     this.QuizService.getAllStudentGrades(this.courseId).subscribe((grades) => {
       this.studentGrades = grades;
+      this.email = this.token.getEmail()
     });
   }
 }
 
-  getStudentEmail(): void {
-    this.email = this.token.getEmail()
-  }
   // viewBySubmissionDate() {
   //   const sortedGrades = this.studentGrades.slice();
   //   this.studentGrades = sortedGrades.sort((a.dateFinished, b.dateFinished) => {

@@ -96,11 +96,6 @@ export class QuizGradesViewerComponent implements OnInit {
           return compare(a.submissionNumber, b.submissionNumber, isAsc);
         case 'grade':
           return compare(a.grade, b.grade, isDesc)
-        // if (a.email == b.email) {
-          //   return compare(a.grade, b.grade, isDesc);
-          // } else {
-          //   return compare(a.email, b.email, isAsc);
-          // }
         case 'dateStarted':
           return compare(a.dateStarted, b.dateStarted, isAsc);
         case 'dateFinished':
