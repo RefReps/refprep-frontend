@@ -34,19 +34,9 @@ export class CourseHomeComponent implements OnInit {
     this.getCourseInfo();
   }
 
-  // getCourseInfoForAuthor(): void {
-  //   this.Api.getCourse(this.courseId)
-  //   .subscribe(info => {
-  //     this.course = info
-  //     this.userInteraction.setCourse(this.course)
-  //     this.store.dispatch(loadCourse({course: info}))
-  //   })
-  // }
-
   getCourseInfo(): void {
     this.Api.getCourseForStudent(this.courseId).subscribe((info) => {
       this.course = info.course;
-      this.userInteraction.setCourse(this.course);
       this.store.dispatch(loadCourse({ course: info.course }));
     });
   }

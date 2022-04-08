@@ -61,7 +61,6 @@ export class VideoViewerComponent implements OnInit {
       if (courseId) {
         this.Api.getCourse(courseId).subscribe(course => {
           this.course = course
-          this.userInteraction.setCourse(course)
           this.changeEnforcements(this.course.settings?.isEnforcements != undefined ? this.course.settings?.isEnforcements : true)
           this.loadVideoInHTMLPlayer()
       })
