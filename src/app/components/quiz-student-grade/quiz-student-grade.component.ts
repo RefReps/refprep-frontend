@@ -49,6 +49,15 @@ export class QuizStudentGradeComponent implements OnInit {
     });
   }
 
+  //find remaining attempts for the quiz
+  getRemainingAttempts() {
+    const attempts = this.courseInfo.settings?.maximumQuizAttempts || 0
+    const attemptsTaken = this.userGrade.length
+    const remainingAttempts = attempts - attemptsTaken
+    return remainingAttempts
+  }
+
+
   getQuizPassingGrade() {
     this.api.getCourse(this.courseId).subscribe((info) => {
       this.courseInfo = info;

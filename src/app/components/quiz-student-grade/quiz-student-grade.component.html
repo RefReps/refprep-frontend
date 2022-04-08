@@ -3,7 +3,7 @@
 </div>
 <h2 class="center">
   {{ courseInfo?.settings?.enforcementPercent}}% Needed to Progress   | 
-    Attempts Remaining: {{ courseInfo?.settings?.maximumQuizAttempts}}
+    Attempts Remaining: {{ getRemainingAttempts() }}
 </h2>
 <div class="center">
   <div matTooltip="All Attempts Used"
