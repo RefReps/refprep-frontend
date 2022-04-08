@@ -14,7 +14,6 @@ import { Course } from 'src/app/models/course';
 })
 export class QuizStudentGradeComponent implements OnInit {
   @Input() quizId: string = '';
-  email: string = '';
   courseId: string = '';
   passingGrade: number = 0;
   courseInfo: Course = {};
@@ -30,10 +29,6 @@ export class QuizStudentGradeComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      let id = params.get('email');
-      if (id) {
-        this.email = id;
-      }
       let courseId = params.get('courseId');
       if (courseId) {
         this.courseId = courseId

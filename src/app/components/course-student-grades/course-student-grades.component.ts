@@ -48,7 +48,7 @@ export class CourseStudentGradesComponent implements OnInit {
         this.email = grades[0].email || '';
       });
     }
-    //gets all grades if a student
+    //gets all quiz grades if a student
     else if (!this.isAuthor) {
     this.QuizService.getAllStudentGrades(this.courseId).subscribe((grades) => {
       this.studentGrades = grades;
@@ -56,12 +56,6 @@ export class CourseStudentGradesComponent implements OnInit {
     });
   }
 }
-
-
-
-  // getStudentEmail(): void {
-  //   this.email = this.token.getEmail()
-  // }
 
   // viewBySubmissionDate() {
   //   const sortedGrades = this.studentGrades.slice();
