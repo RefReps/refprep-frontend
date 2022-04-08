@@ -1,9 +1,9 @@
 <!-- Display all of the sections in the course -->
-<mat-accordion multi="false">
+<mat-accordion multi="true">
     <div *ngIf="sections.length != 0" class="list" cdkDropList #sectionsList="cdkDropList" [cdkDropListData]="sections"
         (cdkDropListDropped)="onDrop($event)">
         <div *ngFor="let section of sections" class="p-1">
-            <mat-expansion-panel hideToggle cdkDrag>
+            <mat-expansion-panel hideToggle cdkDrag [expanded]="true">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <div class="p-2 font-bold text-xl">

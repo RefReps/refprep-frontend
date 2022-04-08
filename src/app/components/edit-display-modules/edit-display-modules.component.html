@@ -1,9 +1,9 @@
-<mat-accordion multi="false">
+<mat-accordion multi="true">
     <div class="p-1">
         <div *ngIf="modules.length != 0" class="list" cdkDropList #modulesList="cdkDropList" [cdkDropListData]="modules"
             (cdkDropListDropped)="onDrop($event)">
             <div *ngFor="let module of modules" class="p-1">
-                <mat-expansion-panel hideToggle cdkDrag>
+                <mat-expansion-panel hideToggle cdkDrag [expanded]="true">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="p-2 font-bold text-xl">
