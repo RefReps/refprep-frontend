@@ -1,6 +1,10 @@
 <div class="center">
   <h1 class="text-display">{{ quizInfo?.quiz?.name }}</h1>
 </div>
+<h2 class="center">
+  {{ courseInfo?.settings?.enforcementPercent}}% Needed to Progress   | 
+    Attempts Remaining: {{ courseInfo?.settings?.maximumQuizAttempts}}
+</h2>
 <div class="center">
   <div matTooltip="All Attempts Used"
        matTooltipPosition="above"
@@ -15,8 +19,9 @@
   </div>
 </div>
 
+
 <div *ngIf="userGrade.length > 0" class="center">
-  <h1 class="text-display">Previous Submissions:</h1>
+  <h1>Previous Submissions:</h1>
 </div>
 
 <table *ngIf="userGrade.length > 0">
