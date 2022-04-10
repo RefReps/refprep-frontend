@@ -15,6 +15,7 @@ export class CourseDeletionComponent implements OnInit {
   courseName: string = '';
   course: Course = {};
   courseId: string = '';
+  match: boolean = true;
 
   constructor(
     formBuilder: FormBuilder,
@@ -32,8 +33,20 @@ export class CourseDeletionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  matchCourseName() {
+    if (this.formGroup.value.courseName === this.courseName) {
+      this.match = true;
+    } else {
+      this.match = false;
+    }
+  }
+
   //check input if input equals course name then delete course
   onFormSubmit() {
+    this.matchCourseName();
+    if (!this.match) {
+      return;
+    }
     console.log(this.formGroup.value.courseName)
     console.log(this.courseName)
     if (this.formGroup.value.courseName === this.courseName) {
@@ -41,8 +54,6 @@ export class CourseDeletionComponent implements OnInit {
         (data) => {
           window.location.reload();
         });
-    } else {
-      alert("Wrong course name")
-    }
+    } 
   }
 }

@@ -5,8 +5,11 @@
             <mat-label>Course Name</mat-label>
             <input matInput name="courseName" formControlName="courseName">
         </mat-form-field>
-    
+        
     </p>
+    <div *ngIf="!match" class="text-red-500 pb-5">
+        Course Name does not match
+    </div>
     <p>
         <button mat-button type="submit" class="bg-red-400" mat-raised-button>Delete</button>
     </p>
