@@ -36,7 +36,7 @@ export class DisplayContentsComponent implements OnInit {
   }
 
   isAccessibleByProgress(content: Content): boolean {
-    return content.isCompleted || this.isAuthor()
+    return content.isOpen || this.isAuthor()
   }
 
   isContentPublished(content: Content) {
