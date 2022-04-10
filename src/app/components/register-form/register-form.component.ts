@@ -26,6 +26,8 @@ export class RegisterFormComponent {
       router.navigate(['/'])
     }
     this.registerForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       passwordCheck: ['', Validators.required]
