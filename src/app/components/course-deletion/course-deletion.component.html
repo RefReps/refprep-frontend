@@ -1,0 +1,13 @@
+<h2>Enter Course Name to Confirm Deletion</h2>
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
+    <p>
+        <mat-form-field apperance="fill">
+            <mat-label>Course Name</mat-label>
+            <input matInput name="courseName" formControlName="courseName">
+        </mat-form-field>
+    
+    </p>
+    <p>
+        <button mat-button type="submit" class="bg-red-400" mat-raised-button>Delete</button>
+    </p>
+</form>
