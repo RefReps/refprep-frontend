@@ -148,8 +148,5 @@ export class VideoViewerComponent implements OnInit {
     return this.userInteraction.isAuthor
   }
 
-  get isCompleted(): boolean {
-    return this.isCompleted
-  }
 
 }
