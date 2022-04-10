@@ -6,12 +6,12 @@
             <mat-expansion-panel hideToggle cdkDrag>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <div class="p-2 font-bold text-xl">
+                        <div class="sectionName p-2 font-bold text-xl">
                             {{section.name}}
                         </div>
                         <div class="flex-1 flex-col">
                             <button mat-icon-button [matMenuTriggerFor]="editMenu" class="float-right">
-                                <mat-icon>more_vert</mat-icon>
+                                <mat-icon class="vert">more_vert</mat-icon>
                             </button>
                             <mat-menu #editMenu>
                                 <button mat-icon-button color="black" class="float-left"
@@ -39,7 +39,7 @@
 
 <!-- Open Dialog: Add new section -->
 <mat-card class="max-w-min float-left">
-    <button mat-raised-button class="bg-green-400" (click)="openAddSectionDialog()">Add New Section</button>
+    <button mat-raised-button class="addSection bg-green-400" (click)="openAddSectionDialog()">Add New Section</button>
 </mat-card>
 
 <!-- Return to regular course view -->

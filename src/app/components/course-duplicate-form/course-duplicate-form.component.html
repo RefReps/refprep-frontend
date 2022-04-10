@@ -1,19 +1,19 @@
 <h2>Add Course</h2>
 <form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
-    
+
     <p>Select Template Course:</p>
-        <mat-form-field appearance="fill">
-            <mat-label>Course</mat-label>
-            <mat-select [formControl]="courseId">
-                <mat-option *ngFor="let course of courses" [value]="course._id">
-                  {{course.name}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Course</mat-label>
+        <mat-select class="select-courses" [formControl]="courseId">
+            <mat-option *ngFor="let course of courses" [value]="course._id" class="course-options">
+                {{course.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
     <p>
         <mat-form-field appearance="fill">
             <mat-label>New Course Name</mat-label>
-            <input matInput name="name" formControlName="name">
+            <input class="name" matInput name="name" formControlName="name">
         </mat-form-field>
     </p>
     <p>
@@ -28,6 +28,6 @@
         </mat-slide-toggle>
     </p>
     <p>
-        <button mat-button type="submit" class="bg-green-400" mat-raised-button>Submit</button>
+        <button mat-button type="submit" class="submit bg-green-400" mat-raised-button>Submit</button>
     </p>
 </form>
