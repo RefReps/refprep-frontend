@@ -62,6 +62,7 @@ export class Content {
   contentOrder?: number;
   dropDate?: string;
   isCompleted?: boolean;
+  isOpen?: boolean;
   isAccessable?: boolean;
   isKeepOpen?: boolean;
 }
