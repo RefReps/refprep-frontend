@@ -34,6 +34,7 @@ export class VideoViewerComponent implements OnInit {
     this.getVideo()
     this.getCourse()
     this.updateProgress(0);
+    
    }
 
   // Get the contentId from the url from the route
