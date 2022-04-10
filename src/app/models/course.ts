@@ -73,6 +73,8 @@ export class StudentGrades {
   userId?: string;
   quizId?: string;
   quizName?: string;
+  firstName?: string;
+  lastName?: string;
   email?: string;
   grade?: number;
   submissionNumber?: string;
@@ -85,6 +87,8 @@ export class GradeOverview {
   _id?: string;
   user?: {
     _id?: string;
+    firstName?: string;
+    lastName?: string;
     email?: string;
   }
   courseGrade?: number;

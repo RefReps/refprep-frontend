@@ -33,7 +33,7 @@ export class CourseGradesComponent implements OnInit {
     this.QuizService.getOverallGrades(this.courseId).subscribe((grades) => {
       this.allGrades = grades;
       // sort grades by email
-      let defSort: Sort = { active: 'email', direction: 'asc' };
+      let defSort: Sort = { active: 'name', direction: 'asc' };
       this.sortGrades(defSort);
     });
   }
@@ -48,8 +48,8 @@ export class CourseGradesComponent implements OnInit {
       const isAsc = sort.direction === 'asc';
       const isDesc = sort.direction === 'desc';
       switch (sort.active) {
-        case 'email':
-          return compare(a.user?.email, b.user?.email, isAsc);
+        case 'name':
+          return compare(a.user?.lastName, b.user?.lastName, isAsc);
         case 'grade':
           return compare(a.courseGrade, b.courseGrade, isDesc)
         default:

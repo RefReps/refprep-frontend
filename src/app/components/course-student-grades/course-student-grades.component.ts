@@ -17,6 +17,8 @@ export class CourseStudentGradesComponent implements OnInit {
   studentGrades: StudentGrades[] = [];
   studentId: string = '';
   email: string = '';
+  firstName: string = '';
+  lastName: string = '';
 
   constructor(
     private userInteractionService: UserInteractionService,
@@ -39,24 +41,28 @@ export class CourseStudentGradesComponent implements OnInit {
       if (id) {
         this.studentId = id;
       }
+      this.getGrades();
     });
-    this.getGrades();
   }
 
   getGrades(): void {
     this.api.getCourse(this.courseId).subscribe((course) => {
       //gets student's grades for an author
-      if (course.isAuthor && this.studentId) {
+      if ((course.isAuthor || this.userInteractionService.isAdmin) && this.studentId) {
         this.QuizService.getSingleStudentsGradesForAuthor(this.courseId, this.studentId).subscribe((grades) => {
           this.studentGrades = grades;
           this.email = grades[0].email || '';
+          this.firstName = grades[0].firstName || '';
+          this.lastName = grades[0].lastName || '';
         });
       }
       //gets all quiz grades if a student
       else if (!this.isAuthor) {
         this.QuizService.getAllStudentGrades(this.courseId).subscribe((grades) => {
           this.studentGrades = grades;
-          this.email = this.token.getEmail()
+          this.email = this.token.getEmail();
+          this.firstName = this.token.getUserFirstName();
+          this.lastName = this.token.getUserLastName();
         });
       }
     });
