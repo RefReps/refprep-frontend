@@ -65,6 +65,7 @@ import { ImportStudentsCsvComponent } from './import-students-csv/import-student
 import { ContentFormAddTextComponent } from './content-form-add-text/content-form-add-text.component';
 import { CourseGradesComponent } from './course-grades/course-grades.component';
 import { CourseStudentGradesComponent } from './course-student-grades/course-student-grades.component';
+import { CourseDeletionComponent } from './course-deletion/course-deletion.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -122,6 +123,7 @@ import { CourseStudentGradesComponent } from './course-student-grades/course-stu
     ContentFormAddTextComponent,
     CourseGradesComponent,
     CourseStudentGradesComponent,
+    CourseDeletionComponent,
   ],
   imports: [
     MaterialModule,
@@ -191,6 +193,7 @@ import { CourseStudentGradesComponent } from './course-student-grades/course-stu
     ContentFormAddTextComponent,
     CourseGradesComponent,
     CourseStudentGradesComponent,
+    CourseDeletionComponent,
   ],
 })
 export class ComponentsModule { }

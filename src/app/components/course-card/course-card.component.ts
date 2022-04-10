@@ -3,6 +3,8 @@ import { Course } from 'src/app/models/course';
 import { CourseInteractionService } from 'src/app/_services/course-interaction.service';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
+import { DialogService } from 'src/service/dialog.service';
+import { CourseDeletionComponent } from '../course-deletion/course-deletion.component';
 
 @Component({
   selector: 'app-course-card',
@@ -17,6 +19,7 @@ export class CourseCardComponent {
     private courseInteractionService: CourseInteractionService,
     private userInteractionService: UserInteractionService,
     private apiService: ApiService,
+    private dialogService: DialogService,
     
   ) { }
 
@@ -32,13 +35,8 @@ export class CourseCardComponent {
   }
 
   //delete course from database
-  deleteCourse() {
-    if (typeof this.course._id !== 'undefined') {
-      this.apiService.deleteCourse(this.course._id).subscribe(
-        res => {
-          window.location.reload();
-        });
-    }
+  deleteCourse(course: Course) {
+    this.dialogService.open(CourseDeletionComponent, { course })
   }
 
   //duplicate course in database
