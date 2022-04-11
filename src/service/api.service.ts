@@ -232,7 +232,6 @@ export class ApiService {
   }
 
   contentProgressForce(contentId: string, userId: string, percentComplete: number): Observable<any> {
-    console.log(contentId, userId, percentComplete)
     return this.http.put<any>(`${this.contentUrl}/${contentId}/progress`, {percentComplete, userId: userId})
   }
 
