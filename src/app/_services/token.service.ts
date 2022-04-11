@@ -5,6 +5,8 @@ const REFRESH_TOKEN = 'refresh_token'
 const EMAIL = 'email'
 const ROLE = 'user_role'
 const IS_AUTHOR = 'isAuthor'
+const FIRST_NAME = 'firstName'
+const LAST_NAME = 'lastName'
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,14 @@ export class TokenService {
     return localStorage.getItem(ROLE)!
   }
 
+  getUserFirstName(): string {
+    return localStorage.getItem(FIRST_NAME)!
+  }
+
+  getUserLastName(): string {
+    return localStorage.getItem(LAST_NAME)!
+  }
+
   getIsAuthor(): boolean {
     return localStorage.getItem(IS_AUTHOR)! === 'true'
   }
@@ -43,6 +53,14 @@ export class TokenService {
 
   saveEmail(email: string): void {
     localStorage.setItem(EMAIL, email)
+  }
+
+  saveUserFirstName(firstName: string): void {
+    localStorage.setItem(FIRST_NAME, firstName)
+  }
+
+  saveUserLastName(lastName: string): void {
+    localStorage.setItem(LAST_NAME, lastName)
   }
 
   saveUserRole(role: string): void {

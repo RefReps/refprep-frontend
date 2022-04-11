@@ -22,7 +22,7 @@ export class ApiService {
   baseUrl: string = isDevMode() ? dev.apiUrl : prod.apiUrl;
   apiUrl: string = `${this.baseUrl}/api/`;
   videoUrl: string = `${this.baseUrl}/api/video`;
-  userUrl: string = `${this.baseUrl}/user`;
+  userUrl: string = `${this.baseUrl}/api/user`;
   courseUrl: string = `${this.baseUrl}/api/course`;
   sectionUrl: string = `${this.baseUrl}/api/section`;
   moduleUrl: string = `${this.baseUrl}/api/module`;

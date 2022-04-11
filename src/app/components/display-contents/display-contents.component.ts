@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { Course, Content } from 'src/app/models/course';
 import { TokenService } from 'src/app/_services/token.service';
 import { ApiService } from 'src/service/api.service';
@@ -13,14 +14,29 @@ export class DisplayContentsComponent implements OnInit {
 
   @Input() moduleId: string = '';
   @Input() contents: Content[] = [];
+  courseId: string = '';
+  courseInfo: Course = {};
 
   constructor(
     private Api: ApiService,
     private tokenService: TokenService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      let id = params.get('courseId');
+      if (id) {
+        this.courseId = id;
+      }
+    });
+    this.getCourseInfo();
+  }
+
+  getCourseInfo(): void {
+    this.Api.getCourse(this.courseId)
+      .subscribe(info => this.courseInfo = info)
   }
 
   canAccessContent(content: Content): boolean {
@@ -57,6 +73,9 @@ export class DisplayContentsComponent implements OnInit {
   }
 
   openSnackBar(content: Content): void {
+    if (!this.courseInfo.settings?.isEnforcements) {
+      return;
+    }
     if (!this.isAccessibleByDate(content)) {
       let message = 'Content not yet available'
       const ONE_SECOND = 1000

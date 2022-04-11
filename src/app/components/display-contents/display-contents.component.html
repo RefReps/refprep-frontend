@@ -7,7 +7,7 @@
       }"
     >
       <div class="flex flex-row justify-between align-middle" (click)="openSnackBar(content)">
-        <div class="flex flex-row marker:justify-self-start self-center">
+        <div class="flex flex-row marker:justify-self-start self-center truncate">
           <div class="align-bottom">
             <mat-icon *ngIf="content.onModel == 'Quiz'">assignment</mat-icon>
             <mat-icon *ngIf="content.onModel == 'Video'">videocam</mat-icon>

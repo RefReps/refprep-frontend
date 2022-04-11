@@ -11,7 +11,7 @@
       </mat-drawer>
 
 <div class="center">
-    <h1 class="text-display">Grades for {{email}}</h1>
+    <h1 class="text-display">Grades for {{ firstName }} {{ lastName }}</h1>
 </div>
 <div class="text-center">
     <h2>Total: {{getGradePercentage(getAverageGrade())}}% ({{getLetterGrade(getAverageGrade())}})</h2>
@@ -37,7 +37,7 @@
                 </div>
                 <div *ngIf="!studentGrade.isTaken">-</div>
             </td>
-            <td class="name">
+            <td class="w-50 break-all">
                 <div *ngIf="studentGrade.isTaken">
                     {{ studentGrade.quizName }}
                     <a [routerLink]="['/courses', courseId, 'quiz', studentGrade.quizId]">

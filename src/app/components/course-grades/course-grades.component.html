@@ -14,11 +14,11 @@
         <h1 class="text-display">Grades:</h1>
       </div>
 
-      <table matTable (matSortChange)="sortGrades($event)" matSort matSortActive="email" matSortDirection="asc">
+      <table matTable (matSortChange)="sortGrades($event)" matSort matSortActive="name" matSortDirection="asc">
         <thead>
           <tr>
               <th></th>
-              <th mat-sort-header="email" class="student">Student</th>
+              <th mat-sort-header="name" class="student">Student</th>
               <th mat-sort-header="grade" class="grade">Grade</th>
           </tr>
         </thead>
@@ -33,7 +33,7 @@
             </td>
             <td class="student">
               <a [routerLink]="['/courses', courseId, 'grades', grade.user?._id]">
-                {{ grade.user?.email }}
+                {{ grade.user?.firstName }} {{ grade.user?.lastName }}
               </a>
             </td>
             <td class="grade">
