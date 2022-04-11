@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/models/user';
+import { TokenService } from 'src/app/_services/token.service';
 import { ApiService } from 'src/service/api.service';
 
 @Component({
@@ -15,10 +16,12 @@ export class DialogChangePasswordComponent implements OnInit {
   match = true;
   user: User = {};
   userId: string = '';
+  activeUser: string = '';
 
   constructor(
     private api: ApiService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    public token: TokenService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) { 
   }
 
@@ -26,6 +29,7 @@ export class DialogChangePasswordComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.data.data.user._id;
     this.user = this.data.data.user;
+    this.activeUser = this.token.getEmail();
   }
   
 onSubmit() {
@@ -42,7 +46,6 @@ onSubmit() {
     this.api.updateUserPassword(this.userId, password).subscribe(
       (data) => {
         window.location.reload();
-      }
-    )
-}
+      })
+    }
 }
