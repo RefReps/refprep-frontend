@@ -9,17 +9,17 @@
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
   
         <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
             <td mat-cell *matCellDef="let element">{{element.email}}</td>
         </ng-container>
 
         <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef> F.Name </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> F.Name </th>
             <td mat-cell *matCellDef="let element">{{element.firstName}}</td>
         </ng-container>
 
         <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef> L.Name </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> L.Name </th>
             <td mat-cell *matCellDef="let element">{{element.lastName}}</td>
         </ng-container>
         
