@@ -1,28 +1,26 @@
 <div fxLayout="row" fxLayoutAlign="center">
-    <div class="header-bar">
-        Course Creation
+    <div class="header-bar" >
+    Course Creation
     </div>
 </div>
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="40px">
-    <mat-card class="bg-teal-100 shadow-lg w-72 h-80">
-        <div fxLayout="column" fxLayoutAlign="center">
-            <mat-card-title>Create New Course</mat-card-title>
-            <mat-card-subtitle>Create a completely new course from scratch</mat-card-subtitle>
-            <div fxLayout="column" fxLayoutAlign="end center">
-                <button class="create-course bg-blue-400" mat-raised-button (click)="openAddCourseDialog()">Create New
-                    Course</button>
+        <mat-card class="bg-teal-100 shadow-lg w-72 h-80">
+            <div fxLayout="column" fxLayoutAlign="center">
+                <mat-card-title>Create New Course</mat-card-title>
+                <mat-card-subtitle>Create a completely new course from scratch</mat-card-subtitle>
+                <div fxLayout="column" fxLayoutAlign="end center">
+                    <button class="bg-blue-400" mat-raised-button (click)="openAddCourseDialog()">Create New Course</button>
+                </div>
             </div>
-        </div>
-    </mat-card>
-    <mat-card class="bg-teal-100 shadow-lg w-72 h-80">
-        <div fxLayout="column" fxLayoutAlign="center">
-            <mat-card-title>Create From Template Course</mat-card-title>
-            <mat-card-subtitle>Create a new course using a template course as a base</mat-card-subtitle>
-            <div fxLayout="column" fxLayoutAlign="end center">
-                <button class="create-template bg-blue-400" mat-raised-button
-                    (click)="openDuplicateCourseDialog()">Create From
-                    Template</button>
+        </mat-card>
+        <mat-card class="bg-teal-100 shadow-lg w-72 h-80">
+            <div fxLayout="column" fxLayoutAlign="center">
+                <mat-card-title>Create From Template Course</mat-card-title>
+                <mat-card-subtitle>Create a new course using a template course as a base</mat-card-subtitle>
+                <div fxLayout="column" fxLayoutAlign="end center">
+                    <button class="bg-blue-400" mat-raised-button (click)="openDuplicateCourseDialog()">Create From Template</button>
+                </div>
             </div>
-        </div>
-    </mat-card>
+        </mat-card>
 </div>
+

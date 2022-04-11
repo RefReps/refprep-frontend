@@ -1,21 +1,10 @@
-<a [routerLink]="['/courses', course._id]" routerLinkActive="router-link-active" 
-    class="card-click cursor-pointer">
-    <mat-card class="card shadow-lg w-72 h-80">
-        <div fxLayoutGap="10px" style="margin: 0px 0px 10px 0px" class="card flex justify-center 
-                    bg-fifthary h-48 min-w-full">
-            <img src="../../../assets/RR_Logo_12.png" alt="logo">
+<a [routerLink]="['/courses', course._id]"
+routerLinkActive="router-link-active" class="cursor-pointer">
+    <mat-card class="shadow-lg w-72 h-80">
+        <div fxLayoutGap="10px" style="margin: 0px 0px 10px 0px" class="flex justify-center 
+                    bg-fifthary h-48 min-w-full" >
+            <img src="../../../assets/RR_Logo_12.png" alt="logo" >
         </div>
-        <div class="card-contents">
-            <mat-card-title>{{course.name}}</mat-card-title>
-            <mat-divider class="divider"></mat-divider>
-            <br>
-            <mat-card-subtitle>{{this.courseSubtitle}}</mat-card-subtitle>
-            <mat-card-content></mat-card-content>
-            <mat-card-footer></mat-card-footer>
-        </div>
-    </mat-card>
-</a>
-
         <div>    
             <mat-card-title>
             <div class="flex flex-row">
