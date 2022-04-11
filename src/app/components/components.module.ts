@@ -67,6 +67,7 @@ import { CourseGradesComponent } from './course-grades/course-grades.component';
 import { CourseStudentGradesComponent } from './course-student-grades/course-student-grades.component';
 import { CourseDeletionComponent } from './course-deletion/course-deletion.component';
 import { AdminUserViewComponent } from './admin-user-view/admin-user-view.component';
+import { DialogChangePasswordComponent } from './dialog-change-password/dialog-change-password.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -126,6 +127,7 @@ import { AdminUserViewComponent } from './admin-user-view/admin-user-view.compon
     CourseStudentGradesComponent,
     CourseDeletionComponent,
     AdminUserViewComponent,
+    DialogChangePasswordComponent,
   ],
   imports: [
     MaterialModule,
@@ -197,6 +199,7 @@ import { AdminUserViewComponent } from './admin-user-view/admin-user-view.compon
     CourseStudentGradesComponent,
     CourseDeletionComponent,
     AdminUserViewComponent,
+    DialogChangePasswordComponent,
   ],
 })
 export class ComponentsModule { }
