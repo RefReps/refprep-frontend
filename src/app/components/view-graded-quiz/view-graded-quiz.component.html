@@ -27,13 +27,13 @@
     <div *ngFor="let question of questions" class="m-5">
         <mat-card *ngIf="question.questionType == '1_CHOICE'">
             <mat-radio-group>
-                <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label>
+                <mat-label class="break-all">{{question.questionNumber}}: {{question.question}}</mat-label>
                 <br>
-                <mat-radio-group class="mdc-radio--disabled pass" 
+                <mat-radio-group class="mdc-radio--disabled pass break-all" 
                 [value]="getUserAnswerByQuestionNumber(question.questionNumber!)">
                 <mat-radio-button value="A" disabled>
                     <div [ngClass]="{'passInput':  getUserAnswerByQuestionNumber(question.questionNumber!) === 'A' && getQuestionCorrectness(question.questionNumber!) === 1,
-                    'failInput': getUserAnswerByQuestionNumber(question.questionNumber!) === 'A' && getQuestionCorrectness(question.questionNumber!) === 0}">
+                    'failInput': getUserAnswerByQuestionNumber(question.questionNumber!) === 'A' && getQuestionCorrectness(question.questionNumber!) === 0 }" >
                             {{question.responses?.A}}
                         </div>
                     </mat-radio-button><br>
@@ -65,7 +65,7 @@
         </mat-card>
         
         <mat-card *ngIf="question.questionType == 'TRUE_FALSE'">
-            <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
+            <mat-label class="break-all">{{question.questionNumber}}: {{question.question}}</mat-label><br>
             <mat-radio-group #tfAnswer class="mdc-radio--disabled" [value]="getUserAnswerByQuestionNumber(question.questionNumber!)">
                 <mat-radio-button value="true" disabled>
                     <div [ngClass]="{'passInput':  getUserAnswerByQuestionNumber(question.questionNumber!) === 'true' && getQuestionCorrectness(question.questionNumber!) === 1,
@@ -88,7 +88,7 @@
         </mat-card>
         
         <mat-card *ngIf="question.questionType == 'FREE_RESPONSE'">
-            <mat-label>{{question.questionNumber}}: {{question.question}}</mat-label><br>
+            <mat-label class="break-all">{{question.questionNumber}}: {{question.question}}</mat-label><br>
             <div [ngClass]="{'passInput': getQuestionCorrectness(question.questionNumber!) === 1,
             'failInput': getQuestionCorrectness(question.questionNumber!) === 0}"> 
             {{getUserAnswerByQuestionNumber(question.questionNumber!)}}

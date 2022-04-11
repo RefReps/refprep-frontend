@@ -33,6 +33,8 @@ export class AuthenticationService {
         .pipe(map(res => {
           this.tokenService.emptyLocalStorage()
           this.tokenService.saveEmail(email)
+          this.tokenService.saveUserFirstName(res.first_name)
+          this.tokenService.saveUserLastName(res.last_name)
           this.tokenService.saveToken(res.access_token)
           this.tokenService.saveRefreshToken(res.refresh_token)
           this.tokenService.saveUserRole(res.user_role)
