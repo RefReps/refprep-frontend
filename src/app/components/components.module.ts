@@ -66,6 +66,8 @@ import { ContentFormAddTextComponent } from './content-form-add-text/content-for
 import { CourseGradesComponent } from './course-grades/course-grades.component';
 import { CourseStudentGradesComponent } from './course-student-grades/course-student-grades.component';
 import { CourseDeletionComponent } from './course-deletion/course-deletion.component';
+import { CourseAnnouncementComponent } from './course-announcement/course-announcement.component';
+import { UpdateAnnouncementDialogComponent } from './update-announcement-dialog/update-announcement-dialog.component';
 import { AdminUserViewComponent } from './admin-user-view/admin-user-view.component';
 import { DialogChangePasswordComponent } from './dialog-change-password/dialog-change-password.component';
 import { StudentProgressViewComponent } from './student-progress-view/student-progress-view.component';
@@ -131,6 +133,8 @@ import { DialogChangeRoleComponent } from './dialog-change-role/dialog-change-ro
     CourseGradesComponent,
     CourseStudentGradesComponent,
     CourseDeletionComponent,
+    CourseAnnouncementComponent,
+    UpdateAnnouncementDialogComponent,
     AdminUserViewComponent,
     DialogChangePasswordComponent,
     StudentProgressViewComponent,

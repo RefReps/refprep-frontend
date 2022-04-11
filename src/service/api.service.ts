@@ -13,6 +13,7 @@ import { environment as dev } from 'src/environments/environment';
 import { environment as prod } from 'src/environments/environment.prod';
 import { User } from 'src/app/models/user';
 import { UserGrade } from 'src/app/models/quiz';
+import { Announcement } from 'src/app/models/announcement';
 
 
 @Injectable({
@@ -30,6 +31,7 @@ export class ApiService {
   contentUrl: string = `${this.baseUrl}/api/content`;
   quizUrl: string = `${this.baseUrl}/api/quiz`;
   authUrl: string = `${this.baseUrl}/api/auth`;
+  announcementUrl: string = `${this.baseUrl}/api/announcement`;
 
   constructor(private http: HttpClient) { }
 
@@ -286,5 +288,19 @@ export class ApiService {
 
   updateVideoProgressOnContent(contentId: string, percentComplete: number): Observable<any> {
     return this.http.put(`${this.contentUrl}/${contentId}/progress/video`, { percentComplete })
+  }
+
+
+// Announcement 
+  postAnnouncement(moduleId: string, announcementForm: FormData): Observable<any>{
+      return this.http.post<any>(`${this.announcementUrl}`, {moduleId,...announcementForm})
+  }
+
+  getAnnouncementContent(announcementId: string): Observable<{announcement: Announcement}> {
+    return this.http.get<{announcement: Announcement}>(`${this.announcementUrl}/${announcementId}`)
+  }
+
+  updateAnnouncement(announcementId: string, form: FormData): Observable<any>{
+    return this.http.put<any>(`${this.announcementUrl}/${announcementId}`, form)
   }
 }

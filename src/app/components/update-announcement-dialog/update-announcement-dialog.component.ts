@@ -1,28 +1,25 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { ApiService } from 'src/service/api.service';
 import { FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { ApiService } from 'src/service/api.service';
 
 
 @Component({
-  selector: 'app-content-form-add-text',
-  templateUrl: './content-form-add-text.component.html',
-  styleUrls: ['./content-form-add-text.component.css']
+  selector: 'app-update-announcement-dialog',
+  templateUrl: './update-announcement-dialog.component.html',
+  styleUrls: ['./update-announcement-dialog.component.css']
 })
-export class ContentFormAddTextComponent implements OnInit {
-  moduleId: string
+export class UpdateAnnouncementDialogComponent implements OnInit {
+  moduleId: string;
 
-  constructor(
-    
-    private apiService: ApiService, 
-    private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
+    private api: ApiService,     
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.moduleId = data.data.moduleId
      }
 
   ngOnInit(): void {
-
   }
 
   announcementForm = this.formBuilder.group({
@@ -30,7 +27,7 @@ export class ContentFormAddTextComponent implements OnInit {
     body: ''
   });
 
-  name = 'Angular 6';
+  name = '';
   htmlContent = ''
 
 
@@ -54,21 +51,9 @@ export class ContentFormAddTextComponent implements OnInit {
     ],
   }
 
-
-  getTitle(){
-    return this.announcementForm.get('title')?.value
-  }
-
-  getBody(){
-    return this.announcementForm.get('body')?.value
-  }
-
-  onSubmit() {
-    if(this.data.data.moduleId){
-      this.apiService.postAnnouncement(this.moduleId, this.announcementForm.value).subscribe(res => {
-      })
-      
-    }
+  onUpdate(){
+    this.api.updateAnnouncement(this.moduleId, this.announcementForm.value)
+    console.log(this.moduleId)
   }
 
 }
