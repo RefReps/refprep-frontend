@@ -70,6 +70,9 @@ import { AdminUserViewComponent } from './admin-user-view/admin-user-view.compon
 import { DialogChangePasswordComponent } from './dialog-change-password/dialog-change-password.component';
 import { StudentProgressViewComponent } from './student-progress-view/student-progress-view.component';
 import { ContentProgressComponent } from './content-progress/content-progress.component';
+import { DialogChangeNameComponent } from './dialog-change-name/dialog-change-name.component';
+import { DialogChangeEmailComponent } from './dialog-change-email/dialog-change-email.component';
+import { DialogChangeRoleComponent } from './dialog-change-role/dialog-change-role.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -132,6 +135,9 @@ import { ContentProgressComponent } from './content-progress/content-progress.co
     DialogChangePasswordComponent,
     StudentProgressViewComponent,
     ContentProgressComponent,
+    DialogChangeNameComponent,
+    DialogChangeEmailComponent,
+    DialogChangeRoleComponent,
   ],
   imports: [
     MaterialModule,
@@ -206,6 +212,9 @@ import { ContentProgressComponent } from './content-progress/content-progress.co
     DialogChangePasswordComponent,
     StudentProgressViewComponent,
     ContentProgressComponent,
+    DialogChangeNameComponent,
+    DialogChangeEmailComponent,
+    DialogChangeRoleComponent,
   ],
 })
 export class ComponentsModule { }

@@ -125,7 +125,19 @@ export class ApiService {
   }
 
   updateUserPassword(userId: string, password: string): Observable<{success: boolean}> {
-    return this.http.put<{success: boolean}>(`${this.userUrl}/${userId}/password`, {password})
+    return this.http.put<{success: boolean}>(`${this.userUrl}/${userId}/password`, { password })
+  }
+
+  updateUserEmail(userId: string, email: string): Observable<{success: boolean}> {
+    return this.http.put<{success: boolean}>(`${this.userUrl}/${userId}/email`, { email })
+  }
+
+  updateUserRole(userId: string, role: string): Observable<{success: boolean}> {
+    return this.http.put<{success: boolean}>(`${this.userUrl}/${userId}/role`, { role })
+  }
+
+  updateUserName(userId: string, firstName: string, lastName: string): Observable<{success: boolean}> {
+    return this.http.put<{success: boolean}>(`${this.userUrl}/${userId}/name`, { firstName, lastName })
   }
 
   getAllUsers(): Observable<{users: User[]}> {
