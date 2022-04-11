@@ -33,6 +33,6 @@ hasStudentCompleted(progress: ContentProgress): boolean {
     });
     this.api.getCourse(this.courseId).subscribe((info) => {
       this.course = info;
-  });
-}
+    });
+  }
 }
