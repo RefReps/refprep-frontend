@@ -21,7 +21,7 @@
       </div>
       <div class="flex flex-row">
         <mat-icon class="pr-10 self-center" *ngIf="!content.isPublished">visibility_off</mat-icon>
-        <mat-icon class="pr-10 self-center" *ngIf="content.isKeepOpen">grade</mat-icon>
+        <mat-icon class="pr-10 self-center text-yellow-500" *ngIf="content.isKeepOpen">grade</mat-icon>
         <!-- Display drop date if there is enough space -->
         <div class="hidden sm:block min-w-max self-center p-1 bg-black rounded-md">
           <div class="text-xl self-center rounded-md bg-blue-100 px-5">

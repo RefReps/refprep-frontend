@@ -20,7 +20,7 @@
           <mat-icon class="pr-10 self-center text-green-600" *ngIf="content.isCompleted">done</mat-icon>
           <mat-icon class="pr-10 self-center" *ngIf="!content.isPublished">visibility_off</mat-icon>
           <div *ngIf="!isStudent()">
-            <mat-icon class="pr-10 self-center text-yellow-500" *ngIf="isOpen(content)">grade</mat-icon>
+            <mat-icon class="pr-10 self-center text-yellow-500" *ngIf="content.isKeepOpen">grade</mat-icon>
           </div>
           <div *ngIf="!isOpen(content)">
             <span class="pr-5 self-center" *ngIf="!isAccessibleByDate(content)">

@@ -10,75 +10,7 @@
         <app-course-sidebar></app-course-sidebar>
       </mat-drawer>
 
-<!-- TESTING -->
-
-<cdk-accordion>
-    <!-- Section Accordion -->
-    <cdk-accordion-item
-        *ngFor="let section of course.sections"
-        #sectionAccordionItem="cdkAccordionItem"
-        [expanded]="true"
-        [cdkAccordionItemId]="section._id"
-        [cdkAccordionItemTogglePosition]="'after'"
-        >
-        <button (click)="sectionAccordionItem.toggle()">
-            {{section.name}}
-        </button>
-
-        <!-- Module Accordion -->
-        <cdk-accordion
-            [style.display]="sectionAccordionItem.expanded ? 'block' : 'none'"
-        >
-            <cdk-accordion-item
-                *ngFor="let module of section.modules"
-                #moduleAccordionItem="cdkAccordionItem"
-                [expanded]="true"
-                [cdkAccordionItemId]="module._id"
-                [cdkAccordionItemTogglePosition]="'after'"
-                >
-                <button (click)="moduleAccordionItem.toggle()">
-                    {{module.name}}
-                </button>
-
-                <!-- Content Accordion (Quizzes) -->
-                <cdk-accordion
-                    [style.display]="moduleAccordionItem.expanded ? 'block' : 'none'"
-                >
-                    <cdk-accordion-item
-                        *ngFor="let content of module.contents"
-                        >
-
-                        <!-- Main display for showing quiz -->
-                        <div
-                            *ngIf="content.onModel === 'Quiz'"
-                            >
-                            <!-- Quiz is not taken -->
-                            <div
-                                *ngIf="!getQuiz(content.toDocument!).isTaken"
-                            >
-                             - 
-                            </div>
-                            <!-- Quiz is taken -->
-                            <div
-                                *ngIf="getQuiz(content.toDocument!).isTaken"
-                            >
-                                {{getGradePercentage(getQuiz(content.toDocument!).grade)}}%
-                                ({{
-                                    getLetterGrade(getQuiz(content.toDocument!).grade)}})
-                            </div>
-
-                        </div>
-
-                    </cdk-accordion-item>
-                </cdk-accordion>
-                
-            </cdk-accordion-item>
-        </cdk-accordion>
-
-    </cdk-accordion-item>
-</cdk-accordion>
-
-<!-- END TESTING -->
+<!-- Course Grades -->
 
 <div class="center">
     <h1 class="text-display">Grades for {{ firstName }} {{ lastName }}</h1>
@@ -96,43 +28,49 @@
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let studentGrade of studentGrades">
-            <td class="view">
-                <div *ngIf="studentGrade.isTaken">
-                    <a [routerLink]="['/courses', courseId, 'quiz', studentGrade.quizId, 'viewQuiz', studentGrade.submissionId]">
-                        <span class="material-icons">
-                            visibility
-                        </span>
-                    </a>
-                </div>
-                <div *ngIf="!studentGrade.isTaken">-</div>
-            </td>
-            <td class="w-50 break-all">
-                <div *ngIf="studentGrade.isTaken">
-                    {{ studentGrade.quizName }}
-                    <a [routerLink]="['/courses', courseId, 'quiz', studentGrade.quizId]">
-                        <span class="material-icons" style="color:rgb(135, 133, 157); font-size:medium;" >
-                            info
-                        </span>
-                    </a>
-                </div>
-                <div *ngIf="!studentGrade.isTaken">
-                    {{ studentGrade.quizName }}
-                </div>
-            </td>
-            <td>
-                <div *ngIf="studentGrade.isTaken">
-                    {{ studentGrade.submissionNumber }}
-                </div>
-                <div *ngIf="!studentGrade.isTaken">-</div>
-            </td>
-            <td class="grade">
-                <div *ngIf="studentGrade.isTaken">
-                    {{ getGradePercentage(studentGrade.grade) }}% ({{
-                    getLetterGrade(studentGrade.grade)}})
-                </div>
-                <div *ngIf="!studentGrade.isTaken">-</div>
-        </td>
-        </tr>
+        <ng-container *ngFor="let section of course.sections">
+            <ng-container *ngFor="let module of section.modules">
+                <ng-container *ngFor="let content of sortContentsByContentOrder(module.contents!)">
+                    <tr>
+                    <td class="view">
+                        <div *ngIf="getQuiz(content.toDocument!).isTaken">
+                            <a [routerLink]="['/courses', courseId, 'quiz', getQuiz(content.toDocument!).quizId, 'viewQuiz', getQuiz(content.toDocument!).submissionId]">
+                                <span class="material-icons">
+                                    visibility
+                                </span>
+                            </a>
+                        </div>
+                        <div *ngIf="!getQuiz(content.toDocument!).isTaken">-</div>
+                    </td>
+                    <td class="w-50 break-all pl-4 pr-4">
+                        <div *ngIf="getQuiz(content.toDocument!).isTaken">
+                            {{ getQuiz(content.toDocument!).quizName }}
+                            <a [routerLink]="['/courses', courseId, 'quiz', getQuiz(content.toDocument!).quizId]">
+                                <span class="material-icons" style="color:rgb(135, 133, 157); font-size:medium;" >
+                                    info
+                                </span>
+                            </a>
+                        </div>
+                        <div *ngIf="!getQuiz(content.toDocument!).isTaken">
+                            {{ getQuiz(content.toDocument!).quizName }}
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="getQuiz(content.toDocument!).isTaken">
+                            {{ getQuiz(content.toDocument!).submissionNumber }}
+                        </div>
+                        <div *ngIf="!getQuiz(content.toDocument!).isTaken">-</div>
+                    </td>
+                    <td class="grade">
+                        <div *ngIf="getQuiz(content.toDocument!).isTaken">
+                            {{ getGradePercentage(getQuiz(content.toDocument!).grade) }}% ({{
+                            getLetterGrade(getQuiz(content.toDocument!).grade)}})
+                        </div>
+                        <div *ngIf="!getQuiz(content.toDocument!).isTaken">-</div>
+                    </td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+        </ng-container>
     </tbody>
   </table>

@@ -53,3 +53,36 @@ tr:hover {
     font-weight: bold;
     padding-left: 12px;
 }
+
+cdk-accordion {
+    width: 100%;
+    display: block;
+}
+
+cdk-accordion-item {
+    display: block;
+    border-top: 1px solid rgb(224, 224, 224);
+    border-bottom: 1px solid rgb(224, 224, 224);
+    padding: 16px;
+}
+
+cdk-accordion-item:first-child {
+    border-top: none;
+}
+
+.sections {
+    font-size: 24px;
+}
+
+.header {
+    font-weight: bold;
+}
+
+.module {
+    font-size: 20px;
+}
+
+.content {
+    font-size: 16px;
+}
+

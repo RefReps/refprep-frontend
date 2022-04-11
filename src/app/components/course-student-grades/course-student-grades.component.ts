@@ -7,6 +7,7 @@ import { StudentGrades } from 'src/app/models/course';
 import { QuizzesService } from 'src/app/_services/quizzes.service';
 import { TokenService } from 'src/app/_services/token.service';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
+import { Content } from 'src/app/models/course';
 
 @Component({
   selector: 'app-course-student-grades',
@@ -47,7 +48,7 @@ export class CourseStudentGradesComponent implements OnInit {
   }
 
   getCourseSkeleton(): void {
-    this.api.getCourseSkeleoton(this.courseId).subscribe((info) => {
+    this.api.getCourseSkeleton(this.courseId).subscribe((info) => {
       this.course = info.course;
     });
   }
@@ -141,4 +142,9 @@ export class CourseStudentGradesComponent implements OnInit {
       return (letterGrade = 'F');
     }
   }
+
+  sortContentsByContentOrder(contents: Content[]): Content[] {
+    return contents.sort((a, b) => a.contentOrder! - b.contentOrder!);
+  }  
+
 }
