@@ -1,3 +1,4 @@
+import { UserInteractionService } from './../../_services/user-interaction.service';
 import { BehaviorSubject } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -17,7 +18,11 @@ export class CourseAddAuthorComponent implements OnInit {
   removedEmail: string = '';
   currentAuthors = new BehaviorSubject<User[]>([]);
 
-  constructor(private Api: ApiService, private route: ActivatedRoute) {}
+  constructor(
+    private Api: ApiService, 
+    private route: ActivatedRoute, 
+    private userInteraction: UserInteractionService
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -56,5 +61,13 @@ export class CourseAddAuthorComponent implements OnInit {
       this.emails = [];
       this.getCourseAuthors();
     });
+  }
+
+  get isAuthor() {
+    return this.userInteraction.isAuthor;
+  }
+
+  get isAdmin() {
+    return this.userInteraction.isAdmin;
   }
 }

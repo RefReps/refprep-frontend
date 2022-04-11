@@ -1,8 +1,8 @@
 <div
-  class="grid gap-2 m-2 grid-flow-row-dense md:grid-flow-col-dense md:max-w-lg"
+  class="grid gap-2 m-2 mt-0 grid-flow-row-dense md:grid-flow-col-dense md:max-w-lg"
 >
 <!-- Add Author Card -->
-<mat-card class="shadow-lg h-400">
+<mat-card *ngIf="isAdmin" class="shadow-lg h-400">
   <mat-card-title>Add Authors:</mat-card-title>
   <div class="grid grid-flow-row">
     <mat-form-field>
@@ -33,7 +33,7 @@
     </div>
   </mat-card>
   <!-- Remove Author Card -->
-  <mat-card class="shadow-lg h-400">
+  <mat-card *ngIf="isAdmin" class="shadow-lg h-400">
     <mat-card-title>Remove Authors:</mat-card-title>
     <div class="grid grid-flow-row">
       <mat-form-field>
