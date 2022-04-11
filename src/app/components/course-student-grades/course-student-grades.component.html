@@ -10,6 +10,76 @@
         <app-course-sidebar></app-course-sidebar>
       </mat-drawer>
 
+<!-- TESTING -->
+
+<cdk-accordion>
+    <!-- Section Accordion -->
+    <cdk-accordion-item
+        *ngFor="let section of course.sections"
+        #sectionAccordionItem="cdkAccordionItem"
+        [expanded]="true"
+        [cdkAccordionItemId]="section._id"
+        [cdkAccordionItemTogglePosition]="'after'"
+        >
+        <button (click)="sectionAccordionItem.toggle()">
+            {{section.name}}
+        </button>
+
+        <!-- Module Accordion -->
+        <cdk-accordion
+            [style.display]="sectionAccordionItem.expanded ? 'block' : 'none'"
+        >
+            <cdk-accordion-item
+                *ngFor="let module of section.modules"
+                #moduleAccordionItem="cdkAccordionItem"
+                [expanded]="true"
+                [cdkAccordionItemId]="module._id"
+                [cdkAccordionItemTogglePosition]="'after'"
+                >
+                <button (click)="moduleAccordionItem.toggle()">
+                    {{module.name}}
+                </button>
+
+                <!-- Content Accordion (Quizzes) -->
+                <cdk-accordion
+                    [style.display]="moduleAccordionItem.expanded ? 'block' : 'none'"
+                >
+                    <cdk-accordion-item
+                        *ngFor="let content of module.contents"
+                        >
+
+                        <!-- Main display for showing quiz -->
+                        <div
+                            *ngIf="content.onModel === 'Quiz'"
+                            >
+                            <!-- Quiz is not taken -->
+                            <div
+                                *ngIf="!getQuiz(content.toDocument!).isTaken"
+                            >
+                             - 
+                            </div>
+                            <!-- Quiz is taken -->
+                            <div
+                                *ngIf="getQuiz(content.toDocument!).isTaken"
+                            >
+                                {{getGradePercentage(getQuiz(content.toDocument!).grade)}}%
+                                ({{
+                                    getLetterGrade(getQuiz(content.toDocument!).grade)}})
+                            </div>
+
+                        </div>
+
+                    </cdk-accordion-item>
+                </cdk-accordion>
+                
+            </cdk-accordion-item>
+        </cdk-accordion>
+
+    </cdk-accordion-item>
+</cdk-accordion>
+
+<!-- END TESTING -->
+
 <div class="center">
     <h1 class="text-display">Grades for {{ firstName }} {{ lastName }}</h1>
 </div>

@@ -89,6 +89,10 @@ export class ApiService {
     return this.http.get<{course: Course}>(`${this.courseUrl}/${courseId}/complete`)  
   }
 
+  getCourseSkeleoton(courseId: string): Observable<{course: Course}> {
+    return this.http.get<{course: Course}>(`${this.courseUrl}/${courseId}/skeleton`)
+  }
+
   postCourse(courseForm: FormData): void {
     this.http.post(`${this.courseUrl}`, courseForm).subscribe();
   }

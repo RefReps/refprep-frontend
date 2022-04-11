@@ -1,3 +1,4 @@
+import { Course } from './../../models/course';
 import { ApiService } from 'src/service/api.service';
 import { CourseInteractionService } from 'src/app/_services/course-interaction.service';
 import { Component, Input, OnInit } from '@angular/core';
@@ -14,6 +15,7 @@ import { UserInteractionService } from 'src/app/_services/user-interaction.servi
 })
 export class CourseStudentGradesComponent implements OnInit {
   courseId: string = '';
+  course: Course = {};
   studentGrades: StudentGrades[] = [];
   studentId: string = '';
   email: string = '';
@@ -29,19 +31,24 @@ export class CourseStudentGradesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // get course id and student id from url
     this.route.paramMap.subscribe((params) => {
-      let id = params.get('courseId');
-      if (id) {
-        this.courseId = id;
+      let courseId = params.get('courseId');
+      let studentId = params.get('studentId');
+      if (courseId) {
+        this.courseId = courseId;
       }
-    });
-    //get student id from url params
-    this.route.paramMap.subscribe((params) => {
-      let id = params.get('studentId');
-      if (id) {
-        this.studentId = id;
+      if (studentId) {
+        this.studentId = studentId;
       }
       this.getGrades();
+      this.getCourseSkeleton();
+    });
+  }
+
+  getCourseSkeleton(): void {
+    this.api.getCourseSkeleoton(this.courseId).subscribe((info) => {
+      this.course = info.course;
     });
   }
 
@@ -66,7 +73,12 @@ export class CourseStudentGradesComponent implements OnInit {
         });
       }
     });
-}
+  }
+
+  // get quiz from student's grades
+  getQuiz(quizId: string): StudentGrades {
+    return this.studentGrades.find((quiz) => quiz.quizId === quizId) || {};
+  }
 
   //get student average grade 
   getAverageGrade(): string {
