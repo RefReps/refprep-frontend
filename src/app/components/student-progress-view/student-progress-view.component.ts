@@ -18,6 +18,13 @@ export class StudentProgressViewComponent implements OnInit {
     this.loadStudentsProgess();
   }
 
+hasStudentCompleted(progress: ContentProgress): boolean {
+  if (progress.percentComplete === 100) {
+    return true;
+  }
+  return false;
+}
+
   loadStudentsProgess(): void {
     this.api.getContentStudentsProgress(this.contentId).subscribe((info) => {
       console.log(info);
