@@ -1,72 +1,54 @@
 <mat-sidenav-container fxLayout="row" fxFill>
-    <mat-sidenav #drawer class="sidenav" fixedInViewport
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false"
-        class="bg-primary">
-      <!-- Image at top of navigation bar -->
-      <img src="../../../../assets/RR_Logo_12.png" alt="logo" class="w-20">
-      <mat-nav-list>
-        <!-- Router links -->
-        <div class="text-white">
-          <!-- Profile link -->
-          <!-- <a routerLink="/profile"
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false" class="bg-primary">
+    <!-- Image at top of navigation bar -->
+    <img src="../../../../assets/RR_Logo_12.png" alt="logo" class="w-20">
+    <mat-nav-list>
+      <!-- Router links -->
+      <div class="text-white">
+        <!-- Profile link -->
+        <!-- <a routerLink="/profile"
           matTooltip="Profile" 
           matTooltipPosition="right"
           class="sidebar-icon group">
           <mat-icon>account_circle</mat-icon></a> -->
-          <!-- Home link -->
-          <a routerLink="/home" 
-          matTooltip="Home" 
-          matTooltipPosition="right"
+        <!-- Home link -->
+        <a routerLink="/home" matTooltip="Home" matTooltipPosition="right" class="sidebar-icon group">
+          <mat-icon>home</mat-icon>
+        </a>
+        <!-- Courses link -->
+        <a routerLink="/courses" matTooltip="Courses" matTooltipPosition="right" class="sidebar-icon group">
+          <mat-icon>library_books</mat-icon>
+        </a>
+        <!-- Copy Course Link -->
+        <a routerLink="/course-creation" *ngIf="isAdmin" matTooltip="Create Course" matTooltipPosition="right"
           class="sidebar-icon group">
-          <mat-icon>home</mat-icon></a>
-          <!-- Courses link -->
-          <a routerLink="/courses" 
-          matTooltip="Courses" 
-          matTooltipPosition="right"
-          class="sidebar-icon group">
-          <mat-icon>library_books</mat-icon></a>
-          <!-- Copy Course Link -->
-          <a routerLink="/course-creation" *ngIf="isAdmin"
-          matTooltip="Create Course" 
-          matTooltipPosition="right"
-          class="sidebar-icon group">
-          <mat-icon>library_add</mat-icon></a>
-          <!-- Logout link -->
-          <a routerLink="/logout" 
-          matTooltip="Logout" 
-          matTooltipPosition="right"
-          class="sidebar-icon group">
-          <mat-icon>logout</mat-icon></a>
-          <!-- Test link -->
-          <a routerLink="/test" *ngIf="isAdmin"
-          matTooltip="Test" 
-          matTooltipPosition="right"
-          class="sidebar-icon group">
-          <mat-icon>science</mat-icon></a>
-        </div>
-      </mat-nav-list>
-    </mat-sidenav>
-
-    <mat-sidenav-content fxLayout="column" fxFlex="100">
-      <mat-toolbar fxFlex="5" class="bg-gray-100">
-        <!-- Minimize Sidebar Button -->
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()"
-          >
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-        <!-- Toolbar Title -->
-        <span></span>
-      </mat-toolbar>
-      <!-- Display Main Content -->
-      <div fxFlex="95"> 
-        <router-outlet></router-outlet>
+          <mat-icon class="create-course">library_add</mat-icon>
+        </a>
+        <!-- Logout link -->
+        <a routerLink="/logout" matTooltip="Logout" matTooltipPosition="right" class="sidebar-icon group">
+          <mat-icon>logout</mat-icon>
+        </a>
+        <!-- Test link -->
+        <a routerLink="/test" *ngIf="isAdmin" matTooltip="Test" matTooltipPosition="right" class="sidebar-icon group">
+          <mat-icon>science</mat-icon>
+        </a>
       </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content fxLayout="column" fxFlex="100">
+    <mat-toolbar fxFlex="5" class="bg-gray-100">
+      <!-- Minimize Sidebar Button -->
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <!-- Toolbar Title -->
+      <span></span>
+    </mat-toolbar>
+    <!-- Display Main Content -->
+    <div fxFlex="95">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,11 +1,11 @@
 <h2>Add Section</h2>
 <form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
     <p>
-        <mat-form-field apperance="fill">
+        <mat-form-field appearance="fill">
             <mat-label>Section Name</mat-label>
-            <input matInput name="name" formControlName="name">
+            <input matInput name="name" formControlName="name" class="sectionName">
         </mat-form-field>
-    
+
     </p>
     <p>
         <mat-slide-toggle name="isPublished" formControlName="isPublished" color="aqua" checked>
@@ -21,6 +21,6 @@
         </mat-form-field>
     </p>
     <p>
-        <button mat-button type="submit">Submit</button>
+        <button mat-button type="submit" class="submit">Submit</button>
     </p>
 </form>

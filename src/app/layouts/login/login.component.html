@@ -7,14 +7,14 @@
             </div>
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input type="email" matInput formControlName="email" placeholder="Ex. user@example.com">
+                <input type="email" class="email" matInput formControlName="email" placeholder="Ex. user@example.com">
                 <mat-error *ngIf="f.email.errors"></mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Password</mat-label>
                 <!--<input matInput [type]="hide ? 'password' : 'text'" formControlName="password">-->
-                <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
+                <input class="password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
                     formControlName="password" required>
                 <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-error *ngIf="f.password.errors"></mat-error>
