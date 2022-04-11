@@ -1,26 +1,25 @@
+import { UserInteractionService } from './../_services/user-interaction.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { TokenService } from '../_services/token.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
   constructor (
     private router: Router,
-    private tokenService: TokenService
+    private userInteraction: UserInteractionService,
   ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      // const user = this.authenticationService.userValue
-      if (this.tokenService.getToken()) {
+      if (this.userInteraction.isAdmin) {
         return true
       } else {
-        this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}})
+        this.router.navigate(['/courses'])
         return false
       }
   }

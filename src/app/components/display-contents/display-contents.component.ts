@@ -3,6 +3,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Course, Content } from 'src/app/models/course';
 import { TokenService } from 'src/app/_services/token.service';
+import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class DisplayContentsComponent implements OnInit {
   constructor(
     private Api: ApiService,
     private tokenService: TokenService,
+    private userInteraction: UserInteractionService,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) { }
@@ -40,11 +42,11 @@ export class DisplayContentsComponent implements OnInit {
   }
 
   canAccessContent(content: Content): boolean {
-    return this.isAccessibleByDate(content) && this.isAccessibleByProgress(content) || this.isOpen(content)
+    return (this.isAccessibleByDate(content) && this.isAccessibleByProgress(content)) || this.isOpen(content) || this.isAuthor()
   }
 
   isAccessibleByDate(content: Content): boolean {
-    return new Date() > new Date(content.dropDate!) || this.isAuthor() || this.isOpen(content)
+    return new Date() > new Date(content.dropDate!)
   }
 
   isOpen(content: Content): boolean {
@@ -65,7 +67,7 @@ export class DisplayContentsComponent implements OnInit {
   }
 
   isAuthor(): boolean {
-    return this.tokenService.getIsAuthor()
+    return this.userInteraction.isAuthor;
   }
 
   isStudent(): boolean {
@@ -73,9 +75,6 @@ export class DisplayContentsComponent implements OnInit {
   }
 
   openSnackBar(content: Content): void {
-    if (!this.courseInfo.settings?.isEnforcements) {
-      return;
-    }
     if (!this.isAccessibleByDate(content)) {
       let message = 'Content not yet available'
       const ONE_SECOND = 1000

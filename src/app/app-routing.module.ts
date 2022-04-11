@@ -1,3 +1,5 @@
+import { AdminGuard } from './_helpers/admin.guard';
+import { ContentProgressComponent } from './components/content-progress/content-progress.component';
 import { CourseSettingsComponent } from './components/course-settings/course-settings.component';
 import { JoinCourseByCodeComponent } from './components/join-course-by-code/join-course-by-code.component';
 import { NgModule } from '@angular/core';
@@ -25,6 +27,7 @@ import { CourseGradesComponent } from './components/course-grades/course-grades.
 import { CourseStudentGradesComponent } from './components/course-student-grades/course-student-grades.component';
 import { CourseAnnouncementComponent } from './components/course-announcement/course-announcement.component';
 
+import { AdminUserViewComponent } from './components/admin-user-view/admin-user-view.component'
 const routes: Routes = [ // Always put more specific routes on the top
 
   {
@@ -34,6 +37,7 @@ const routes: Routes = [ // Always put more specific routes on the top
     children: [
       {path: '', redirectTo: 'courses', pathMatch: 'full'}, 
       {path: 'courses/:courseId/content/:contentId/video/:videoId', component: CourseVideoComponent},
+      {path: 'courses/:courseId/content/:contentId/progress', component: ContentProgressComponent},
       {path: 'courses/:courseId/quiz/:quizId', component: CourseQuizComponent},
       {path: 'courses/:courseId/quiz/:quizId/take', component: QuizStudentViewComponent},
       {path: 'courses/:courseId/quiz/:quizId/viewQuiz/:submissionId', component: ViewGradedQuizComponent},
@@ -46,13 +50,12 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'courses/:courseId/students', component: CourseStudentsComponent},
       {path: 'courses/:courseId/settings', component: CourseSettingsComponent},
       {path: 'courses', component: CoursesComponent},
+      {path: 'admin/users', component: AdminUserViewComponent, canActivate: [AdminGuard]},
       {path: 'home', component: HomeComponent},
-      {path: 'test', component: TestComponentComponent},
       {path: 'courses/:courseId/videoUpload', component: VideoUploadComponent},
       {path: 'courses/:courseId/editCurriculum', component: EditCurriculumHomeComponent},
-      {path: 'course-creation', component: CourseCreationComponent},
-      {path: 'courses/:courseId/announcement/:announcementId', component: CourseAnnouncementComponent}
-
+      {path: 'courses/:courseId/announcement/:announcementId', component: CourseAnnouncementComponent},
+      {path: 'course-creation', component: CourseCreationComponent, canActivate: [AdminGuard]},
     ]
   },
   {

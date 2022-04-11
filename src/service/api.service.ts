@@ -1,3 +1,4 @@
+import { ContentProgress } from './../app/models/course';
 import { ApiResponse, ErrorResponse } from './../app/models/apiResponse';
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
@@ -23,6 +24,7 @@ export class ApiService {
   baseUrl: string = isDevMode() ? dev.apiUrl : prod.apiUrl;
   apiUrl: string = `${this.baseUrl}/api/`;
   videoUrl: string = `${this.baseUrl}/api/video`;
+  userUrl: string = `${this.baseUrl}/api/user`;
   courseUrl: string = `${this.baseUrl}/api/course`;
   sectionUrl: string = `${this.baseUrl}/api/section`;
   moduleUrl: string = `${this.baseUrl}/api/module`;
@@ -118,6 +120,31 @@ export class ApiService {
     return this.http.put<{success: boolean, error: ErrorResponse, course: Course}>(`${this.courseUrl}/${courseId}/settings/admin`, settings)
   }
 
+  // User Routes
+
+  getUser(userId: string): Observable<{user: User}> {
+    return this.http.get<{user: User}>(`${this.userUrl}/${userId}`)
+  }
+
+  updateUserPassword(userId: string, password: string): Observable<{success: boolean}> {
+    return this.http.put<{success: boolean}>(`${this.userUrl}/${userId}/password`, { password })
+  }
+
+  updateUserEmail(userId: string, email: string): Observable<{success: boolean}> {
+    return this.http.put<{success: boolean}>(`${this.userUrl}/${userId}/email`, { email })
+  }
+
+  updateUserRole(userId: string, role: string): Observable<{success: boolean}> {
+    return this.http.put<{success: boolean}>(`${this.userUrl}/${userId}/role`, { role })
+  }
+
+  updateUserName(userId: string, firstName: string, lastName: string): Observable<{success: boolean}> {
+    return this.http.put<{success: boolean}>(`${this.userUrl}/${userId}/name`, { firstName, lastName })
+  }
+
+  getAllUsers(): Observable<{users: User[]}> {
+    return this.http.get<{users: User[]}>(`${this.userUrl}`)
+  }
 
   // Student Routes
 
@@ -129,8 +156,8 @@ export class ApiService {
     return this.http.post(`${this.courseUrl}/${courseId}/students/remove`, { emails })
   }
 
-  getStudentsInCourse(courseId: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.courseUrl}/${courseId}/students`)
+  getStudentsInCourse(courseId: string): Observable<{users: User[]}> {
+    return this.http.get<{users: User[]}>(`${this.courseUrl}/${courseId}/students`)
   }
 
 
@@ -189,6 +216,10 @@ export class ApiService {
 
   // Content Routes
 
+  getContentStudentsProgress(contentId: string): Observable<{students: ContentProgress[], course: Course, content: Content}> {
+    return this.http.get<{students: ContentProgress[], course: Course, content: Content}>(`${this.contentUrl}/${contentId}/progress`)
+  }
+
   getContents(moduleId: string): Observable<Content[]> {
     const query = `moduleId=${moduleId}`
     return this.http.get<Content[]>(`${this.contentUrl}?${query}`)
@@ -212,11 +243,14 @@ export class ApiService {
 
   publishContent(contentId: string): Observable<ApiResponse> {
     return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/publish`, contentId)
-
   }
 
   openContent(contentId: string): Observable<ApiResponse> {
     return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/keep-open`, contentId)
+  }
+
+  contentProgressForce(contentId: string, userId: string, percentComplete: number): Observable<any> {
+    return this.http.put<any>(`${this.contentUrl}/${contentId}/progress`, {percentComplete, userId: userId})
   }
 
   // User Routes

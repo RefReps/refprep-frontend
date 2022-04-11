@@ -27,7 +27,6 @@ export class CourseDeletionComponent implements OnInit {
     })
     this.courseId = data.data.course._id;
     this.courseName = data.data.course.name;
-    console.log(this.courseName);
    }
 
   ngOnInit(): void {

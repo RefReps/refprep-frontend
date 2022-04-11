@@ -15,16 +15,20 @@
           </div>
           <div class="self-center">
             &nbsp;&nbsp;{{ content.name }}
-            <mat-icon *ngIf="content.isCompleted">done</mat-icon>
           </div>
         </div>
         <div class="flex justify-self-end self-end">
+          <mat-icon class="pr-10 self-center text-green-600" *ngIf="content.isCompleted">done</mat-icon>
           <mat-icon class="pr-10 self-center" *ngIf="!content.isPublished">visibility_off</mat-icon>
-          <mat-icon class="pr-10 self-center" *ngIf="content.isKeepOpen">grade</mat-icon>
-          <span class="self-center" *ngIf="!isAccessibleByDate(content)">
-            Opens: {{getContentDropDate(content)}}
-          </span>
-          <mat-icon class="self-end" *ngIf="!canAccessContent(content)"
+          <div *ngIf="!isStudent()">
+            <mat-icon class="pr-10 self-center text-yellow-500" *ngIf="isOpen(content)">grade</mat-icon>
+          </div>
+          <div *ngIf="!isOpen(content)">
+            <span class="pr-5 self-center" *ngIf="!isAccessibleByDate(content)">
+              Opens: {{getContentDropDate(content)}}
+            </span>
+          </div>
+          <mat-icon class="pr-10 self-end" *ngIf="!canAccessContent(content)"
             >lock</mat-icon
           >
         </div>

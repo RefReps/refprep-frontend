@@ -1,0 +1,38 @@
+<div style="text-align: center">
+    <mat-card-title>Change name from {{user.firstName}} {{user.lastName}}?</mat-card-title>
+  </div>
+  <mat-error *ngIf="activeUser === user.email">This is your account! Are you sure you want to make changes?</mat-error>
+  <div *ngIf="activeUser !== user.email">
+      <mat-error *ngIf="user.role === 'admin'">This is an admin account!</mat-error>
+  </div>
+  <!-- first name input -->
+  <div class="grid grid-flow-row">
+  <mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input
+      matInput
+      placeholder="first name"
+      name="firstName"
+      [(ngModel)]="firstName"
+      required
+    />
+  </mat-form-field>
+
+  <!-- last name input -->
+  <mat-form-field>
+    <mat-label>Last Name</mat-label>
+    <input
+      matInput
+      placeholder="last name"
+      name="lastName"
+      [(ngModel)]="lastName"
+      required
+    />
+
+  </mat-form-field>
+  
+  <button class="w-40 bg-green-400" mat-raised-button (click)="onSubmit(firstName, lastName)">
+    Confirm
+  </button>
+  </div>
+

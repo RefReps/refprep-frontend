@@ -35,8 +35,18 @@
         </button>
       </div>
     </div>
-    <mat-menu #editMenu class="w-10">
+    <mat-menu #editMenu class="max-w-none min-w-min pr-2">
       <div class="flex flex-col">
+        <!-- Student Progress Option -->
+        <div>
+          <button mat-icon-button color="primary" (click)="navigateToStudentProgressPage(content._id!)">
+            <mat-icon>assessment</mat-icon>
+          </button>
+          <span>
+            Student Progress
+          </span>
+        </div>
+        <!-- Keep Content Open Option -->
         <div>
           <button
           mat-icon-button
@@ -54,6 +64,7 @@
           Close
         </span>
         </div>
+        <!-- Publish Content Option -->
         <div>
           <button
             (click)="publishContent(content._id!)"
@@ -70,6 +81,7 @@
             Unpublish
           </span>
         </div>
+        <!-- Edit Content Open Option -->
         <div>
           <button
           mat-icon-button
@@ -81,6 +93,7 @@
         </button>
           Edit
         </div>
+        <!-- Change Drop Date Option -->
         <div>
           <button mat-icon-button color="blue"
           (click)="openChangeDropDateDialog(content._id!)"
@@ -89,6 +102,7 @@
           </button>
           Drop Date
         </div>
+        <!-- Delete Content Option -->
         <div>
           <button
             (click)="openDeleteContentDialog(content._id!)"

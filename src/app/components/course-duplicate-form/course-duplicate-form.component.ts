@@ -13,8 +13,11 @@ import { Course } from 'src/app/models/course';
 })
 export class CourseDuplicateFormComponent implements OnInit{
   formGroup: FormGroup;
+  course: Course = {};
   courses: Course[] = []
   courseId = new FormControl('');
+  courseName: string = '';
+  dashboardDup: boolean = false;
 
   constructor(
     private Api: ApiService,
@@ -27,10 +30,18 @@ export class CourseDuplicateFormComponent implements OnInit{
       isTemplate: false,
       authorEmail: ''
     })
+    this.course = data.data.course || {};
    }
 
    ngOnInit(): void {
-    this.getCourses()
+      if (this.course.name) {
+        this.courseId.setValue(this.course._id)
+        this.courseName = this.course.name
+        this.dashboardDup = true;
+      }
+    else {
+      this.getCourses()
+    }
   }
 
    getCourses(): void {

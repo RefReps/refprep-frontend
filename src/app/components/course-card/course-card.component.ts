@@ -5,6 +5,7 @@ import { UserInteractionService } from 'src/app/_services/user-interaction.servi
 import { ApiService } from 'src/service/api.service';
 import { DialogService } from 'src/service/dialog.service';
 import { CourseDeletionComponent } from '../course-deletion/course-deletion.component';
+import { CourseDuplicateFormComponent } from '../course-duplicate-form/course-duplicate-form.component';
 
 @Component({
   selector: 'app-course-card',
@@ -40,9 +41,8 @@ export class CourseCardComponent {
   }
 
   //duplicate course in database
-  duplicateCourse() {
-    //this.courseInteractionService.duplicateCourse(this.course)
-    console.log('duplicate course')
+  duplicateCourse(course: Course) {
+    this.dialogService.open(CourseDuplicateFormComponent, { course })
   }
 
   openMenu(event: MouseEvent) {

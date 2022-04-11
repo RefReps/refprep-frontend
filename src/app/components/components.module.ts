@@ -68,6 +68,13 @@ import { CourseStudentGradesComponent } from './course-student-grades/course-stu
 import { CourseDeletionComponent } from './course-deletion/course-deletion.component';
 import { CourseAnnouncementComponent } from './course-announcement/course-announcement.component';
 import { UpdateAnnouncementDialogComponent } from './update-announcement-dialog/update-announcement-dialog.component';
+import { AdminUserViewComponent } from './admin-user-view/admin-user-view.component';
+import { DialogChangePasswordComponent } from './dialog-change-password/dialog-change-password.component';
+import { StudentProgressViewComponent } from './student-progress-view/student-progress-view.component';
+import { ContentProgressComponent } from './content-progress/content-progress.component';
+import { DialogChangeNameComponent } from './dialog-change-name/dialog-change-name.component';
+import { DialogChangeEmailComponent } from './dialog-change-email/dialog-change-email.component';
+import { DialogChangeRoleComponent } from './dialog-change-role/dialog-change-role.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -128,6 +135,13 @@ import { UpdateAnnouncementDialogComponent } from './update-announcement-dialog/
     CourseDeletionComponent,
     CourseAnnouncementComponent,
     UpdateAnnouncementDialogComponent,
+    AdminUserViewComponent,
+    DialogChangePasswordComponent,
+    StudentProgressViewComponent,
+    ContentProgressComponent,
+    DialogChangeNameComponent,
+    DialogChangeEmailComponent,
+    DialogChangeRoleComponent,
   ],
   imports: [
     MaterialModule,
@@ -198,6 +212,13 @@ import { UpdateAnnouncementDialogComponent } from './update-announcement-dialog/
     CourseGradesComponent,
     CourseStudentGradesComponent,
     CourseDeletionComponent,
+    AdminUserViewComponent,
+    DialogChangePasswordComponent,
+    StudentProgressViewComponent,
+    ContentProgressComponent,
+    DialogChangeNameComponent,
+    DialogChangeEmailComponent,
+    DialogChangeRoleComponent,
   ],
 })
 export class ComponentsModule { }

@@ -18,10 +18,10 @@
     <mat-divider *ngIf="!isAuthor">
     </mat-divider>
     <!-- View Authors in Course -->
-    <mat-list-item *ngIf="isAdmin">
+    <mat-list-item *ngIf="isAuthor">
         <a [routerLink]="['/courses', courseId, 'authors']">Authors</a>
     </mat-list-item>
-    <mat-divider *ngIf="isAdmin">
+    <mat-divider *ngIf="isAuthor">
     </mat-divider>
     <!-- View Students in Course -->
     <mat-list-item *ngIf="isAuthor">

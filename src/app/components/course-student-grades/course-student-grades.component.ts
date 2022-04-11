@@ -60,9 +60,9 @@ export class CourseStudentGradesComponent implements OnInit {
       else if (!this.isAuthor) {
         this.QuizService.getAllStudentGrades(this.courseId).subscribe((grades) => {
           this.studentGrades = grades;
-          this.email = this.token.getEmail();
-          this.firstName = this.token.getUserFirstName();
-          this.lastName = this.token.getUserLastName();
+          this.email = grades[0].email || '';
+          this.firstName = grades[0].firstName || '';
+          this.lastName = grades[0].lastName || '';
         });
       }
     });
@@ -80,7 +80,7 @@ export class CourseStudentGradesComponent implements OnInit {
       }
     }
     if (length == 0) {
-      average = 0;
+      average = 1;
     }
     else {
       average = total / length;

@@ -1,0 +1,41 @@
+<div class="pl-5">
+    <h1 class="text-display">Student Progress</h1>
+  </div>
+<table class="table-fixed">
+    <thead>
+      <tr>
+          <th class="pl-5">Student</th>
+          <th>Completed:</th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let progress of studentProgress">
+        <td class="pl-5">
+            {{ progress.student?.firstName }} {{ progress.student?.lastName }}
+        </td>
+        <td class="pl-10">
+            <div *ngIf="hasStudentCompleted(progress)">
+                <span class="material-icons text-green-600">
+                    done
+                </span>
+            </div>
+            <div *ngIf="!hasStudentCompleted(progress)">
+                <span class="material-icons text-red-400">
+                    close
+                </span>
+            </div>
+        </td>
+        <td class="pl-10">
+            <button
+            *ngIf="!hasStudentCompleted(progress)"
+             mat-icon-button class="btn btn-primary" 
+             (click)="forceCompleteContent(100, progress.student?._id!)">
+                <span class="material-icons text-green-600">
+                    check_circle
+                </span>
+            </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
