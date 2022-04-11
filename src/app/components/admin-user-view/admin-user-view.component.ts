@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogChangePasswordComponent } from '../dialog-change-password/dialog-change-password.component';
+import { DialogService } from 'src/service/dialog.service';
 
 
 
@@ -21,14 +22,11 @@ export class AdminUserViewComponent implements OnInit {
 
   constructor(
     private api: ApiService,
-    public dialog: MatDialog
+    public dialogService: DialogService
   ) {}
 
-  openDialog(){
-    const dialogRef = this.dialog.open(DialogChangePasswordComponent, {restoreFocus: false})
-    dialogRef.afterClosed().subscribe(() => this.menuTrigger.focus())
-  
-  
+  openDialog(user: User): void {
+    this.dialogService.open(DialogChangePasswordComponent, { user })
   }
 
   ngOnInit(): void {
