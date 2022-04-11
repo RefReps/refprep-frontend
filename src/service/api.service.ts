@@ -225,11 +225,15 @@ export class ApiService {
 
   publishContent(contentId: string): Observable<ApiResponse> {
     return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/publish`, contentId)
-
   }
 
   openContent(contentId: string): Observable<ApiResponse> {
     return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/keep-open`, contentId)
+  }
+
+  contentProgressForce(contentId: string, userId: string, percentComplete: number): Observable<any> {
+    console.log(contentId, userId, percentComplete)
+    return this.http.put<any>(`${this.contentUrl}/${contentId}/progress`, {percentComplete, userId: userId})
   }
 
   // User Routes

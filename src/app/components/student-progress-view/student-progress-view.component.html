@@ -6,6 +6,7 @@
       <tr>
           <th class="pl-5">Student</th>
           <th>Completed:</th>
+          <th></th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,13 @@
                     close
                 </span>
             </div>
+        </td>
+        <td class="pl-10">
+            <button mat-icon-button class="btn btn-primary" (click)="forceCompleteContent(100, progress.student?._id!)">
+                <span class="material-icons text-green-600">
+                    check_circle
+                </span>
+            </button>
         </td>
       </tr>
     </tbody>
