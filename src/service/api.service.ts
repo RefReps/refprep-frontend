@@ -198,8 +198,8 @@ export class ApiService {
 
   // Content Routes
 
-  getContentStudentsProgress(contentId: string): Observable<{students: ContentProgress[]}> {
-    return this.http.get<{students: ContentProgress[]}>(`${this.contentUrl}/${contentId}/progress`)
+  getContentStudentsProgress(contentId: string): Observable<{students: ContentProgress[], course: Course, content: Content}> {
+    return this.http.get<{students: ContentProgress[], course: Course, content: Content}>(`${this.contentUrl}/${contentId}/progress`)
   }
 
   getContents(moduleId: string): Observable<Content[]> {
