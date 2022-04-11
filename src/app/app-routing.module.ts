@@ -50,7 +50,6 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'courses', component: CoursesComponent},
       {path: 'admin/users', component: AdminUserViewComponent, canActivate: [AdminGuard]},
       {path: 'home', component: HomeComponent},
-      {path: 'test', component: TestComponentComponent},
       {path: 'courses/:courseId/videoUpload', component: VideoUploadComponent},
       {path: 'courses/:courseId/editCurriculum', component: EditCurriculumHomeComponent},
       {path: 'course-creation', component: CourseCreationComponent, canActivate: [AdminGuard]},
