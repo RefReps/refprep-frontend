@@ -66,6 +66,7 @@ import { ContentFormAddTextComponent } from './content-form-add-text/content-for
 import { CourseGradesComponent } from './course-grades/course-grades.component';
 import { CourseStudentGradesComponent } from './course-student-grades/course-student-grades.component';
 import { CourseDeletionComponent } from './course-deletion/course-deletion.component';
+import { AdminUserViewComponent } from './admin-user-view/admin-user-view.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -124,6 +125,7 @@ import { CourseDeletionComponent } from './course-deletion/course-deletion.compo
     CourseGradesComponent,
     CourseStudentGradesComponent,
     CourseDeletionComponent,
+    AdminUserViewComponent,
   ],
   imports: [
     MaterialModule,
@@ -194,6 +196,7 @@ import { CourseDeletionComponent } from './course-deletion/course-deletion.compo
     CourseGradesComponent,
     CourseStudentGradesComponent,
     CourseDeletionComponent,
+    AdminUserViewComponent,
   ],
 })
 export class ComponentsModule { }

@@ -23,7 +23,7 @@ import { ViewGradedQuizComponent } from './components/view-graded-quiz/view-grad
 import { CourseQuizEditComponent } from './components/course-quiz-edit/course-quiz-edit.component';
 import { CourseGradesComponent } from './components/course-grades/course-grades.component';
 import { CourseStudentGradesComponent } from './components/course-student-grades/course-student-grades.component';
-
+import { AdminUserViewComponent } from './components/admin-user-view/admin-user-view.component'
 const routes: Routes = [ // Always put more specific routes on the top
 
   {
@@ -45,6 +45,7 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'courses/:courseId/students', component: CourseStudentsComponent},
       {path: 'courses/:courseId/settings', component: CourseSettingsComponent},
       {path: 'courses', component: CoursesComponent},
+      {path: 'admin/users', component: AdminUserViewComponent},
       {path: 'home', component: HomeComponent},
       {path: 'test', component: TestComponentComponent},
       {path: 'courses/:courseId/videoUpload', component: VideoUploadComponent},
