@@ -1,3 +1,4 @@
+import { CourseInteractionService } from 'src/app/_services/course-interaction.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/models/course';
@@ -16,6 +17,7 @@ export class CourseSidebarComponent implements OnInit {
   constructor(
     private userInteractionService: UserInteractionService,
     private route: ActivatedRoute,
+    private courseInteraction: CourseInteractionService,
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class CourseSidebarComponent implements OnInit {
       let id = params.get('courseId');
       if (id) {
         this.courseId = id;
+        this.courseInteraction.setCourseFromId(id);
       }
     })
   }

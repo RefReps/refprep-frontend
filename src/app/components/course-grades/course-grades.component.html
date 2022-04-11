@@ -14,12 +14,12 @@
         <h1 class="text-display">Grades:</h1>
       </div>
 
-      <table>
+      <table matTable (matSortChange)="sortGrades($event)" matSort matSortActive="email" matSortDirection="asc">
         <thead>
           <tr>
               <th></th>
-              <th class="student">Student</th>
-              <th class="grade">Grade</th>
+              <th mat-sort-header="email" class="student">Student</th>
+              <th mat-sort-header="grade" class="grade">Grade</th>
           </tr>
         </thead>
         <tbody>

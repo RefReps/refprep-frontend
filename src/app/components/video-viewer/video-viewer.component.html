@@ -1,6 +1,6 @@
 <div>
     <vg-player>
-    <h1>{{videoTitle}}</h1>
+    <h1>{{videoTitle}}<span *ngIf="this.highestWatchPercentage >= 100"> (Complete!)</span> </h1> 
     <vg-overlay-play></vg-overlay-play>
     <vg-buffering></vg-buffering>
 

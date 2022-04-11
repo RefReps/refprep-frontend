@@ -1,3 +1,5 @@
+import { ApiService } from 'src/service/api.service';
+import { CourseInteractionService } from 'src/app/_services/course-interaction.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentGrades } from 'src/app/models/course';
@@ -21,6 +23,7 @@ export class CourseStudentGradesComponent implements OnInit {
     private route: ActivatedRoute,
     private QuizService: QuizzesService,
     private token: TokenService,
+    private api: ApiService,
   ) {}
 
   ngOnInit(): void {
@@ -41,20 +44,22 @@ export class CourseStudentGradesComponent implements OnInit {
   }
 
   getGrades(): void {
-    //gets student's grades for an author
-    if (this.isAuthor && this.studentId) {
-      this.QuizService.getSingleStudentsGradesForAuthor(this.courseId, this.studentId).subscribe((grades) => {
-        this.studentGrades = grades;
-        this.email = grades[0].email || '';
-      });
-    }
-    //gets all quiz grades if a student
-    else if (!this.isAuthor) {
-    this.QuizService.getAllStudentGrades(this.courseId).subscribe((grades) => {
-      this.studentGrades = grades;
-      this.email = this.token.getEmail()
+    this.api.getCourse(this.courseId).subscribe((course) => {
+      //gets student's grades for an author
+      if (course.isAuthor && this.studentId) {
+        this.QuizService.getSingleStudentsGradesForAuthor(this.courseId, this.studentId).subscribe((grades) => {
+          this.studentGrades = grades;
+          this.email = grades[0].email || '';
+        });
+      }
+      //gets all quiz grades if a student
+      else if (!this.isAuthor) {
+        this.QuizService.getAllStudentGrades(this.courseId).subscribe((grades) => {
+          this.studentGrades = grades;
+          this.email = this.token.getEmail()
+        });
+      }
     });
-  }
 }
 
   //get student average grade 
@@ -75,16 +80,7 @@ export class CourseStudentGradesComponent implements OnInit {
       average = total / length;
     }
     return average.toFixed(4);
-}
-
-
-
-  // viewBySubmissionDate() {
-  //   const sortedGrades = this.studentGrades.slice();
-  //   this.studentGrades = sortedGrades.sort((a.dateFinished, b.dateFinished) => {
-  //     return (a.dateFinished < b.dateFinished ? -1 : 1)
-  //   }
-  // }
+  }
 
   get isAuthor(): boolean {
     return this.userInteractionService.isAuthor

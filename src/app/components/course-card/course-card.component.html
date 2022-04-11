@@ -1,4 +1,4 @@
-<a [routerLink]="['/courses', course._id]" routerLinkActive="router-link-active" focused
+<a [routerLink]="['/courses', course._id]" routerLinkActive="router-link-active" 
     class="card-click cursor-pointer">
     <mat-card class="card shadow-lg w-72 h-80">
         <div fxLayoutGap="10px" style="margin: 0px 0px 10px 0px" class="card flex justify-center 
@@ -15,3 +15,55 @@
         </div>
     </mat-card>
 </a>
+
+        <div>    
+            <mat-card-title>
+            <div class="flex flex-row">
+                <div class="mr-auto">
+                    {{course.name}}
+                </div>
+                <div *ngIf="isAdmin" class="justify-self-end">
+                    <button mat-icon [matMenuTriggerFor]="courseMenu" (click)="openMenu($event)">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                </div>
+            </div>    
+            </mat-card-title>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-card-subtitle>{{this.courseSubtitle}}</mat-card-subtitle>
+        <mat-card-content></mat-card-content>
+        <mat-card-footer></mat-card-footer>
+    </div>
+</mat-card>
+</a>
+    <mat-menu #courseMenu class="w-10 pl-3">
+        <div class="flex flex-col">
+            <div>
+                <button
+                mat-icon-button
+                (click)="deleteCourse(course)"
+                color="black"
+                class=""
+                >
+                <mat-icon>delete</mat-icon>
+                <span>
+                    Delete
+                </span>
+            </button>
+            </div>
+            <div>
+                <button
+                mat-icon-button
+                (click)="duplicateCourse()"
+                color="black"
+                class=""
+                >
+                <mat-icon>content_copy</mat-icon>
+                <span>
+                    Duplicate
+                </span>
+            </button>
+            </div>
+        </div>
+</mat-menu>

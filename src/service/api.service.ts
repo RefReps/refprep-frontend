@@ -95,6 +95,11 @@ export class ApiService {
     this.http.post(`${this.courseUrl}/${courseId}/copy`, courseForm).subscribe();
   }
 
+  //delete course
+  deleteCourse(courseId: string): Observable<any> {
+    return this.http.delete(`${this.courseUrl}/${courseId}`)
+  }
+
   updateCourse(courseId: string, courseForm: FormData): void {
     this.http.put(`${this.courseUrl}/${courseId}`, courseForm).subscribe();
   }

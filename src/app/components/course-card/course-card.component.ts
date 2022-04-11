@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course';
 import { CourseInteractionService } from 'src/app/_services/course-interaction.service';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
+import { ApiService } from 'src/service/api.service';
+import { DialogService } from 'src/service/dialog.service';
+import { CourseDeletionComponent } from '../course-deletion/course-deletion.component';
 
 @Component({
   selector: 'app-course-card',
@@ -15,6 +18,8 @@ export class CourseCardComponent {
   constructor(
     private courseInteractionService: CourseInteractionService,
     private userInteractionService: UserInteractionService,
+    private apiService: ApiService,
+    private dialogService: DialogService,
     
   ) { }
 
@@ -29,5 +34,23 @@ export class CourseCardComponent {
     }
   }
 
+  //delete course from database
+  deleteCourse(course: Course) {
+    this.dialogService.open(CourseDeletionComponent, { course })
+  }
 
+  //duplicate course in database
+  duplicateCourse() {
+    //this.courseInteractionService.duplicateCourse(this.course)
+    console.log('duplicate course')
+  }
+
+  openMenu(event: MouseEvent) {
+    event.stopPropagation()
+    event.preventDefault()
+  }
+
+  get isAdmin(): boolean {
+    return this.userInteractionService.isAdmin
+  }
 }

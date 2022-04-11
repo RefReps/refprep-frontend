@@ -3,8 +3,8 @@ import { Course } from './../../models/course';
 import { Component, Input, OnInit } from '@angular/core';
 import { Video } from 'src/app/models/video.model';
 import { ApiService } from 'src/service/api.service';
-import {VgApiService} from '@videogular/ngx-videogular/core'
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-video-viewer',
@@ -22,18 +22,19 @@ export class VideoViewerComponent implements OnInit {
 
   course: Course = {}
 
-  // vgApi: VgApiService;
 
   constructor(
     private Api: ApiService,
     private route: ActivatedRoute,
     private userInteraction: UserInteractionService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     this.getVideo()
     this.getCourse()
     this.updateProgress(0);
+    
    }
 
   // Get the contentId from the url from the route
@@ -61,7 +62,6 @@ export class VideoViewerComponent implements OnInit {
       if (courseId) {
         this.Api.getCourse(courseId).subscribe(course => {
           this.course = course
-          this.userInteraction.setCourse(course)
           this.changeEnforcements(this.course.settings?.isEnforcements != undefined ? this.course.settings?.isEnforcements : true)
           this.loadVideoInHTMLPlayer()
       })
@@ -86,7 +86,6 @@ export class VideoViewerComponent implements OnInit {
     if (this.enforcements == true && !this.isAuthor) {
       this.disableSeeking()
     } 
-    this.setCheckpoints()
     videoPlayer.load()
 
     videoPlayer.addEventListener('loadeddata', this.loadHighestWatchTime.bind(this))
@@ -132,21 +131,13 @@ export class VideoViewerComponent implements OnInit {
     var delta = videoPlayer.currentTime - this.watchedTime;
     if (delta > 0.01) {
       videoPlayer.currentTime = this.watchedTime;
+      this._snackBar.open("Video seeking currently disabled!", "Dismiss" , {duration:3000});
+      
     }
   }
 
   videoEnd(): void {
     this.updateProgress(100)
-  }
-
-  setCheckpoints(): void {
-    const videoPlayer = <HTMLVideoElement>document.getElementById('videoPlayer')
-    var counter = 1
-    videoPlayer.addEventListener('timeupdate', function(){
-    if ((Math.round(videoPlayer.currentTime)) == (Math.round(videoPlayer.duration*(.1*counter)))) {
-        counter++
-      }
-    });
   }
 
   get videoTitle(): string {
@@ -156,5 +147,6 @@ export class VideoViewerComponent implements OnInit {
   get isAuthor(): boolean {
     return this.userInteraction.isAuthor
   }
+
 
 }

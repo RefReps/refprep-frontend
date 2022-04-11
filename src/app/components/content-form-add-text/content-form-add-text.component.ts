@@ -38,8 +38,8 @@ export class ContentFormAddTextComponent implements OnInit {
   }
 
   stringToHTML = function (string: string) {
-    var parser = new DOMParser();
-    var doc = parser.parseFromString(string, 'text/html');
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(string, 'text/html');
     return doc.body;
   };
 
