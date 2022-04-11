@@ -22,6 +22,7 @@ export class ApiService {
   baseUrl: string = isDevMode() ? dev.apiUrl : prod.apiUrl;
   apiUrl: string = `${this.baseUrl}/api/`;
   videoUrl: string = `${this.baseUrl}/api/video`;
+  userUrl: string = `${this.baseUrl}/user`;
   courseUrl: string = `${this.baseUrl}/api/course`;
   sectionUrl: string = `${this.baseUrl}/api/section`;
   moduleUrl: string = `${this.baseUrl}/api/module`;
@@ -116,6 +117,15 @@ export class ApiService {
     return this.http.put<{success: boolean, error: ErrorResponse, course: Course}>(`${this.courseUrl}/${courseId}/settings/admin`, settings)
   }
 
+  // User Routes
+
+  getUser(userId: string): Observable<{user: User}> {
+    return this.http.get<{user: User}>(`${this.userUrl}/${userId}`)
+  }
+
+  getAllUsers(): Observable<{users: User[]}> {
+    return this.http.get<{users: User[]}>(`${this.userUrl}`)
+  }
 
   // Student Routes
 
