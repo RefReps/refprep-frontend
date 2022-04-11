@@ -85,7 +85,7 @@ export class DisplayContentsComponent implements OnInit {
       const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
       this._snackBar.open(message, 'x', config);
     }
-    else if (!this.isAccessibleByProgress(content) && !this.userInteraction.isAdmin) {
+    else if (!this.isAccessibleByProgress(content) && !(this.isAuthor() || this.isAdmin() )) {
       let message = 'Complete previous content to progress'
       const ONE_SECOND = 1000
       const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
