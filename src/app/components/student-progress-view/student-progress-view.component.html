@@ -27,7 +27,10 @@
             </div>
         </td>
         <td class="pl-10">
-            <button mat-icon-button class="btn btn-primary" (click)="forceCompleteContent(100, progress.student?._id!)">
+            <button
+            *ngIf="!hasStudentCompleted(progress)"
+             mat-icon-button class="btn btn-primary" 
+             (click)="forceCompleteContent(100, progress.student?._id!)">
                 <span class="material-icons text-green-600">
                     check_circle
                 </span>

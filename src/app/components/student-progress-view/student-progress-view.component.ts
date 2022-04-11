@@ -42,9 +42,7 @@ hasStudentCompleted(progress: ContentProgress): boolean {
 }
 
   forceCompleteContent(progress: number, userId: string): void {
-    console.log(this.studentProgress)
     this.api.contentProgressForce(this.contentId, userId, progress).subscribe((info) => {
-
       this.loadStudentsProgess();
     });
   }
