@@ -96,6 +96,8 @@ export class GradeOverview {
 
 export class ContentProgress {
   student?: User;
+  course?: Course;
+  content?: Content;
   percentComplete?: number;
 }
 
