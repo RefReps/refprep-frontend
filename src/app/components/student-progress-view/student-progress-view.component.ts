@@ -2,6 +2,7 @@ import { ContentProgress, Course } from './../../models/course';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/service/api.service';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-student-progress-view',
@@ -12,7 +13,6 @@ export class StudentProgressViewComponent implements OnInit {
   studentProgress: ContentProgress[] = [];
   course: Course = {};
   contentId: string = this.activeRoute.snapshot.paramMap.get('contentId') || '';
-  courseId: string = this.activeRoute.snapshot.paramMap.get('courseId') || '';
   
   constructor(private api: ApiService, private activeRoute: ActivatedRoute) {}
 
@@ -21,8 +21,15 @@ export class StudentProgressViewComponent implements OnInit {
   }
 
 hasStudentCompleted(progress: ContentProgress): boolean {
-  if (progress.percentComplete! >= this.course.settings?.enforcementPercent!) {
+  if (progress.content?.onModel === 'video') {
+    if (progress.percentComplete! === 100) {
+      return true;
+    }
+  } 
+  else {
+    if (progress.percentComplete! >= this.course.settings?.enforcementPercent!) {
     return true;
+    }
   }
   return false;
 }
@@ -30,9 +37,7 @@ hasStudentCompleted(progress: ContentProgress): boolean {
   loadStudentsProgess(): void {
     this.api.getContentStudentsProgress(this.contentId).subscribe((info) => {
       this.studentProgress = info.students || [];
-    });
-    this.api.getCourse(this.courseId).subscribe((info) => {
-      this.course = info;
+      this.course = info.course || {};
     });
   }
 }
