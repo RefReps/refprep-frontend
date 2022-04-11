@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateContentDateDialogComponent } from './../update-content-date-dialog/update-content-date-dialog.component';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
@@ -16,14 +17,21 @@ import { UpdateContentDialogComponent } from '../update-content-dialog/update-co
 export class EditDisplayContentsComponent implements OnInit {
 
   @Input() moduleId: string = '';
+  courseId: string = ''
   contents: Content[] = [];
 
   constructor(
     private Api: ApiService,
     private DialogService: DialogService,
+    private route: Router,
+    private routeParams: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    // get courseId from route params
+    this.routeParams.params.subscribe(params => {
+      this.courseId = params.courseId
+    })
     this.getContents()
   }
 
@@ -87,6 +95,11 @@ export class EditDisplayContentsComponent implements OnInit {
 
   openChangeDropDateDialog(contentId: string): void {
     this.DialogService.open(UpdateContentDateDialogComponent, {contentId})
+  }
+
+  navigateToStudentProgressPage(contentId: string): void {
+    // change route to student progress
+    this.route.navigate(['/courses', this.courseId, 'content', contentId, 'progress'])
   }
 
   parseDate(date: string) {

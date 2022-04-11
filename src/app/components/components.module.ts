@@ -67,6 +67,8 @@ import { CourseGradesComponent } from './course-grades/course-grades.component';
 import { CourseStudentGradesComponent } from './course-student-grades/course-student-grades.component';
 import { CourseDeletionComponent } from './course-deletion/course-deletion.component';
 import { AdminUserViewComponent } from './admin-user-view/admin-user-view.component';
+import { StudentProgressViewComponent } from './student-progress-view/student-progress-view.component';
+import { ContentProgressComponent } from './content-progress/content-progress.component';
 
 @NgModule({
   declarations: [ // Declare all components in the app/component folder (Don't forget to export)
@@ -126,6 +128,8 @@ import { AdminUserViewComponent } from './admin-user-view/admin-user-view.compon
     CourseStudentGradesComponent,
     CourseDeletionComponent,
     AdminUserViewComponent,
+    StudentProgressViewComponent,
+    ContentProgressComponent,
   ],
   imports: [
     MaterialModule,
@@ -197,6 +201,8 @@ import { AdminUserViewComponent } from './admin-user-view/admin-user-view.compon
     CourseStudentGradesComponent,
     CourseDeletionComponent,
     AdminUserViewComponent,
+    StudentProgressViewComponent,
+    ContentProgressComponent,
   ],
 })
 export class ComponentsModule { }

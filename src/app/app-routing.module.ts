@@ -1,3 +1,4 @@
+import { ContentProgressComponent } from './components/content-progress/content-progress.component';
 import { CourseSettingsComponent } from './components/course-settings/course-settings.component';
 import { JoinCourseByCodeComponent } from './components/join-course-by-code/join-course-by-code.component';
 import { NgModule } from '@angular/core';
@@ -33,6 +34,7 @@ const routes: Routes = [ // Always put more specific routes on the top
     children: [
       {path: '', redirectTo: 'courses', pathMatch: 'full'}, 
       {path: 'courses/:courseId/content/:contentId/video/:videoId', component: CourseVideoComponent},
+      {path: 'courses/:courseId/content/:contentId/progress', component: ContentProgressComponent},
       {path: 'courses/:courseId/quiz/:quizId', component: CourseQuizComponent},
       {path: 'courses/:courseId/quiz/:quizId/take', component: QuizStudentViewComponent},
       {path: 'courses/:courseId/quiz/:quizId/viewQuiz/:submissionId', component: ViewGradedQuizComponent},
