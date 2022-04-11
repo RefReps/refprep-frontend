@@ -1,3 +1,4 @@
+import { AdminGuard } from './_helpers/admin.guard';
 import { ContentProgressComponent } from './components/content-progress/content-progress.component';
 import { CourseSettingsComponent } from './components/course-settings/course-settings.component';
 import { JoinCourseByCodeComponent } from './components/join-course-by-code/join-course-by-code.component';
@@ -47,12 +48,12 @@ const routes: Routes = [ // Always put more specific routes on the top
       {path: 'courses/:courseId/students', component: CourseStudentsComponent},
       {path: 'courses/:courseId/settings', component: CourseSettingsComponent},
       {path: 'courses', component: CoursesComponent},
-      {path: 'admin/users', component: AdminUserViewComponent},
+      {path: 'admin/users', component: AdminUserViewComponent, canActivate: [AdminGuard]},
       {path: 'home', component: HomeComponent},
       {path: 'test', component: TestComponentComponent},
       {path: 'courses/:courseId/videoUpload', component: VideoUploadComponent},
       {path: 'courses/:courseId/editCurriculum', component: EditCurriculumHomeComponent},
-      {path: 'course-creation', component: CourseCreationComponent},
+      {path: 'course-creation', component: CourseCreationComponent, canActivate: [AdminGuard]},
     ]
   },
   {
