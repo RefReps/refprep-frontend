@@ -137,8 +137,8 @@ export class ApiService {
     return this.http.post(`${this.courseUrl}/${courseId}/students/remove`, { emails })
   }
 
-  getStudentsInCourse(courseId: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.courseUrl}/${courseId}/students`)
+  getStudentsInCourse(courseId: string): Observable<{users: User[]}> {
+    return this.http.get<{users: User[]}>(`${this.courseUrl}/${courseId}/students`)
   }
 
 
