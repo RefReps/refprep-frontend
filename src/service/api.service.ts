@@ -1,3 +1,4 @@
+import { ContentProgress } from './../app/models/course';
 import { ApiResponse, ErrorResponse } from './../app/models/apiResponse';
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
@@ -196,6 +197,10 @@ export class ApiService {
   }
 
   // Content Routes
+
+  getContentStudentsProgress(contentId: string): Observable<{students: ContentProgress[]}> {
+    return this.http.get<{students: ContentProgress[]}>(`${this.contentUrl}/${contentId}/progress`)
+  }
 
   getContents(moduleId: string): Observable<Content[]> {
     const query = `moduleId=${moduleId}`
