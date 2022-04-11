@@ -28,6 +28,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 
 @NgModule({
   exports: [
@@ -59,6 +60,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     MatSnackBarModule,
     MatButtonToggleModule,
     ClipboardModule,
+    CdkAccordionModule,
   ],
 })
 export class MaterialModule {}
