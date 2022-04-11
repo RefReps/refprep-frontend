@@ -1,9 +1,5 @@
 <h1>Edit announcement: </h1>
 <form [formGroup]="announcementForm" (ngSubmit)="onUpdate()">
-    <mat-form-field appearance="fill">
-      <mat-label>Enter a title</mat-label>
-      <input matInput placeholder="Title" #title required formControlName="title">
-    </mat-form-field> 
       <angular-editor [config]="config" [placeholder]="'Enter text here'" #body formControlName="body"></angular-editor>
-<button mat-raised-button class="bg-blue-300" type="submit">Post</button>
+<button mat-raised-button class="bg-blue-300" type="submit">Update Announcement</button>
 </form>
