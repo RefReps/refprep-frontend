@@ -80,7 +80,7 @@ export class CourseStudentGradesComponent implements OnInit {
       }
     }
     if (length == 0) {
-      average = 0;
+      average = 1;
     }
     else {
       average = total / length;
