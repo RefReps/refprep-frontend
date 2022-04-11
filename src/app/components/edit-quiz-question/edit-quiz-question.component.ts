@@ -39,7 +39,6 @@ export class EditQuizQuestionComponent implements OnInit {
   }
 
   removeQuestion() {
-    console.log('hello!')
     this.store.dispatch(removeQuestion({number: this.question.questionNumber || 0}))
   }
 
@@ -47,10 +46,4 @@ export class EditQuizQuestionComponent implements OnInit {
 
   }
 
-  // getQuizName() {
-  //   this.api.getQuizInfo(this.quizId)
-  //     .subscribe(info => {
-  //       this.quizInfo = info
-  //     })
-  // }
 }

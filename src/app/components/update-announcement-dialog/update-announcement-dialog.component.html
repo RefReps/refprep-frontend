@@ -1,5 +1,5 @@
-<h1>Add an announcement: </h1>
-<form [formGroup]="announcementForm" (ngSubmit)="onSubmit()">
+<h1>Edit announcement: </h1>
+<form [formGroup]="announcementForm" (ngSubmit)="onUpdate()">
     <mat-form-field appearance="fill">
       <mat-label>Enter a title</mat-label>
       <input matInput placeholder="Title" #title required formControlName="title">
