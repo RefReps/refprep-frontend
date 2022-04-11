@@ -67,6 +67,7 @@ import { CourseGradesComponent } from './course-grades/course-grades.component';
 import { CourseStudentGradesComponent } from './course-student-grades/course-student-grades.component';
 import { CourseDeletionComponent } from './course-deletion/course-deletion.component';
 import { AdminUserViewComponent } from './admin-user-view/admin-user-view.component';
+import { DialogChangePasswordComponent } from './dialog-change-password/dialog-change-password.component';
 import { StudentProgressViewComponent } from './student-progress-view/student-progress-view.component';
 import { ContentProgressComponent } from './content-progress/content-progress.component';
 
@@ -128,6 +129,7 @@ import { ContentProgressComponent } from './content-progress/content-progress.co
     CourseStudentGradesComponent,
     CourseDeletionComponent,
     AdminUserViewComponent,
+    DialogChangePasswordComponent,
     StudentProgressViewComponent,
     ContentProgressComponent,
   ],
@@ -201,6 +203,7 @@ import { ContentProgressComponent } from './content-progress/content-progress.co
     CourseStudentGradesComponent,
     CourseDeletionComponent,
     AdminUserViewComponent,
+    DialogChangePasswordComponent,
     StudentProgressViewComponent,
     ContentProgressComponent,
   ],
