@@ -3,7 +3,7 @@
 
 
  
-    <table mat-table [dataSource]="users" class="mat-elevation-z8" >
+    <table mat-table [dataSource]="users" class="mat-elevation-z8" (matSortChange)="sortUsers($event)" matSort>
   
         <ng-container matColumnDef="email">
             <th mat-header-cell *matHeaderCellDef> Email </th>
@@ -21,7 +21,7 @@
         </ng-container>
         
         <ng-container matColumnDef="Role">
-            <th mat-header-cell *matHeaderCellDef> Role </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Role </th>
             <td mat-cell *matCellDef="let user">{{user.role}}</td>        
         </ng-container>
 
