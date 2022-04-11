@@ -123,6 +123,10 @@ export class ApiService {
     return this.http.get<{user: User}>(`${this.userUrl}/${userId}`)
   }
 
+  updateUserPassword(userId: string, password: string): Observable<{success: boolean}> {
+    return this.http.put<{success: boolean}>(`${this.userUrl}/${userId}/password`, {password})
+  }
+
   getAllUsers(): Observable<{users: User[]}> {
     return this.http.get<{users: User[]}>(`${this.userUrl}`)
   }
