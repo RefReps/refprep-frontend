@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ApiService } from 'src/service/api.service';
 
 @Component({
   selector: 'app-dialog-change-password',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogChangePasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private api: ApiService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
 
   ngOnInit(): void {
   }
+  
+  updatePassword(password: string){
 
+  }
 }

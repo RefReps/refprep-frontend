@@ -27,6 +27,8 @@ export class AdminUserViewComponent implements OnInit {
   openDialog(){
     const dialogRef = this.dialog.open(DialogChangePasswordComponent, {restoreFocus: false})
     dialogRef.afterClosed().subscribe(() => this.menuTrigger.focus())
+  
+  
   }
 
   ngOnInit(): void {
