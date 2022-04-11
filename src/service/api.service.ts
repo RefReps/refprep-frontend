@@ -1,3 +1,4 @@
+import { ContentProgress } from './../app/models/course';
 import { ApiResponse, ErrorResponse } from './../app/models/apiResponse';
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
@@ -141,8 +142,8 @@ export class ApiService {
     return this.http.post(`${this.courseUrl}/${courseId}/students/remove`, { emails })
   }
 
-  getStudentsInCourse(courseId: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.courseUrl}/${courseId}/students`)
+  getStudentsInCourse(courseId: string): Observable<{users: User[]}> {
+    return this.http.get<{users: User[]}>(`${this.courseUrl}/${courseId}/students`)
   }
 
 
@@ -201,6 +202,10 @@ export class ApiService {
 
   // Content Routes
 
+  getContentStudentsProgress(contentId: string): Observable<{students: ContentProgress[], course: Course, content: Content}> {
+    return this.http.get<{students: ContentProgress[], course: Course, content: Content}>(`${this.contentUrl}/${contentId}/progress`)
+  }
+
   getContents(moduleId: string): Observable<Content[]> {
     const query = `moduleId=${moduleId}`
     return this.http.get<Content[]>(`${this.contentUrl}?${query}`)
@@ -224,11 +229,14 @@ export class ApiService {
 
   publishContent(contentId: string): Observable<ApiResponse> {
     return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/publish`, contentId)
-
   }
 
   openContent(contentId: string): Observable<ApiResponse> {
     return this.http.put<ApiResponse>(`${this.contentUrl}/${contentId}/keep-open`, contentId)
+  }
+
+  contentProgressForce(contentId: string, userId: string, percentComplete: number): Observable<any> {
+    return this.http.put<any>(`${this.contentUrl}/${contentId}/progress`, {percentComplete, userId: userId})
   }
 
   // User Routes

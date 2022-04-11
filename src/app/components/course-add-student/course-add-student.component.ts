@@ -47,8 +47,8 @@ export class CourseAddStudentComponent implements OnInit {
   }
 
   getCourseStudents(): void {
-    this.Api.getStudentsInCourse(this.courseId).subscribe((users) => {
-      this.currentStudents.next(users);
+    this.Api.getStudentsInCourse(this.courseId).subscribe((info) => {
+      this.currentStudents.next(info.users);
     });
   }
 

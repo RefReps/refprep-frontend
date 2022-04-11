@@ -1,6 +1,7 @@
 <h2>Add Course</h2>
 <form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
     
+   <div *ngIf="!dashboardDup">
     <p>Select Template Course:</p>
         <mat-form-field appearance="fill">
             <mat-label>Course</mat-label>
@@ -10,6 +11,11 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+    </div>
+    <div *ngIf="dashboardDup" class="text-md">
+        <p>Copying from:</p>
+        <h2>{{course.name}}</h2>
+    </div> 
     <p>
         <mat-form-field appearance="fill">
             <mat-label>New Course Name</mat-label>
