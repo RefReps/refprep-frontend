@@ -1,6 +1,6 @@
 <div class="shadow-lg max-w-4xl">
   <mat-card *ngIf="question.questionType == '1_CHOICE'">
-    <mat-card class="font-bold text-lg"
+    <mat-card class="font-bold text-lg break-words"
       >{{ question.questionNumber }}: {{ question.question }}</mat-card
     >
     <!-- edit icon  -->
@@ -30,24 +30,27 @@
       </mat-menu>
     </div>
     <br />
+    <span class="break-all">
     <mat-list>
       <mat-list-item class="rounded-md bg-gray-100" [ngClass]="{ 'bg-green-200': answer == 'A' }">
-        A: {{ question.responses?.A }}</mat-list-item
-      ><br />
-      <mat-list-item class="rounded-md bg-gray-100" [ngClass]="{ 'bg-green-200': answer == 'B' }">
+        A: {{ question.responses?.A }}
+        </mat-list-item
+        ><br />
+        <mat-list-item class="rounded-md bg-gray-100" [ngClass]="{ 'bg-green-200': answer == 'B' }">
         B: {{ question.responses?.B }}</mat-list-item
       ><br />
       <mat-list-item class="rounded-md bg-gray-100" [ngClass]="{ 'bg-green-200': answer == 'C' }">
         C: {{ question.responses?.C }}</mat-list-item
-      ><br />
-      <mat-list-item class="rounded-md bg-gray-100" [ngClass]="{ 'bg-green-200': answer == 'D' }">
-        D: {{ question.responses?.D }}</mat-list-item
-      ><br />
-    </mat-list>
+        ><br />
+        <mat-list-item class="rounded-md bg-gray-100" [ngClass]="{ 'bg-green-200': answer == 'D' }">
+          D: {{ question.responses?.D }}</mat-list-item
+          ><br />
+        </mat-list>
+      </span>
   </mat-card>
 
   <mat-card *ngIf="question.questionType == 'TRUE_FALSE'">
-    <mat-card class="font-bold text-lg"
+    <mat-card class="font-bold text-lg break-words"
       >{{ question.questionNumber }}: {{ question.question }}</mat-card
     >
     <!-- edit icon  -->
@@ -87,7 +90,7 @@
   </mat-card>
 
   <mat-card *ngIf="question.questionType == 'FREE_RESPONSE'">
-    <mat-card class="font-bold text-lg"
+    <mat-card class="font-bold text-lg break-words"
       >{{ question.questionNumber }}: {{ question.question }}</mat-card
     >
     <!-- edit icon  -->
@@ -118,7 +121,7 @@
     </div>
     <br />
     <div class="text-xl rounded-md bg-green-200 px-5 py-3">
-      <span class="font-bold text-xl">Answer: </span> <span class="px-3">{{answer}}</span>
+      <span class="font-bold text-xl">Answer: </span> <span class="px-3 break-words">{{answer}}</span>
     </div>
   </mat-card>
 </div>
