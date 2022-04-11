@@ -1,0 +1,24 @@
+<div style="text-align: center">
+    <mat-card-title>Enter New Email for {{user.firstName}} {{user.lastName}}</mat-card-title>
+  </div>
+  <mat-error *ngIf="activeUser === user.email">This is your account! Are you sure you want to make changes?</mat-error>
+<div *ngIf="activeUser !== user.email">
+    <mat-error *ngIf="user.role === 'admin'">This is an admin account!</mat-error>
+</div>
+  <!-- Password input -->
+  <div class="grid grid-flow-row">
+  <mat-form-field>
+    <mat-label>New Email</mat-label>
+    <input
+      matInput
+      placeholder="email"
+      name="email"
+      [(ngModel)]="email"
+      required
+    />
+  </mat-form-field>
+
+  <button class="w-40 bg-green-400" mat-raised-button (click)="onSubmit(email)">
+    Confirm
+  </button>
+  </div>
