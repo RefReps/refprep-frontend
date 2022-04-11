@@ -2,8 +2,8 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Announcement } from 'src/app/models/announcement';
 import { ApiService } from 'src/service/api.service';
-
 
 @Component({
   selector: 'app-update-announcement-dialog',
@@ -11,19 +11,20 @@ import { ApiService } from 'src/service/api.service';
   styleUrls: ['./update-announcement-dialog.component.css']
 })
 export class UpdateAnnouncementDialogComponent implements OnInit {
-  moduleId: string;
+  
+  @Input() announcementId: string = '';
+  announcementInfo: Announcement = {
+    _id: this.announcementId
+  }
 
   constructor(private formBuilder: FormBuilder,
-    private api: ApiService,     
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.moduleId = data.data.moduleId
-     }
+    private api: ApiService,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit(): void {
   }
 
   announcementForm = this.formBuilder.group({
-    title: '',
     body: ''
   });
 
@@ -52,8 +53,10 @@ export class UpdateAnnouncementDialogComponent implements OnInit {
   }
 
   onUpdate(){
-    this.api.updateAnnouncement(this.moduleId, this.announcementForm.value)
-    console.log(this.moduleId)
+    if(this.data.data.announcementId){
+      this.api.updateAnnouncement(this.data.data.announcementId, this.announcementForm.value).subscribe()
+      window.location.reload()
+    }
   }
 
 }

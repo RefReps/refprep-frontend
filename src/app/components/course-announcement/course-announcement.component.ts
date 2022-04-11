@@ -105,8 +105,8 @@ export class CourseAnnouncementComponent implements OnInit {
 
 
 
-  openUpdateAnnouncementDialog(moduleId: string): void {
-    this.DialogService.open(UpdateAnnouncementDialogComponent, {moduleId})
+  openUpdateAnnouncementDialog(announcementId: string): void {
+    this.DialogService.open(UpdateAnnouncementDialogComponent, {announcementId})
   }
 
 }
