@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Course, Content } from 'src/app/models/course';
+import { User } from 'src/app/models/user';
 import { TokenService } from 'src/app/_services/token.service';
 import { UserInteractionService } from 'src/app/_services/user-interaction.service';
 import { ApiService } from 'src/service/api.service';
@@ -66,6 +67,9 @@ export class DisplayContentsComponent implements OnInit {
     return date.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric' }) + ' ' + date.toLocaleTimeString('en-US')
   }
 
+  isAdmin(): boolean {
+    return this.userInteraction.isAdmin;
+  }
   isAuthor(): boolean {
     return this.userInteraction.isAuthor;
   }
@@ -75,13 +79,13 @@ export class DisplayContentsComponent implements OnInit {
   }
 
   openSnackBar(content: Content): void {
-    if (!this.isAccessibleByDate(content)) {
+    if (!this.isAccessibleByDate(content) && !(this.isAuthor() || this.isAdmin() )) {
       let message = 'Content not yet available'
       const ONE_SECOND = 1000
       const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
       this._snackBar.open(message, 'x', config);
     }
-    else if (!this.isAccessibleByProgress(content)) {
+    else if (!this.isAccessibleByProgress(content) && !(this.isAuthor() || this.isAdmin() )) {
       let message = 'Complete previous content to progress'
       const ONE_SECOND = 1000
       const config: MatSnackBarConfig = { duration: ONE_SECOND * 2 };
