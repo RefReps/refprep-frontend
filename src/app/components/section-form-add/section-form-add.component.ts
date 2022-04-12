@@ -20,6 +20,8 @@ export class SectionFormAddComponent {
       name: '',
       courseId: data.data.courseId,
       sectionOrder: 50,
+      isPublished: true,
+      dropDate: Date.now(),
     })
    }
   
