@@ -25,8 +25,6 @@ import { DisplayModulesComponent } from './display-modules/display-modules.compo
 import { DisplaySectionsComponent } from './display-sections/display-sections.component';
 import { CourseCardComponent } from './course-card/course-card.component';
 import { CourseAddFormComponent } from './course-add-form/course-add-form.component';
-import { DialogFormComponent } from './dialog-form/dialog-form.component';
-import { DialogCreateCourseComponent } from './dialog-create-course/dialog-create-course.component';
 import { CourseEditFormComponent } from './course-edit-form/course-edit-form.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { SectionFormAddComponent } from './section-form-add/section-form-add.component';
@@ -93,8 +91,6 @@ import { DialogChangeRoleComponent } from './dialog-change-role/dialog-change-ro
     DisplaySectionsComponent,
     CourseCardComponent,
     CourseAddFormComponent,
-    DialogFormComponent,
-    DialogCreateCourseComponent,
     CourseEditFormComponent,
     DialogComponent,
     SectionFormAddComponent,
@@ -173,8 +169,6 @@ import { DialogChangeRoleComponent } from './dialog-change-role/dialog-change-ro
     DisplaySectionsComponent,
     CourseCardComponent,
     CourseAddFormComponent,
-    DialogFormComponent,
-    DialogCreateCourseComponent,
     CourseEditFormComponent,
     DialogComponent,
     SectionFormAddComponent,
