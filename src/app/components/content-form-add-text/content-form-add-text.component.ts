@@ -41,6 +41,12 @@ export class ContentFormAddTextComponent implements OnInit {
     minHeight: '5rem',
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
+    toolbarHiddenButtons: [[
+      'link',
+      'unlink',
+      'insertImage',
+      'insertVideo',
+    ]],
     customClasses: [
       {
         name: 'Quote',
