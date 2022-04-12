@@ -229,6 +229,10 @@ export class ApiService {
     return this.http.get<Content[]>(`${this.contentUrl}?${query}`)
   }
 
+  getContent(contentId: string): Observable<{content: Content}> {
+    return this.http.get<{content: Content}>(`${this.contentUrl}/${contentId}`)
+  }
+
   postContent(contentForm: FormData): void {
     this.http.post(`${this.contentUrl}`, contentForm).subscribe()
   }
@@ -284,14 +288,15 @@ export class ApiService {
       responseType: 'json'
 
     });
-
-    console.log(req);
-
     return this.http.request(req);
   }
 
   updateVideoProgressOnContent(contentId: string, percentComplete: number): Observable<any> {
     return this.http.put(`${this.contentUrl}/${contentId}/progress/video`, { percentComplete })
+  }
+
+  updateAnnouncementProgressOnContent(contentId: string): Observable<any> {
+    return this.http.put(`${this.contentUrl}/${contentId}/progress/announcement`, {})
   }
 
 

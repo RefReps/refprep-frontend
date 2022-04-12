@@ -43,10 +43,6 @@
                 <input matInput type="text" id="option4" formControlName="D">
             </mat-form-field>
             <br>
-            <!-- <mat-radio-group formControlName="answersAllowed">
-                <mat-radio-button value="one" class="m-5">One</mat-radio-button>
-                <mat-radio-button value="many" class="m-5">Many</mat-radio-button>
-            </mat-radio-group> -->
             <br>
             <mat-radio-group formControlName="answers">
                 <mat-radio-button checked value="A" class="m-5">A</mat-radio-button>
@@ -54,13 +50,6 @@
                 <mat-radio-button value="C" class="m-5">C</mat-radio-button>
                 <mat-radio-button value="D" class="m-5">D</mat-radio-button>
             </mat-radio-group>
-            <!-- <section *ngIf="multipleChoiceType.value.answersAllowed=='many'" formControlName="answers"
-                ngDefaultControl>
-                <mat-checkbox value="A" (change)="onCheckChange($event)" class="m-5">A</mat-checkbox>
-                <mat-checkbox value="B" (change)="onCheckChange($event)" class="m-5">B</mat-checkbox>
-                <mat-checkbox value="C" (change)="onCheckChange($event)" class="m-5">C</mat-checkbox>
-                <mat-checkbox value="D" (change)="onCheckChange($event)" class="m-5">D</mat-checkbox>
-            </section> -->
             <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>

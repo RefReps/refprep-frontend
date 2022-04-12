@@ -46,8 +46,6 @@ export class CourseDeletionComponent implements OnInit {
     if (!this.match) {
       return;
     }
-    console.log(this.formGroup.value.courseName)
-    console.log(this.courseName)
     if (this.formGroup.value.courseName === this.courseName) {
       this.apiService.deleteCourse(this.courseId).subscribe(
         (data) => {

@@ -41,6 +41,12 @@ export class ContentFormAddTextComponent implements OnInit {
     minHeight: '5rem',
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
+    toolbarHiddenButtons: [[
+      'link',
+      'unlink',
+      'insertImage',
+      'insertVideo',
+    ]],
     customClasses: [
       {
         name: 'Quote',
@@ -66,6 +72,7 @@ export class ContentFormAddTextComponent implements OnInit {
   onSubmit() {
     if(this.data.data.moduleId){
       this.apiService.postAnnouncement(this.moduleId, this.announcementForm.value).subscribe(res => {
+        window.location.reload()
       })
       
     }

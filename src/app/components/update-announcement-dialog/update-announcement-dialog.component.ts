@@ -39,6 +39,12 @@ export class UpdateAnnouncementDialogComponent implements OnInit {
     minHeight: '5rem',
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
+    toolbarHiddenButtons: [[
+      'link',
+      'unlink',
+      'insertImage',
+      'insertVideo',
+    ]],
     customClasses: [
       {
         name: 'Quote',
@@ -50,6 +56,7 @@ export class UpdateAnnouncementDialogComponent implements OnInit {
         tag: 'h1',
       },
     ],
+  
   }
 
   onUpdate(){

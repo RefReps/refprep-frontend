@@ -1,37 +1,57 @@
-<mat-card class='max-w-2xl'>
-  <div *ngIf='isAdmin || isAuthor'>  
-    <button  mat-icon-button [matMenuTriggerFor]="editMenu" class="float-right">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-    <mat-menu #editMenu class="w-10">
-        <div class="flex flex-col">
-            <div>
-                <button
-                mat-icon-button
-                (click)="openUpdateAnnouncementDialog(announcementId)"
-                color="black"
-                class=""
-                >
-                <mat-icon>edit</mat-icon>
-              </button>
-                Edit
-              </div>
-        </div>
-    </mat-menu>
+<div fxLayout="column" fxFill>
+  <div fxFlex="7">
+      <app-course-info-home></app-course-info-home>
   </div>
-<div [innerHTML]="body">
 
+  <mat-drawer-container fxLayout="column" fxFlex="93">
+
+      <mat-drawer #drawer mode="side" opened class="w-24 min-h-full">
+          <app-course-sidebar></app-course-sidebar>
+      </mat-drawer>
+
+      <div fxFlex class="">
+
+        <!-- MAIN CONTENT FOR PAGE -->
+        <mat-card class='max-w-full h-full'>
+          <div *ngIf='isAdmin || isAuthor'>  
+            <button  mat-icon-button [matMenuTriggerFor]="editMenu" class="float-right">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            <mat-menu #editMenu class="w-10">
+                <div class="flex flex-col">
+                    <div>
+                        <button
+                        mat-icon-button
+                        (click)="openUpdateAnnouncementDialog(announcementId)"
+                        color="black"
+                        class=""
+                        >
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                        Edit
+                      </div>
+                </div>
+            </mat-menu>
+          </div>
+          <div class="pb-2">
+            <mat-icon>campaign</mat-icon><span class="text-2xl pl-2">{{content.name}}</span>
+          </div>
+        <div [innerHTML]="body">
+
+        </div>
+        </mat-card>
+
+        <br>
+        <br>
+
+
+        <!-- <div *ngIf="isAdmin">
+            <h1>Edit the announcement </h1>
+            <form [formGroup]="announcementForm" (ngSubmit)="onUpdate()"></form>
+            <angular-editor [config]="config" [placeholder]="'Enter text here'" #body formControlName="body"></angular-editor>
+            <button mat-raised-button class="bg-blue-300" type="submit">Update Announcement</button>
+        </div> -->
+
+    </div>
+  </mat-drawer-container>
 </div>
-</mat-card>
-
-<br>
-<br>
-
-
-<!-- <div *ngIf="isAdmin">
-    <h1>Edit the announcement </h1>
-    <form [formGroup]="announcementForm" (ngSubmit)="onUpdate()"></form>
-    <angular-editor [config]="config" [placeholder]="'Enter text here'" #body formControlName="body"></angular-editor>
-    <button mat-raised-button class="bg-blue-300" type="submit">Update Announcement</button>
-</div> -->
-

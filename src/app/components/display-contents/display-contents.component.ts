@@ -79,6 +79,9 @@ export class DisplayContentsComponent implements OnInit {
   }
 
   openSnackBar(content: Content): void {
+    if (content.isKeepOpen) {
+      return
+    }
     if (!this.isAccessibleByDate(content) && !(this.isAuthor() || this.isAdmin() )) {
       let message = 'Content not yet available'
       const ONE_SECOND = 1000
@@ -103,7 +106,7 @@ export class DisplayContentsComponent implements OnInit {
       case 'Video':
         return ['./content', content._id || '', 'video', content.toDocument || '']
       case 'Announcement':
-        return ['./announcement', content.toDocument || ''] 
+        return ['./content', content._id || '', 'announcement', content.toDocument || ''] 
       default:
         return []
     }

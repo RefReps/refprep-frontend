@@ -25,8 +25,6 @@ export class VideoUploadService {
 
     });
 
-    console.log(file);
-
     return this.http.request(req);
   }
 }
