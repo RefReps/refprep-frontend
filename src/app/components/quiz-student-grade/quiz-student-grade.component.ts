@@ -6,6 +6,8 @@ import { QuizVersion } from 'src/app/models/quiz';
 import { UserGrade } from 'src/app/models/quiz';
 import { ApiService } from 'src/service/api.service';
 import { Course } from 'src/app/models/course';
+import { User } from 'src/app/models/user';
+import { TokenService } from 'src/app/_services/token.service';
 
 @Component({
   selector: 'app-quiz-student-grade',
@@ -15,17 +17,22 @@ import { Course } from 'src/app/models/course';
 export class QuizStudentGradeComponent implements OnInit {
   @Input() quizId: string = '';
   courseId: string = '';
+  userId: string = ''
+  user: User = {};
   passingGrade: number = 0;
   courseInfo: Course = {};
   userGrade: UserGrade[] = [];
   quizInfo: ActiveVersion = {};
 
   constructor(
+    private tokenService: TokenService,
     private QuizService: QuizzesService,
     private route: ActivatedRoute,
     private router: Router,
     private api: ApiService,
-  ) {}
+  ) {
+    this.userId = this.tokenService.getUserId();
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -37,6 +44,7 @@ export class QuizStudentGradeComponent implements OnInit {
     this.getBasicQuizInfo();
     this.getQuizGrade();
     this.getQuizPassingGrade();
+    this.getUserInfo();
   }
 
   viewGradedQuiz(submissionId: string) {
@@ -48,6 +56,13 @@ export class QuizStudentGradeComponent implements OnInit {
       this.quizInfo = activeVersion;
     });
   }
+
+  getUserInfo(): void {
+    this.api.getUser(this.userId)
+      .subscribe(info => 
+        this.user = info.user
+        )
+    }
 
   //find remaining attempts for the quiz
   getRemainingAttempts() {
