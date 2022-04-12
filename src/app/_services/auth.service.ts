@@ -45,12 +45,10 @@ export class AuthService {
   login(loginData: any): Observable<any> {
     this.tokenService.removeToken()
     this.tokenService.removeRefreshToken()
-    console.log(loginData)
     const body = new HttpParams()
       .set('email', loginData.email)
       .set('password', loginData.password)
       .set('grant_type', 'password')
-      console.log(body)
     
     return this.http.post<any>(`${environment.apiUrl}/api/auth/login`, body, HTTP_OPTIONS)
       .pipe(tap(res => {

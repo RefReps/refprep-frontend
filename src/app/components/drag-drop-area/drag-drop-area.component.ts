@@ -19,12 +19,6 @@ export class DragDropAreaComponent {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       this.updateOrdering()
     } 
-    // else {
-    //   transferArrayItem(event.previousContainer.data,
-    //       event.container.data,
-    //       event.previousIndex,
-    //       event.currentIndex);
-    // }
   }
 
   updateOrdering(): void {

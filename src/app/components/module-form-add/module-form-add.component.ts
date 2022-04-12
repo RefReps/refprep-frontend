@@ -20,8 +20,6 @@ export class ModuleFormAddComponent {
       name: '',
       sectionId: data.data.sectionId,
       moduleOrder: 50,
-      isPublished: true,
-      dropDate: Date.now(),
     })
    }
   
