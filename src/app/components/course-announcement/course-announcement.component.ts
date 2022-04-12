@@ -20,6 +20,7 @@ import { UpdateAnnouncementDialogComponent } from '../update-announcement-dialog
 export class CourseAnnouncementComponent implements OnInit {
 
   announcementId: string = '';
+  contentId: string = '';
   announcementInfo: Announcement = {}
   body: string = '';
   @Input() moduleId: string = '';
@@ -40,11 +41,16 @@ export class CourseAnnouncementComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      let id = params.get('announcementId');
-      if (id) {
-        this.announcementId = id;
+      let announcementId = params.get('announcementId');
+      let contentId = params.get('contentId');
+      if (announcementId) {
+        this.announcementId = announcementId;
+      }
+      if (contentId) {
+        this.contentId = contentId;
       }
       this.getAnnouncementInfo()
+      this.markAnnouncementAsComplete()
       // this.getAnnouncementBody()
       // this.parsingHTML()
     });
@@ -103,10 +109,14 @@ export class CourseAnnouncementComponent implements OnInit {
     return this.tokenService.getUserRole() === 'author'
   }
 
-
-
   openUpdateAnnouncementDialog(announcementId: string): void {
     this.DialogService.open(UpdateAnnouncementDialogComponent, {announcementId})
+  }
+
+  markAnnouncementAsComplete(): void {
+    this.api.updateAnnouncementProgressOnContent(this.contentId).subscribe((res) => {
+      
+    })
   }
 
 }
