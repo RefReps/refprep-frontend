@@ -1,3 +1,4 @@
+import { Content } from './../../models/course';
 import { parseHostBindings } from '@angular/compiler';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
@@ -21,6 +22,7 @@ export class CourseAnnouncementComponent implements OnInit {
 
   announcementId: string = '';
   contentId: string = '';
+  content: Content = {};
   announcementInfo: Announcement = {}
   body: string = '';
   @Input() moduleId: string = '';
@@ -48,6 +50,9 @@ export class CourseAnnouncementComponent implements OnInit {
       }
       if (contentId) {
         this.contentId = contentId;
+        this.api.getContent(contentId).subscribe((res) => {
+          this.content = res.content;
+        })
       }
       this.getAnnouncementInfo()
       this.markAnnouncementAsComplete()
