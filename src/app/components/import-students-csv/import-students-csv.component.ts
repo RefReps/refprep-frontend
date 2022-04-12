@@ -50,7 +50,6 @@ export class ImportStudentsCsvComponent implements OnInit {
           Rows.push(rowsValue[j]);
         }
         this.rowLines.push(Rows);
-        console.log(Rows)
       };
       this.populated = true;
     }

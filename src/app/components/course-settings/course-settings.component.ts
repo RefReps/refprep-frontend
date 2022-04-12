@@ -102,7 +102,6 @@ export class CourseSettingsComponent implements OnInit {
 
   toggleCourseEnforcements(): void {
     this.courseEnforcements = !this.courseEnforcements;
-    console.log(this.courseEnforcements)
   }
 
   changeEnforcementPercent(percent: string): void {

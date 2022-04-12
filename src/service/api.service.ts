@@ -284,9 +284,6 @@ export class ApiService {
       responseType: 'json'
 
     });
-
-    console.log(req);
-
     return this.http.request(req);
   }
 
