@@ -21,6 +21,8 @@ export class CourseAddStudentComponent implements OnInit {
   removedEmail: string = '';
   currentStudents = new BehaviorSubject<User[]>([]);
 
+  valueEmittedFromChildComponent: string = '';
+
   course: Course = {};
 
   constructor(
@@ -62,6 +64,11 @@ export class CourseAddStudentComponent implements OnInit {
       this.removedEmail = '';
       this.getCourseStudents();
     });
+  }
+
+  parentEventHandlerFunction(valueEmitted: any){
+    this.valueEmittedFromChildComponent = valueEmitted
+    this.getCourseStudents()
   }
 
   onSubmit() {

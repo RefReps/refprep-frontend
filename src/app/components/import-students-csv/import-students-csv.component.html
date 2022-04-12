@@ -1,33 +1,27 @@
 <div class="container">
-    <form class="min-w-max">
-        <input class="form-control" type="file" class="file-input hidden"
-            (change)="onFileSelected($event); changeListener($event)" #fileUpload>
-        <div class="file-upload">
-
+        <input class="file-input hidden" type="file" 
+        #csvReader name="Upload CSV" 
+        id="txtFileUpload"  
+        (change)="uploadListener($event); onFileSelected($event)"/>
+        <div>
             {{fileName || "No file uploaded yet."}}
 
-            <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+            <button mat-mini-fab color="primary" class="upload-btn"
+            (click)="csvReader.click()">
                 <mat-icon>attach_file</mat-icon>
             </button>
         </div>
-    </form>
-    <table class="table table-bordered table-dark">
-        <thead>
-            <tr>
-                <th *ngFor="let title of headLines[0]; let i = index" class="text-xl ">
-                    {{title}}
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of rowLines[0]; let i = index">
-                <td *ngFor="let titles of headLines[0]; let j = index" class="text-xl">
-                    {{item[j]}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div *ngIf="populated">
-        <button mat-raised-button class="bg-blue-300" type="submit" (click)="onSubmit()">Send Email</button>
-    </div>
+        <button mat-raised-button class="bg-blue-600" type="submit" *ngIf="populated" (click)="onSubmit()">Add Students</button>
+    <table class="minimalistBlack" *ngIf="populated">
+      <thead>
+        <tr>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of records;let i = index;">
+          <td> {{record.email}} </td>
+        </tr>
+      </tbody>
+    </table>   
 </div>
