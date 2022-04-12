@@ -38,10 +38,6 @@ class Responses {
   D?: string;
 }
 
-// interface Responses { // This might be our solution to dynamic responses
-//     [key: string]: string;
-// }
-
 export class QuizSubmission {
   _id?: string;
   userId?: string;

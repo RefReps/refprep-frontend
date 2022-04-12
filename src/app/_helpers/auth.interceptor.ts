@@ -48,26 +48,5 @@ export class AuthInterceptor implements HttpInterceptor {
     })
 
     return next.handle(request)
-  //   .pipe(
-  //     map((event: HttpEvent<any>) => {
-  //       if (event instanceof HttpResponse) {
-  //         console.log('event--->>>', event)
-  //       }
-  //       return event
-  //     }),
-  //     catchError((error: any) => {
-  //       if (error.status === 401) {
-  //         if (error.error.error === 'invalid_token') {
-  //           this.authService.refreshToken({refreshToken: refreshToken})
-  //             .subscribe(() => {
-  //               location.reload()
-  //             })
-  //         } else {
-  //           this.router.navigate(['/login']).then(_ => console.log('redirected to login'))
-  //         }
-  //       }
-  //       return throwError(error)
-  //     })
-  //   )
   }
 }
