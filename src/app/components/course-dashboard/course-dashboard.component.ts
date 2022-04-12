@@ -6,6 +6,8 @@ import { ApiService } from 'src/service/api.service';
 import { DialogService } from 'src/service/dialog.service';
 import { CourseAddFormComponent } from '../course-add-form/course-add-form.component';
 import { CourseDuplicateFormComponent } from '../course-duplicate-form/course-duplicate-form.component';
+import { TokenService } from 'src/app/_services/token.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-course-dashboard',
@@ -14,17 +16,23 @@ import { CourseDuplicateFormComponent } from '../course-duplicate-form/course-du
 })
 export class CourseDashboardComponent implements OnInit {
 
-  courses: Course[] = []
+  userId: string = ''
+  user: User = {};
+  courses: Course[] = [];
 
   constructor(
+    private tokenService: TokenService,
     private Api: ApiService,
     private dialogService: DialogService,
-    private user: UserInteractionService,
+    private userInt: UserInteractionService,
     private _snackBar: MatSnackBar
-    ) { }
+    ) {
+      this.userId = this.tokenService.getUserId()
+     }
 
   ngOnInit(): void {
-    this.getCourses()
+    this.getCourses();
+    this.getUserInfo();
   }
 
   joinCourseByCode(code: string): void {
@@ -49,6 +57,13 @@ export class CourseDashboardComponent implements OnInit {
       .subscribe(info => this.courses = info)
   }
   
+  getUserInfo(): void {
+    this.Api.getUser(this.userId)
+      .subscribe(info => 
+        this.user = info.user
+        )
+    }
+
   openAddCourseDialog(): void {
     this.dialogService.open(CourseAddFormComponent, {})
   }
@@ -58,7 +73,7 @@ export class CourseDashboardComponent implements OnInit {
   }
 
   get isAdmin(): boolean {
-    return this.user.isAdmin
+    return this.userInt.isAdmin
   }
 
 }
