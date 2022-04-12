@@ -79,6 +79,9 @@ export class DisplayContentsComponent implements OnInit {
   }
 
   openSnackBar(content: Content): void {
+    if (content.isKeepOpen) {
+      return
+    }
     if (!this.isAccessibleByDate(content) && !(this.isAuthor() || this.isAdmin() )) {
       let message = 'Content not yet available'
       const ONE_SECOND = 1000
