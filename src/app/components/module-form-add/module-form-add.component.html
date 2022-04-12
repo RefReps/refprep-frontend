@@ -5,22 +5,8 @@
             <mat-label>Module Name</mat-label>
             <input matInput name="name" formControlName="name">
         </mat-form-field>
-    
-    </p>
+
     <p>
-        <mat-slide-toggle name="isPublished" formControlName="isPublished" color="aqua" checked>
-            Publish Module
-        </mat-slide-toggle>
-    </p>
-    <p *ngIf="true">
-        <mat-form-field appearance="fill">
-            <mat-label>Module Drop Date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-    </p>
-    <p>
-        <button mat-button type="submit">Submit</button>
+        <button class="bg-green-400" mat-button type="submit">Submit</button>
     </p>
 </form>
