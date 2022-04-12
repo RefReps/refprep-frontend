@@ -55,10 +55,11 @@
       </div>
       </mat-card-content>
     </mat-card>
-    <mat-card class="shadow-lg h-400">
+    <!-- CSV -->
+    <mat-card class="shadow-lg h-400 w-52">
       <mat-card-title> Import Student Emails from CSV: </mat-card-title>
       <mat-card-content>
-        <app-import-students-csv></app-import-students-csv>
+        <app-import-students-csv (buttonClicked)="parentEventHandlerFunction($event)"></app-import-students-csv>
       </mat-card-content>
     </mat-card>
   </div>
