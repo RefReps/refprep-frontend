@@ -66,6 +66,7 @@ export class ContentFormAddTextComponent implements OnInit {
   onSubmit() {
     if(this.data.data.moduleId){
       this.apiService.postAnnouncement(this.moduleId, this.announcementForm.value).subscribe(res => {
+        window.location.reload()
       })
       
     }
