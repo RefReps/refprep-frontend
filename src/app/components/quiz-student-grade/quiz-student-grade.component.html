@@ -5,7 +5,7 @@
   {{ courseInfo?.settings?.enforcementPercent}}% Needed to Progress   | 
     Attempts Remaining: {{ getRemainingAttempts() }}
 </h2>
-<div class="center">
+<div class="center pb-4">
   <div matTooltip="All Attempts Used"
        matTooltipPosition="above"
        [matTooltipDisabled]="!isAttemptsExhausted">
@@ -20,9 +20,9 @@
 </div>
 
 
-<div *ngIf="userGrade.length > 0" class="center">
-  <h1>Previous Submissions:</h1>
-</div>
+<h2  class="center" *ngIf="userGrade.length > 0">
+  <div>Previous Submissions for {{ user.firstName }} {{ user.lastName }}:</div>
+</h2>
 
 <table *ngIf="userGrade.length > 0">
   <thead>
