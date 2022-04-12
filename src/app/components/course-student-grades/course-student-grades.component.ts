@@ -144,7 +144,7 @@ export class CourseStudentGradesComponent implements OnInit {
   }
 
   sortContentsByContentOrder(contents: Content[]): Content[] {
-    return contents.sort((a, b) => a.contentOrder! - b.contentOrder!);
+    return contents.sort((a, b) => a.contentOrder! - b.contentOrder!).filter((content) => content.onModel === 'Quiz');
   }  
 
 }
