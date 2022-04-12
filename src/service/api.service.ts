@@ -294,6 +294,10 @@ export class ApiService {
     return this.http.put(`${this.contentUrl}/${contentId}/progress/video`, { percentComplete })
   }
 
+  updateAnnouncementProgressOnContent(contentId: string): Observable<any> {
+    return this.http.put(`${this.contentUrl}/${contentId}/progress/announcement`, {})
+  }
+
 
 // Announcement 
   postAnnouncement(moduleId: string, announcementForm: FormData): Observable<any>{

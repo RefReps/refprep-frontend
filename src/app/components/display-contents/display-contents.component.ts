@@ -103,7 +103,7 @@ export class DisplayContentsComponent implements OnInit {
       case 'Video':
         return ['./content', content._id || '', 'video', content.toDocument || '']
       case 'Announcement':
-        return ['./announcement', content.toDocument || ''] 
+        return ['./content', content._id || '', 'announcement', content.toDocument || ''] 
       default:
         return []
     }
